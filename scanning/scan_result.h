@@ -31,7 +31,8 @@ class ScanResult {
              std::vector<uint8_t>& info_element,
              uint32_t frequency,
              int32_t signal_mbm,
-             uint64_t tsf);
+             uint64_t tsf,
+             uint16_t capability);
   void DebugLog();
 
   // SSID of the BSS.
@@ -47,6 +48,8 @@ class ScanResult {
   int32_t signal_mbm;
   // TSF of the received probe response/beacon.
   uint64_t tsf;
+  // Capability field.
+  uint16_t capability;
 };
 
 }  // namespace wificond
