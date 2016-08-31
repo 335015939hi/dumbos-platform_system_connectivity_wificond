@@ -108,9 +108,11 @@ void RegisterServiceOrCrash(const android::sp<android::IBinder>& service) {
 
 void DoPrivilegedSetupOrCrash() {
   // take ownership of the magic firmware change path
-  CHECK(chown(DriverTool::kFirmwareReloadPath, AID_WIFI, AID_WIFI) == 0)
-      << "Error changing ownership of '" << DriverTool::kFirmwareReloadPath
-      << "' to wifi:wifi, (" << strerror(errno) << ")";
+  if (chown(DriverTool::kFirmwareReloadPath, AID_WIFI, AID_WIFI) != 0) {
+    LOG(INFO) << "Error changing ownership of '"
+              << DriverTool::kFirmwareReloadPath
+              << "' to wifi:wifi, (" << strerror(errno) << ")";
+  }
 }
 
 void DropPrivilegesOrCrash() {
