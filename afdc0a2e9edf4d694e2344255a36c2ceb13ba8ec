@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "91992d96_a20e7e42",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-08-31T21:59:27Z",
+      "side": 1,
+      "message": "Oooops.. I copied this from some branch without that CL merged in. Sorry for that.",
+      "parentUuid": "91992d96_8256da22",
+      "revId": "afdc0a2e9edf4d694e2344255a36c2ceb13ba8ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91992d96_c264e219",
         "filename": "scanning/scan_utils.cpp",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-31T21:53:10Z",
       "side": 1,
       "message": "Should there be a return false here?",
+      "revId": "afdc0a2e9edf4d694e2344255a36c2ceb13ba8ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91992d96_423c52ce",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-08-31T21:59:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91992d96_c264e219",
       "revId": "afdc0a2e9edf4d694e2344255a36c2ceb13ba8ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
