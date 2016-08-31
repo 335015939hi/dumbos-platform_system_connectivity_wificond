@@ -31,7 +31,8 @@ class ScanResult {
              std::vector<uint8_t>& info_element,
              uint32_t frequency,
              int32_t signal_mbm,
-             uint64_t tsf);
+             uint64_t tsf,
+             uint16_t capability);
   void DebugLog();
 
   // SSID of the BSS.
@@ -47,6 +48,15 @@ class ScanResult {
   int32_t signal_mbm;
   // TSF of the received probe response/beacon.
   uint64_t tsf;
+  // This is a bit mask describing the capabilities of a BSS.
+  // See IEEE Std 802.11: 8.4.1.4
+  // Bit:         0    1         2               3            4            5           6           7
+  // Capability: ESS  IBSS  CF Pollable  CF-Poll Request   Privacy   Short Preamble   PBCC  Channel Agility
+  // Bit:            8           9          10            11
+  // Capability: Spectrum Mgmt   QoS   Short Slot Time   APSD
+  // Bit:            12                13             14                     15
+  // Capability:  Radio Measurement  DSSS-OFDM    Delayed Block Ack  Immediate Block Ack
+  uint16_t capability;
 };
 
 }  // namespace wificond
