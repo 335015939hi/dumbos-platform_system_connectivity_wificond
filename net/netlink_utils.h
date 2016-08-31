@@ -45,6 +45,20 @@ class NetlinkUtils {
                                 uint32_t* index,
                                 std::vector<uint8_t>* mac_addr);
 
+  // Register for receiving certain frames for processing.
+  // |interface_index| is the index of interface we want to listen on.
+  // |frame_type| and |frame_subtype| are types of frame we want to
+  // receive.
+  // |match| is an array to match the beginning N bytes of frame payload.
+  // N >= 1.
+  // This registration is for the socket we use to send this request.
+  // Frame will be sent from kernel as broadcast packet, with sequence id 0.
+  // Returns true on success.
+  virtual bool RegisterFrame(uint32_t interface_index,
+                             uint8_t frame_type,
+                             uint8_t frame_subype,
+                             const std::vector<uint8_t>& match);
+
  private:
   NetlinkManager* netlink_manager_;
 
