@@ -162,5 +162,38 @@ bool NetlinkUtils::GetInterfaceInfo(uint32_t wiphy_index,
   return false;
 }
 
+bool NetlinkUtils::RegisterFrame(uint32_t interface_index,
+                                 uint8_t frame_type,
+                                 uint8_t frame_subtype,
+                                 const vector<uint8_t>& match) {
+  NL80211Packet register_frame(netlink_manager_->GetFamilyId(),
+                               NL80211_CMD_REGISTER_FRAME,
+                               netlink_manager_->GetSequenceNumber(),
+                               getpid());
+  NL80211Attr<uint16_t> frame_type_attr(
+      NL80211_ATTR_FRAME_TYPE,
+      (frame_type) | (frame_subtype << 4));
+  NL80211Attr<vector<uint8_t>> match_attr(NL80211_ATTR_FRAME_MATCH, match);
+
+  register_frame.AddAttribute(
+      NL80211Attr<uint32_t>(NL80211_ATTR_IFINDEX, interface_index));
+  register_frame.AddAttribute(frame_type_attr);
+  register_frame.AddAttribute(match_attr);
+
+  // This registration is for the socket which sends the
+  // NL80211_CMD_REGISTER_FRAME.
+  // In order to receive broadcasts we need to use asynchronous interface of
+  // NetlinkManager to send this request.
+  // We use a no-op function as reply handler for now.
+  // TODO(nywang): Handle NLMSG_ERROR reply for failure case and add timer for
+  // retries.
+  if (!netlink_manager_->RegisterHandlerAndSendMessage(
+      register_frame,
+      [](unique_ptr<const NL80211Packet> response){})) {
+    return false;
+  }
+  return true;
+}
+
 }  // namespace wificond
 }  // namespace android
