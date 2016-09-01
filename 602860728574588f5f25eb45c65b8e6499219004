@@ -1,0 +1,9 @@
+Presubmit-Ready+1: Treehugger Robot <treehugger-gerrit@google.com>
+Code-Review+2: Christopher Wiley <wiley@google.com>
+Verified+1: Dmitry Shmidt <dimitrysh@google.com>
+Autosubmit+1: Dmitry Shmidt <dimitrysh@google.com>
+Submitted-by: Dmitry Shmidt <dimitrysh@google.com>
+Submitted-at: Thu, 01 Sep 2016 00:24:36 +0000
+Reviewed-on: https://android-review.googlesource.com/267833
+Project: platform/system/connectivity/wificond
+Branch: refs/heads/master
