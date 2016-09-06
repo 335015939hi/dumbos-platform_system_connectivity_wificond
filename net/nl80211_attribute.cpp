@@ -16,8 +16,6 @@
 
 #include "wificond/net/nl80211_attribute.h"
 
-#include <android-base/logging.h>
-
 using std::string;
 using std::vector;
 
@@ -186,6 +184,31 @@ bool NL80211NestedAttr::GetAttribute(int id,
   }
   return true;
 }
+
+bool NL80211NestedAttr::GetListOfNestedAttributes(
+    vector<NL80211NestedAttr>* value) const {
+  const uint8_t* ptr = data_.data() + NLA_HDRLEN;
+  const uint8_t* end_ptr = data_.data() + data_.size();
+  vector<NL80211NestedAttr> nested_attr_list;
+  while (ptr + NLA_HDRLEN <= end_ptr) {
+    const nlattr* header = reinterpret_cast<const nlattr*>(ptr);
+    if (ptr + NLA_ALIGN(header->nla_len) > end_ptr) {
+      LOG(ERROR) << "Failed to get list of nested attributes: invalid nla_len.";
+      return false;
+    }
+    NL80211NestedAttr attribute(vector<uint8_t>(
+        ptr,
+        ptr + NLA_ALIGN(header->nla_len)));
+    if (!attribute.IsValid()) {
+      return false;
+    }
+    nested_attr_list.push_back(attribute);
+    ptr += NLA_ALIGN(header->nla_len);
+  }
+  *value = std::move(nested_attr_list);
+  return true;
+}
+
 
 void NL80211NestedAttr::DebugLog() const {
   const uint8_t* ptr = data_.data() + NLMSG_HDRLEN;
