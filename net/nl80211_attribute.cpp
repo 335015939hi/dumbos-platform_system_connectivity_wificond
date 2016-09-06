@@ -16,8 +16,6 @@
 
 #include "wificond/net/nl80211_attribute.h"
 
-#include <android-base/logging.h>
-
 using std::string;
 using std::vector;
 

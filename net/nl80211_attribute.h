@@ -24,6 +24,7 @@
 
 #include <linux/netlink.h>
 
+#include <android-base/logging.h>
 #include <android-base/macros.h>
 
 namespace android {
@@ -160,6 +161,66 @@ class NL80211NestedAttr : public BaseNL80211Attr {
       return false;
     }
     *value = attribute.GetValue();
+    return true;
+  }
+
+  // Some of the nested attribute contains a list of same tyoe sub-attributes.
+  // This function retrieves a vector of attribute value from a nested
+  // attribute.
+  // This is for both correctness and performance reasons:
+  //
+  // Correctness reason:
+  // These sub-attributes have attribute id from '0 to n' or '1 to n'.
+  // There is no document defining what the start index is supposed
+  // to be.
+  // This function ignore all these fake attribute ids.
+  //
+  // Performance reson:
+  // Calling GetAttributeValue() from '0 to n' results a n^2 time complexity.
+  // This function get a list of attribute values in one pass.
+  // Returns true one success.
+  template <typename T>
+  bool GetListOfAttributeValues(std::vector<T>* value) const {
+    const uint8_t* ptr = data_.data() + NLA_HDRLEN;
+    const uint8_t* end_ptr = data_.data() + data_.size();
+    while (ptr + NLA_HDRLEN <= end_ptr) {
+      const nlattr* header = reinterpret_cast<const nlattr*>(ptr);
+      if (ptr + NLA_ALIGN(header->nla_len) > end_ptr) {
+        LOG(ERROR) << "Failed to get list of attributes: invalid nla_len.";
+        return false;
+      }
+      NL80211Attr<T> attribute(std::vector<uint8_t>(
+          ptr,
+          ptr + NLA_ALIGN(header->nla_len)));
+      if (!attribute.IsValid()) {
+        LOG(ERROR) << "Failed to get list of attributes: invalid attribute.";
+        return false;
+      }
+      value->emplace_back(attribute.GetValue());
+      ptr += NLA_ALIGN(header->nla_len);
+    }
+    return true;
+  }
+
+  bool GetListOfNestedAttributes(std::vector<NL80211NestedAttr>* value) const {
+    const uint8_t* ptr = data_.data() + NLA_HDRLEN;
+    const uint8_t* end_ptr = data_.data() + data_.size();
+    while (ptr + NLA_HDRLEN <= end_ptr) {
+      const nlattr* header = reinterpret_cast<const nlattr*>(ptr);
+      if (ptr + NLA_ALIGN(header->nla_len) > end_ptr) {
+        LOG(ERROR) << "Failed to get list of nested attributes: invalid nla_len.";
+        return false;
+      }
+      NL80211NestedAttr attribute(std::vector<uint8_t>(
+          ptr,
+          ptr + NLA_ALIGN(header->nla_len)));
+      if (!attribute.IsValid()) {
+        LOG(ERROR) << "Failed to get list of attributes: invalid attribute.";
+        return false;
+      }
+      value->push_back(attribute);
+      ptr += NLA_ALIGN(header->nla_len);
+    }
     return true;
   }
 
