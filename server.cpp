@@ -82,7 +82,6 @@ Status Server::UnregisterCallback(const sp<IInterfaceEventCallback>& callback) {
   return Status::ok();
 }
 
-
 Status Server::createApInterface(sp<IApInterface>* created_interface) {
   string interface_name;
   uint32_t interface_index;

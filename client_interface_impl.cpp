@@ -95,6 +95,14 @@ bool ClientInterfaceImpl::GetPacketCounters(vector<int32_t>* out_packet_counters
   return true;
 }
 
+bool ClientInterfaceImpl::SetCountryCode(const string& alpha2_country_code) {
+  // We will switch back to supplicant driver command if this does not work
+  // in some cases.
+  // TODO(nywang): we either set p2p country code here through wpa_supplicant,
+  // or add another interface for setting p2p country code specifically.
+  return netlink_utils_->SetCountryCode(alpha2_country_code);
+}
+
 bool ClientInterfaceImpl::SignalPoll(vector<int32_t>* out_signal_poll_results) {
   StationInfo station_info;
   if (!netlink_utils_->GetStationInfo(interface_index_,

@@ -45,6 +45,8 @@ class ApInterfaceBinder : public android::net::wifi::BnApInterface {
                                     const std::vector<uint8_t>& passphrase,
                                     bool* out_success) override;
   binder::Status getInterfaceName(std::string* out_name) override;
+  binder::Status setCountryCode(const String16& alpha2_country_code,
+                                bool* success) override;
 
  private:
   ApInterfaceImpl* impl_;
