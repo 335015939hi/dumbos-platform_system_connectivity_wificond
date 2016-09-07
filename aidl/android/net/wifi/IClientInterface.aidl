@@ -52,6 +52,10 @@ interface IClientInterface {
   @utf8InCpp
   String getInterfaceName();
 
+  // Ask kernel/driver to set the regulatory domain with an alpha2 country code.
+  // Returns true on success.
+  boolean setCountryCode(String alpha2_country_code);
+
   // Query specified ANQP elements from an AP (specified by BSSID)
   // and provide a callback for ANQP response.
   // Returns true if request is sent successfully, false otherwise.
