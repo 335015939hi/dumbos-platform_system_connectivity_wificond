@@ -1,0 +1,9 @@
+Code-Review+2: Christopher Wiley <wiley@google.com>
+Autosubmit+1: Ningyuan Wang <nywang@google.com>
+Presubmit-Ready+1: Ningyuan Wang <nywang@google.com>
+Verified+1: Ningyuan Wang <nywang@google.com>
+Submitted-by: Ningyuan Wang <nywang@google.com>
+Submitted-at: Wed, 07 Sep 2016 21:13:27 +0000
+Reviewed-on: https://android-review.googlesource.com/270278
+Project: platform/system/connectivity/wificond
+Branch: refs/heads/master
