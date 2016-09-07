@@ -46,6 +46,8 @@ class ClientInterfaceBinder : public android::net::wifi::BnClientInterface {
   ::android::binder::Status getMacAddress(
       std::vector<uint8_t>* out_mac_address) override;
   ::android::binder::Status getInterfaceName(std::string* out_name) override;
+  ::android::binder::Status setCountryCode(const String16& alpha2_country_code,
+                                           bool* success) override;
 
  private:
   ClientInterfaceImpl* impl_;

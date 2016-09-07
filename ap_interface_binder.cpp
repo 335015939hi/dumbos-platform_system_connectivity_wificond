@@ -96,5 +96,13 @@ binder::Status ApInterfaceBinder::getInterfaceName(std::string* out_name) {
   return binder::Status::ok();
 }
 
+binder::Status ApInterfaceBinder::setCountryCode(
+    const String16& alpha2_country_code,
+    bool* success) override {
+  // TODO(nywang): set ap country code using HAL.
+  return binder::Status::ok();
+}
+
+
 }  // namespace wificond
 }  // namespace android
