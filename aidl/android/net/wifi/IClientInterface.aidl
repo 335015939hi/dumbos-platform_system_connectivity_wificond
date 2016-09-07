@@ -54,6 +54,10 @@ interface IClientInterface {
   @utf8InCpp
   String getInterfaceName();
 
+  // Ask kernel/driver to set the regulatory domain with an alpha2 country code.
+  // Returns true on success.
+  boolean setCountryCode(String alpha2_country_code);
+
   // Get a WifiScanner interface associated with this interface.
   // Returns null when the underlying interface object is destroyed.
   @nullable IWifiScannerImpl getWifiScannerImpl();

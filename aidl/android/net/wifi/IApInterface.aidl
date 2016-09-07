@@ -50,4 +50,7 @@ interface IApInterface {
   @utf8InCpp
   String getInterfaceName();
 
+  // Ask kernel/driver to set the regulatory domain with an alpha2 country code.
+  // Returns true on success.
+  boolean setCountryCode(String alpha2_country_code);
 }

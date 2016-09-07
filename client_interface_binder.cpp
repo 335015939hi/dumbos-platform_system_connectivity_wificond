@@ -81,6 +81,17 @@ Status ClientInterfaceBinder::getInterfaceName(std::string* out_name) {
   return Status::ok();
 }
 
+Status ClientInterfaceBinder::setCountryCode(
+    const String16& alpha2_country_code,
+    bool* success) {
+  if (impl_ == nullptr) {
+    *success = false;
+    return Status::ok();
+  }
+  *success = impl_->SetCountryCode(String16::std_string(alpha2_country_code));
+  return Status::ok();
+}
+
 Status ClientInterfaceBinder::getWifiScannerImpl(
     sp<IWifiScannerImpl>* out_wifi_scanner_impl) {
   if (impl_ == nullptr) {

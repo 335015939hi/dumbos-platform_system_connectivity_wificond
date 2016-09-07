@@ -137,6 +137,10 @@ class NetlinkUtils {
                               const std::vector<uint8_t>& mac_address,
                               StationInfo* out_station_info);
 
+  // Ask kernel/driver to set the regulatory domain with an alpha2 country code.
+  // Returns true on success.
+  virtual bool SetCountryCode(std::string alpha2_country_code);
+
   // Sign up to be notified when there is MLME event.
   // Only one handler can be registered per interface index.
   // New handler will replace the registered handler if they are for the
