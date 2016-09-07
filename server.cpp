@@ -135,6 +135,18 @@ Status Server::tearDownInterfaces() {
   return Status::ok();
 }
 
+Status Server::setCountryCode(const String16& alpha2_country_code,
+                              bool* success) {
+
+  // TODO(nywang):
+  // This is for client interface only.
+  // Make sure we also handle p2p using wpa_supplicant, and AP interface
+  // using HAL before this part is integrated.
+  *success = netlink_utils_->SetCountryCode(
+      String16::std_string(alpha2_country_code));
+  return Status::ok();
+}
+
 void Server::CleanUpSystemState() {
   supplicant_manager_->StopSupplicant();
   hostapd_manager_->StopHostapd();

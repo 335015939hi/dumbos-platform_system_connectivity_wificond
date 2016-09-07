@@ -50,4 +50,6 @@ interface IWificond {
     // @param callback object to remove from the set of registered callbacks.
     oneway void UnregisterCallback(IInterfaceEventCallback callback);
 
+    // Ask kernel/driver to set the regulatory domain with an alpha2 country code
+    boolean setCountryCode(String alpha2_country_code);
 }

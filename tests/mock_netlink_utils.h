@@ -35,6 +35,7 @@ class MockNetlinkUtils : public NetlinkUtils {
                     std::string* name,
                     uint32_t* index,
                     std::vector<uint8_t>* mac_address));
+  MOCK_METHOD1(SetCountryCode, bool(std::string alpha2_country_code));
 
 };  // class MockNetlinkUtils
 

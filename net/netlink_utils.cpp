@@ -163,5 +163,22 @@ bool NetlinkUtils::GetInterfaceInfo(uint32_t wiphy_index,
   return false;
 }
 
+bool NetlinkUtils::SetCountryCode(string alpha2_country_code) {
+  NL80211Packet set_reg(
+      netlink_manager_->GetFamilyId(),
+      NL80211_CMD_REQ_SET_REG,
+      netlink_manager_->GetSequenceNumber(),
+      getpid());
+
+  set_reg.AddFlag(NLM_F_ACK);
+  NL80211Attr<std::string> country(NL80211_ATTR_REG_ALPHA2, alpha2_country_code);
+  set_reg.AddAttribute(country);
+  if (!netlink_manager_->SendMessageAndGetAck(set_reg)) {
+    LOG(ERROR) << "Failed to set country code";
+    return false;
+  }
+  return true;
+}
+
 }  // namespace wificond
 }  // namespace android

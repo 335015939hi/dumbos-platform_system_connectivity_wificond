@@ -22,6 +22,7 @@
 #include <vector>
 
 #include <android-base/macros.h>
+#include <utils/String16.h>
 #include <wifi_hal/driver_tool.h>
 #include <wifi_system/hal_tool.h>
 #include <wifi_system/interface_tool.h>
@@ -68,6 +69,11 @@ class Server : public android::net::wifi::BnWificond {
           created_interface) override;
 
   android::binder::Status tearDownInterfaces() override;
+
+  // Ask kernel/driver to set the regulatory domain with an alpha2 country
+  // code.
+  android::binder::Status setCountryCode(const String16& alpha2_country_code,
+                                           bool* success) override;
 
   // Call this once on startup.  It ignores all the invariants held
   // in wificond and tries to restore ourselves to a blank state by
