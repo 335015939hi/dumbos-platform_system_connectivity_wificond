@@ -74,8 +74,8 @@ bool ClientInterfaceImpl::DisableSupplicant() {
 
 void ClientInterfaceImpl::OnScanResultsReady(
                          uint32_t interface_index,
-                         std::vector<std::vector<uint8_t>>& ssids,
-                         std::vector<uint32_t>& frequencies) {
+                         vector<vector<uint8_t>>& ssids,
+                         vector<uint32_t>& frequencies) {
   vector<ScanResult> scan_results;
   // TODO(nywang): Find a way to differentiate scan results for
   // internel/external scan request. This is useful when location is

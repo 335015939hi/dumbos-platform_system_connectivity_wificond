@@ -33,4 +33,7 @@ interface IWificond {
     // future interfaces immediately after this method returns.
     void tearDownInterfaces();
 
+    // Ask kernel/driver to set the regulatory domain with an alpha2 country code
+    boolean setCountryCode(String alpha2_country_code);
+
 }

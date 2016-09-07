@@ -45,6 +45,8 @@ class NetlinkUtils {
                                 uint32_t* index,
                                 std::vector<uint8_t>* mac_addr);
 
+  virtual bool SetCountryCode(std::string alpha2_country_code);
+
  private:
   NetlinkManager* netlink_manager_;
 
