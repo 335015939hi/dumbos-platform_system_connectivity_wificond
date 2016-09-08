@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56832b87_6092875a",
+        "filename": "net/nl80211_attribute.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-08T21:45:12Z",
+      "side": 1,
+      "message": "You could make this even more awesome by std::move\u0027ing this",
+      "range": {
+        "startLine": 205,
+        "startChar": 31,
+        "endLine": 205,
+        "endChar": 40
+      },
+      "revId": "5e21a721780d0362d3345796c01d2130cf4cc303",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56832b87_7b0cf898",
+        "filename": "tests/nl80211_attribute_unittest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-08T21:45:12Z",
+      "side": 1,
+      "message": "I\u0027m skeptical that this array is either 0x23 \u003d 35 or 28 bytes long.  I think it\u0027s actually 40 \u003d 0x28 or (0x26 without the two bytes of padding at the end).\n\nGiven that, how does this work?  What am I missing",
+      "range": {
+        "startLine": 70,
+        "startChar": 3,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "5e21a721780d0362d3345796c01d2130cf4cc303",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56832b87_9b261cd4",
+        "filename": "tests/nl80211_attribute_unittest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-08T21:45:12Z",
+      "side": 1,
+      "message": "Maybe double check this as well",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 8
+      },
+      "revId": "5e21a721780d0362d3345796c01d2130cf4cc303",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
