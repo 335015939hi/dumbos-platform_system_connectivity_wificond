@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56832b87_7b5f98df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-08T21:57:01Z",
+      "side": 1,
+      "message": "an infinite loop?",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 6
+      },
+      "revId": "5d603bb1422e6022001bf46f03ebac65850b3176",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56832b87_bb820033",
+        "filename": "net/nl80211_attribute.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-08T21:57:01Z",
+      "side": 1,
+      "message": "I\u0027m sorry you had to find this. :(",
+      "revId": "5d603bb1422e6022001bf46f03ebac65850b3176",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
