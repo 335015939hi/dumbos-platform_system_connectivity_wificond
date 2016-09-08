@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56832b87_bd1118c3",
+        "filename": "scanning/scan_result.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-08T19:56:31Z",
+      "side": 1,
+      "message": "Excellent comment.  Can you write it in an 80 column friendly way?\n\nBit 0 - ESS\nBit 1 - IBSS\n\nsorry to be difficult.",
+      "revId": "12a8b2c64e9b8f0626b1348dedb8a8ae25bbe66e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
