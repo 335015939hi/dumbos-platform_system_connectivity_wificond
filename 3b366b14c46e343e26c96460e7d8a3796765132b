@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbe692fe_5cc5fd50",
+        "filename": "aidl/android/net/wifi/IWificond.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-09T20:33:43Z",
+      "side": 1,
+      "message": "nit: callback",
+      "range": {
+        "startLine": 37,
+        "startChar": 19,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "3b366b14c46e343e26c96460e7d8a3796765132b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cbe692fe_1ca295b0",
+        "filename": "server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-09T20:33:43Z",
+      "side": 1,
+      "message": "nit: 80 col",
+      "revId": "3b366b14c46e343e26c96460e7d8a3796765132b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
