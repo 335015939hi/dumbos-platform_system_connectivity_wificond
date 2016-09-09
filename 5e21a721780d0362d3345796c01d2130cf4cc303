@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "56832b87_ec205060",
+        "filename": "tests/nl80211_attribute_unittest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-09T00:12:25Z",
+      "side": 1,
+      "message": "I think 12 is correct for these because paddings are for sub-attribute.\nIt is kind of confusing here... I guess this kind of structure looks making more sense if you have more than one sub-attributes under this nested attribute.(Otherwise you can do it like kBufferContainsListOfAttribute[]).",
+      "parentUuid": "56832b87_7136d7a1",
+      "range": {
+        "startLine": 96,
+        "startChar": 29,
+        "endLine": 96,
+        "endChar": 31
+      },
+      "revId": "5e21a721780d0362d3345796c01d2130cf4cc303",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56832b87_b1177ffd",
         "filename": "tests/nl80211_attribute_unittest.cpp",
         "patchSetId": 5
