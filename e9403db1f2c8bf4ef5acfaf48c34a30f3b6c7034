@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb277249_5aaa1527",
+        "filename": "server.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-12T20:34:50Z",
+      "side": 1,
+      "message": "Here\u0027s a question for you: if we don\u0027t specify which interface has been torn down, what\u0027s the point in differentiating between client and AP interfaces.  Today it works because there can be at most one interface, but we\u0027ve been trying to not design with that in mind.\n\nWhich is more appealing to you:\n1) Broadcast just that the \"interface list has changed\" and let interested parties go and rebuild their state by querying wificond\n2) Pass the binder of the torn down interface to interested clients\n3) As it is.",
+      "revId": "e9403db1f2c8bf4ef5acfaf48c34a30f3b6c7034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
