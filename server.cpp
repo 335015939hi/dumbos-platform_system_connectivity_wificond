@@ -135,6 +135,25 @@ Status Server::tearDownInterfaces() {
   return Status::ok();
 }
 
+Status Server::GetClientInterfaces(vector<sp<android::IBinder>>* out_client_interfaces) {
+  vector<sp<android::IBinder>> client_interfaces_binder;
+  for (auto& it : client_interfaces_) {
+    client_interfaces_binder.emplace_back(asBinder(it->GetBinder()));
+  }
+  *out_client_interfaces = client_interfaces_binder;
+
+  return binder::Status::ok();
+}
+
+Status Server::GetApInterfaces(vector<sp<android::IBinder>>* out_ap_interfaces) {
+  vector<sp<android::IBinder>> ap_interfaces_binder;
+  for (auto& it : ap_interfaces_) {
+    ap_interfaces_binder.emplace_back(asBinder(it->GetBinder()));
+  }
+  *out_ap_interfaces = ap_interfaces_binder;
+  return binder::Status::ok();
+}
+
 void Server::CleanUpSystemState() {
   supplicant_manager_->StopSupplicant();
   hostapd_manager_->StopHostapd();
