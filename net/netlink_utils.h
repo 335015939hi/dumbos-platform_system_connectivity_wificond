@@ -18,11 +18,44 @@
 #define WIFICOND_NET_NETLINK_UTILS_H_
 
 #include <string>
+#include <vector>
 
 #include <android-base/macros.h>
 
 namespace android {
 namespace wificond {
+
+struct BandInfo {
+  BandInfo() {};
+  BandInfo(std::vector<uint32_t>& band_2g_,
+           std::vector<uint32_t>& band_5g_,
+           std::vector<uint32_t>& band_dfs_)
+      : band_2g(band_2g_),
+        band_5g(band_5g_),
+        band_dfs(band_dfs_) {};
+  // 2.4 GHz band.
+  std::vector<uint32_t> band_2g;
+  // 5 GHz without DFS channels.
+  std::vector<uint32_t> band_5g;
+  // 5 GHz DFS channels only.
+  std::vector<uint32_t> band_dfs;
+};
+
+struct ScanCapabilities {
+  ScanCapabilities() {};
+  ScanCapabilities(uint8_t max_num_scan_ssids_,
+                   uint8_t max_num_sched_scan_ssids_,
+                   uint8_t max_match_sets_)
+      : max_num_scan_ssids(max_num_scan_ssids_),
+        max_num_sched_scan_ssids(max_num_sched_scan_ssids_),
+        max_match_sets(max_match_sets_) {};
+  // Number of SSIDs you can scan with a single scan request.
+  uint8_t max_num_scan_ssids;
+  // Number of SSIDs you can scan with a single scheduled scan request.
+  uint8_t max_num_sched_scan_ssids;
+  // Maximum number of sets that can be used with NL80211_ATTR_SCHED_SCAN_MATCH.
+  uint8_t max_match_sets;
+};
 
 class NetlinkManager;
 
@@ -45,6 +78,9 @@ class NetlinkUtils {
                                 uint32_t* index,
                                 std::vector<uint8_t>* mac_addr);
 
+  virtual bool GetWiphyCapabilities(uint32_t wiphy_index,
+                                    BandInfo* out_band_info,
+                                    ScanCapabilities* out_scan_capabilities);
  private:
   NetlinkManager* netlink_manager_;
 
