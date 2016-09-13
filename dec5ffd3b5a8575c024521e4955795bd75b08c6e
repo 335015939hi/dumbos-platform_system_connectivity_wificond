@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8b1e5af2_b5225712",
+        "filename": "server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-13T18:14:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b83ba54_6cbbb7c0",
+      "revId": "dec5ffd3b5a8575c024521e4955795bd75b08c6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b83ba54_ace75fd5",
         "filename": "server.h",
         "patchSetId": 4
@@ -30,6 +48,30 @@
       "writtenOn": "2016-09-13T17:56:57Z",
       "side": 1,
       "message": "Could you shorten this variable so this fits within 80 col?",
+      "range": {
+        "startLine": 73,
+        "startChar": 50,
+        "endLine": 73,
+        "endChar": 71
+      },
+      "revId": "dec5ffd3b5a8575c024521e4955795bd75b08c6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b9bba7b_d649bbb6",
+        "filename": "server.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-13T18:14:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b83ba54_ace75fd5",
       "range": {
         "startLine": 73,
         "startChar": 50,
