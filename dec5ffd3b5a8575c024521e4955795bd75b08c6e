@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b83ba54_6cbbb7c0",
+        "filename": "server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-13T17:56:57Z",
+      "side": 1,
+      "message": "Perhaps better to simply:\n\nout_client_interfaces-\u003epush_back(asBinder(it-\u003eGetBinder()));",
+      "revId": "dec5ffd3b5a8575c024521e4955795bd75b08c6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b83ba54_ace75fd5",
+        "filename": "server.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-13T17:56:57Z",
+      "side": 1,
+      "message": "Could you shorten this variable so this fits within 80 col?",
+      "range": {
+        "startLine": 73,
+        "startChar": 50,
+        "endLine": 73,
+        "endChar": 71
+      },
+      "revId": "dec5ffd3b5a8575c024521e4955795bd75b08c6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
