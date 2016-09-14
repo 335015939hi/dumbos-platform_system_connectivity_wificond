@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "8b6c9a82_cd288749",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-14T22:39:15Z",
+      "side": 1,
+      "message": "nit: need a space before he closing quotation, here and on line 121",
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_8dfdaf9c",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-14T22:39:15Z",
+      "side": 1,
+      "message": "nit: it this 80 cols?",
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b6c9a82_ad867311",
         "filename": "net/netlink_utils.cpp",
         "patchSetId": 7
@@ -18,6 +52,46 @@
         "startChar": 0,
         "endLine": 194,
         "endChar": 3
+      },
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_2dd5a308",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-14T22:39:15Z",
+      "side": 1,
+      "message": "nit: 80 col?",
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_ade193f0",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-14T22:39:15Z",
+      "side": 1,
+      "message": "nit: align this?",
+      "range": {
+        "startLine": 274,
+        "startChar": 33,
+        "endLine": 274,
+        "endChar": 34
       },
       "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
@@ -89,6 +163,23 @@
         "endLine": 281,
         "endChar": 60
       },
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_0da21fb1",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-14T22:39:15Z",
+      "side": 1,
+      "message": "nit: do you need these trailing semicolons?  here and elsewhere in these methods defined in structs.",
       "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
