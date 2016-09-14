@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8b6c9a82_159b0566",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-14T23:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b6c9a82_cd288749",
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b6c9a82_8dfdaf9c",
         "filename": "net/netlink_utils.cpp",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2016-09-14T22:39:15Z",
       "side": 1,
       "message": "nit: it this 80 cols?",
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_55cc1d5f",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-14T23:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b6c9a82_8dfdaf9c",
       "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "8b6c9a82_adb2f34f",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-14T23:30:59Z",
+      "side": 1,
+      "message": "Yes at least the NLMSG_ERROR can be folded into that.\nI will look into it later.",
+      "parentUuid": "8b6c9a82_ad867311",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 3
+      },
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b6c9a82_2dd5a308",
         "filename": "net/netlink_utils.cpp",
         "patchSetId": 7
@@ -70,6 +130,24 @@
       "writtenOn": "2016-09-14T22:39:15Z",
       "side": 1,
       "message": "nit: 80 col?",
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_d5b80dc4",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-14T23:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b6c9a82_2dd5a308",
       "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -99,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "8b6c9a82_55f3bd99",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-14T23:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b6c9a82_ade193f0",
+      "range": {
+        "startLine": 274,
+        "startChar": 33,
+        "endLine": 274,
+        "endChar": 34
+      },
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b6c9a82_cdd087f2",
         "filename": "net/netlink_utils.cpp",
         "patchSetId": 7
@@ -110,6 +212,30 @@
       "writtenOn": "2016-09-14T22:05:54Z",
       "side": 1,
       "message": "attributes",
+      "range": {
+        "startLine": 279,
+        "startChar": 61,
+        "endLine": 279,
+        "endChar": 72
+      },
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_ad1c3382",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-14T23:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b6c9a82_cdd087f2",
       "range": {
         "startLine": 279,
         "startChar": 61,
@@ -169,6 +295,54 @@
     },
     {
       "key": {
+        "uuid": "8b6c9a82_159ea50c",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-14T23:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b6c9a82_52343693",
+      "range": {
+        "startLine": 281,
+        "startChar": 30,
+        "endLine": 281,
+        "endChar": 60
+      },
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_b58319b4",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-14T23:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b6c9a82_1ff7a674",
+      "range": {
+        "startLine": 281,
+        "startChar": 30,
+        "endLine": 281,
+        "endChar": 60
+      },
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b6c9a82_0da21fb1",
         "filename": "net/netlink_utils.h",
         "patchSetId": 7
@@ -180,6 +354,24 @@
       "writtenOn": "2016-09-14T22:39:15Z",
       "side": 1,
       "message": "nit: do you need these trailing semicolons?  here and elsewhere in these methods defined in structs.",
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_b50c799d",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-14T23:30:59Z",
+      "side": 1,
+      "message": "compiler complains for this change, but I remove the semicolons for default constructors.",
+      "parentUuid": "8b6c9a82_0da21fb1",
       "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
