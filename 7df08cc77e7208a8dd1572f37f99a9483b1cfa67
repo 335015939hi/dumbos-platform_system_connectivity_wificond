@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b6c9a82_ad867311",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1079753
+      },
+      "writtenOn": "2016-09-14T22:05:54Z",
+      "side": 1,
+      "message": "nit(for another CL if you like it): it seems like these would be candidates to be folded into SendMessageAndGetSingleResponse",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 3
+      },
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b6c9a82_cdd087f2",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1079753
+      },
+      "writtenOn": "2016-09-14T22:05:54Z",
+      "side": 1,
+      "message": "attributes",
+      "range": {
+        "startLine": 279,
+        "startChar": 61,
+        "endLine": 279,
+        "endChar": 72
+      },
+      "revId": "7df08cc77e7208a8dd1572f37f99a9483b1cfa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
