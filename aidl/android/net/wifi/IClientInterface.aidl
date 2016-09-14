@@ -27,4 +27,7 @@ interface IClientInterface {
   // Remove this interface from wpa_supplicant's control.
   // Returns true if removal was successful.
   boolean disableSupplicant();
+
+  // Get the MAC address of this interface.
+  byte[] getMacAddress();
 }
