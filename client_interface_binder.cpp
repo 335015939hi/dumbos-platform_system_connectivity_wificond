@@ -16,11 +16,14 @@
 
 #include "wificond/client_interface_binder.h"
 
+#include <vector>
+
 #include <binder/Status.h>
 
 #include "wificond/client_interface_impl.h"
 
 using android::binder::Status;
+using std::vector;
 
 namespace android {
 namespace wificond {
@@ -39,6 +42,11 @@ Status ClientInterfaceBinder::enableSupplicant(bool* success) {
 
 Status ClientInterfaceBinder::disableSupplicant(bool* success) {
   *success = impl_ && impl_->DisableSupplicant();
+  return Status::ok();
+}
+
+Status ClientInterfaceBinder::getMacAddress(vector<uint8_t>* out_mac_address) {
+  *out_mac_address = impl_->GetMacAddress();
   return Status::ok();
 }
 

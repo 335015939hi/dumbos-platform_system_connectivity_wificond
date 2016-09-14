@@ -39,6 +39,7 @@ class ClientInterfaceBinder : public android::net::wifi::BnClientInterface {
 
   ::android::binder::Status enableSupplicant(bool* success);
   ::android::binder::Status disableSupplicant(bool* success);
+  ::android::binder::Status getMacAddress(std::vector<uint8_t>* out_mac_address) override;
 
  private:
   ClientInterfaceImpl* impl_;
