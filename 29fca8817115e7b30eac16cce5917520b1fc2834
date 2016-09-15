@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb3b56ab_391fea78",
+        "filename": "server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-15T22:43:40Z",
+      "side": 1,
+      "message": "You can clear the vector first if that worries you?",
+      "revId": "29fca8817115e7b30eac16cce5917520b1fc2834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
