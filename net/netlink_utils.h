@@ -79,9 +79,22 @@ class NetlinkUtils {
                                 uint32_t* index,
                                 std::vector<uint8_t>* mac_addr);
 
+  // Get wifi wiphy info from kernel.
+  // |*out_band_info| is the lists of frequencies in specific bands.
+  // |*out_scan_capabilities| is the lists of parameters specifying the
+  // scanning capability of underlying implementation.
+  // Returns true on success.
   virtual bool GetWiphyInfo(uint32_t wiphy_index,
                             BandInfo* out_band_info,
                             ScanCapabilities* out_scan_capabilities);
+
+  // Get packet counters for this interface.
+  // |out_couters[0]| is the number of successfully transmitted packets.
+  // |out_counters[1]| is the number of tramsmission failure.
+  // Returns true on success.
+  virtual bool GetPacketCounters(uint32_t interface_index,
+                                 const std::vector<uint8_t>& mac_address,
+                                 std::vector<int32_t>* out_counters);
 
  private:
   bool ParseBandInfo(const NL80211Packet* const packet,
