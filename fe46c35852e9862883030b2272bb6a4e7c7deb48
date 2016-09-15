@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb3b56ab_76934151",
+        "filename": "server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-15T22:02:14Z",
+      "side": 1,
+      "message": "I\u0027m confused.  Why are you creating a temporary vector and then assigning it to the output vector?  Why not just put the binders into the output vector directly/",
+      "revId": "fe46c35852e9862883030b2272bb6a4e7c7deb48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
