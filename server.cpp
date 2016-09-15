@@ -193,8 +193,10 @@ bool Server::SetupInterfaceForMode(int mode,
   if (!ap_interfaces_.empty() || !client_interfaces_.empty()) {
     // In the future we may support multiple interfaces at once.  However,
     // today, we support just one.
-    LOG(ERROR) << "Cannot create AP interface when other interfaces exist";
-    return false;
+    LOG(WARNING) << "Unexpected behavior: creating interface when other "
+                 << "interfaces exist, assuming java framework restarted";
+    ap_interfaces_.clear();
+    client_interfaces_.clear();
   }
 
   string result;
