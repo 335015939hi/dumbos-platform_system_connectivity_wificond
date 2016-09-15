@@ -27,4 +27,6 @@ interface IClientInterface {
   // Remove this interface from wpa_supplicant's control.
   // Returns true if removal was successful.
   boolean disableSupplicant();
+
+  @nullable long[] getPacketCounters();
 }

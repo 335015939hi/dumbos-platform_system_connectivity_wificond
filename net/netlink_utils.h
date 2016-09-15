@@ -83,6 +83,10 @@ class NetlinkUtils {
                             BandInfo* out_band_info,
                             ScanCapabilities* out_scan_capabilities);
 
+  virtual bool GetPacketCounters(uint32_t interface_index,
+                                 const std::vector<uint8_t>& mac_address,
+                                 std::vector<int64_t>* out_counters);
+
  private:
   bool ParseBandInfo(const NL80211Packet* const packet,
                      BandInfo* out_band_info);
