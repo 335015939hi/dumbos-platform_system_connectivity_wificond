@@ -16,11 +16,15 @@
 
 #include "wificond/client_interface_binder.h"
 
+#include <vector>
+
 #include <binder/Status.h>
 
 #include "wificond/client_interface_impl.h"
 
 using android::binder::Status;
+using std::vector;
+using std::unique_ptr;
 
 namespace android {
 namespace wificond {
@@ -41,6 +45,16 @@ Status ClientInterfaceBinder::disableSupplicant(bool* success) {
   *success = impl_ && impl_->DisableSupplicant();
   return Status::ok();
 }
+
+Status ClientInterfaceBinder::getPacketCounters(
+    unique_ptr<vector<int32_t>>* out_packet_counters) {
+  out_packet_counters->reset(new vector<int32_t>());
+  if (impl_ == nullptr || !impl_->GetPacketCounters(out_packet_counters)) {
+    *out_packet_counters = nullptr;
+  }
+  return Status::ok();
+}
+
 
 }  // namespace wificond
 }  // namespace android
