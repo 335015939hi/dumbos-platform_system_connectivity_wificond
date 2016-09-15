@@ -16,6 +16,24 @@
       "revId": "fe46c35852e9862883030b2272bb6a4e7c7deb48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb3b56ab_565e45e3",
+        "filename": "server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-15T22:18:59Z",
+      "side": 1,
+      "message": "I was worrying that would add an extra requirement that the caller must provide an empty vector there.\nIt is OK for me to do it in a more straightforward way.\nDone.",
+      "parentUuid": "eb3b56ab_76934151",
+      "revId": "fe46c35852e9862883030b2272bb6a4e7c7deb48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
