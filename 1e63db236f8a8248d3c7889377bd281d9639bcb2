@@ -52,6 +52,24 @@
       "revId": "1e63db236f8a8248d3c7889377bd281d9639bcb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb3b56ab_9ef19bf6",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-16T17:19:56Z",
+      "side": 1,
+      "message": "Yes. At least for wificond internally it should be a struct.\nDo you prefer to fetch all the counter here, but only send these two to java framework ?",
+      "parentUuid": "eb3b56ab_def243fe",
+      "revId": "1e63db236f8a8248d3c7889377bd281d9639bcb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
