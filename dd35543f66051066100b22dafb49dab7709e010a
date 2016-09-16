@@ -22,6 +22,30 @@
       "revId": "dd35543f66051066100b22dafb49dab7709e010a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb3b56ab_2f7dcf73",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-16T20:38:39Z",
+      "side": 1,
+      "message": "Yes I will fold it in another CL.",
+      "parentUuid": "eb3b56ab_64729ea4",
+      "range": {
+        "startLine": 322,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 3
+      },
+      "revId": "dd35543f66051066100b22dafb49dab7709e010a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
