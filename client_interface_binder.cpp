@@ -54,6 +54,14 @@ Status ClientInterfaceBinder::getPacketCounters(
   return Status::ok();
 }
 
+Status ClientInterfaceBinder::signalPoll(
+    vector<int32_t>* out_signal_poll_results) {
+  if (impl_ == nullptr) {
+    return Status::ok();
+  }
+  impl_->SignalPoll(out_signal_poll_results);
+  return Status::ok();
+}
 
 }  // namespace wificond
 }  // namespace android
