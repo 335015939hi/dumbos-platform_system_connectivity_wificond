@@ -34,6 +34,24 @@
       "revId": "1e63db236f8a8248d3c7889377bd281d9639bcb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb3b56ab_def243fe",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-16T17:17:43Z",
+      "side": 1,
+      "message": "That sounds like a struct then right?",
+      "parentUuid": "eb3b56ab_be69f7b7",
+      "revId": "1e63db236f8a8248d3c7889377bd281d9639bcb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
