@@ -16,6 +16,24 @@
       "revId": "1e63db236f8a8248d3c7889377bd281d9639bcb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb3b56ab_be69f7b7",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-09-16T17:14:29Z",
+      "side": 1,
+      "message": "There are also other counters available in NEW_STATION message. Currently we only use these two counters. I was thinking that using an array keeps it extensible for future use. If you prefer to use two int32_t*, I will make changes accordingly.",
+      "parentUuid": "eb3b56ab_fe829f6a",
+      "revId": "1e63db236f8a8248d3c7889377bd281d9639bcb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
