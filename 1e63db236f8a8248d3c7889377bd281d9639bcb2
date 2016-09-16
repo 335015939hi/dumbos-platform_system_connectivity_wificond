@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb3b56ab_fe829f6a",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-16T17:11:28Z",
+      "side": 1,
+      "message": "Can we structure this as a method that takes two int32_t* rather than a vector?  We shouldn\u0027t let the details of our IPC interface leak down here",
+      "revId": "1e63db236f8a8248d3c7889377bd281d9639bcb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
