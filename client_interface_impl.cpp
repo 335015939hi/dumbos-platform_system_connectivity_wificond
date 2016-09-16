@@ -78,13 +78,27 @@ bool ClientInterfaceImpl::DisableSupplicant() {
 
 bool ClientInterfaceImpl::GetPacketCounters(vector<int32_t>* out_packet_counters) {
   StationInfo station_info;
-  if(!netlink_utils_->GetStationInfo(interface_index_,
-                                     interface_mac_addr_,
-                                     &station_info)) {
+  if (!netlink_utils_->GetStationInfo(interface_index_,
+                                      interface_mac_addr_,
+                                      &station_info)) {
     return false;
   }
   out_packet_counters->push_back(station_info.station_tx_packets);
   out_packet_counters->push_back(station_info.station_tx_failed);
+
+  return true;
+}
+
+bool ClientInterfaceImpl::SignalPoll(vector<int32_t>* out_signal_poll_parameters) {
+  StationInfo station_info;
+  if (!netlink_utils_->GetStationInfo(interface_index_,
+                                      interface_mac_addr_,
+                                      &station_info)) {
+    return false;
+  }
+  out_signal_poll_parameters->push_back(station_info.current_rssi);
+  out_signal_poll_parameters->push_back(station_info.station_tx_bitrate);
+
   return true;
 }
 

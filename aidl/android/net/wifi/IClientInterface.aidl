@@ -32,4 +32,10 @@ interface IClientInterface {
   // First element in array is the number of successfully transmitted packets.
   // Second element in array is the number of tramsmission failure.
   int[] getPacketCounters();
+
+  // Do signal poll for this interface.
+  // First element in array is the RSSI value in dBM.
+  // Second element in array is the transmission bit rate.
+  int[] signalPoll();
+
 }

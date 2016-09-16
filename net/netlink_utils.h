@@ -60,13 +60,19 @@ struct ScanCapabilities {
 struct StationInfo {
   StationInfo() = default;
   StationInfo(uint32_t station_tx_packets_,
-              uint32_t station_tx_failed_)
+              uint32_t station_tx_failed_,
+              uint32_t station_tx_bitrate_,
+              int8_t current_rssi_)
       : station_tx_packets(station_tx_packets_),
-        station_tx_failed(station_tx_failed_) {}
+        station_tx_failed(station_tx_failed_),
+        station_tx_bitrate(station_tx_bitrate_),
+        current_rssi(current_rssi_){}
   // Number of successfully transmitted packets.
   int32_t station_tx_packets;
   // number of tramsmission failures.
   int32_t station_tx_failed;
+  uint32_t station_tx_bitrate;
+  int8_t current_rssi;
   // There are many other counters/parameters included in station info.
   // We will add them once we find them useful.
 };

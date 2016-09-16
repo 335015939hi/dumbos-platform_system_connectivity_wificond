@@ -41,6 +41,9 @@ class ClientInterfaceBinder : public android::net::wifi::BnClientInterface {
   ::android::binder::Status disableSupplicant(bool* success) override;
   ::android::binder::Status getPacketCounters(
       std::vector<int32_t>* out_packet_counters) override;
+  ::android::binder::Status signalPoll(
+      std::vector<int32_t>* out_signal_poll_parameters) override;
+
 
  private:
   ClientInterfaceImpl* impl_;
