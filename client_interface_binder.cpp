@@ -16,6 +16,9 @@
 
 #include "wificond/client_interface_binder.h"
 
+#include <iomanip>
+#include <sstream>
+#include <string>
 #include <vector>
 
 #include <binder/Status.h>
@@ -23,6 +26,8 @@
 #include "wificond/client_interface_impl.h"
 
 using android::binder::Status;
+using android::String16;
+using std::string;
 using std::vector;
 
 namespace android {
@@ -68,6 +73,23 @@ Status ClientInterfaceBinder::getMacAddress(vector<uint8_t>* out_mac_address) {
     return Status::ok();
   }
   *out_mac_address = impl_->GetMacAddress();
+  return Status::ok();
+}
+
+Status ClientInterfaceBinder::getMacAddressStr(String16* out_mac_address_str) {
+  if (impl_ == nullptr) {
+    return Status::ok();
+  }
+  vector<uint8_t> mac_address = impl_->GetMacAddress();
+  std::stringstream ss;
+  string mac_address_str;
+  for (uint8_t& b : mac_address) {
+    ss << std::hex << std::setfill('0') << std::setw(2) << static_cast<int>(b);
+    if (&b != &mac_address.back()) {
+      ss << ":";
+    }
+  }
+  *out_mac_address_str = String16(ss.str().c_str());
   return Status::ok();
 }
 

@@ -44,4 +44,7 @@ interface IClientInterface {
 
   // Get the MAC address of this interface.
   byte[] getMacAddress();
+
+  // Get the MAC address string of this interface.
+  String getMacAddressStr();
 }
