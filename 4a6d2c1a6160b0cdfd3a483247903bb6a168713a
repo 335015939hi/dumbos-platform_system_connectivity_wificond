@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70d83709_1f0ac67f",
+        "filename": "aidl/android/net/wifi/IClientInterface.aidl",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-09-20T21:18:26Z",
+      "side": 1,
+      "message": "I would guess that this only makes sense if we\u0027re associated.  Could you comment here on what happens when we\u0027re disconnected or mid association?",
+      "revId": "4a6d2c1a6160b0cdfd3a483247903bb6a168713a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
