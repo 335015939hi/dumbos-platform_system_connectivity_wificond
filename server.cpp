@@ -18,7 +18,6 @@
 
 #include <android-base/logging.h>
 
-#include "wificond/net/netlink_utils.h"
 #include "wificond/scanning/scan_utils.h"
 
 using android::binder::Status;
@@ -212,6 +211,10 @@ bool Server::SetupInterfaceForMode(int mode,
     return false;
   }
 
+  if (!RefreshWiphyInfo()) {
+    return false;
+  }
+
   if (!netlink_utils_->GetInterfaceInfo(wiphy_index_,
                                         interface_name,
                                         interface_index,
@@ -226,6 +229,16 @@ bool Server::SetupInterfaceForMode(int mode,
 bool Server::RefreshWiphyIndex() {
   if (!netlink_utils_->GetWiphyIndex(&wiphy_index_)) {
     LOG(ERROR) << "Failed to get wiphy index";
+    return false;
+  }
+  return true;
+}
+
+bool Server::RefreshWiphyInfo() {
+  if (!netlink_utils_->GetWiphyInfo(wiphy_index_,
+                                    &band_info_,
+                                    &scan_capabilities_)) {
+    LOG(ERROR) << "Failed to get wiphy info";
     return false;
   }
   return true;
