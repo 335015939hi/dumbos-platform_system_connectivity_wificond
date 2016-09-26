@@ -33,12 +33,12 @@
 
 #include "wificond/ap_interface_impl.h"
 #include "wificond/client_interface_impl.h"
+#include "wificond/net/netlink_utils.h"
 
 namespace android {
 namespace wificond {
 
 class NL80211Packet;
-class NetlinkUtils;
 class ScanUtils;
 
 class Server : public android::net::wifi::BnWificond {
@@ -92,6 +92,7 @@ class Server : public android::net::wifi::BnWificond {
                              uint32_t* interface_index,
                              std::vector<uint8_t>* interface_mac_addr);
   bool RefreshWiphyIndex();
+  bool RefreshWiphyInfo();
   void BroadcastClientInterfaceReady(
       android::sp<android::net::wifi::IClientInterface> network_interface);
   void BroadcastApInterfaceReady(
@@ -110,6 +111,9 @@ class Server : public android::net::wifi::BnWificond {
   ScanUtils* const scan_utils_;
 
   uint32_t wiphy_index_;
+  BandInfo band_info_;
+  ScanCapabilities scan_capabilities_;
+
   std::vector<std::unique_ptr<ApInterfaceImpl>> ap_interfaces_;
   std::vector<std::unique_ptr<ClientInterfaceImpl>> client_interfaces_;
   std::vector<android::sp<android::net::wifi::IInterfaceEventCallback>>
