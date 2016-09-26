@@ -27,6 +27,12 @@ using android::IBinder;
 using std::string;
 using std::vector;
 using std::unique_ptr;
+using android::hardware::Void;
+using android::hardware::wifi::supplicant::V1_0::ISupplicantIface;
+using android::hardware::wifi::supplicant::V1_0::SupplicantStatus;
+using android::hardware::wifi::supplicant::V1_0::SupplicantStatusCode;
+using android::hardware::wifi::supplicant::V1_0::ISupplicant;
+using android::hardware::wifi::V1_0::IWifi;
 using android::net::wifi::IApInterface;
 using android::net::wifi::IClientInterface;
 using android::net::wifi::IInterfaceEventCallback;
@@ -39,20 +45,22 @@ using android::wifi_system::SupplicantManager;
 namespace android {
 namespace wificond {
 
-Server::Server(unique_ptr<HalTool> hal_tool,
-               unique_ptr<InterfaceTool> if_tool,
+Server::Server(unique_ptr<HalTool> hal_tool, unique_ptr<InterfaceTool> if_tool,
                unique_ptr<DriverTool> driver_tool,
                unique_ptr<SupplicantManager> supplicant_manager,
-               unique_ptr<HostapdManager> hostapd_manager,
-               NetlinkUtils* netlink_utils,
+               unique_ptr<HostapdManager> hostapd_manager, sp<IWifi> hal_hidl,
+               sp<ISupplicant> supplicant_hidl, NetlinkUtils* netlink_utils,
                ScanUtils* scan_utils)
     : hal_tool_(std::move(hal_tool)),
       if_tool_(std::move(if_tool)),
       driver_tool_(std::move(driver_tool)),
       supplicant_manager_(std::move(supplicant_manager)),
       hostapd_manager_(std::move(hostapd_manager)),
+      hal_hidl_(hal_hidl),
+      supplicant_hidl_(supplicant_hidl),
       netlink_utils_(netlink_utils),
       scan_utils_(scan_utils) {
+  hal_hidl_->registerEventCallback(this);
 }
 
 Status Server::RegisterCallback(const sp<IInterfaceEventCallback>& callback) {
@@ -117,12 +125,25 @@ Status Server::createClientInterface(sp<IClientInterface>* created_interface) {
     return Status::ok();  // Logging was done internally
   }
 
+  // Create the corresponding supplicant HIDL object for the iface.
+  sp<ISupplicantIface> supplicant_iface_hidl;
+  hardware::hidl_string ifname;
+  ifname = interface_name.c_str();
+  auto callback = [&supplicant_iface_hidl](SupplicantStatus status,
+                                           sp<ISupplicantIface> iface) -> void {
+    if (status.code == SupplicantStatusCode::SUCCESS) {
+      supplicant_iface_hidl = iface;
+    }
+  };
+  supplicant_hidl_->createInterface(ifname, callback);
+
   unique_ptr<ClientInterfaceImpl> client_interface(new ClientInterfaceImpl(
       interface_name,
       interface_index,
       interface_mac_addr,
       if_tool_.get(),
       supplicant_manager_.get(),
+      supplicant_iface_hidl,
       netlink_utils_,
       scan_utils_));
   *created_interface = client_interface->GetBinder();
@@ -142,6 +163,10 @@ Status Server::tearDownInterfaces() {
     BroadcastApInterfaceTornDown(it->GetBinder());
   }
   ap_interfaces_.clear();
+
+  if (!hal_hidl_->stop().getStatus().isOk()) {
+    LOG(ERROR) << "Failed to stop WiFi HAL!";
+  }
 
   if (!driver_tool_->UnloadDriver()) {
     LOG(ERROR) << "Failed to unload WiFi driver!";
@@ -163,6 +188,55 @@ Status Server::GetApInterfaces(vector<sp<IBinder>>* out_ap_interfaces) {
     out_ap_interfaces->push_back(asBinder(it->GetBinder()));
   }
   return binder::Status::ok();
+}
+
+android::hardware::Return<void> Server::onStart() {
+  LOG(ERROR) << "onStart";
+  hal_hidl_->getChip(
+      [this](const sp<android::hardware::wifi::V1_0::IWifiChip>& chip) {
+        LOG(ERROR) << "Polling ChipInfo";
+        chip->registerEventCallback(this);
+        chip->requestChipDebugInfo();
+      });
+  return Void();
+}
+android::hardware::Return<void> Server::onStartFailure(
+    const android::hardware::wifi::V1_0::FailureReason& reason) {
+  LOG(ERROR) << "onStartFailure";
+  return Void();
+}
+android::hardware::Return<void> Server::onStop() {
+  LOG(ERROR) << "onStop";
+  return Void();
+}
+android::hardware::Return<void> Server::onFailure(
+    const android::hardware::wifi::V1_0::FailureReason& reason) {
+  return Void();
+}
+android::hardware::Return<void> Server::onChipReconfigured(uint32_t mode_id) {
+  return Void();
+}
+android::hardware::Return<void> Server::onChipReconfigureFailure(
+    uint32_t mode_id,
+    const android::hardware::wifi::V1_0::FailureReason& reason) {
+  return Void();
+}
+android::hardware::Return<void> Server::onChipDebugInfoAvailable(
+    const android::hardware::wifi::V1_0::IWifiChipEventCallback::ChipDebugInfo&
+        info) {
+  LOG(ERROR) << "Chip info: driver=" << info.driverDescription.c_str()
+             << ", firmware=" << info.firmwareDescription.c_str();
+  return Void();
+}
+
+android::hardware::Return<void> Server::onDriverDebugDumpAvailable(
+    const android::hardware::hidl_vec<uint8_t>& blob) {
+  return Void();
+}
+
+android::hardware::Return<void> Server::onFirmwareDebugDumpAvailable(
+    const android::hardware::hidl_vec<uint8_t>& blob) {
+  return Void();
 }
 
 void Server::CleanUpSystemState() {
@@ -199,13 +273,18 @@ bool Server::SetupInterfaceForMode(int mode,
     return false;
   }
 
-  string result;
   if (!driver_tool_->LoadDriver()) {
     LOG(ERROR) << "Failed to load WiFi driver!";
     return false;
   }
   if (!driver_tool_->ChangeFirmwareMode(mode)) {
     LOG(ERROR) << "Failed to change WiFi firmware mode!";
+    return false;
+  }
+
+  LOG(ERROR) << "starting HAL";
+  if (!hal_hidl_->start().getStatus().isOk()) {
+    LOG(ERROR) << "Failed to start WiFi HAL!";
     return false;
   }
 

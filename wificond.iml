@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/ipc_constants.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/client_interface_impl_unittest.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/server.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/server_unittest.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/scanning/scan_result.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/binder_dispatcher.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/netlink_utils_unittest.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/net/nl80211_packet.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/ap_interface_test.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/client_interface_impl.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/netlink_manager_unittest.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/aidl/android/net/wifi/IApInterface.aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/looper_backed_event_loop_unittest.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/main.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/wpa_supplicant_binder/connect_tests.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/ap_interface_binder.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/aidl/android/net/wifi/IClientInterface.aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/mock_netlink_utils.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/mock_scan_utils.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/scanning/scan_utils.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/shell_utils.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/wpa_supplicant_binder/main.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/mock_netlink_manager.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/nl80211_attribute_unittest.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/shell_unittest.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/ap_interface_impl_unittest.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/aidl/android/net/wifi/IWificond.aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/client_interface_binder.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/life_cycle_test.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ap_interface_impl.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/wpa_supplicant_binder/test_base.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/service_test.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/aidl/android/net/wifi/IInterfaceEventCallback.aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/net/netlink_utils.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/process_utils.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/client_interface_test.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/wpa_supplicant_binder/tests.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/integration/wpa_supplicant_binder/network_params.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/net/netlink_manager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/looper_backed_event_loop.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/nl80211_packet_unittest.cpp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/net/nl80211_attribute.cpp" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../out/target/common/obj/APPS/wificond_intermediates/src">
+      <sourceFolder url="file://$MODULE_DIR$/../../../out/target/common/obj/APPS/wificond_intermediates/src" isTestSource="false" />
+    </content>
+
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+
+  </component>
+</module>
+
