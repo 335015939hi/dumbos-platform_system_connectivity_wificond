@@ -27,6 +27,7 @@
 #include "wificond/scanning/scan_result.h"
 #include "wificond/scanning/scan_utils.h"
 
+using android::hardware::wifi::V1_0::ISupplicantIface;
 using android::net::wifi::IClientInterface;
 using android::sp;
 using android::wifi_system::SupplicantManager;
@@ -40,16 +41,16 @@ namespace android {
 namespace wificond {
 
 ClientInterfaceImpl::ClientInterfaceImpl(
-    const std::string& interface_name,
-    uint32_t interface_index,
+    const std::string& interface_name, uint32_t interface_index,
     const std::vector<uint8_t>& interface_mac_addr,
     SupplicantManager* supplicant_manager,
-    NetlinkUtils* netlink_utils,
+    sp<ISupplicantIface> supplicant_iface_hidl, NetlinkUtils* netlink_utils,
     ScanUtils* scan_utils)
     : interface_name_(interface_name),
       interface_index_(interface_index),
       interface_mac_addr_(interface_mac_addr),
       supplicant_manager_(supplicant_manager),
+      supplicant_iface_hidl_(supplicant_iface_hidl),
       netlink_utils_(netlink_utils),
       scan_utils_(scan_utils),
       binder_(new ClientInterfaceBinder(this)) {

@@ -22,6 +22,8 @@
 #include <vector>
 
 #include <android-base/macros.h>
+#include <android/hardware/wifi/1.0/ISupplicant.h>
+#include <android/hardware/wifi/1.0/IWifi.h>
 #include <wifi_hal/driver_tool.h>
 #include <wifi_system/hal_tool.h>
 #include <wifi_system/interface_tool.h>
@@ -41,15 +43,18 @@ class NL80211Packet;
 class NetlinkUtils;
 class ScanUtils;
 
-class Server : public android::net::wifi::BnWificond {
+class Server : public android::net::wifi::BnWificond,
+               public android::hardware::wifi::V1_0::IWifiEventCallback,
+               public android::hardware::wifi::V1_0::IWifiChipEventCallback {
  public:
   Server(std::unique_ptr<wifi_system::HalTool> hal_tool,
          std::unique_ptr<wifi_system::InterfaceTool> if_tool,
          std::unique_ptr<wifi_hal::DriverTool> driver_tool,
          std::unique_ptr<wifi_system::SupplicantManager> supplicant_man,
          std::unique_ptr<wifi_system::HostapdManager> hostapd_man,
-         NetlinkUtils* netlink_utils,
-         ScanUtils* scan_utils);
+         sp<android::hardware::wifi::V1_0::IWifi> hal_hidl,
+         sp<android::hardware::wifi::V1_0::ISupplicant> supplicant_hidl,
+         NetlinkUtils* netlink_utils, ScanUtils* scan_utils);
   ~Server() override = default;
 
   android::binder::Status RegisterCallback(
@@ -73,6 +78,24 @@ class Server : public android::net::wifi::BnWificond {
       std::vector<android::sp<android::IBinder>>* out_client_ifs) override;
   android::binder::Status GetApInterfaces(
       std::vector<android::sp<android::IBinder>>* out_ap_ifs) override;
+
+  android::hardware::Return<void> onStart() override;
+  android::hardware::Return<void> onStartFailure(
+      const android::hardware::wifi::V1_0::FailureReason& reason) override;
+  android::hardware::Return<void> onStop() override;
+  android::hardware::Return<void> onFailure(
+      const android::hardware::wifi::V1_0::FailureReason& reason) override;
+  android::hardware::Return<void> onChipReconfigured(uint32_t mode_id) override;
+  android::hardware::Return<void> onChipReconfigureFailure(
+      uint32_t mode_id,
+      const android::hardware::wifi::V1_0::FailureReason& reason) override;
+  android::hardware::Return<void> onChipDebugInfoAvailable(
+      const android::hardware::wifi::V1_0::IWifiChipEventCallback::
+          ChipDebugInfo& info) override;
+  android::hardware::Return<void> onDriverDebugDumpAvailable(
+      const android::hardware::hidl_vec<uint8_t>& blob) override;
+  android::hardware::Return<void> onFirmwareDebugDumpAvailable(
+      const android::hardware::hidl_vec<uint8_t>& blob) override;
 
   // Call this once on startup.  It ignores all the invariants held
   // in wificond and tries to restore ourselves to a blank state by
@@ -106,6 +129,8 @@ class Server : public android::net::wifi::BnWificond {
   const std::unique_ptr<wifi_hal::DriverTool> driver_tool_;
   const std::unique_ptr<wifi_system::SupplicantManager> supplicant_manager_;
   const std::unique_ptr<wifi_system::HostapdManager> hostapd_manager_;
+  const sp<android::hardware::wifi::V1_0::IWifi> hal_hidl_;
+  const sp<android::hardware::wifi::V1_0::ISupplicant> supplicant_hidl_;
   NetlinkUtils* const netlink_utils_;
   ScanUtils* const scan_utils_;
 
