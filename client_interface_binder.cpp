@@ -23,6 +23,9 @@
 #include "wificond/client_interface_impl.h"
 
 using android::binder::Status;
+using android::net::wifi::IRttEventCallback;
+using android::net::wifi::RttManager::ParcelableRttParams;
+using android::sp;
 using std::vector;
 
 namespace android {
@@ -76,6 +79,19 @@ Status ClientInterfaceBinder::getInterfaceName(std::string* out_name) {
     return Status::ok();
   }
   *out_name = impl_->GetInterfaceName();
+  return Status::ok();
+}
+
+Status ClientInterfaceBinder::requestRttRange(
+    const ParcelableRttParams& rtt_params,
+    const sp<IRttEventCallback>& callback,
+    bool* success) {
+  *success = true;
+  return Status::ok();
+}
+
+Status ClientInterfaceBinder::cancelRttRange(bool* success) {
+  *success = true;
   return Status::ok();
 }
 
