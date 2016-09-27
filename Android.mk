@@ -93,9 +93,11 @@ LOCAL_C_INCLUDES := $(wificond_includes)
 LOCAL_CPPFLAGS := $(wificond_cpp_flags)
 LOCAL_SRC_FILES := \
     ipc_constants.cpp \
+    rtt/rtt_params.cpp \
     aidl/android/net/wifi/IApInterface.aidl \
     aidl/android/net/wifi/IClientInterface.aidl \
     aidl/android/net/wifi/IInterfaceEventCallback.aidl \
+    aidl/android/net/wifi/IRttEventCallback.aidl \
     aidl/android/net/wifi/IWificond.aidl
 LOCAL_SHARED_LIBRARIES := \
     libbinder
