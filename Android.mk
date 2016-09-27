@@ -54,6 +54,7 @@ LOCAL_SRC_FILES := \
     client_interface_binder.cpp \
     client_interface_impl.cpp \
     looper_backed_event_loop.cpp \
+    rtt/rtt_params.cpp \
     scanning/scan_result.cpp \
     scanning/scan_utils.cpp \
     server.cpp
@@ -96,6 +97,7 @@ LOCAL_SRC_FILES := \
     aidl/android/net/wifi/IApInterface.aidl \
     aidl/android/net/wifi/IClientInterface.aidl \
     aidl/android/net/wifi/IInterfaceEventCallback.aidl \
+    aidl/android/net/wifi/IRttEventCallback.aidl \
     aidl/android/net/wifi/IWificond.aidl
 LOCAL_SHARED_LIBRARIES := \
     libbinder
