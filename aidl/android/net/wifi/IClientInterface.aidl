@@ -16,6 +16,9 @@
 
 package android.net.wifi;
 
+import android.net.wifi.IRttEventCallback;
+import android.net.wifi.RttManager;
+
 // IClientInterface represents a network interface that can be used to connect
 // to access points and obtain internet connectivity.
 interface IClientInterface {
@@ -50,4 +53,9 @@ interface IClientInterface {
   @utf8InCpp
   String getInterfaceName();
 
+  // Returns true on success.
+  boolean requestRtt(in RttManager.ParcelableRttParams rtt_params, IRttEventCallback callback);
+  // Returns true on success.
+  boolean cancelRtt(in RttManager.ParcelableRttParams rtt_params);
+  // TODO(nywang): Add other RTT interfaces.
 }

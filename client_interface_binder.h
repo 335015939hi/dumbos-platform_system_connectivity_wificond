@@ -46,6 +46,13 @@ class ClientInterfaceBinder : public android::net::wifi::BnClientInterface {
   ::android::binder::Status getMacAddress(
       std::vector<uint8_t>* out_mac_address) override;
   ::android::binder::Status getInterfaceName(std::string* out_name) override;
+  ::android::binder::Status requestRtt(
+      const ::android::net::wifi::RttManager::ParcelableRttParams& rtt_params,
+      const ::android::sp<::android::net::wifi::IRttEventCallback>& callback,
+      bool* success) override;
+  ::android::binder::Status cancelRtt(
+      const ::android::net::wifi::RttManager::ParcelableRttParams& rtt_params,
+      bool* success) override;
 
  private:
   ClientInterfaceImpl* impl_;
