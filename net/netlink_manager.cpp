@@ -219,6 +219,10 @@ bool NetlinkManager::Start() {
   //  if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_SCAN)) {
   //    return false;
   //  }
+  if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_MLME)) {
+    return false;
+  }
+
 
   started_ = true;
   return true;
@@ -467,7 +471,14 @@ void NetlinkManager::BroadcastHandler(unique_ptr<const NL80211Packet> packet) {
       // available.
       command == NL80211_CMD_SCAN_ABORTED) {
     OnScanResultsReady(std::move(packet));
+    return;
   }
+
+  if (command == NL80211_CMD_ASSOCIATE) {
+    LOG(INFO) << "NL80211_CMD_ASSOCIATE";
+    return;
+  }
+  LOG(INFO) << "Other Broadcast Msg";
 }
 
 void NetlinkManager::OnScanResultsReady(unique_ptr<const NL80211Packet> packet) {
