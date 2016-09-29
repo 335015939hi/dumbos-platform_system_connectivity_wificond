@@ -16,6 +16,8 @@
 
 package android.net.wifi;
 
+import android.net.wifi.IANQPDoneCallback;
+
 // IClientInterface represents a network interface that can be used to connect
 // to access points and obtain internet connectivity.
 interface IClientInterface {
@@ -50,4 +52,7 @@ interface IClientInterface {
   @utf8InCpp
   String getInterfaceName();
 
+  // Query specified ANQP elements from an AP (specified by BSSID)
+  // and provide a callback for ANQP response.
+  boolean requestANQP(in byte[] bssid, IANQPDoneCallback callback);
 }
