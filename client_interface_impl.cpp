@@ -132,5 +132,12 @@ void ClientInterfaceImpl::OnScanResultsReady(
   // TODO(nywang): Send these scan results back to java framework.
 }
 
+void ClientInterfaceImpl::OnSchedScanResultsReady(
+                         uint32_t interface_index) {
+  vector<ScanResult> scan_results;
+  scan_utils_->GetScanResult(interface_index, &scan_results);
+  // TODO(nywang): Send these scan results back to java framework.
+}
+
 }  // namespace wificond
 }  // namespace android
