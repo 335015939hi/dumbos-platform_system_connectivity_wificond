@@ -61,4 +61,12 @@ interface IClientInterface {
   // Cancel ongoing RTT range requests for this interface.
   // Returns true on success.
   boolean cancelRttRange();
+
+  // Enable RTT responder role on the device.
+  // Returns |RttManager.ResponderConfig| if responder role is successfully enabled.
+  // Returns NULL otherwise.
+  @nullable RttManager.ResponderConfig enableRttResponder(int timeoutSeconds);
+  // Disable RTT responder role.
+  // Returns true on success.
+  boolean disableRttResponder();
 }
