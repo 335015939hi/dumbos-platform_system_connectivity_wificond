@@ -25,16 +25,17 @@ using std::string;
 using std::stringstream;
 
 namespace android {
-namespace wificond {
+namespace net {
+namespace wifi {
 
-ScanResult::ScanResult(std::vector<uint8_t>& ssid_,
-             std::vector<uint8_t>& bssid_,
-             std::vector<uint8_t>& info_element_,
-             uint32_t frequency_,
-             int32_t signal_mbm_,
-             uint64_t tsf_,
-             uint16_t capability_,
-             bool associated_)
+NativeScanResult::NativeScanResult(std::vector<uint8_t>& ssid_,
+                                   std::vector<uint8_t>& bssid_,
+                                   std::vector<uint8_t>& info_element_,
+                                   uint32_t frequency_,
+                                   int32_t signal_mbm_,
+                                   uint64_t tsf_,
+                                   uint16_t capability_,
+                                   bool associated_)
     : ssid(ssid_),
       bssid(bssid_),
       info_element(info_element_),
@@ -45,7 +46,64 @@ ScanResult::ScanResult(std::vector<uint8_t>& ssid_,
       associated(associated_) {
 }
 
-void ScanResult::DebugLog() {
+::android::status_t NativeScanResult::writeToParcel(::android::Parcel* parcel) const {
+  // Although writeByteVector() writes the vector length in the parcel and
+  // readByteVector() handles that properly, we still need to book the length
+  // here explicitly because the Java version of readByteArray() does not use
+  // the vector length provided by writeByteVector() to initialize a byte array.
+  // We need an explicit length here to initialize a byte array before calling
+  // readByteArray().
+  status_t status = parcel->writeInt32(ssid.size());
+  if (status != OK) return status;
+  status = parcel->writeByteVector(ssid);
+  if (status != OK) return status;
+  status = parcel->writeInt32(bssid.size());
+  if (status != OK) return status;
+  status = parcel->writeByteVector(bssid);
+  if (status != OK) return status;
+  status = parcel->writeInt32(info_element.size());
+  if (status != OK) return status;
+  status = parcel->writeByteVector(info_element);
+  if (status != OK) return status;
+  status = parcel->writeUint32(frequency);
+  if (status != OK) return status;
+  status = parcel->writeInt32(signal_mbm);
+  if (status != OK) return status;
+  status = parcel->writeUint64(tsf);
+  if (status != OK) return status;
+  // There is no writeUint16() avalaible.
+  // Use writeUint32() instead;
+  status = parcel->writeUint32(capability);
+  if (status != OK) return status;
+  status = parcel->writeInt32(associated ? 1 : 0);
+  if (status != OK) return status;
+  return ::android::OK;
+}
+
+::android::status_t NativeScanResult::readFromParcel(const ::android::Parcel* parcel) {
+  parcel->readInt32();
+  status_t status = parcel->readByteVector(&ssid);
+  if (status != OK) return status;
+  parcel->readInt32();
+  status = parcel->readByteVector(&bssid);
+  if (status != OK) return status;
+  parcel->readInt32();
+  status = parcel->readByteVector(&info_element);
+  if (status != OK) return status;
+  status = parcel->readUint32(&frequency);
+  if (status != OK) return status;
+  status = parcel->readInt32(&signal_mbm);
+  if (status != OK) return status;
+  status = parcel->readUint64(&tsf);
+  if (status != OK) return status;
+  // There is no readUint16() avalaible.
+  // Use readUint32() instead;
+  capability = static_cast<uint16_t>(parcel->readUint32());
+  associated = (parcel->readInt32() != 0);
+  return ::android::OK;
+}
+
+void NativeScanResult::DebugLog() {
   LOG(INFO) << "Scan result:";
   // |ssid| might be an encoded array but we just print it as ASCII here.
   string ssid_str(ssid.data(), ssid.data() + ssid.size());
@@ -69,5 +127,6 @@ void ScanResult::DebugLog() {
 
 }
 
-}  // namespace wificond
+}  // namespace wifi
+}  // namespace net
 }  // namespace android
