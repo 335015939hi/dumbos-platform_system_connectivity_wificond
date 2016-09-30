@@ -51,6 +51,11 @@ class ClientInterfaceBinder : public android::net::wifi::BnClientInterface {
       const ::android::sp<::android::net::wifi::IRttEventCallback>& callback,
       bool* success) override;
   ::android::binder::Status cancelRttRange(bool* success) override;
+  ::android::binder::Status enableRttResponder(
+      int32_t timeoutSeconds,
+      ::std::unique_ptr<::android::net::wifi::RttManager::ResponderConfig>*
+          _out_responder_config) override;
+  ::android::binder::Status disableRttResponder(bool* success) override;
 
  private:
   ClientInterfaceImpl* impl_;

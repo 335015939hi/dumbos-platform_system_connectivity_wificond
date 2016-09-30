@@ -25,7 +25,9 @@
 using android::binder::Status;
 using android::net::wifi::IRttEventCallback;
 using android::net::wifi::RttManager::ParcelableRttParams;
+using android::net::wifi::RttManager::ResponderConfig;
 using android::sp;
+using std::unique_ptr;
 using std::vector;
 
 namespace android {
@@ -91,6 +93,19 @@ Status ClientInterfaceBinder::requestRttRange(
 }
 
 Status ClientInterfaceBinder::cancelRttRange(bool* success) {
+  *success = true;
+  return Status::ok();
+}
+
+Status ClientInterfaceBinder::enableRttResponder(
+    int32_t timeoutSeconds,
+    unique_ptr<ResponderConfig>* _out_responder_config) {
+  // TODO(nywang): Call HAL function.
+  // Assign |*_out_responder_config|, using nullptr on failure.
+  return Status::ok();
+}
+
+Status ClientInterfaceBinder::disableRttResponder(bool* success) {
   *success = true;
   return Status::ok();
 }
