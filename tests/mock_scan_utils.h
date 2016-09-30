@@ -21,6 +21,8 @@
 
 #include "wificond/scanning/scan_utils.h"
 
+using ::android::net::wifi::NativeScanResult;
+
 namespace android {
 namespace wificond {
 
@@ -31,7 +33,7 @@ class MockScanUtils : public ScanUtils {
 
   MOCK_METHOD2(GetScanResult, bool(
       uint32_t interface_index,
-      std::vector<ScanResult>* out_scan_results));
+      std::vector<NativeScanResult>* out_scan_results));
 
   MOCK_METHOD3(Scan, bool(
       uint32_t interface_index,

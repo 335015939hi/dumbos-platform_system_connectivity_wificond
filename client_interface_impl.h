@@ -28,6 +28,11 @@
 #include "wificond/net/mlme_event_handler.h"
 
 namespace android {
+namespace net {
+namespace wifi {
+class NativeScanResult;
+}
+}
 namespace wificond {
 
 class ClientInterfaceBinder;
