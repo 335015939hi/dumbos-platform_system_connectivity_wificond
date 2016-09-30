@@ -61,4 +61,7 @@ interface IClientInterface {
   // Cancel ongoing RTT range requests for this interface.
   // Returns true on success.
   boolean cancelRttRange();
+
+  RttManager.ResponderConfig enableRttResponder(int timeoutSeconds);
+  boolean disableRttResponder();
 }
