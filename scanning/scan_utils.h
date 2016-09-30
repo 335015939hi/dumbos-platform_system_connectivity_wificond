@@ -25,10 +25,19 @@
 #include "wificond/net/netlink_manager.h"
 
 namespace android {
+namespace net {
+namespace wifi {
+
+class NativeScanResult;
+
+}  // namespace wifi
+}  // namespace net
+}  // namespace android
+
+namespace android {
 namespace wificond {
 
 class NL80211Packet;
-class ScanResult;
 
 // Provides scanning helper functions.
 class ScanUtils {
@@ -41,8 +50,9 @@ class ScanUtils {
   // from.
   // A vector of ScanResult object will be returned by |*out_scan_results|.
   // Returns true on success.
-  virtual bool GetScanResult(uint32_t interface_index,
-                             std::vector<ScanResult>* out_scan_results);
+  virtual bool GetScanResult(
+      uint32_t interface_index,
+      std::vector<::android::net::wifi::NativeScanResult>* out_scan_results);
 
   // Send scan request to kernel for interface with index |interface_index|.
   // |ssids| is a vector of ssids we request to scan, which mostly is used
@@ -112,7 +122,8 @@ class ScanUtils {
   bool GetSSIDFromInfoElement(const std::vector<uint8_t>& ie,
                               std::vector<uint8_t>* ssid);
   // Converts a NL80211_CMD_NEW_SCAN_RESULTS packet to a ScanResult object.
-  bool ParseScanResult(std::unique_ptr<const NL80211Packet> packet, ScanResult* scan_result);
+  bool ParseScanResult(std::unique_ptr<const NL80211Packet> packet,
+                       ::android::net::wifi::NativeScanResult* scan_result);
 
   NetlinkManager* netlink_manager_;
 
