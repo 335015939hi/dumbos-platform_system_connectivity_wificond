@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c22d9995_a88fe285",
+        "filename": "aidl/android/net/wifi/IANQPDoneCallback.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2016-09-30T16:47:24Z",
+      "side": 1,
+      "message": "I am assuming a value of null will be used when the request failed (e.g. timed out waiting for response from the AP)?",
+      "range": {
+        "startLine": 21,
+        "startChar": 52,
+        "endLine": 21,
+        "endChar": 63
+      },
+      "revId": "9bb7b79a48d283946fdd36095d4b91d0d676d101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c22d9995_4814fe59",
         "filename": "aidl/android/net/wifi/IClientInterface.aidl",
         "patchSetId": 1
@@ -13,6 +36,24 @@
       "writtenOn": "2016-09-30T16:33:15Z",
       "side": 1,
       "message": "Better comment on the semantics of the return value",
+      "revId": "9bb7b79a48d283946fdd36095d4b91d0d676d101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c22d9995_6889fa7e",
+        "filename": "aidl/android/net/wifi/IClientInterface.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2016-09-30T16:47:24Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "c22d9995_4814fe59",
       "revId": "9bb7b79a48d283946fdd36095d4b91d0d676d101",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
