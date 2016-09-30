@@ -93,5 +93,16 @@ Status ClientInterfaceBinder::cancelRttRange(bool* success) {
   return Status::ok();
 }
 
+Status ClientInterfaceBinder::enableRttResponder(
+    int32_t timeoutSeconds,
+    ::android::net::wifi::RttManager::ResponderConfig* _out_responder_config) {
+  return Status::ok();
+}
+
+Status ClientInterfaceBinder::disableRttResponder(bool* success) {
+  *success = true;
+  return Status::ok();
+}
+
 }  // namespace wificond
 }  // namespace android
