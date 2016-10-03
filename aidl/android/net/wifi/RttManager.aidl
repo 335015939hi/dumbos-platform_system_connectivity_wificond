@@ -20,3 +20,4 @@ package android.net.wifi;
 // We make it identical to ParcelableRttParams class in RttManager.java.
 parcelable RttManager.ParcelableRttParams cpp_header "wificond/rtt/rtt_params.h";
 parcelable RttManager.ResponderConfig cpp_header "wificond/rtt/responder_config.h";
+parcelable RttManager.RttCapabilities cpp_header "wificond/rtt/rtt_capabilities.h";
