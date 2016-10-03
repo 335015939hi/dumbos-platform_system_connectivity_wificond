@@ -69,4 +69,9 @@ interface IClientInterface {
   // Disable RTT responder role.
   // Returns true on success.
   boolean disableRttResponder();
+
+  // Get RTT capabilities.
+  // Returns |RttManager.RttCapabilities| on success.
+  // Returns NULL otherwise.
+  @nullable RttManager.RttCapabilities getRttCapabilities();
 }

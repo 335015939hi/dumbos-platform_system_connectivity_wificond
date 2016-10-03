@@ -56,6 +56,9 @@ class ClientInterfaceBinder : public android::net::wifi::BnClientInterface {
       ::std::unique_ptr<::android::net::wifi::RttManager::ResponderConfig>*
           _out_responder_config) override;
   ::android::binder::Status disableRttResponder(bool* success) override;
+  ::android::binder::Status getRttCapabilities(
+      ::std::unique_ptr<::android::net::wifi::RttManager::RttCapabilities>*
+          _out_rtt_capabilities) override;
 
  private:
   ClientInterfaceImpl* impl_;
