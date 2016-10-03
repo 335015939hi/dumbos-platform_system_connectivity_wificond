@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c20e797c_7d20d708",
+        "filename": "client_interface_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2016-10-03T16:30:12Z",
+      "side": 1,
+      "message": "std::string\u0026",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 19
+      },
+      "revId": "a53308074b146f3e25a9a6684914da4667764664",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
