@@ -27,6 +27,10 @@
 #include "wificond/scanning/scan_result.h"
 #include "wificond/scanning/scan_utils.h"
 
+using android::hardware::wifi::supplicant::V1_0::ISupplicant;
+using android::hardware::wifi::supplicant::V1_0::ISupplicantIface;
+using android::hardware::wifi::supplicant::V1_0::SupplicantStatus;
+using android::hardware::wifi::supplicant::V1_0::SupplicantStatusCode;
 using android::net::wifi::IClientInterface;
 using android::sp;
 using android::wifi_system::InterfaceTool;
@@ -41,8 +45,7 @@ namespace android {
 namespace wificond {
 
 ClientInterfaceImpl::ClientInterfaceImpl(
-    const std::string& interface_name,
-    uint32_t interface_index,
+    const std::string& interface_name, uint32_t interface_index,
     const std::vector<uint8_t>& interface_mac_addr,
     InterfaceTool* if_tool,
     SupplicantManager* supplicant_manager,
@@ -75,7 +78,26 @@ sp<android::net::wifi::IClientInterface> ClientInterfaceImpl::GetBinder() const 
 }
 
 bool ClientInterfaceImpl::EnableSupplicant() {
-  return supplicant_manager_->StartSupplicant();
+  if (!supplicant_manager_->StartSupplicant()) {
+    return false;
+  }
+
+  supplicant_hidl_ = ISupplicant::getService("wpa_supplicant");
+  CHECK(supplicant_hidl_) << "Failed to connect to wpa_supplicant HIDL instance";
+
+  // Create the corresponding supplicant HIDL object for the iface.
+  hardware::hidl_string ifname;
+  ifname = interface_name_.c_str();
+  auto callback = [&](SupplicantStatus status,
+                                           sp<ISupplicantIface> iface) -> void {
+    if (status.code == SupplicantStatusCode::SUCCESS) {
+      supplicant_iface_hidl_ = iface;
+    }
+  };
+  supplicant_hidl_->createInterface(ifname, callback);
+  CHECK(supplicant_iface_hidl_) << "Failed to add iface to wpa_supplicant HIDL instance";
+
+  return true;
 }
 
 bool ClientInterfaceImpl::DisableSupplicant() {
