@@ -27,6 +27,17 @@ using android::IBinder;
 using std::string;
 using std::vector;
 using std::unique_ptr;
+using android::hardware::Void;
+using android::hardware::hidl_vec;
+using android::hardware::wifi::V1_0::IWifi;
+using android::hardware::wifi::V1_0::IWifiChip;
+using android::hardware::wifi::V1_0::WifiStatus;
+using android::hardware::wifi::V1_0::WifiStatusCode;
+using android::hardware::wifi::V1_0::WifiDebugRingEntryConnectivityEvent;
+using android::hardware::wifi::V1_0::WifiDebugRingBufferStatus;
+using android::hardware::wifi::V1_0::WifiDebugRingEntryPowerEvent;
+using android::hardware::wifi::V1_0::WifiDebugRingEntryWakelockEvent;
+using android::hardware::wifi::V1_0::WifiDebugRingEntryVendorData;
 using android::net::wifi::IApInterface;
 using android::net::wifi::IClientInterface;
 using android::net::wifi::IInterfaceEventCallback;
@@ -41,11 +52,10 @@ using android::wifi_system::SupplicantManager;
 namespace android {
 namespace wificond {
 
-Server::Server(unique_ptr<HalTool> hal_tool,
-               unique_ptr<InterfaceTool> if_tool,
+Server::Server(unique_ptr<HalTool> hal_tool, unique_ptr<InterfaceTool> if_tool,
                unique_ptr<DriverTool> driver_tool,
                unique_ptr<SupplicantManager> supplicant_manager,
-               unique_ptr<HostapdManager> hostapd_manager,
+               unique_ptr<HostapdManager> hostapd_manager, sp<IWifi> hal_hidl,
                NetlinkUtils* netlink_utils,
                ScanUtils* scan_utils)
     : hal_tool_(std::move(hal_tool)),
@@ -53,8 +63,10 @@ Server::Server(unique_ptr<HalTool> hal_tool,
       driver_tool_(std::move(driver_tool)),
       supplicant_manager_(std::move(supplicant_manager)),
       hostapd_manager_(std::move(hostapd_manager)),
+      hal_hidl_(hal_hidl),
       netlink_utils_(netlink_utils),
       scan_utils_(scan_utils) {
+  hal_hidl_->registerEventCallback(this);
 }
 
 Status Server::RegisterCallback(const sp<IInterfaceEventCallback>& callback) {
@@ -163,6 +175,12 @@ Status Server::tearDownInterfaces() {
   }
   ap_interfaces_.clear();
 
+  hal_hidl_->stop([] (const WifiStatus& status) {
+    if (status.code != WifiStatusCode::SUCCESS) {
+      LOG(ERROR) << "Failed to stop WiFi HAL!";
+    }
+  });
+
   if (!driver_tool_->UnloadDriver()) {
     LOG(ERROR) << "Failed to unload WiFi driver!";
   }
@@ -183,6 +201,53 @@ Status Server::GetApInterfaces(vector<sp<IBinder>>* out_ap_interfaces) {
     out_ap_interfaces->push_back(asBinder(it->GetBinder()));
   }
   return binder::Status::ok();
+}
+
+android::hardware::Return<void> Server::onStart() {
+  LOG(ERROR) << "onStart";
+  hal_hidl_->getChip(0, [this](const sp<IWifiChip>& chip) {
+        LOG(ERROR) << "Polling ChipInfo";
+        chip->registerEventCallback(this, [] (const WifiStatus& status) {
+    if (status.code != WifiStatusCode::SUCCESS) {
+      LOG(ERROR) << "Failed to register callback!";
+    }
+    });
+        chip->requestChipDebugInfo([](const WifiStatus& status, const IWifiChip::ChipDebugInfo& debug){
+    if (status.code != WifiStatusCode::SUCCESS) {
+      LOG(ERROR) << "Failed to register callback!";
+      return;
+    }
+          LOG(ERROR) << "ChipInfo: " << debug.driverDescription.c_str() << ", " << debug.firmwareDescription.c_str();
+        });
+      });
+  return Void();
+}
+
+android::hardware::Return<void> Server::onStop() {
+  LOG(ERROR) << "onStop";
+  return Void();
+}
+
+android::hardware::Return<void> Server::onFailure(
+    const android::hardware::wifi::V1_0::WifiStatus& status) {
+  return Void();
+}
+
+android::hardware::Return<void> Server::onChipReconfigured(uint32_t mode_id) {
+  return Void();
+}
+
+android::hardware::Return<void> Server::onDebugRingBufferConnectivityEventEntriesAvailable(const WifiDebugRingBufferStatus& status, const hidl_vec<WifiDebugRingEntryConnectivityEvent>& entries) {
+  return Void();
+}
+android::hardware::Return<void> Server::onDebugRingBufferPowerEventEntriesAvailable(const WifiDebugRingBufferStatus& status, const hidl_vec<WifiDebugRingEntryPowerEvent>& entries) {
+  return Void();
+}
+android::hardware::Return<void> Server::onDebugRingBufferWakelockEventEntriesAvailable(const WifiDebugRingBufferStatus& status, const hidl_vec<WifiDebugRingEntryWakelockEvent>& entries) {
+  return Void();
+}
+android::hardware::Return<void> Server::onDebugRingBufferVendorDataEntriesAvailable(const WifiDebugRingBufferStatus& status, const hidl_vec<WifiDebugRingEntryVendorData>& entries) {
+  return Void();
 }
 
 void Server::CleanUpSystemState() {
@@ -219,7 +284,6 @@ bool Server::SetupInterfaceForMode(int mode,
     return false;
   }
 
-  string result;
   if (!driver_tool_->LoadDriver()) {
     LOG(ERROR) << "Failed to load WiFi driver!";
     return false;
@@ -228,6 +292,13 @@ bool Server::SetupInterfaceForMode(int mode,
     LOG(ERROR) << "Failed to change WiFi firmware mode!";
     return false;
   }
+
+  LOG(ERROR) << "starting HAL";
+  hal_hidl_->start([] (const WifiStatus& status) {
+    if (status.code != WifiStatusCode::SUCCESS) {
+      LOG(ERROR) << "Failed to start WiFi HAL!";
+    }
+  });
 
   if (!RefreshWiphyIndex()) {
     return false;

@@ -20,6 +20,8 @@
 #include <string>
 
 #include <android-base/macros.h>
+#include <android/hardware/wifi/supplicant/1.0/ISupplicant.h>
+#include <android/hardware/wifi/supplicant/1.0/ISupplicantIface.h>
 #include <utils/StrongPointer.h>
 #include <wifi_system/interface_tool.h>
 #include <wifi_system/supplicant_manager.h>
@@ -42,13 +44,11 @@ class ScanUtils;
 class ClientInterfaceImpl {
  public:
   ClientInterfaceImpl(
-      const std::string& interface_name,
-      uint32_t interface_index,
+      const std::string& interface_name, uint32_t interface_index,
       const std::vector<uint8_t>& interface_mac_addr,
       android::wifi_system::InterfaceTool* if_tool,
       android::wifi_system::SupplicantManager* supplicant_manager,
-      NetlinkUtils* netlink_utils,
-      ScanUtils* scan_utils);
+      NetlinkUtils* netlink_utils, ScanUtils* scan_utils);
   ~ClientInterfaceImpl();
 
   // Get a pointer to the binder representing this ClientInterfaceImpl.
@@ -76,6 +76,9 @@ class ClientInterfaceImpl {
   const std::vector<uint8_t> interface_mac_addr_;
   android::wifi_system::InterfaceTool* const if_tool_;
   android::wifi_system::SupplicantManager* const supplicant_manager_;
+  android::sp<android::hardware::wifi::supplicant::V1_0::ISupplicant> supplicant_hidl_;
+  android::sp<android::hardware::wifi::supplicant::V1_0::ISupplicantIface>
+      supplicant_iface_hidl_;
   NetlinkUtils* const netlink_utils_;
   ScanUtils* const scan_utils_;
   const android::sp<ClientInterfaceBinder> binder_;
