@@ -16,6 +16,8 @@
 
 package android.net.wifi;
 
+import android.net.wifi.RttManager;
+
 interface IRttEventCallback {
-  //TODO(nywang): Add callback functions
+  oneway void onRttResults(in RttManager.ParcelableRttResults result);
 }
