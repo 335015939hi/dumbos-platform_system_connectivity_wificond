@@ -30,6 +30,7 @@ namespace android {
 namespace wificond {
 
 class ClientInterfaceBinder;
+class MlmeEvent;
 class NetlinkUtils;
 class ScanUtils;
 
@@ -69,6 +70,8 @@ class ClientInterfaceImpl {
                           bool aborted,
                           std::vector<std::vector<uint8_t>>& ssids,
                           std::vector<uint32_t>& frequencies);
+
+  void OnMlmeEvent(MlmeEvent& mlme_event);
 
   const std::string interface_name_;
   const uint32_t interface_index_;

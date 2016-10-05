@@ -22,6 +22,8 @@
 
 #include <android-base/macros.h>
 
+#include "wificond/net/netlink_manager.h"
+
 namespace android {
 namespace wificond {
 
@@ -79,7 +81,6 @@ struct StationInfo {
   // We will add them once we find them useful.
 };
 
-class NetlinkManager;
 class NL80211Packet;
 
 // Provides NL80211 helper functions.
@@ -116,6 +117,9 @@ class NetlinkUtils {
   virtual bool GetStationInfo(uint32_t interface_index,
                               const std::vector<uint8_t>& mac_address,
                               StationInfo* out_station_info);
+  virtual void SubscribeMlmeEvent(uint32_t interface_index,
+                                  OnMlmeEventHandler handler);
+  virtual void UnsubscribeMlmeEvent(uint32_t interface_index);
 
  private:
   bool ParseBandInfo(const NL80211Packet* const packet,
