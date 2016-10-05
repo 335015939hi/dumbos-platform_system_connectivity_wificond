@@ -23,6 +23,7 @@
 #include <wifi_system/wifi.h>
 
 #include "wificond/client_interface_binder.h"
+#include "wificond/net/mlme_event.h"
 #include "wificond/net/netlink_utils.h"
 #include "wificond/scanning/scan_result.h"
 #include "wificond/scanning/scan_utils.h"
@@ -61,12 +62,18 @@ ClientInterfaceImpl::ClientInterfaceImpl(
       std::bind(&ClientInterfaceImpl::OnScanResultsReady,
                 this,
                 _1, _2, _3, _4));
+  netlink_utils_->SubscribeMlmeEvent(
+      interface_index_,
+      std::bind(&ClientInterfaceImpl::OnMlmeEvent,
+                this,
+                _1));
 }
 
 ClientInterfaceImpl::~ClientInterfaceImpl() {
   binder_->NotifyImplDead();
   DisableSupplicant();
   scan_utils_->UnsubscribeScanResultNotification(interface_index_);
+  netlink_utils_->UnsubscribeMlmeEvent(interface_index_);
   if_tool_->SetUpState(interface_name_.c_str(), false);
 }
 
@@ -132,11 +139,52 @@ void ClientInterfaceImpl::OnScanResultsReady(
   // TODO(nywang): Send these scan results back to java framework.
 }
 
+void ClientInterfaceImpl::OnMlmeEvent(unique_ptr<MlmeEvent> mlme_event) {
+  if (mlme_event->GetEventType() == NL80211_CMD_CONNECT) {
+    MlmeConnectEvent* connect_event =
+        static_cast<MlmeConnectEvent*>(mlme_event.get());
+    // Status code == 0 when the connection is successful.
+    if (connect_event->GetStatusCode() == 0) {
+      bssid_ = connect_event->GetBSSID();
+      GetAssociateFreq(&associate_freq_);
+    }
+  } else if (mlme_event->GetEventType() == NL80211_CMD_ROAM) {
+    MlmeRoamEvent* roam_event = static_cast<MlmeRoamEvent*>(mlme_event.get());
+    if (roam_event->GetStatusCode() == 0) {
+      bssid_ = roam_event->GetBSSID();
+      GetAssociateFreq(&associate_freq_);
+    }
+  } else if (mlme_event->GetEventType() == NL80211_CMD_ASSOCIATE) {
+    MlmeAssociateEvent* associate_event =
+        static_cast<MlmeAssociateEvent*>(mlme_event.get());
+    if (associate_event->GetStatusCode() == 0) {
+      bssid_ = associate_event->GetBSSID();
+      GetAssociateFreq(&associate_freq_);
+    }
+  }
+  return;
+}
+
 bool ClientInterfaceImpl::requestANQP(
       const ::std::vector<uint8_t>& bssid,
       const ::android::sp<::android::net::wifi::IANQPDoneCallback>& callback) {
   // TODO(nywang): query ANQP information from wpa_supplicant.
   return true;
+}
+
+bool ClientInterfaceImpl::GetAssociateFreq(uint32_t* freq) {
+  // wpa_upplicant fetch assocoate freq using the latest scan result.
+  // We should follow the same method here before we find a better solution.
+  std::vector<ScanResult> scan_results;
+  if (!scan_utils_->GetScanResult(interface_index_, &scan_results)) {
+    return false;
+  }
+  for (auto& scan_result : scan_results) {
+    if (scan_result.associated) {
+      *freq = scan_result.frequency;
+    }
+  }
+  return false;
 }
 
 }  // namespace wificond

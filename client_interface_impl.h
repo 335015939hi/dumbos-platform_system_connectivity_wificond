@@ -30,6 +30,7 @@ namespace android {
 namespace wificond {
 
 class ClientInterfaceBinder;
+class MlmeEvent;
 class NetlinkUtils;
 class ScanUtils;
 
@@ -70,6 +71,9 @@ class ClientInterfaceImpl {
                           std::vector<std::vector<uint8_t>>& ssids,
                           std::vector<uint32_t>& frequencies);
 
+  void OnMlmeEvent(std::unique_ptr<MlmeEvent> mlme_event);
+  bool GetAssociateFreq(uint32_t* freq);
+
   const std::string interface_name_;
   const uint32_t interface_index_;
   const std::vector<uint8_t> interface_mac_addr_;
@@ -78,6 +82,9 @@ class ClientInterfaceImpl {
   NetlinkUtils* const netlink_utils_;
   ScanUtils* const scan_utils_;
   const android::sp<ClientInterfaceBinder> binder_;
+
+  std::vector<uint8_t> bssid_;
+  uint32_t associate_freq_;
 
   DISALLOW_COPY_AND_ASSIGN(ClientInterfaceImpl);
 };
