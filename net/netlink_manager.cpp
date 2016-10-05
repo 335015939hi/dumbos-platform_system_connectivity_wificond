@@ -219,6 +219,10 @@ bool NetlinkManager::Start() {
   //  if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_SCAN)) {
   //    return false;
   //  }
+  if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_MLME)) {
+    return false;
+  }
+
 
   started_ = true;
   return true;
@@ -467,6 +471,46 @@ void NetlinkManager::BroadcastHandler(unique_ptr<const NL80211Packet> packet) {
       // available.
       command == NL80211_CMD_SCAN_ABORTED) {
     OnScanResultsReady(std::move(packet));
+    return;
+  }
+
+  if (command == NL80211_CMD_ASSOCIATE ||
+      command == NL80211_CMD_DISASSOCIATE ||
+      command == NL80211_CMD_AUTHENTICATE ||
+      command == NL80211_CMD_DEAUTHENTICATE ||
+      command == NL80211_CMD_CONNECT ||
+      command == NL80211_CMD_DISCONNECT) {
+    MlmeEventHandler(std::move(packet));
+    return;
+  }
+}
+
+void NetlinkManager::MlmeEventHandler(unique_ptr<const NL80211Packet> packet) {
+  uint32_t command = packet->GetCommand();
+  uint32_t if_index;
+  if (!packet->GetAttributeValue(NL80211_ATTR_IFINDEX, &if_index)) {
+    LOG(ERROR) << "Failed to get interface index from a MLME event message";
+    return;
+  }
+  auto handler = on_mlme_event_handler_.find(if_index);
+  if (handler == on_mlme_event_handler_.end()) {
+    LOG(DEBUG) << "No handler for mlme event from interface"
+               << " with index: " << if_index;
+    return;
+  }
+
+  if (command == NL80211_CMD_CONNECT) {
+    uint16_t status_code;
+    if (!packet->GetAttributeValue(NL80211_ATTR_STATUS_CODE, &status_code)) {
+      LOG(ERROR) << "Failed to get NL80211_ATTR_STATUS_CODE";
+      return;
+    }
+    if (status_code == 0) {
+      LOG(INFO) << "Connect event";
+    } else {
+      LOG(INFO) << "Failed to connect, status_code: " << status_code;
+    }
+    return;
   }
 }
 

@@ -59,6 +59,8 @@ typedef std::function<void(
     std::vector<std::vector<uint8_t>>& ssids,
     std::vector<uint32_t>& frequencies)> OnScanResultsReadyHandler;
 
+typedef std::function<void(const std::unique_ptr<NL80211Packet>)> OnMlmeEventHandler;
+
 class NetlinkManager {
  public:
   explicit NetlinkManager(EventLoop* event_loop);
@@ -141,6 +143,7 @@ class NetlinkManager {
   bool DiscoverFamilyId();
   bool SendMessageInternal(const NL80211Packet& packet, int fd);
   void BroadcastHandler(std::unique_ptr<const NL80211Packet> packet);
+  void MlmeEventHandler(std::unique_ptr<const NL80211Packet> packet);
   void OnScanResultsReady(std::unique_ptr<const NL80211Packet> packet);
 
   // This handler revceives mapping from NL80211 family name to family id,
@@ -165,6 +168,8 @@ class NetlinkManager {
   // A mapping from interface index to the handler registered to receive
   // scan results notifications.
   std::map<uint32_t, OnScanResultsReadyHandler> on_scan_result_ready_handler_;
+
+  std::map<uint32_t, OnMlmeEventHandler> on_mlme_event_handler_;
 
   // Mapping from family name to family id, and group name to group id.
   std::map<std::string, MessageType> message_types_;
