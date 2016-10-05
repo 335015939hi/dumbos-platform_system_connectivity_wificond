@@ -354,5 +354,14 @@ bool NetlinkUtils::GetStationInfo(uint32_t interface_index,
   return true;
 }
 
+void NetlinkUtils::SubscribeMlmeEvent(uint32_t interface_index,
+                                      OnMlmeEventHandler handler) {
+  netlink_manager_->SubscribeMlmeEvent(interface_index, handler);
+}
+
+void NetlinkUtils::UnsubscribeMlmeEvent(uint32_t interface_index) {
+  netlink_manager_->UnsubscribeMlmeEvent(interface_index);
+}
+
 }  // namespace wificond
 }  // namespace android

@@ -23,6 +23,7 @@
 #include <wifi_system/wifi.h>
 
 #include "wificond/client_interface_binder.h"
+#include "wificond/net/mlme_event.h"
 #include "wificond/net/netlink_utils.h"
 #include "wificond/scanning/scan_result.h"
 #include "wificond/scanning/scan_utils.h"
@@ -61,12 +62,18 @@ ClientInterfaceImpl::ClientInterfaceImpl(
       std::bind(&ClientInterfaceImpl::OnScanResultsReady,
                 this,
                 _1, _2, _3, _4));
+  netlink_utils_->SubscribeMlmeEvent(
+      interface_index_,
+      std::bind(&ClientInterfaceImpl::OnMlmeEvent,
+                this,
+                _1));
 }
 
 ClientInterfaceImpl::~ClientInterfaceImpl() {
   binder_->NotifyImplDead();
   DisableSupplicant();
   scan_utils_->UnsubscribeScanResultNotification(interface_index_);
+  netlink_utils_->UnsubscribeMlmeEvent(interface_index_);
   if_tool_->SetUpState(interface_name_.c_str(), false);
 }
 
@@ -130,6 +137,13 @@ void ClientInterfaceImpl::OnScanResultsReady(
   // scanning using regular NL80211 commands.
   scan_utils_->GetScanResult(interface_index, &scan_results);
   // TODO(nywang): Send these scan results back to java framework.
+}
+
+void ClientInterfaceImpl::OnMlmeEvent(unique_ptr<MlmeEvent> mlme_event) {
+  if (mlme_event->GetEventType() == NL80211_CMD_CONNECT) {
+    MlmeConnectEvent* connect_event = static_cast<MlmeConnectEvent*>(mlme_event.get());
+    bssid_ = connect_event->GetBSSID();
+  }
 }
 
 bool ClientInterfaceImpl::requestANQP(
