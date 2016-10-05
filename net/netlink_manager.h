@@ -18,6 +18,7 @@
 #define WIFICOND_NET_NETLINK_MANAGER_H_
 
 #include <functional>
+#include <linux/nl80211.h>
 #include <map>
 #include <memory>
 
@@ -29,6 +30,7 @@
 namespace android {
 namespace wificond {
 
+class MlmeEvent;
 class NL80211Packet;
 
 // Encapsulates all the different things we know about a specific message
@@ -59,6 +61,8 @@ typedef std::function<void(
     std::vector<std::vector<uint8_t>>& ssids,
     std::vector<uint32_t>& frequencies)> OnScanResultsReadyHandler;
 
+typedef std::function<void(
+    std::unique_ptr<MlmeEvent> mlme_event)> OnMlmeEventHandler;
 typedef std::function<void(
     uint32_t interface_index)> OnSchedScanResultsReadyHandler;
 
@@ -140,6 +144,17 @@ class NetlinkManager {
   // interface with index |interface_index|.
   virtual void UnsubscribeScanResultNotification(uint32_t interface_index);
 
+  // Sign up to be notified when there is MLME event.
+  // Only one handler can be registered per interface index.
+  // New handler will replace the registered handler if they are for the
+  // same interface index.
+  virtual void SubscribeMlmeEvent(uint32_t interface_index,
+                                  OnMlmeEventHandler handler);
+
+  // Cancel the sign-up of receiving MLME event notification
+  // from interface with index |interface_index|.
+  virtual void UnsubscribeMlmeEvent(uint32_t interface_index);
+
   // Sign up to be notified when new scan results are available.
   // |handler| will be called when the kernel signals to wificond that a
   // scheduled scan has been completed on the given |interface_index|.
@@ -163,6 +178,7 @@ class NetlinkManager {
   bool DiscoverFamilyId();
   bool SendMessageInternal(const NL80211Packet& packet, int fd);
   void BroadcastHandler(std::unique_ptr<const NL80211Packet> packet);
+  void MlmeEventHandler(std::unique_ptr<const NL80211Packet> packet);
   void OnScanResultsReady(std::unique_ptr<const NL80211Packet> packet);
   void OnSchedScanResultsReady(std::unique_ptr<const NL80211Packet> packet);
 
@@ -192,6 +208,8 @@ class NetlinkManager {
   // scheduled scan results notifications.
   std::map<uint32_t, OnSchedScanResultsReadyHandler>
       on_sched_scan_result_ready_handler_;
+
+  std::map<uint32_t, OnMlmeEventHandler> on_mlme_event_handler_;
 
   // Mapping from family name to family id, and group name to group id.
   std::map<std::string, MessageType> message_types_;
