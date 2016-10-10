@@ -16,6 +16,24 @@
       "revId": "34576532cd8a2afd5baa5a5cf0d1bf68b32ac448",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fd85cb1_306e10be",
+        "filename": "aidl/android/net/wifi/IClientInterface.aidl",
+        "patchSetId": 10
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-10T17:55:38Z",
+      "side": 1,
+      "message": "I discussed with rpius and he proposed to use a controller for the RTT HAL interface: go/aog/285163/\nHe has similar interfaces there, but with an optional network interface object parameter here. We can follow the same pattern for AIDL interface.\nI will make changes accordingly. I will close this and start another CL.",
+      "parentUuid": "9fd85cb1_0d97754a",
+      "revId": "34576532cd8a2afd5baa5a5cf0d1bf68b32ac448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
