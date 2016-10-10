@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fd85cb1_0d97754a",
+        "filename": "aidl/android/net/wifi/IClientInterface.aidl",
+        "patchSetId": 10
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-10T17:43:14Z",
+      "side": 1,
+      "message": "I would guess that people requesting RTT ranging are going to request a lot of different ranges over time.  Given that, I would structure this interface more like:\n\n  // Obtain a reference to a IRttService that can be used to\n  // request ranging information.  Results will be returned\n  // via the registered IRttClient.\n  IRttService registerRttClient(IRttClient rttClient);\n  void unregisterRttClient(IRttClient rttClient);\n\nThen you can request RTT information, cancel requests, etc all through the IRttService.\n\nThis gives us a natural place to express having more than one client, each of which having its own set of pending requests.\n\n\nIs that over engineering?  I note that cancelRttRange() is a global operation and doesn\u0027t seem to support multiple clients very well.",
+      "revId": "34576532cd8a2afd5baa5a5cf0d1bf68b32ac448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
