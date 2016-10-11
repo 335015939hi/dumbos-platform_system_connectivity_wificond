@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f7dbc55_6e58b48a",
+        "filename": "net/netlink_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-11T23:16:43Z",
+      "side": 1,
+      "message": "No fair asking me to look somewhere else for the documentation that isn\u0027t there :)\n\nYou probably need to comment that I can register only one handler per interface id.",
+      "revId": "48c161cd24276f44484e51c1c5a39dc8df423cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
