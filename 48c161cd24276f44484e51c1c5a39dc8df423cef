@@ -16,6 +16,24 @@
       "revId": "48c161cd24276f44484e51c1c5a39dc8df423cef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf8228c_12c38c55",
+        "filename": "net/netlink_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-12T18:26:09Z",
+      "side": 1,
+      "message": "Done.\nIf we find supporting multiple handlers useful I will make the change.(For now I think it will only be used by ClientInterfaceImpl class)",
+      "parentUuid": "9f7dbc55_6e58b48a",
+      "revId": "48c161cd24276f44484e51c1c5a39dc8df423cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
