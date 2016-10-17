@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c8bb7e0_d50bd63e",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-17T16:52:30Z",
+      "side": 1,
+      "message": "nit: indentation",
+      "revId": "50f5be9d49a25c5e8a264ed3d72cea2cf6145f22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
