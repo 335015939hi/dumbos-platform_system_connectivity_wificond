@@ -101,7 +101,8 @@ LOCAL_SRC_FILES := \
     aidl/android/net/wifi/IInterfaceEventCallback.aidl \
     aidl/android/net/wifi/IRttClient.aidl \
     aidl/android/net/wifi/IRttController.aidl \
-    aidl/android/net/wifi/IWificond.aidl
+    aidl/android/net/wifi/IWificond.aidl \
+    rtt/rtt_params.cpp
 LOCAL_SHARED_LIBRARIES := \
     libbinder
 include $(BUILD_STATIC_LIBRARY)

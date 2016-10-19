@@ -37,6 +37,11 @@ class RttControllerBinder : public android::net::wifi::BnRttController {
   // by remote processes are possible.
   void NotifyImplDead() { impl_ = nullptr; }
 
+  ::android::binder::Status requestRttRange(
+      const ::android::net::wifi::RttManager::ParcelableRttParams& rtt_params,
+      bool* success) override;
+  ::android::binder::Status cancelRttRange(bool* success) override;
+
  private:
   RttControllerImpl* impl_;
 
