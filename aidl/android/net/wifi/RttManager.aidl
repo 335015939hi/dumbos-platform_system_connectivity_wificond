@@ -16,16 +16,6 @@
 
 package android.net.wifi;
 
-import android.net.wifi.RttManager;
-
-interface IRttController {
-  // Issue a RTT range request for this interface.
-  // Returns true on success.
-  boolean requestRttRange(in RttManager.ParcelableRttParams rtt_params);
-
-  // Cancel ongoing RTT range requests for this interface.
-  // Returns true on success.
-  boolean cancelRttRange();
-
-  // TODO(nywang) add more functions
-}
+// This is actually a list of RttParams, for we need to make it identical to
+// ParcelableRttParams class in RttManager.java.
+parcelable RttManager.ParcelableRttParams cpp_header "wificond/rtt/rtt_params.h";

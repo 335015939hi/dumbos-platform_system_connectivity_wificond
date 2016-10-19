@@ -18,6 +18,9 @@
 
 #include "wificond/rtt/rtt_controller_impl.h"
 
+using android::binder::Status;
+using android::net::wifi::RttManager::ParcelableRttParams;
+
 namespace android {
 namespace wificond {
 
@@ -26,6 +29,19 @@ RttControllerBinder::RttControllerBinder(RttControllerImpl* impl) : impl_{impl} 
 
 RttControllerBinder::~RttControllerBinder() {
 }
+
+Status RttControllerBinder::requestRttRange(
+    const ParcelableRttParams& rtt_params,
+    bool* success) {
+  *success = true;
+  return Status::ok();
+}
+
+Status RttControllerBinder::cancelRttRange(bool* success) {
+  *success = true;
+  return Status::ok();
+}
+
 
 }  // namespace wificond
 }  // namespace android
