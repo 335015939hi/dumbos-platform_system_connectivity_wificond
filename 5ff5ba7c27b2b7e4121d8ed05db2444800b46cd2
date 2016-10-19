@@ -22,6 +22,30 @@
       "revId": "5ff5ba7c27b2b7e4121d8ed05db2444800b46cd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_ec1b7895",
+        "filename": "server.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-19T18:09:58Z",
+      "side": 1,
+      "message": "My intention here is to make this rtt_controller_ behave like a lazy initialized singleton object. Server only creates a RttController object when the first client comes and it reuses the existing RttController. Moreover it removes the rtt_controller when the last client is unregistered.",
+      "parentUuid": "1c6b9b00_98efa304",
+      "range": {
+        "startLine": 89,
+        "startChar": 22,
+        "endLine": 89,
+        "endChar": 24
+      },
+      "revId": "5ff5ba7c27b2b7e4121d8ed05db2444800b46cd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
