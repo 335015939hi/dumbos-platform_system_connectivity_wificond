@@ -1,0 +1,180 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c6b9b00_58a7cbf5",
+        "filename": "net/mlme_event.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "Yeah, so we could pass the handler in here and just call it from inside this switch statement to avoid repeating ourselves.",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_b8137f3d",
+        "filename": "net/mlme_event.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "It\u0027s a little unfortunate that these aren\u0027t const and initialized in a constructor.",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_7809e70d",
+        "filename": "net/mlme_event.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "nit: remind me why we need this?  It seems like everything is already marked protected like I would expect.\n\nif you really do need this, could you put it down next to DISALLOW_...?",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_98a163e1",
+        "filename": "net/mlme_event.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "I\u0027m not cool with returning mutable references to interval fields.  Maybe make it const or return a copy?  Similarly below",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_d8b2bb32",
+        "filename": "net/mlme_event.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "nit: 80 col, here and below",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_78944790",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "I like this much better, thank you.",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_1868b3ce",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "It would help if you would complete your thoughts here.  Are you trying to say that the driver uses these commands to notify us of state changes or that we can use them to request state changes?\n\nWhen read literally, this comment says that it uses these commands to \"perform ... processes\" which to me sounds like we request those processes with those commands.  That\u0027s a little weird to me because it looks like we\u0027re register to listen to notifications.\n\nOn the other hand, thanks for calling out explicitly why we\u0027re listening to all three types of messages.  That\u0027s probably an hour or two of research saved for some lucky individual in the future.",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_d8563b1b",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "nit: spelling",
+      "range": {
+        "startLine": 482,
+        "startChar": 8,
+        "endLine": 482,
+        "endChar": 16
+      },
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_f8ce97ba",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "Interesting.  Everywhere else we register functors to handle particular kinds of messages, but here these messages have a subtype.  I can see an argument that we should be consistent and register a functor here as a handler, but this requires a switch statement in the functor and then a cast down to a particular type.\n\nIf we instead asked people to register an object that had different methods to receive each type of message, we would no longer need that superclass, and we move the switch statement to inside the parsing code.  The downside is that of course we register different kinds of objects for different kinds of messages.\n\nI\u0027d prefer to avoid the cast, but I can see this both ways.  What do you think?",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_f804d733",
+        "filename": "net/netlink_manager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-19T17:20:11Z",
+      "side": 1,
+      "message": "nit: Could you pull this out to a separate section for C system includes?  It isn\u0027t a std library include like the rest of these",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
