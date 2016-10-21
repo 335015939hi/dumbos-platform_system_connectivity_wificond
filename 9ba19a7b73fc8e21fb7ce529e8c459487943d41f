@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7c51f7f3_10b68428",
+        "filename": "net/mlme_event.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-21T20:49:10Z",
+      "side": 1,
+      "message": "N/A after this change.",
+      "parentUuid": "1c6b9b00_b8137f3d",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c6b9b00_7809e70d",
         "filename": "net/mlme_event.h",
         "patchSetId": 8
@@ -47,6 +65,24 @@
       "writtenOn": "2016-10-19T17:20:11Z",
       "side": 1,
       "message": "nit: remind me why we need this?  It seems like everything is already marked protected like I would expect.\n\nif you really do need this, could you put it down next to DISALLOW_...?",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7cce57f1_0e048fbf",
+        "filename": "net/mlme_event.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-21T20:49:10Z",
+      "side": 1,
+      "message": "N/A after this change.",
+      "parentUuid": "1c6b9b00_7809e70d",
       "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "1c6b9b00_0c8074db",
+        "filename": "net/mlme_event.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-21T20:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c6b9b00_98a163e1",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c6b9b00_d8b2bb32",
         "filename": "net/mlme_event.h",
         "patchSetId": 8
@@ -81,6 +135,24 @@
       "writtenOn": "2016-10-19T17:20:11Z",
       "side": 1,
       "message": "nit: 80 col, here and below",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_4c8a6cfd",
+        "filename": "net/mlme_event.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-21T20:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c6b9b00_d8b2bb32",
       "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -121,6 +193,24 @@
     },
     {
       "key": {
+        "uuid": "1c6b9b00_4cb8aca9",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-21T20:49:10Z",
+      "side": 1,
+      "message": "Theses commands could be used for both \u0027request\u0027 and \u0027notification\u0027. Here we only listen to notifications. I will rephrase sentences here.",
+      "parentUuid": "1c6b9b00_1868b3ce",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c6b9b00_d8563b1b",
         "filename": "net/netlink_manager.cpp",
         "patchSetId": 8
@@ -132,6 +222,30 @@
       "writtenOn": "2016-10-19T17:20:11Z",
       "side": 1,
       "message": "nit: spelling",
+      "range": {
+        "startLine": 482,
+        "startChar": 8,
+        "endLine": 482,
+        "endChar": 16
+      },
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_ecded8f6",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-21T20:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c6b9b00_d8563b1b",
       "range": {
         "startLine": 482,
         "startChar": 8,
@@ -161,6 +275,24 @@
     },
     {
       "key": {
+        "uuid": "7c51f7f3_d0123c3a",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-21T20:49:10Z",
+      "side": 1,
+      "message": "Yeah I made the change of replacing functor with object.",
+      "parentUuid": "1c6b9b00_f8ce97ba",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c6b9b00_f804d733",
         "filename": "net/netlink_manager.h",
         "patchSetId": 8
@@ -172,6 +304,24 @@
       "writtenOn": "2016-10-19T17:20:11Z",
       "side": 1,
       "message": "nit: Could you pull this out to a separate section for C system includes?  It isn\u0027t a std library include like the rest of these",
+      "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6b9b00_8cc2c41f",
+        "filename": "net/netlink_manager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-21T20:49:10Z",
+      "side": 1,
+      "message": "N/A after this change.",
+      "parentUuid": "1c6b9b00_f804d733",
       "revId": "9ba19a7b73fc8e21fb7ce529e8c459487943d41f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
