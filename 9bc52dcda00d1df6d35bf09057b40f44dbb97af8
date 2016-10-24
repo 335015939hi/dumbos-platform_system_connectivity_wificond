@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8164840b_cc1eef21",
+        "filename": "net/mlme_event.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-24T21:18:27Z",
+      "side": 1,
+      "message": "Looks like these three types of objects all have these attributes.  Maybe put the logic to get the attribute values or return false into a helper function in an anonymous namespace in this file?\n\n  bool GetCommonFields(int32_t* if_idx, vector\u003cuint8_t\u003e* mac);\n\n?",
+      "revId": "9bc52dcda00d1df6d35bf09057b40f44dbb97af8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8164840b_ec05f3bf",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-24T21:18:27Z",
+      "side": 1,
+      "message": "It looks like all these handlers may as well take ownership of the pointer/object, since we\u0027re not going to retain it.  You could consider just passing the full unique pointer into the handler?\n\nI\u0027m unsure how much value that would give you.  You could also just put a TODO in the event handler definition that such a thing is easy/possible as a future optimization.",
+      "revId": "9bc52dcda00d1df6d35bf09057b40f44dbb97af8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8164840b_ec6973a6",
+        "filename": "net/netlink_manager.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-24T21:18:27Z",
+      "side": 1,
+      "message": "Could you note in the comments that NetlinkManager is not going to take ownership of this pointer, and that it is the caller\u0027s responsibility to make sure that the object exists for the duration of the subscription?",
+      "revId": "9bc52dcda00d1df6d35bf09057b40f44dbb97af8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8164840b_ac737b96",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-24T21:18:27Z",
+      "side": 1,
+      "message": "Similarly about object ownership and lifetime.",
+      "revId": "9bc52dcda00d1df6d35bf09057b40f44dbb97af8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
