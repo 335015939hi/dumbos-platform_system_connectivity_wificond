@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a19ee87a_e1fda6ff",
+        "filename": "client_interface_impl.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-10-25T18:19:46Z",
+      "side": 1,
+      "message": "Unless you have a great reason why the owner of this object shouldn\u0027t mutate it, you can leave that detail to them.  I can\u0027t see why we would care that either the pointer or the object itself is const, given that the EventHandler has taken ownership of both.",
+      "range": {
+        "startLine": 45,
+        "startChar": 28,
+        "endLine": 45,
+        "endChar": 33
+      },
+      "revId": "b2f4ebcf569eb2cb55ff1bbb19bb9737fe244d11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
