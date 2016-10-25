@@ -22,6 +22,30 @@
       "revId": "b2f4ebcf569eb2cb55ff1bbb19bb9737fe244d11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a19ee87a_87e38a8f",
+        "filename": "client_interface_impl.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-10-25T20:35:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a19ee87a_e1fda6ff",
+      "range": {
+        "startLine": 45,
+        "startChar": 28,
+        "endLine": 45,
+        "endChar": 33
+      },
+      "revId": "b2f4ebcf569eb2cb55ff1bbb19bb9737fe244d11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
