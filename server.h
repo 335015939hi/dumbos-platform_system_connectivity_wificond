@@ -22,6 +22,7 @@
 #include <vector>
 
 #include <android-base/macros.h>
+#include <android/hardware/wifi/1.0/IWifi.h>
 #include <wifi_hal/driver_tool.h>
 #include <wifi_system/hal_tool.h>
 #include <wifi_system/interface_tool.h>
@@ -42,13 +43,16 @@ class NL80211Packet;
 class NetlinkUtils;
 class ScanUtils;
 
-class Server : public android::net::wifi::BnWificond {
+class Server : public android::net::wifi::BnWificond,
+               public android::hardware::wifi::V1_0::IWifiEventCallback,
+               public android::hardware::wifi::V1_0::IWifiChipEventCallback {
  public:
   Server(std::unique_ptr<wifi_system::HalTool> hal_tool,
          std::unique_ptr<wifi_system::InterfaceTool> if_tool,
          std::unique_ptr<wifi_hal::DriverTool> driver_tool,
          std::unique_ptr<wifi_system::SupplicantManager> supplicant_man,
          std::unique_ptr<wifi_system::HostapdManager> hostapd_man,
+         sp<android::hardware::wifi::V1_0::IWifi> hal_hidl,
          NetlinkUtils* netlink_utils,
          ScanUtils* scan_utils);
   ~Server() override = default;
@@ -61,13 +65,12 @@ class Server : public android::net::wifi::BnWificond {
           callback) override;
 
   android::binder::Status registerRttClient(
-      const ::android::sp<::android::net::wifi::IRttClient>& rtt_client,
-      ::android::sp<::android::net::wifi::IRttController>*
-          out_rtt_controller) override;
+      const android::sp<android::net::wifi::IRttClient>& rtt_client,
+      android::sp<android::net::wifi::IRttController>* out_rtt_controller)
+      override;
 
   android::binder::Status unregisterRttClient(
-      const ::android::sp<::android::net::wifi::IRttClient>&
-          rttClient) override;
+      const android::sp<android::net::wifi::IRttClient>& rttClient) override;
 
   android::binder::Status createApInterface(
       android::sp<android::net::wifi::IApInterface>*
@@ -83,6 +86,34 @@ class Server : public android::net::wifi::BnWificond {
       std::vector<android::sp<android::IBinder>>* out_client_ifs) override;
   android::binder::Status GetApInterfaces(
       std::vector<android::sp<android::IBinder>>* out_ap_ifs) override;
+
+  android::hardware::Return<void> onStart() override;
+  android::hardware::Return<void> onStop() override;
+  android::hardware::Return<void> onFailure(
+      const android::hardware::wifi::V1_0::WifiStatus& reason) override;
+  android::hardware::Return<void> onChipReconfigured(uint32_t mode_id) override;
+  android::hardware::Return<void>
+  onDebugRingBufferConnectivityEventEntriesAvailable(
+      const android::hardware::wifi::V1_0::WifiDebugRingBufferStatus& status,
+      const android::hardware::hidl_vec<
+          android::hardware::wifi::V1_0::WifiDebugRingEntryConnectivityEvent>&
+          entries) override;
+  android::hardware::Return<void> onDebugRingBufferPowerEventEntriesAvailable(
+      const android::hardware::wifi::V1_0::WifiDebugRingBufferStatus& status,
+      const android::hardware::hidl_vec<
+          android::hardware::wifi::V1_0::WifiDebugRingEntryPowerEvent>& entries)
+      override;
+  android::hardware::Return<void>
+  onDebugRingBufferWakelockEventEntriesAvailable(
+      const android::hardware::wifi::V1_0::WifiDebugRingBufferStatus& status,
+      const android::hardware::hidl_vec<
+          android::hardware::wifi::V1_0::WifiDebugRingEntryWakelockEvent>&
+          entries) override;
+  android::hardware::Return<void> onDebugRingBufferVendorDataEntriesAvailable(
+      const android::hardware::wifi::V1_0::WifiDebugRingBufferStatus& status,
+      const android::hardware::hidl_vec<
+          android::hardware::wifi::V1_0::WifiDebugRingEntryVendorData>& entries)
+      override;
 
   // Call this once on startup.  It ignores all the invariants held
   // in wificond and tries to restore ourselves to a blank state by
@@ -116,6 +147,8 @@ class Server : public android::net::wifi::BnWificond {
   const std::unique_ptr<wifi_hal::DriverTool> driver_tool_;
   const std::unique_ptr<wifi_system::SupplicantManager> supplicant_manager_;
   const std::unique_ptr<wifi_system::HostapdManager> hostapd_manager_;
+  const sp<android::hardware::wifi::V1_0::IWifi> hal_hidl_;
+  sp<android::hardware::wifi::V1_0::IWifiChip> hal_chip_hidl_;
   NetlinkUtils* const netlink_utils_;
   ScanUtils* const scan_utils_;
 
