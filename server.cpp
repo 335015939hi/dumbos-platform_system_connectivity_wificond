@@ -27,6 +27,17 @@ using android::IBinder;
 using std::string;
 using std::vector;
 using std::unique_ptr;
+using android::hardware::Void;
+using android::hardware::hidl_vec;
+using android::hardware::wifi::V1_0::IWifi;
+using android::hardware::wifi::V1_0::IWifiChip;
+using android::hardware::wifi::V1_0::WifiStatus;
+using android::hardware::wifi::V1_0::WifiStatusCode;
+using android::hardware::wifi::V1_0::WifiDebugRingEntryConnectivityEvent;
+using android::hardware::wifi::V1_0::WifiDebugRingBufferStatus;
+using android::hardware::wifi::V1_0::WifiDebugRingEntryPowerEvent;
+using android::hardware::wifi::V1_0::WifiDebugRingEntryWakelockEvent;
+using android::hardware::wifi::V1_0::WifiDebugRingEntryVendorData;
 using android::net::wifi::IApInterface;
 using android::net::wifi::IClientInterface;
 using android::net::wifi::IInterfaceEventCallback;
@@ -46,6 +57,7 @@ Server::Server(unique_ptr<HalTool> hal_tool,
                unique_ptr<DriverTool> driver_tool,
                unique_ptr<SupplicantManager> supplicant_manager,
                unique_ptr<HostapdManager> hostapd_manager,
+               sp<IWifi> hal_hidl,
                NetlinkUtils* netlink_utils,
                ScanUtils* scan_utils)
     : hal_tool_(std::move(hal_tool)),
@@ -53,8 +65,17 @@ Server::Server(unique_ptr<HalTool> hal_tool,
       driver_tool_(std::move(driver_tool)),
       supplicant_manager_(std::move(supplicant_manager)),
       hostapd_manager_(std::move(hostapd_manager)),
+      hal_hidl_(hal_hidl),
+      hal_event_callback_handler_(new WifiEventCallbackHandler()),
+      hal_chip_event_callback_handler_(new WifiChipEventCallbackHandler()),
       netlink_utils_(netlink_utils),
       scan_utils_(scan_utils) {
+  hal_hidl_->registerEventCallback(
+      hal_event_callback_handler_, [](const WifiStatus& status) {
+        if (status.code != WifiStatusCode::SUCCESS) {
+          LOG(ERROR) << "Failed to register HAL callback!";
+        }
+      });
 }
 
 Status Server::RegisterCallback(const sp<IInterfaceEventCallback>& callback) {
@@ -163,6 +184,12 @@ Status Server::tearDownInterfaces() {
   }
   ap_interfaces_.clear();
 
+  hal_hidl_->stop([](const WifiStatus& status) {
+    if (status.code != WifiStatusCode::SUCCESS) {
+      LOG(ERROR) << "Failed to stop WiFi HAL!";
+    }
+  });
+
   if (!driver_tool_->UnloadDriver()) {
     LOG(ERROR) << "Failed to unload WiFi driver!";
   }
@@ -219,7 +246,6 @@ bool Server::SetupInterfaceForMode(int mode,
     return false;
   }
 
-  string result;
   if (!driver_tool_->LoadDriver()) {
     LOG(ERROR) << "Failed to load WiFi driver!";
     return false;
@@ -238,6 +264,64 @@ bool Server::SetupInterfaceForMode(int mode,
                                         interface_index,
                                         interface_mac_addr)) {
     LOG(ERROR) << "Failed to get interface info from kernel";
+    return false;
+  }
+
+  bool hal_failure = false;
+  LOG(ERROR) << "Starting HAL";
+  hal_hidl_->start([&hal_failure](const WifiStatus& status) {
+    if (status.code != WifiStatusCode::SUCCESS) {
+      LOG(ERROR) << "Failed to start WiFi HAL!";
+      hal_failure = true;
+      return;
+    }
+  });
+  if (hal_failure) {
+    return false;
+  }
+
+  LOG(ERROR) << "Getting IWifiChip";
+  hal_hidl_->getChip(
+      0,
+      [&hal_failure, this](const WifiStatus& status,
+                           const sp<IWifiChip>& chip) {
+        if (status.code != WifiStatusCode::SUCCESS || !chip.get()) {
+          LOG(ERROR) << "Invalid Chip object";
+          hal_failure = true;
+          return;
+        }
+        hal_chip_hidl_ = chip;
+      });
+  if (hal_failure) {
+    return false;
+  }
+
+  LOG(ERROR) << "Registering for IWifiChip callbacks";
+  hal_chip_hidl_->registerEventCallback(
+      hal_chip_event_callback_handler_,
+      [&hal_failure](const WifiStatus& status) {
+        if (status.code != WifiStatusCode::SUCCESS) {
+          LOG(ERROR) << "Failed to register HAL chip callback!";
+          hal_failure = true;
+          return;
+        }
+      });
+  if (hal_failure) {
+    return false;
+  }
+
+  LOG(ERROR) << "Getting ChipDebugInfo";
+  hal_chip_hidl_->requestChipDebugInfo([&hal_failure](
+      const WifiStatus& status, const IWifiChip::ChipDebugInfo& debug) {
+    if (status.code != WifiStatusCode::SUCCESS) {
+      LOG(ERROR) << "Failed to get chip info!";
+      hal_failure = true;
+      return;
+    }
+    LOG(INFO) << "ChipInfo: " << debug.driverDescription.c_str() << ","
+              << debug.firmwareDescription.c_str();
+  });
+  if (hal_failure) {
     return false;
   }
 
@@ -278,6 +362,54 @@ void Server::BroadcastApInterfaceTornDown(
   for (auto& it : interface_event_callbacks_) {
     it->OnApTorndownEvent(network_interface);
   }
+}
+
+android::hardware::Return<void> WifiEventCallbackHandler::onStart() {
+  LOG(ERROR) << "onStart";
+  return Void();
+}
+
+android::hardware::Return<void> WifiEventCallbackHandler::onStop() {
+  LOG(ERROR) << "onStop";
+  return Void();
+}
+
+android::hardware::Return<void> WifiEventCallbackHandler::onFailure(
+    const android::hardware::wifi::V1_0::WifiStatus& status) {
+  return Void();
+}
+
+android::hardware::Return<void>
+WifiChipEventCallbackHandler::onChipReconfigured(uint32_t mode_id) {
+  return Void();
+}
+
+android::hardware::Return<void> WifiChipEventCallbackHandler::
+    onDebugRingBufferConnectivityEventEntriesAvailable(
+        const WifiDebugRingBufferStatus& status,
+        const hidl_vec<WifiDebugRingEntryConnectivityEvent>& entries) {
+  return Void();
+}
+
+android::hardware::Return<void>
+WifiChipEventCallbackHandler::onDebugRingBufferPowerEventEntriesAvailable(
+    const WifiDebugRingBufferStatus& status,
+    const hidl_vec<WifiDebugRingEntryPowerEvent>& entries) {
+  return Void();
+}
+
+android::hardware::Return<void>
+WifiChipEventCallbackHandler::onDebugRingBufferWakelockEventEntriesAvailable(
+    const WifiDebugRingBufferStatus& status,
+    const hidl_vec<WifiDebugRingEntryWakelockEvent>& entries) {
+  return Void();
+}
+
+android::hardware::Return<void>
+WifiChipEventCallbackHandler::onDebugRingBufferVendorDataEntriesAvailable(
+    const WifiDebugRingBufferStatus& status,
+    const hidl_vec<WifiDebugRingEntryVendorData>& entries) {
+  return Void();
 }
 
 }  // namespace wificond
