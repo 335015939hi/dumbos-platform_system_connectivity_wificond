@@ -20,6 +20,12 @@
 #include <string>
 
 #include <android-base/macros.h>
+#include <android/hardware/wifi/supplicant/1.0/ISupplicant.h>
+#include <android/hardware/wifi/supplicant/1.0/ISupplicantIface.h>
+#include <android/hardware/wifi/supplicant/1.0/ISupplicantNetwork.h>
+#include <android/hardware/wifi/supplicant/1.0/ISupplicantStaIface.h>
+#include <android/hardware/wifi/supplicant/1.0/ISupplicantStaIfaceCallback.h>
+#include <android/hardware/wifi/supplicant/1.0/ISupplicantStaNetwork.h>
 #include <utils/StrongPointer.h>
 #include <wifi_system/interface_tool.h>
 #include <wifi_system/supplicant_manager.h>
@@ -45,6 +51,19 @@ class MlmeEventHandlerImpl : public MlmeEventHandler {
 
  private:
   ClientInterfaceImpl* client_interface_;
+};
+
+class SupplicantStaIfaceCallbackHandler
+    : public android::hardware::wifi::supplicant::V1_0::
+          ISupplicantStaIfaceCallback {
+  android::hardware::Return<void> onNetworkAdded(uint32_t id) override;
+  android::hardware::Return<void> onNetworkRemoved(uint32_t id) override;
+  android::hardware::Return<void> onStateChanged(
+      android::hardware::wifi::supplicant::V1_0::ISupplicantStaIfaceCallback::
+          State newState,
+      const android::hardware::hidl_array<uint8_t, 6 /* 6 */>& bssid,
+      uint32_t id,
+      const android::hardware::hidl_vec<uint8_t>& ssid) override;
 };
 
 // Holds the guts of how we control network interfaces capable of connecting to
@@ -91,6 +110,12 @@ class ClientInterfaceImpl {
   const std::vector<uint8_t> interface_mac_addr_;
   android::wifi_system::InterfaceTool* const if_tool_;
   android::wifi_system::SupplicantManager* const supplicant_manager_;
+  android::sp<android::hardware::wifi::supplicant::V1_0::ISupplicant>
+      supplicant_hidl_;
+  android::sp<android::hardware::wifi::supplicant::V1_0::ISupplicantStaIface>
+      supplicant_iface_hidl_;
+  android::sp<SupplicantStaIfaceCallbackHandler>
+      supplicant_iface_hidl_callback_handler_;
   NetlinkUtils* const netlink_utils_;
   ScanUtils* const scan_utils_;
   const std::unique_ptr<MlmeEventHandlerImpl> mlme_event_handler_;

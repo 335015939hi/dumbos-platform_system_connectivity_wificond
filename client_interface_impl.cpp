@@ -28,6 +28,17 @@
 #include "wificond/scanning/scan_result.h"
 #include "wificond/scanning/scan_utils.h"
 
+using android::hardware::hidl_array;
+using android::hardware::hidl_vec;
+using android::hardware::Void;
+using android::hardware::wifi::supplicant::V1_0::ISupplicant;
+using android::hardware::wifi::supplicant::V1_0::ISupplicantIface;
+using android::hardware::wifi::supplicant::V1_0::ISupplicantNetwork;
+using android::hardware::wifi::supplicant::V1_0::ISupplicantStaIface;
+using android::hardware::wifi::supplicant::V1_0::ISupplicantStaIfaceCallback;
+using android::hardware::wifi::supplicant::V1_0::ISupplicantStaNetwork;
+using android::hardware::wifi::supplicant::V1_0::SupplicantStatus;
+using android::hardware::wifi::supplicant::V1_0::SupplicantStatusCode;
 using android::net::wifi::IClientInterface;
 using android::sp;
 using android::wifi_system::InterfaceTool;
@@ -82,6 +93,8 @@ ClientInterfaceImpl::ClientInterfaceImpl(
       interface_mac_addr_(interface_mac_addr),
       if_tool_(if_tool),
       supplicant_manager_(supplicant_manager),
+      supplicant_iface_hidl_callback_handler_(
+          new SupplicantStaIfaceCallbackHandler()),
       netlink_utils_(netlink_utils),
       scan_utils_(scan_utils),
       mlme_event_handler_(new MlmeEventHandlerImpl(this)),
@@ -109,7 +122,97 @@ sp<android::net::wifi::IClientInterface> ClientInterfaceImpl::GetBinder() const 
 }
 
 bool ClientInterfaceImpl::EnableSupplicant() {
-  return supplicant_manager_->StartSupplicant();
+  if (!supplicant_manager_->StartSupplicant()) {
+    return false;
+  }
+
+  bool error = false;
+
+  supplicant_hidl_ = ISupplicant::getService("wpa_supplicant");
+  CHECK(supplicant_hidl_)
+      << "Failed to connect to wpa_supplicant HIDL instance";
+
+  supplicant_hidl_->setDebugParams(
+      ISupplicant::DebugLevel::EXCESSIVE,
+      true,
+      true,
+      [&](const SupplicantStatus& status) -> void {});
+
+  ISupplicant::IfaceInfo iface_info = { android::hardware::wifi::supplicant::V1_0::IfaceType::STA, interface_name_};
+  supplicant_hidl_->getInterface(
+      iface_info,
+      [&](const SupplicantStatus& status, sp<ISupplicantIface> iface) -> void {
+        if (status.code != SupplicantStatusCode::SUCCESS || !iface.get()) {
+          CHECK(0) << "Failed to get wpa_supplicant HIDL iface handle";
+          error = true;
+          return;
+        }
+        supplicant_iface_hidl_ = ISupplicantStaIface::castFrom(iface);
+      });
+  if (error)
+    return false;
+
+  supplicant_iface_hidl_->registerCallback(
+      supplicant_iface_hidl_callback_handler_,
+      [&](const SupplicantStatus& status) -> void {
+        if (status.code != SupplicantStatusCode::SUCCESS) {
+          LOG(ERROR)
+              << "Failed to register callbacks with wpa_supplicant HIDL iface";
+          error = true;
+          return;
+        }
+      });
+  if (error)
+    return false;
+
+  android::sp<ISupplicantStaNetwork> supplicant_network_hidl;
+  supplicant_iface_hidl_->addNetwork(
+      [&](const SupplicantStatus& status,
+          const android::sp<ISupplicantNetwork>& network) {
+        if (status.code != SupplicantStatusCode::SUCCESS) {
+          LOG(ERROR) << "Failed to add network with wpa_supplicant HIDL iface";
+          error = true;
+          return;
+        }
+        supplicant_network_hidl = ISupplicantStaNetwork::castFrom(network);
+      });
+  if (error)
+    return false;
+
+  std::string ssid_str = "GoogleGuest";
+  const std::vector<uint8_t> ssid_vec(ssid_str.begin(), ssid_str.end());
+  supplicant_network_hidl->setSsid(
+      ssid_vec, [&](const SupplicantStatus& status) -> void {
+        if (status.code != SupplicantStatusCode::SUCCESS) {
+          LOG(ERROR) << "Failed to set SSID on network";
+          error = true;
+          return;
+        }
+      });
+  if (error)
+    return false;
+
+  supplicant_network_hidl->setKeyMgmt(
+      static_cast<uint32_t>(ISupplicantStaNetwork::KeyMgmtMask::NONE),
+      [&](const SupplicantStatus& status) -> void {
+        if (status.code != SupplicantStatusCode::SUCCESS) {
+          LOG(ERROR) << "Failed to set SSID on network";
+          error = true;
+        }
+      });
+  if (error)
+    return false;
+
+  supplicant_network_hidl->select([&](const SupplicantStatus& status) -> void {
+    if (status.code != SupplicantStatusCode::SUCCESS) {
+      LOG(ERROR) << "Failed to select network";
+      error = true;
+    }
+  });
+  if (error)
+    return false;
+
+  return true;
 }
 
 bool ClientInterfaceImpl::DisableSupplicant() {
@@ -193,6 +296,28 @@ bool ClientInterfaceImpl::RefreshAssociateFreq() {
     }
   }
   return false;
+}
+
+android::hardware::Return<void>
+SupplicantStaIfaceCallbackHandler::onNetworkAdded(uint32_t id) {
+  LOG(INFO) << "onNetworkAdded: " << id;
+  return Void();
+}
+android::hardware::Return<void>
+SupplicantStaIfaceCallbackHandler::onNetworkRemoved(uint32_t id) {
+  LOG(INFO) << "onNetworkRemoved: " << id;
+  return Void();
+}
+
+android::hardware::Return<void>
+SupplicantStaIfaceCallbackHandler::onStateChanged(
+    ISupplicantStaIfaceCallback::State newState,
+    const hidl_array<uint8_t, 6 /* 6 */>& bssid,
+    uint32_t id,
+    const hidl_vec<uint8_t>& ssid) {
+  LOG(INFO) << "onStateChanged: " << id
+            << ", New state: " << static_cast<uint32_t>(newState);
+  return Void();
 }
 
 }  // namespace wificond
