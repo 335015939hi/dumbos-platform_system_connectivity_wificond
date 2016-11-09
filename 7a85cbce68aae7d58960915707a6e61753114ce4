@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b8e8f82_4388063d",
+        "filename": "scanning/scan_result.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-11-09T22:53:18Z",
+      "side": 1,
+      "message": "You could actually use writeBlob()/readBlob() in the java to eliminate all those extra length read/writes.",
+      "revId": "7a85cbce68aae7d58960915707a6e61753114ce4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b8e8f82_4321e664",
+        "filename": "scanning/scan_result.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2016-11-09T22:53:18Z",
+      "side": 1,
+      "message": "Other places (see PersistableBundle) use a macro RETURN_IF_FAILED(...) that does this awkward if statement boilerplate for them.  I\u0027m ok with using something similar here because it\u0027s localized to this .cpp file.",
+      "revId": "7a85cbce68aae7d58960915707a6e61753114ce4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
