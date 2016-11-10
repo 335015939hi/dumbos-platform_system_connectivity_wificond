@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cb669bd0_0e21fbc9",
+        "filename": "scanning/scan_result.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-11-10T23:01:02Z",
+      "side": 1,
+      "message": "writeBlob() and readBlob() also write/read a int32 blob type:\nhttp://cs/android/system/libhwbinder/Parcel.cpp?l\u003d2312\u0026rcl\u003dc6fa561ad2054ba5ef895956d5582798a6c7d843\nSo in order to make it work we need to use readBlob() and writeBlob() in wificond side. The API there doesn\u0027t look nice:\nhttp://cs/android/system/libhwbinder/Parcel.cpp?l\u003d1201\u0026rcl\u003dc6fa561ad2054ba5ef895956d5582798a6c7d843\nI think it is better to keep booking the array length.",
+      "parentUuid": "6b8e8f82_4388063d",
+      "revId": "7a85cbce68aae7d58960915707a6e61753114ce4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b8e8f82_4321e664",
         "filename": "scanning/scan_result.cpp",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-11-09T22:53:18Z",
       "side": 1,
       "message": "Other places (see PersistableBundle) use a macro RETURN_IF_FAILED(...) that does this awkward if statement boilerplate for them.  I\u0027m ok with using something similar here because it\u0027s localized to this .cpp file.",
+      "revId": "7a85cbce68aae7d58960915707a6e61753114ce4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb669bd0_ee1be792",
+        "filename": "scanning/scan_result.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-11-10T23:01:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b8e8f82_4321e664",
       "revId": "7a85cbce68aae7d58960915707a6e61753114ce4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
