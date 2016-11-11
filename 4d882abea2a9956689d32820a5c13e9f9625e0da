@@ -1,0 +1,8 @@
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Code-Review+2: Christopher Wiley <wiley@google.com>
+Verified+1: Ningyuan Wang <nywang@google.com>
+Submitted-by: Ningyuan Wang <nywang@google.com>
+Submitted-at: Fri, 11 Nov 2016 18:54:43 +0000
+Reviewed-on: https://android-review.googlesource.com/300168
+Project: platform/system/connectivity/wificond
+Branch: refs/heads/master
