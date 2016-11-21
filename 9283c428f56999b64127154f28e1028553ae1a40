@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30040898_e32a1a41",
+        "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2016-11-21T23:06:02Z",
+      "side": 1,
+      "message": "Add a comment about the lifetime of this object. \nSince we don\u0027t have a binder way to invalidate the object once the reference is given out.\na) We should either explicitly add some mechanism to mark the object invalid or \nb) Document that the caller (WifiScanningService) should ensure that the object is not used when it should not be (i.e when we\u0027re in AP mode for example).\n\nI would prefer that we implement option a) because that makes this interface airtight. With option b), we\u0027re at the mercy of the caller not misusing our object.",
+      "range": {
+        "startLine": 21,
+        "startChar": 10,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "9283c428f56999b64127154f28e1028553ae1a40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
