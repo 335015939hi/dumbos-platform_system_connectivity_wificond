@@ -22,6 +22,30 @@
       "revId": "9283c428f56999b64127154f28e1028553ae1a40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70620091_ebbd4d9c",
+        "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-11-22T18:14:11Z",
+      "side": 1,
+      "message": "Invalidate logic added.\nPTAL.",
+      "parentUuid": "30040898_e32a1a41",
+      "range": {
+        "startLine": 21,
+        "startChar": 10,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "9283c428f56999b64127154f28e1028553ae1a40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
