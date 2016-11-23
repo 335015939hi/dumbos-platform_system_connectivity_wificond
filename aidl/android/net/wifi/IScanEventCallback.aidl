@@ -17,12 +17,10 @@
 package android.net.wifi;
 
 import com.android.server.wifi.wificond.NativeScanResult;
-import com.android.server.wifi.wificond.SingleScanSettings;
 
-import android.net.wifi.IScanEventCallback;
-
-interface IWifiScannerImpl {
-  void startSingleScan(in SingleScanSettings settings,
-                       IScanEventCallback scanEvents);
-  // TODO(nywang) add interfaces.
+// A callback for receiving scan events.
+interface IScanEventCallback {
+  oneway void OnScanResult(in NativeScanResult[] scanResults);
+  oneway void OnScanFailed();
+  oneway void OnScanTimeout();
 }

@@ -213,6 +213,17 @@ bool ScanUtils::GetSSIDFromInfoElement(const vector<uint8_t>& ie,
   return false;
 }
 
+bool ScanUtils::StartFullScan(uint32_t interface_index) {
+  vector<vector<uint8_t>> ssids;
+  // Insert an empry ssid.
+  // Scan all ssids.
+  vector<uint8_t> ssid = {0};
+  ssids.push_back(ssid);
+  // Scan all frequency.
+  vector<uint32_t> freqs;
+  return Scan(interface_index, ssids, freqs);
+}
+
 bool ScanUtils::Scan(uint32_t interface_index,
                      const vector<vector<uint8_t>>& ssids,
                      const vector<uint32_t>& freqs) {

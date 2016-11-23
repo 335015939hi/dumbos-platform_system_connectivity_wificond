@@ -22,23 +22,126 @@
 
 #include "wificond/scanning/scan_utils.h"
 
+using android::binder::Status;
+using android::net::wifi::IScanEventCallback;
+using android::sp;
+using com::android::server::wifi::wificond::NativeScanResult;
+using com::android::server::wifi::wificond::SingleScanSettings;
+using std::vector;
+
+using namespace std::placeholders;
+
 namespace android {
 namespace wificond {
 
 ScannerImpl::ScannerImpl(uint32_t interface_index,
                          ScanUtils* scan_utils)
     : valid_(true),
+      is_scanning_(false),
       interface_index_(interface_index),
       scan_utils_(scan_utils) {
-  // Keep compiler happy.
-  // Delete this when implementions are checked in.
-  if (scan_utils_ == nullptr) {
-    LOG(ERROR) << "Invalid ScanUtils for ScannerImpl on interface: "
-               << interface_index_;
-  }
 }
 
 ScannerImpl::~ScannerImpl() {
+}
+
+void ScannerImpl::StartMonitoringScanResult() {
+  scan_utils_->SubscribeScanResultNotification(
+      interface_index_,
+      std::bind(&ScannerImpl::OnScanResultsReadyInternal,
+      this,
+      _1, _2, _3, _4));
+}
+
+void ScannerImpl::StopMonitoringScanResult() {
+  scan_utils_->UnsubscribeScanResultNotification(interface_index_);
+}
+
+Status ScannerImpl::startSingleScan(
+    const SingleScanSettings& settings,
+    const sp<IScanEventCallback>& scan_events) {
+  if (!valid_) {
+    return Status::ok();
+  }
+  // Ignore scan request because scan requests should be rescheduled by
+  // WifiScanningService.
+  if (is_scanning_) {
+    LOG(ERROR) << "Wifi is already scanning";
+    return Status::ok();
+  }
+
+  LOG(INFO) << "start single scan request";
+
+  // Start a full scan.
+  if (settings.is_full_scan) {
+    LOG(INFO) << "request a full scan";
+    if (!scan_utils_->StartFullScan(interface_index_)) {
+      // Failed to start a full scan.
+      scan_events->OnScanFailed();
+      return Status::ok();
+    }
+  // Start a partial scan.
+  } else {
+    LOG(INFO) << "request a partial scan";
+    // SSIDs for hidden networks.
+    vector<vector<uint8_t>> ssids;
+    for (auto& network : settings.hidden_networks) {
+      ssids.push_back(network.ssid);
+    }
+    // Scan Channels.
+    vector<uint32_t> freqs;
+    for (auto& channel : settings.channel_settings) {
+      freqs.push_back(channel.frequency);
+    }
+    if (!scan_utils_->Scan(interface_index_, ssids, freqs)) {
+      // Failed to start a partial scan.
+      scan_events->OnScanFailed();
+      return Status::ok();
+    }
+  }
+  is_scanning_ = true;
+  StartMonitoringScanResult();
+  if (scan_events != nullptr) {
+    scan_events_ = scan_events;
+  }
+
+  return Status::ok();
+}
+
+void ScannerImpl::OnScanResultsReadyInternal(
+    uint32_t interface_index,
+    bool aborted,
+    vector<vector<uint8_t>>& ssids,
+    vector<uint32_t>& frequencies) {
+  LOG(INFO) << __func__;
+  // Ignore external scan result.
+  if (!is_scanning_) {
+    return;
+  }
+  is_scanning_ = false;
+
+  StopMonitoringScanResult();
+
+  // Underlying interface object was destroyed.
+  // Ingore the scan result.
+  if (!valid_) {
+    return;
+  }
+  // No callback is required for this scan request.
+  if (scan_events_ == nullptr) {
+    return;
+  }
+
+  if (aborted) {
+    LOG(ERROR) << "Scan aborted";
+    scan_events_->OnScanFailed();
+  }
+
+  vector<NativeScanResult> scan_results;
+  scan_utils_->GetScanResult(interface_index_, &scan_results);
+
+  scan_events_->OnScanResult(scan_results);
+  scan_events_ = nullptr;
 }
 
 }  // namespace wificond

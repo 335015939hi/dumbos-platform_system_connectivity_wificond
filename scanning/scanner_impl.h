@@ -34,12 +34,28 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
   ScannerImpl(uint32_t interface_index_,
               ScanUtils* scan_utils_);
   ~ScannerImpl();
+  ::android::binder::Status startSingleScan(
+      const ::com::android::server::wifi::wificond::SingleScanSettings&
+          settings,
+      const ::android::sp<::android::net::wifi::IScanEventCallback>&
+          scan_events) override;
   void Invalidate() { valid_ = false; }
 
  private:
   bool valid_;
+  bool is_scanning_;
   uint32_t interface_index_;
   ScanUtils* scan_utils_;
+  ::android::sp<::android::net::wifi::IScanEventCallback> scan_events_;
+
+  void StartMonitoringScanResult();
+  void StopMonitoringScanResult();
+
+  void OnScanResultsReadyInternal(
+      uint32_t interface_index,
+      bool aborted,
+      std::vector<std::vector<uint8_t>>& ssids,
+      std::vector<uint32_t>& frequencies);
 
   DISALLOW_COPY_AND_ASSIGN(ScannerImpl);
 };
