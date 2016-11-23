@@ -58,6 +58,10 @@ class ScanUtils {
       uint32_t interface_index,
       std::vector<::com::android::server::wifi::wificond::NativeScanResult>* out_scan_results);
 
+
+  // Start a full scan on interface with index |interface_index|.
+  virtual bool StartFullScan(uint32_t interface_index);
+
   // Send scan request to kernel for interface with index |interface_index|.
   // |ssids| is a vector of ssids we request to scan, which mostly is used
   // for hidden networks.

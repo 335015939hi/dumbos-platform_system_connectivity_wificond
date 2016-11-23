@@ -14,15 +14,6 @@
  * limitations under the License.
  */
 
-package android.net.wifi;
+package com.android.server.wifi.wificond;
 
-import com.android.server.wifi.wificond.NativeScanResult;
-import com.android.server.wifi.wificond.SingleScanSettings;
-
-import android.net.wifi.IScanEventCallback;
-
-interface IWifiScannerImpl {
-  void startSingleScan(in SingleScanSettings settings,
-                       IScanEventCallback scanEvents);
-  // TODO(nywang) add interfaces.
-}
+parcelable HiddenNetwork cpp_header "wificond/scanning/hidden_network.h";

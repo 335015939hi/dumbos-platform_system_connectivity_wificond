@@ -106,6 +106,7 @@ LOCAL_SRC_FILES := \
     aidl/android/net/wifi/IInterfaceEventCallback.aidl \
     aidl/android/net/wifi/IRttClient.aidl \
     aidl/android/net/wifi/IRttController.aidl \
+    aidl/android/net/wifi/IScanEventCallback.aidl \
     aidl/android/net/wifi/IWificond.aidl \
     aidl/android/net/wifi/IWifiScannerImpl.aidl \
     scanning/scan_result.cpp
