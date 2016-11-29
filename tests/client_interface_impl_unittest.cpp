@@ -41,6 +41,7 @@ namespace android {
 namespace wificond {
 namespace {
 
+const uint32_t kTestWiphyIndex = 2;
 const char kTestInterfaceName[] = "testwifi0";
 const uint32_t kTestInterfaceIndex = 42;
 
@@ -49,6 +50,7 @@ class ClientInterfaceImplTest : public ::testing::Test {
 
   void SetUp() override {
     client_interface_.reset(new ClientInterfaceImpl{
+        kTestWiphyIndex,
         kTestInterfaceName,
         kTestInterfaceIndex,
         vector<uint8_t>{0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
