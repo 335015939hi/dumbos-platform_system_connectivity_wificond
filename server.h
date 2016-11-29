@@ -33,6 +33,7 @@
 
 #include "wificond/ap_interface_impl.h"
 #include "wificond/client_interface_impl.h"
+#include "wificond/net/netlink_utils.h"
 #include "wificond/rtt/rtt_controller_impl.h"
 
 namespace android {

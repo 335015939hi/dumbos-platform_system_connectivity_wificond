@@ -14,6 +14,8 @@
 
 LOCAL_PATH := $(call my-dir)
 wificond_cpp_flags := -std=c++11 -Wall -Werror -Wno-unused-parameter
+# Keep compiler happy before implementation of ScannerImpl is merged.
+wificond_cpp_flags += -Wno-unused-private-field
 wificond_parent_dir := $(LOCAL_PATH)/../
 wificond_includes := \
     $(wificond_parent_dir)

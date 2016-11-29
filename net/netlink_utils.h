@@ -20,6 +20,8 @@
 #include <string>
 #include <vector>
 
+#include <linux/nl80211.h>
+
 #include <android-base/macros.h>
 
 namespace android {
@@ -55,6 +57,20 @@ struct ScanCapabilities {
   uint8_t max_num_sched_scan_ssids;
   // Maximum number of sets that can be used with NL80211_ATTR_SCHED_SCAN_MATCH.
   uint8_t max_match_sets;
+};
+
+struct WiphyFeatures {
+  WiphyFeatures() = default;
+  WiphyFeatures(uint32_t feature_flags)
+      : random_mac_scan(feature_flags & NL80211_FEATURE_SCAN_RANDOM_MAC_ADDR),
+        random_mac_sched_scan(feature_flags &
+                              NL80211_FEATURE_SCHED_SCAN_RANDOM_MAC_ADDR) {}
+  // This device/driver supports using a random MAC address during scan
+  // (while not associated).
+  bool random_mac_scan;
+  // This device/driver supports using a random MAC address for every
+  // scan iteration during scheduled scan (while not associated).
+  bool random_mac_sched_scan;
 };
 
 struct StationInfo {
@@ -106,10 +122,13 @@ class NetlinkUtils {
   // |*out_band_info| is the lists of frequencies in specific bands.
   // |*out_scan_capabilities| is the lists of parameters specifying the
   // scanning capability of underlying implementation.
+  // |*out_frature_flags| is a uint32_t attributes contains flags from
+  // enum nl80211_feature_flags in nl80211.h.
   // Returns true on success.
   virtual bool GetWiphyInfo(uint32_t wiphy_index,
                             BandInfo* out_band_info,
-                            ScanCapabilities* out_scan_capabilities);
+                            ScanCapabilities* out_scan_capabilities,
+                            WiphyFeatures* out_wiphy_features);
 
   // Get station info from kernel.
   // |*out_station_info]| is the struct of available station information.
