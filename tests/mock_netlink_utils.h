@@ -35,6 +35,11 @@ class MockNetlinkUtils : public NetlinkUtils {
                     std::string* name,
                     uint32_t* index,
                     std::vector<uint8_t>* mac_address));
+  MOCK_METHOD4(GetWiphyInfo,
+               bool(uint32_t wiphy_index,
+                    BandInfo* band_info,
+                    ScanCapabilities* scan_capabilities,
+                    WiphyFeatures* wiphy_features));
 
 };  // class MockNetlinkUtils
 

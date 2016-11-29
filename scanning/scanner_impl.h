@@ -23,6 +23,7 @@
 #include <binder/Status.h>
 
 #include "android/net/wifi/BnWifiScannerImpl.h"
+#include "wificond/net/netlink_utils.h"
 
 namespace android {
 namespace wificond {
@@ -31,7 +32,10 @@ class ScanUtils;
 
 class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
  public:
-  ScannerImpl(uint32_t interface_index_,
+  ScannerImpl(uint32_t interface_index,
+              BandInfo& band_info,
+              ScanCapabilities& scan_capabilities,
+              WiphyFeatures& wiphy_features,
               ScanUtils* scan_utils_);
   ~ScannerImpl();
   void Invalidate() { valid_ = false; }
@@ -39,6 +43,11 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
  private:
   bool valid_;
   uint32_t interface_index_;
+
+  BandInfo band_info_;
+  ScanCapabilities scan_capabilities_;
+  WiphyFeatures wiphy_features_;
+
   ScanUtils* scan_utils_;
 
   DISALLOW_COPY_AND_ASSIGN(ScannerImpl);
