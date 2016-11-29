@@ -26,9 +26,13 @@ namespace android {
 namespace wificond {
 
 ScannerImpl::ScannerImpl(uint32_t interface_index,
+                         BandInfo& band_info,
+                         ScanCapabilities& scan_capabilities,
                          ScanUtils* scan_utils)
     : valid_(true),
       interface_index_(interface_index),
+      band_info_(band_info),
+      scan_capabilities_(scan_capabilities),
       scan_utils_(scan_utils) {
   // Keep compiler happy.
   // Delete this when implementions are checked in.
