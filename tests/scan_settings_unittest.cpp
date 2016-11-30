@@ -17,13 +17,18 @@
 #include <gtest/gtest.h>
 
 #include "wificond/scanning/channel_settings.h"
+#include "wificond/scanning/hidden_network.h"
 
 using ::com::android::server::wifi::wificond::ChannelSettings;
+using ::com::android::server::wifi::wificond::HiddenNetwork;
 
 namespace android {
 namespace wificond {
 
 namespace {
+
+const uint8_t kFakeSsid[] =
+    {'G', 'o', 'o', 'g', 'l', 'e', 'G', 'u', 'e', 's', 't'};
 
 constexpr uint32_t kFakeFrequency = 5260;
 
@@ -35,6 +40,9 @@ class ScanSettingsTest : public ::testing::Test {
   // as expected.
   void expect_equal(ChannelSettings& channel1, ChannelSettings& channel2) {
     EXPECT_EQ(channel1.frequency, channel2.frequency);
+  }
+  void expect_equal(HiddenNetwork& network1, HiddenNetwork& network2) {
+    EXPECT_EQ(network1.ssid, network2.ssid);
   }
 };
 
@@ -51,6 +59,22 @@ TEST_F(ScanSettingsTest, ChannelSettingsParcelableTest) {
 
   expect_equal(channel_settings, channel_settings_copy);
 }
+
+TEST_F(ScanSettingsTest, HiddenNetworkParcelableTest) {
+  HiddenNetwork hidden_network;
+  std::vector<uint8_t> ssid(kFakeSsid, kFakeSsid + sizeof(kFakeSsid));
+  hidden_network.ssid = ssid;
+
+  Parcel parcel;
+  EXPECT_EQ(::android::OK, hidden_network.writeToParcel(&parcel));
+
+  HiddenNetwork hidden_network_copy;
+  parcel.setDataPosition(0);
+  EXPECT_EQ(::android::OK, hidden_network_copy.readFromParcel(&parcel));
+
+  expect_equal(hidden_network, hidden_network_copy);
+}
+
 
 }  // namespace wificond
 }  // namespace android
