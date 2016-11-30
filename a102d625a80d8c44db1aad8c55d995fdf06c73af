@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30288869_253c0fd6",
+        "filename": "scanning/hidden_network.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2016-11-30T18:38:51Z",
+      "side": 1,
+      "message": "|writeByteVector| already writes the size of the vector internally: https://cs.corp.google.com/android/frameworks/native/libs/binder/Parcel.cpp?rcl\u003d5c59c452aa5247de8a09b693a61b7b6b35ea5d38\u0026l\u003d791\n\nSo, there is no need for |RETURN_IF_FAILED(parcel-\u003ewriteInt32(ssid.size()));| above.",
+      "range": {
+        "startLine": 36,
+        "startChar": 27,
+        "endLine": 36,
+        "endChar": 42
+      },
+      "revId": "a102d625a80d8c44db1aad8c55d995fdf06c73af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30288869_45410b56",
+        "filename": "scanning/hidden_network.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2016-11-30T18:38:51Z",
+      "side": 1,
+      "message": "Similar to comment at line 36.",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 8
+      },
+      "revId": "a102d625a80d8c44db1aad8c55d995fdf06c73af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
