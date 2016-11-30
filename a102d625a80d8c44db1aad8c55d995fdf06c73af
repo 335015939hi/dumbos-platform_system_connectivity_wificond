@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "30288869_85d0635c",
+        "filename": "scanning/hidden_network.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-11-30T18:46:01Z",
+      "side": 1,
+      "message": "There is a reason for doing this:\nhttp://cs/android/system/connectivity/wificond/scanning/scan_result.cpp?l\u003d64\u0026rcl\u003d0de485937ceb02e5a8ea3b6976f5cadba58e0d34\nI will put similar comment here.",
+      "parentUuid": "30288869_253c0fd6",
+      "range": {
+        "startLine": 36,
+        "startChar": 27,
+        "endLine": 36,
+        "endChar": 42
+      },
+      "revId": "a102d625a80d8c44db1aad8c55d995fdf06c73af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30288869_45410b56",
         "filename": "scanning/hidden_network.cpp",
         "patchSetId": 8
