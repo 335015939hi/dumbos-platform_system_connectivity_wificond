@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd47938e_e40610fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:26:28Z",
+      "side": 1,
+      "message": "\"Java\"",
+      "range": {
+        "startLine": 10,
+        "startChar": 44,
+        "endLine": 10,
+        "endChar": 48
+      },
+      "revId": "88a4299df26facbc2f920e8008ecd30fb7d7594f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_24fab8c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:26:28Z",
+      "side": 1,
+      "message": "\"SSID\" (acronym)",
+      "range": {
+        "startLine": 11,
+        "startChar": 41,
+        "endLine": 11,
+        "endChar": 45
+      },
+      "revId": "88a4299df26facbc2f920e8008ecd30fb7d7594f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_a4108814",
+        "filename": "scanning/hidden_network.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:26:28Z",
+      "side": 1,
+      "message": "Is this guaranteed to succeed? (Everything else is wrapped with RETURN_IF_FAILED.)",
+      "revId": "88a4299df26facbc2f920e8008ecd30fb7d7594f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_44f6e4ba",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:26:28Z",
+      "side": 1,
+      "message": "Same comments as in a related CL:\n- Why do we need this function at all?\n- If needed, why not const-ref?",
+      "revId": "88a4299df26facbc2f920e8008ecd30fb7d7594f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_0414dcf5",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:26:28Z",
+      "side": 1,
+      "message": "Consider instead:\n\n  hidden_network.ssid \u003d std::vector\u003cuint8_t\u003e(...);\n\n(Given that we don\u0027t use |ssid| for anything else, we don\u0027t need a name for the vector.)",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 29
+      },
+      "revId": "88a4299df26facbc2f920e8008ecd30fb7d7594f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
