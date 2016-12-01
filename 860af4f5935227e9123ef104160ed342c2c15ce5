@@ -62,6 +62,23 @@
       "revId": "860af4f5935227e9123ef104160ed342c2c15ce5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_843d8cd4",
+        "filename": "scanning/scan_result.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:07:13Z",
+      "side": 1,
+      "message": "This is misleading, as we\u0027re not actually using anything from that namespace yet. (As far as I know, macro definitions are not namespaced.)",
+      "revId": "860af4f5935227e9123ef104160ed342c2c15ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
