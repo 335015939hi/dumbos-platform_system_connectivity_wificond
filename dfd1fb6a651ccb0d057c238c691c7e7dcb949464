@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "cd47938e_293724a1",
+        "filename": "client_interface_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T22:45:55Z",
+      "side": 1,
+      "message": "I don\u0027t believe integration tests are a substitute for unit tests. The two types of tests are complementary. (Among other things, unit tests provide finer granularity, allowing us to pinpoint a failure more quickly.)\n\nPlease add unit tests. Thanks.",
+      "parentUuid": "cd47938e_ba89b8b6",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 44
+      },
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd47938e_c4ab1451",
         "filename": "client_interface_impl.h",
         "patchSetId": 3
@@ -148,6 +172,24 @@
       "side": 1,
       "message": "No direct test for now.\nThis could be tested as part of client interface integration test, as I discussed in another response.",
       "parentUuid": "cd47938e_e110c203",
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_890598c6",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T22:45:55Z",
+      "side": 1,
+      "message": "Same as for the other file: please add unit tests. Thanks.",
+      "parentUuid": "cd47938e_9a167c32",
       "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
