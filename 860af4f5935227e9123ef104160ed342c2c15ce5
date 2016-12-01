@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd47938e_2402b826",
+        "filename": "parcelable_utils.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:04:47Z",
+      "side": 1,
+      "message": "I know this code comes from elsewhere, but if it\u0027s in the wificond tree, I think it should fit the wificond style (i.e. Google style)...",
+      "revId": "860af4f5935227e9123ef104160ed342c2c15ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_84290cb6",
+        "filename": "parcelable_utils.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:04:47Z",
+      "side": 1,
+      "message": "1) Given that wificond follows Google C++ style, I think this should use underscores, rather than camel-case.\n\n2) \"calledOnce\" isn\u0027t a particularly helpful name. It seems more like documentation about the macro\u0027s behavior, than a description of the argument. And really, the \"documentation\" aspect is not useful, because it\u0027s really only documenting the fact that the macro is implemented correctly. (An definition of the macro that evaluated its arguments multiple times would be broken.)\n\nMaybe |expression_to_evaluate|, instead?",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 24,
+        "endChar": 35
+      },
+      "revId": "860af4f5935227e9123ef104160ed342c2c15ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_c442f47a",
+        "filename": "parcelable_utils.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:04:47Z",
+      "side": 1,
+      "message": "underscores instead of camel-case, please?",
+      "range": {
+        "startLine": 26,
+        "startChar": 17,
+        "endLine": 26,
+        "endChar": 29
+      },
+      "revId": "860af4f5935227e9123ef104160ed342c2c15ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
