@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd47938e_246d98e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:13:35Z",
+      "side": 1,
+      "message": "\"Java\" (proper-noun)",
+      "range": {
+        "startLine": 10,
+        "startChar": 46,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "e5bec571b4d909bb9d50bb97e63496e6fefeb518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_e46290eb",
+        "filename": "scanning/channel_settings.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:13:35Z",
+      "side": 1,
+      "message": "Similar question as in a different CL: would it be better for the no-arg ctor to zero out fields?",
+      "revId": "e5bec571b4d909bb9d50bb97e63496e6fefeb518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_84162c32",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:13:35Z",
+      "side": 1,
+      "message": "1) I don\u0027t understand what this function accomplishes. It seems that any expression calling this function by name will be longer than using EXPECT_EQ directly. Is there something subtle going on here?\n\n2) If retaining this function is necessary, should the args be const-ref?",
+      "range": {
+        "startLine": 36,
+        "startChar": 7,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "e5bec571b4d909bb9d50bb97e63496e6fefeb518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
