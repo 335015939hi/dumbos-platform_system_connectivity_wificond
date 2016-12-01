@@ -1,0 +1,387 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd47938e_6f92d937",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "\"Java\"",
+      "range": {
+        "startLine": 10,
+        "startChar": 49,
+        "endLine": 10,
+        "endChar": 53
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_4fe1ddb5",
+        "filename": "scanning/single_scan_settings.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Not sure if you want this or not... Both of the functions below refer to ::android::OK, instead of just OK.",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_2fe611cf",
+        "filename": "scanning/single_scan_settings.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Unused?",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_8f664564",
+        "filename": "scanning/single_scan_settings.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Any reason not to go with |const auto\u0026|?",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_0f5a359a",
+        "filename": "scanning/single_scan_settings.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "As at line 38.",
+      "range": {
+        "startLine": 42,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 11
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_8fac853d",
+        "filename": "scanning/single_scan_settings.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Is this guaranteed to succeed?",
+      "range": {
+        "startLine": 49,
+        "startChar": 18,
+        "endLine": 49,
+        "endChar": 37
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_ef0ee952",
+        "filename": "scanning/single_scan_settings.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "If deserializing vectors is going to be common, you might consider a template function, to reduce code duplication. (Perhaps in a follow-on CL.)",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 3
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_ef9d4942",
+        "filename": "scanning/single_scan_settings.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Similar to comments in other CLs: consider if the no-arg ctor should clear |is_full_scan|.",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 36,
+        "endChar": 32
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_8f7ac5d8",
+        "filename": "scanning/single_scan_settings.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "For classes, field names should end in underscores. https://google.github.io/styleguide/cppguide.html#Variable_Names\n\nSame for the two fields below.",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_4f439d63",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Unused? (All references below are |std::vector|, not |vector|.)",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_6f42d95d",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Any reason this is const, rather than constexpr?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_2f96119d",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Any reason not to use const-ref?",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_2f6d71e1",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "I think we can offer a more helpful diagnostic. Something like:\n\n  EXPECT_EQ(/* a */, /* b */) \u003c\u003c \" (element \" \u003c\u003c i \u003c\u003c \")\";",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_0f7fd57f",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "As at line 59.",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_ea837792",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Alternatively... Would it make sense to just define operator\u003d\u003d and operator\u003c\u003c on SingleScanSettings, instead?\n\nHistorically (in shill), we didn\u0027t take this approach, because Google style disallowed operator overloading. Since then, however, the style guide has relaxed its stance on this point. https://google.github.io/styleguide/cppguide.html#Operator_Overloading\n\nSince SingleScanSettings is a simple value class, providing an equality operator seems like a reasonable thing to do.",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_af6221bc",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "|frequency \u003d |\n\n(Missing space. Same on the next two lines.)",
+      "range": {
+        "startLine": 102,
+        "startChar": 10,
+        "endLine": 102,
+        "endChar": 21
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_0f899543",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "As elsewhere, consider folding the previous line into this one.",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_4fad5d81",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Consider instead:\n\n  scan_settings.channel_settings \u003d {channel, channel1, channel2};\n\nThis uses \"copy list initialization\": http://en.cppreference.com/w/cpp/language/list_initialization#copy-list-initialization",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 53
+      },
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_cfa04d89",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T02:24:35Z",
+      "side": 1,
+      "message": "Similarly here:\n  scan_settings.hidden_networks \u003d { network };\n\nIn this case, the alternative isn\u0027t any shorter. But, I think this alternative is clearer. With push_back(), someone reading the code has to worry about the possibility that something important is already in the vector. With assignment, it\u0027s clear that any earlier state is irrelevant.",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
