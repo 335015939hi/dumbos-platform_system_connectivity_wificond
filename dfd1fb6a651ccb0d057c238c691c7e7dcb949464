@@ -1,0 +1,192 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd47938e_7e3d6dd1",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "Please use a TODO comment, for stylistic consistency. I think the particular variant of TODO comments that we use on the wifi team is something like the following:\n\n  // TODO(b/\u003cnumber\u003e): Remove once ScannerImpl is fleshed out.\n\nhttps://google.github.io/styleguide/cppguide.html#TODO_Comments",
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_214e2a3a",
+        "filename": "client_interface_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "What\u0027s the testing story for this code?",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 44
+      },
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_c4ab1451",
+        "filename": "client_interface_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "Is this whitespace supposed to denote a significant group of some sort?\n\nIf yes, please add a comment explaining the grouping, so that we can maintain the grouping as the code evolves.\n\nIf no, please remove the blank line. (https://google.github.io/styleguide/cppguide.html#Vertical_Whitespace)",
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_e110c203",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "What\u0027s the testing story for this code?",
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_1ee429f5",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "Are you sure you want the default implementation? Or would it be better to have the no-arg ctor set the fields to false?",
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_41e1b6b5",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "1) I find this name confusing. A bool is not a scan of any sort, so naming an instance of a bool in this way confuses me. Would prefer something like |supports_random_mac_scan|, or |can_randomize_scan_mac|, etc.\n\nThat said, I\u0027m new to this code-base. So, if this is the existing naming convention, let\u0027s stick with convention.\n\n2) The relationship between random_mac_scan and random_mac_sched_scan is unclear. Maybe random_mac_oneshot_scan, instead?",
+      "range": {
+        "startLine": 70,
+        "startChar": 7,
+        "endLine": 70,
+        "endChar": 22
+      },
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_e1d562a3",
+        "filename": "net/netlink_utils.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "I believe these comments are erroneous, and probably better left out.\n\nErrors:\n- out_scan_capabilities is not a list at all\n- out_frature_flags is incorrect with respect to both: the parameter name, and the parameter type\n\nTo be fair, the first the comment isn\u0027t erroneous as such. But the first comment is confusing nonetheless. When I read that a pointer argument \"is a list\", I assume that the parameter must be pointing at an array. But that is not the case here.\n\nMore generally: it seems like all these comments do is to state the type information. But I don\u0027t know why we should do that. We\u0027ve already got the type information present in the function prototype.\n\nAnd importantly, the type information in prototype is verified by the compiler. So we know it is correct (unlike comments).\n\nI\u0027m guessing that these comments were motivated by the part of the style guide that lists inputs and outputs as things that might be mentioned in a function comment. [1] But that section also says we should state the obvious. And I argue that the comments above are just repeating type information, which _is_ obvious.\n\n[1] https://google.github.io/styleguide/cppguide.html#Function_Comments",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 45
+      },
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_a1623abc",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "Should these be const-refs, instead?\n\n\"If a function guarantees that it will not modify an argument passed by reference or by pointer, the corresponding function parameter should be a reference-to-const (const T\u0026) or pointer-to-const (const T*), respectively.\" [1]\n\n[1] https://google.github.io/styleguide/cppguide.html#Use_of_const",
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_a4d1a8e9",
+        "filename": "scanning/scanner_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "Similar to the comment in an earlier file: what\u0027s the purpose of this whitespace? (Said differently: when we add a new field, how do we figure out which group it belongs in?)",
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_a18b5a3c",
+        "filename": "server.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T00:49:24Z",
+      "side": 1,
+      "message": "Should this be removed, given the new include at line 36?",
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
