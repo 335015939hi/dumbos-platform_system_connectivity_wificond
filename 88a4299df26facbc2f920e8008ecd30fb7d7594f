@@ -65,6 +65,29 @@
     },
     {
       "key": {
+        "uuid": "cd47938e_4f2f1dbb",
+        "filename": "scanning/hidden_network.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-01T01:36:00Z",
+      "side": 1,
+      "message": "Should be |ssid_|. https://google.github.io/styleguide/cppguide.html#Variable_Names",
+      "range": {
+        "startLine": 37,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 27
+      },
+      "revId": "88a4299df26facbc2f920e8008ecd30fb7d7594f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd47938e_44f6e4ba",
         "filename": "tests/scan_settings_unittest.cpp",
         "patchSetId": 2
