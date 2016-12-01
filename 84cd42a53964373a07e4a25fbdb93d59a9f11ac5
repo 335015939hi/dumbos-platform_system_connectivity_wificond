@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cd47938e_2dcc4f4a",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-01T23:10:26Z",
+      "side": 1,
+      "message": "Unlike other netlink helper functions which are supposed to be used in a synchronous way, these scan commands are one way operations. Unit tests mocking response netlink messages won\u0027t fit in here.\n\nOn the other hand, sending real netlink message in unit tests also doesn\u0027t work here. In most cases netlink messages depend on interface state to be handled correctly. So I think it is not practical to test these in unit tests.\n\nFor integration test, we need these to be exposed by aidl interface. We can either test these in wificond integration tests or Java framework integration tests.\nConsidering the fact that most of these scanning aidl interfaces include callbacks. It would be easier to test them from Java side. I will add Java side tests when scanner aidl interfaces are ready.",
+      "parentUuid": "cd47938e_a93df4d3",
+      "revId": "84cd42a53964373a07e4a25fbdb93d59a9f11ac5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd47938e_e98c1cc8",
         "filename": "scanning/scan_utils.cpp",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2016-12-01T22:34:31Z",
       "side": 1,
       "message": "Consider \"empty\" instead of \"wildcard\". You\u0027re right to place a comment here, to explain what\u0027s going on. But the meaning of \"wildcard SSID\" is, itself, not so obvious.",
+      "range": {
+        "startLine": 218,
+        "startChar": 5,
+        "endLine": 218,
+        "endChar": 13
+      },
+      "revId": "84cd42a53964373a07e4a25fbdb93d59a9f11ac5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_6dfc974f",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-01T23:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd47938e_e98c1cc8",
       "range": {
         "startLine": 218,
         "startChar": 5,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "cd47938e_adf69f6c",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-01T23:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd47938e_a97a14d8",
+      "revId": "84cd42a53964373a07e4a25fbdb93d59a9f11ac5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd47938e_09bd0865",
         "filename": "scanning/scan_utils.cpp",
         "patchSetId": 1
@@ -70,6 +130,30 @@
       "writtenOn": "2016-12-01T22:34:31Z",
       "side": 1,
       "message": "Any reason not to inline the vector here? i.e.\n\n  return Scan(interface_index, ssids, vector\u003cuint32_t\u003e());",
+      "range": {
+        "startLine": 222,
+        "startChar": 38,
+        "endLine": 222,
+        "endChar": 43
+      },
+      "revId": "84cd42a53964373a07e4a25fbdb93d59a9f11ac5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_ed070781",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-01T23:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd47938e_09bd0865",
       "range": {
         "startLine": 222,
         "startChar": 38,
