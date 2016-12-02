@@ -216,6 +216,9 @@ bool NetlinkManager::Start() {
   if (!WatchSocket(&async_netlink_fd_)) {
     return false;
   }
+  if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_REG)) {
+    return false;
+  }
   if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_SCAN)) {
     return false;
   }
@@ -490,6 +493,27 @@ void NetlinkManager::BroadcastHandler(unique_ptr<const NL80211Packet> packet) {
       OnMlmeEvent(std::move(packet));
      return;
   }
+  if (command == NL80211_CMD_REG_CHANGE) {
+    uint32_t wiphy_index;
+    if (!packet->GetAttributeValue(NL80211_ATTR_WIPHY, &wiphy_index)) {
+      LOG(ERROR) << "Failed to wiphy index from reg changed message";
+      return;
+    }
+
+    string country_code;
+    if (!packet->GetAttributeValue(NL80211_ATTR_REG_ALPHA2, &country_code)) {
+      LOG(WARNING) << "Failed to get NL80211_ATTR_REG_ALPHA2 from reg changed message";
+      return;
+    }
+
+    auto handler = on_country_code_changed_handler_.find(wiphy_index);
+    if (handler == on_country_code_changed_handler_.end()) {
+      LOG(DEBUG) << "No handler for country code changed event from wiphy"
+                 << "with index: " << wiphy_index;
+      return;
+    }
+    handler->second(country_code);
+  }
 }
 
 void NetlinkManager::OnMlmeEvent(unique_ptr<const NL80211Packet> packet) {
@@ -588,6 +612,16 @@ void NetlinkManager::OnScanResultsReady(unique_ptr<const NL80211Packet> packet) 
   }
   // Run scan result notification handler.
   handler->second(if_index, aborted, ssids, freqs);
+}
+
+void NetlinkManager::SubscribeCountryCodeChange(
+    uint32_t wiphy_index,
+    OnCountryCodeChangedHandler handler) {
+  on_country_code_changed_handler_[wiphy_index] = handler;
+}
+
+void NetlinkManager::UnsubscribeCountryCodeChange(uint32_t wiphy_index) {
+  on_country_code_changed_handler_.erase(wiphy_index);
 }
 
 void NetlinkManager::SubscribeScanResultNotification(
