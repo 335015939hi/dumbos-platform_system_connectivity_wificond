@@ -24,6 +24,8 @@
 
 #include <android-base/macros.h>
 
+#include "wificond/net/netlink_manager.h"
+
 namespace android {
 namespace wificond {
 
@@ -150,6 +152,10 @@ class NetlinkUtils {
   // Cancel the sign-up of receiving MLME event notification
   // from interface with index |interface_index|.
   virtual void UnsubscribeMlmeEvent(uint32_t interface_index);
+
+  virtual void SubscribeCountryCodeChange(uint32_t wiphy_index,
+                                          OnCountryCodeChangedHandler handler);
+  virtual void UnsubscribeCountryCodeChange(uint32_t wiphy_index);
 
  private:
   bool ParseBandInfo(const NL80211Packet* const packet,
