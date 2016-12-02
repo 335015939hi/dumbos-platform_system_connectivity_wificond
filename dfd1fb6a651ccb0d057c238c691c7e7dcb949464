@@ -108,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "cd47938e_ad1b3f58",
+        "filename": "client_interface_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-02T00:49:12Z",
+      "side": 1,
+      "message": "Unit tests added.",
+      "parentUuid": "cd47938e_293724a1",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 44
+      },
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd47938e_c4ab1451",
         "filename": "client_interface_impl.h",
         "patchSetId": 3
@@ -190,6 +214,24 @@
       "side": 1,
       "message": "Same as for the other file: please add unit tests. Thanks.",
       "parentUuid": "cd47938e_9a167c32",
+      "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_2d7c4f88",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-02T00:49:12Z",
+      "side": 1,
+      "message": "This looks non-trivial, I will add unit tests mocking kernel responses in another CL. Filed b/33279651.",
+      "parentUuid": "cd47938e_890598c6",
       "revId": "dfd1fb6a651ccb0d057c238c691c7e7dcb949464",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
