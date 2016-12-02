@@ -39,7 +39,16 @@ namespace wificond {
 
 namespace {
 
+constexpr uint8_t kFakeMaxNumScanSSIDs = 10;
+constexpr uint8_t kFakeMaxNumSchedScanSSIDs = 16;
+constexpr uint8_t kFakeMaxMatchSets = 18;
 constexpr uint32_t kFakeSequenceNumber = 162;
+constexpr uint32_t kFakeFrequency1 = 2412;
+constexpr uint32_t kFakeFrequency2 = 2437;
+constexpr uint32_t kFakeFrequency3 = 2484;
+constexpr uint32_t kFakeFrequency4 = 5200;
+constexpr uint32_t kFakeFrequency5 = 5400;
+constexpr uint32_t kFakeFrequency6 = 5600;
 constexpr uint16_t kFakeFamilyId = 14;
 constexpr uint16_t kFakeWiphyIndex = 8;
 constexpr int kFakeErrorCode = EIO;
@@ -264,6 +273,107 @@ TEST_F(NetlinkUtilsTest, CanHandleGetInterfaceInfoError) {
                                                 &interface_name,
                                                 &interface_index,
                                                 &interface_mac_addr));
+}
+
+TEST_F(NetlinkUtilsTest, CanGetWiphyInfo) {
+  NL80211Packet new_wiphy(
+      netlink_manager_->GetFamilyId(),
+      NL80211_CMD_NEW_WIPHY,
+      netlink_manager_->GetSequenceNumber(),
+      getpid());
+  new_wiphy.AddAttribute(NL80211Attr<uint32_t>(NL80211_ATTR_WIPHY,
+                                               kFakeWiphyIndex));
+
+  // Insert band information to mock netlink message.
+  NL80211NestedAttr band_attr(NL80211_ATTR_WIPHY_BANDS);
+  NL80211NestedAttr band_2g(1);
+  NL80211NestedAttr band_5g(2);
+  NL80211NestedAttr band_2g_freqs(NL80211_BAND_ATTR_FREQS);
+  NL80211NestedAttr band_5g_freqs(NL80211_BAND_ATTR_FREQS);
+
+  NL80211NestedAttr freq1(1);
+  NL80211NestedAttr freq2(2);
+  NL80211NestedAttr freq3(3);
+  NL80211NestedAttr freq4(4);
+  NL80211NestedAttr freq5(5);
+  NL80211NestedAttr freq6(6);
+  freq1.AddAttribute(NL80211Attr<uint32_t>(NL80211_FREQUENCY_ATTR_FREQ,
+                                           kFakeFrequency1));
+  freq2.AddAttribute(NL80211Attr<uint32_t>(NL80211_FREQUENCY_ATTR_FREQ,
+                                           kFakeFrequency2));
+  freq3.AddAttribute(NL80211Attr<uint32_t>(NL80211_FREQUENCY_ATTR_FREQ,
+                                           kFakeFrequency3));
+  freq4.AddAttribute(NL80211Attr<uint32_t>(NL80211_FREQUENCY_ATTR_FREQ,
+                                           kFakeFrequency4));
+  freq5.AddAttribute(NL80211Attr<uint32_t>(NL80211_FREQUENCY_ATTR_FREQ,
+                                           kFakeFrequency5));
+  // DFS frequency.
+  freq6.AddAttribute(NL80211Attr<uint32_t>(NL80211_FREQUENCY_ATTR_FREQ,
+                                           kFakeFrequency6));
+  freq6.AddAttribute(NL80211Attr<uint32_t>(NL80211_FREQUENCY_ATTR_DFS_STATE,
+                                           NL80211_DFS_USABLE));
+  band_2g_freqs.AddAttribute(freq1);
+  band_2g_freqs.AddAttribute(freq2);
+  band_2g_freqs.AddAttribute(freq3);
+
+  band_5g_freqs.AddAttribute(freq4);
+  band_5g_freqs.AddAttribute(freq5);
+  band_5g_freqs.AddAttribute(freq6);
+
+  band_2g.AddAttribute(band_2g_freqs);
+  band_5g.AddAttribute(band_5g_freqs);
+  band_attr.AddAttribute(band_2g);
+  band_attr.AddAttribute(band_5g);
+
+  new_wiphy.AddAttribute(band_attr);
+
+  // Insert scan capabilities to mock netlink message.
+  new_wiphy.AddAttribute(NL80211Attr<uint8_t>(NL80211_ATTR_MAX_NUM_SCAN_SSIDS,
+                                              kFakeMaxNumScanSSIDs));
+  new_wiphy.AddAttribute(NL80211Attr<uint8_t>(
+      NL80211_ATTR_MAX_NUM_SCHED_SCAN_SSIDS,
+      kFakeMaxNumSchedScanSSIDs));
+  new_wiphy.AddAttribute(NL80211Attr<uint8_t>(NL80211_ATTR_MAX_MATCH_SETS,
+                                              kFakeMaxMatchSets));
+
+  // Insert wiphy features to mock netlink message.
+  new_wiphy.AddAttribute(NL80211Attr<uint32_t>(
+      NL80211_ATTR_FEATURE_FLAGS,
+      NL80211_FEATURE_SCAN_RANDOM_MAC_ADDR));
+
+  vector<NL80211Packet> response = {new_wiphy};
+
+  EXPECT_CALL(*netlink_manager_, SendMessageAndGetResponses(_, _)).
+      WillOnce(DoAll(MakeupResponse(response), Return(true)));
+
+  BandInfo band_info;
+  ScanCapabilities scan_capabilities;
+  WiphyFeatures wiphy_features;
+  EXPECT_TRUE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
+                                           &band_info,
+                                           &scan_capabilities,
+                                           &wiphy_features));
+
+  // Verify band information.
+  vector<uint32_t> band_2g_expected = {kFakeFrequency1,
+      kFakeFrequency2, kFakeFrequency3};
+  vector<uint32_t> band_5g_expected = {kFakeFrequency4, kFakeFrequency5};
+  vector<uint32_t> band_dfs_expected = {kFakeFrequency6};
+  EXPECT_EQ(band_info.band_2g, band_2g_expected);
+  EXPECT_EQ(band_info.band_5g, band_5g_expected);
+  EXPECT_EQ(band_info.band_dfs, band_dfs_expected);
+
+  // Verify scan capabilities.
+  EXPECT_EQ(scan_capabilities.max_num_scan_ssids,
+            kFakeMaxNumScanSSIDs);
+  EXPECT_EQ(scan_capabilities.max_num_sched_scan_ssids,
+            kFakeMaxNumSchedScanSSIDs);
+  EXPECT_EQ(scan_capabilities.max_match_sets,
+            kFakeMaxMatchSets);
+
+  // Verify wiphy features.
+  EXPECT_TRUE(wiphy_features.supports_random_mac_oneshot_scan);
+  EXPECT_FALSE(wiphy_features.supports_random_mac_sched_scan);
 }
 
 }  // namespace wificond
