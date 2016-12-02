@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "cd47938e_ba109814",
+        "filename": "parcelable_utils.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-02T01:20:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd47938e_84290cb6",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 24,
+        "endChar": 35
+      },
+      "revId": "860af4f5935227e9123ef104160ed342c2c15ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd47938e_c442f47a",
         "filename": "parcelable_utils.h",
         "patchSetId": 2
@@ -65,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "cd47938e_7a48d02a",
+        "filename": "parcelable_utils.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-02T01:20:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd47938e_c442f47a",
+      "range": {
+        "startLine": 26,
+        "startChar": 17,
+        "endLine": 26,
+        "endChar": 29
+      },
+      "revId": "860af4f5935227e9123ef104160ed342c2c15ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd47938e_843d8cd4",
         "filename": "scanning/scan_result.cpp",
         "patchSetId": 2
@@ -76,6 +124,24 @@
       "writtenOn": "2016-12-01T01:07:13Z",
       "side": 1,
       "message": "This is misleading, as we\u0027re not actually using anything from that namespace yet. (As far as I know, macro definitions are not namespaced.)",
+      "revId": "860af4f5935227e9123ef104160ed342c2c15ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd47938e_3ab2c8e4",
+        "filename": "scanning/scan_result.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-02T01:20:03Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "cd47938e_843d8cd4",
       "revId": "860af4f5935227e9123ef104160ed342c2c15ce5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
