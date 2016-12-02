@@ -25,7 +25,6 @@
 #include <android-base/logging.h>
 
 #include "wificond/net/mlme_event_handler.h"
-#include "wificond/net/netlink_manager.h"
 #include "wificond/net/nl80211_packet.h"
 
 using std::string;
@@ -370,6 +369,16 @@ void NetlinkUtils::SubscribeMlmeEvent(uint32_t interface_index,
 
 void NetlinkUtils::UnsubscribeMlmeEvent(uint32_t interface_index) {
   netlink_manager_->UnsubscribeMlmeEvent(interface_index);
+}
+
+void NetlinkUtils::SubscribeCountryCodeChange(
+    uint32_t wiphy_index,
+    OnCountryCodeChangedHandler handler) {
+  netlink_manager_->SubscribeCountryCodeChange(wiphy_index, handler);
+}
+
+void NetlinkUtils::UnsubscribeCountryCodeChange(uint32_t wiphy_index) {
+  netlink_manager_->UnsubscribeCountryCodeChange(wiphy_index);
 }
 
 }  // namespace wificond

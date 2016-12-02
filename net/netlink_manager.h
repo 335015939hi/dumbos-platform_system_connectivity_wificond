@@ -73,6 +73,9 @@ typedef std::function<void(
     uint32_t interface_index,
     bool scan_stopped)> OnSchedScanResultsReadyHandler;
 
+typedef std::function<void(
+    std::string& country_code)> OnCountryCodeChangedHandler;
+
 class NetlinkManager {
  public:
   explicit NetlinkManager(EventLoop* event_loop);
@@ -181,6 +184,10 @@ class NetlinkManager {
   // interface with index |interface_index|.
   virtual void UnsubscribeSchedScanResultNotification(uint32_t interface_index);
 
+  virtual void SubscribeCountryCodeChange(uint32_t wiphy_index,
+                                          OnCountryCodeChangedHandler handler);
+  virtual void UnsubscribeCountryCodeChange(uint32_t wiphy_index);
+
  private:
   bool SetupSocket(android::base::unique_fd* netlink_fd);
   bool WatchSocket(android::base::unique_fd* netlink_fd);
@@ -220,6 +227,9 @@ class NetlinkManager {
       on_sched_scan_result_ready_handler_;
 
   std::map<uint32_t, MlmeEventHandler*> on_mlme_event_handler_;
+
+  std::map<uint32_t, OnCountryCodeChangedHandler>
+      on_country_code_changed_handler_;
 
   // Mapping from family name to family id, and group name to group id.
   std::map<std::string, MessageType> message_types_;

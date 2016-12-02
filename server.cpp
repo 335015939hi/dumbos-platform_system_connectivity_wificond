@@ -24,9 +24,6 @@
 using android::binder::Status;
 using android::sp;
 using android::IBinder;
-using std::string;
-using std::vector;
-using std::unique_ptr;
 using android::net::wifi::IApInterface;
 using android::net::wifi::IClientInterface;
 using android::net::wifi::IInterfaceEventCallback;
@@ -37,6 +34,11 @@ using android::wifi_system::HalTool;
 using android::wifi_system::HostapdManager;
 using android::wifi_system::InterfaceTool;
 using android::wifi_system::SupplicantManager;
+
+using std::placeholders::_1;
+using std::string;
+using std::unique_ptr;
+using std::vector;
 
 namespace android {
 namespace wificond {
@@ -164,6 +166,8 @@ Status Server::tearDownInterfaces() {
   }
   ap_interfaces_.clear();
 
+  netlink_utils_->UnsubscribeCountryCodeChange(wiphy_index_);
+
   if (!driver_tool_->UnloadDriver()) {
     LOG(ERROR) << "Failed to unload WiFi driver!";
   }
@@ -234,6 +238,12 @@ bool Server::SetupInterfaceForMode(int mode,
     return false;
   }
 
+  netlink_utils_->SubscribeCountryCodeChange(
+          wiphy_index_,
+          std::bind(&Server::OnCountryCodeChanged,
+          this,
+          _1));
+
   if (!netlink_utils_->GetInterfaceInfo(wiphy_index_,
                                         interface_name,
                                         interface_index,
@@ -251,6 +261,10 @@ bool Server::RefreshWiphyIndex() {
     return false;
   }
   return true;
+}
+
+void Server::OnCountryCodeChanged(std::string country_code) {
+  LOG(ERROR) << "Countrycode changed " << country_code;
 }
 
 void Server::BroadcastClientInterfaceReady(
