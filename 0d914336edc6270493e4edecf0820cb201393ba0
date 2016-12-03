@@ -623,6 +623,24 @@
     },
     {
       "key": {
+        "uuid": "8decbb0b_8608184b",
+        "filename": "tests/scan_settings_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-03T00:14:26Z",
+      "side": 1,
+      "message": "It\u0027s up to you. operator\u003c\u003c will make it easier to debug test failures (since the two values can be printed nicely). Without operator\u003c\u003c, GoogleTest will print hexdumps of the two values.",
+      "parentUuid": "cd47938e_33eaeebb",
+      "revId": "0d914336edc6270493e4edecf0820cb201393ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd47938e_af6221bc",
         "filename": "tests/scan_settings_unittest.cpp",
         "patchSetId": 2
