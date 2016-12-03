@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8decbb0b_461470f6",
+        "filename": "tests/client_interface_impl_unittest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-03T00:26:46Z",
+      "side": 1,
+      "message": "It\u0027s fine to leave this out, if you prefer. (Omitting the Times() call would mean exactly-once by default.)\n\nSame for the other EXPECT_CALLs.",
+      "range": {
+        "startLine": 53,
+        "startChar": 59,
+        "endLine": 53,
+        "endChar": 68
+      },
+      "revId": "7be363a9322486da0b61a8aa961961333f9449a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
