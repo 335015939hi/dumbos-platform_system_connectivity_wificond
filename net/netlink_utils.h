@@ -124,6 +124,8 @@ class NetlinkUtils {
                                 std::vector<uint8_t>* mac_addr);
 
   // Get wiphy capability information from kernel.
+  // Passing in nullptr for |out_band_info|, |out_scan_capabilities|, or
+  // |out_wiphy_features| means that part is not required to be returned.
   // Returns true on success.
   virtual bool GetWiphyInfo(uint32_t wiphy_index,
                             BandInfo* out_band_info,

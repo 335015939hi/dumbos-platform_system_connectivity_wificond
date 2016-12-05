@@ -196,17 +196,25 @@ bool NetlinkUtils::GetWiphyInfo(
                << static_cast<int>(response->GetCommand());
     return false;
   }
-  if (!ParseBandInfo(response.get(), out_band_info) ||
-      !ParseScanCapabilities(response.get(), out_scan_capabilities)) {
-    return false;
+  if (out_band_info != nullptr) {
+    if (!ParseBandInfo(response.get(), out_band_info)) {
+      return false;
+    }
   }
-  uint32_t feature_flags;
-  if (!response->GetAttributeValue(NL80211_ATTR_FEATURE_FLAGS,
-                                   &feature_flags)) {
-    LOG(ERROR) << "Failed to get NL80211_ATTR_FEATURE_FLAGS";
-    return false;
+  if (out_scan_capabilities != nullptr) {
+    if (!ParseScanCapabilities(response.get(), out_scan_capabilities)) {
+      return false;
+    }
   }
-  *out_wiphy_features = WiphyFeatures(feature_flags);
+  if (out_wiphy_features != nullptr) {
+    uint32_t feature_flags;
+    if (!response->GetAttributeValue(NL80211_ATTR_FEATURE_FLAGS,
+                                     &feature_flags)) {
+      LOG(ERROR) << "Failed to get NL80211_ATTR_FEATURE_FLAGS";
+      return false;
+    }
+    *out_wiphy_features = WiphyFeatures(feature_flags);
+  }
   return true;
 }
 
