@@ -19,5 +19,11 @@ package android.net.wifi;
 import com.android.server.wifi.wificond.NativeScanResult;
 
 interface IWifiScannerImpl {
-  // TODO(nywang) add interfaces.
+  // Returns a vector of available frequencies for 2.4GHz channels.
+  int[] getAvailable2gChannels();
+  // Returns a vector of available frequencies for 5GHz non-DFS channels.
+  int[] getAvailable5gNonDFSChannels();
+  // Returns a vector of available frequencies for DFS channels.
+  int[] getAvailableDFSChannels();
+  // TODO(nywang) add more interfaces.
 }
