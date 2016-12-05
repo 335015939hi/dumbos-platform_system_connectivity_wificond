@@ -1,0 +1,9 @@
+Code-Review+2: Ningyuan Wang <nywang@google.com>
+Verified+1: Ningyuan Wang <nywang@google.com>
+Autosubmit+1: Ningyuan Wang <nywang@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Mon, 05 Dec 2016 20:02:54 +0000
+Reviewed-on: https://android-review.googlesource.com/308091
+Project: platform/system/connectivity/wificond
+Branch: refs/heads/master
