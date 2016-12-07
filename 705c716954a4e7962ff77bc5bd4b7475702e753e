@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad1edff1_845a876b",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T00:08:15Z",
+      "side": 1,
+      "message": "Prefer to avoid nesting, where reasonably possible. Here, I think a straightforward flattening would work:\n\n  if (out_band_info \u0026\u0026 !ParseBandInfo(...)) {\n    return false;\n  }",
+      "revId": "705c716954a4e7962ff77bc5bd4b7475702e753e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_44646f28",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T00:08:15Z",
+      "side": 1,
+      "message": "As at line 199.",
+      "revId": "705c716954a4e7962ff77bc5bd4b7475702e753e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_64617317",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T00:08:15Z",
+      "side": 1,
+      "message": "As at line 199. (You\u0027ll have to hoist |feature_flags| out of the block, but I don\u0027t think that causes any problems.)",
+      "revId": "705c716954a4e7962ff77bc5bd4b7475702e753e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
