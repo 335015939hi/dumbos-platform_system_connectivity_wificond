@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad1edff1_5a11aa04",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:42:59Z",
+      "side": 1,
+      "message": "(Continued from PS1)\n\nI think the goal of the unit tests is actually quite a bit narrower than you fear. (And hence: much more achievable than you believe!)\n\nThe ScanUtils unit tests only need to verify that the public [1] interfaces behave as expected.\n\nBy expected, I mean:\na) methods return the right value\nb) methods call the appropriate methods on their peer objects\nc) methods correctly process any data provided by peer objects\n\nFor example: to test StartFullScan():\n- verify that SendMessageAndGetAck() is called\n- verify that StartFullScan returns true if SendMessageAndGetAck() succeeded\n- verify that StartFullScan returns false if SendMessageAndGetAck() failed\n- ideally: some checking that the NL80211Packet passed to SendMessageAndGetAck is correct\n\nThe overall testing picture is:\n- use unit tests to verify that every object _within_ wificond behaves as expected\n- use integration tests to verify that the objects inside wificond properly interact with external entities\n- transitively, then, we believe that wificond is correct\n\n[1] \"public\" is a bit subtle here. Some private methods might also be relevant, because they are invoked spontaneously via IPC, or asynchronously in response to some request that was initiated by us.",
+      "revId": "bf36f3315d3c4b85e5dffe7167fa476b5f512cab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
