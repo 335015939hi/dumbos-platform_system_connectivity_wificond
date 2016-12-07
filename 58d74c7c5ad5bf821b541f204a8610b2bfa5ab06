@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "ad1edff1_1014716b",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad1edff1_049197a4",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 13
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad1edff1_24485b7c",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 6
@@ -53,6 +77,24 @@
       "writtenOn": "2016-12-07T01:19:59Z",
       "side": 1,
       "message": "Is this the right status in this case? Would, e.g., EX_ILLEGAL_STATE make more sense?",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_f0fbfd03",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Oh I should have mentioned this earlier.\nThere is a issue talking about it : https://b.corp.google.com/issues/30159593\nWith that said, we\u0027d better not to return error on binder calls unless it is critical.",
+      "parentUuid": "ad1edff1_24485b7c",
       "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -76,6 +118,24 @@
     },
     {
       "key": {
+        "uuid": "ad1edff1_70636df1",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "AIDL c++ maps java int to c++ int32_t:\nhttps://android.googlesource.com/platform/system/tools/aidl/+/refs/heads/master/docs/aidl-cpp.md\nInternally wificond uses uint32_t for frequency. \nCompiler refuses to convert vector\u003cuint32_t\u003e to vector\u003cint32_t\u003e explicitly.\nI am fine either keeping this conversion or changing band_info_.band_2g to vector\u003cint32_t\u003e",
+      "parentUuid": "ad1edff1_e4cca3c8",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad1edff1_e4410359",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 6
@@ -87,6 +147,24 @@
       "writtenOn": "2016-12-07T01:19:59Z",
       "side": 1,
       "message": "As at line 57.",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_b0eee53f",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Answered in line 57",
+      "parentUuid": "ad1edff1_e4410359",
       "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -110,6 +188,24 @@
     },
     {
       "key": {
+        "uuid": "ad1edff1_5038a9e5",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Answered in line 59",
+      "parentUuid": "ad1edff1_44dc6f75",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad1edff1_8457e71c",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 6
@@ -127,6 +223,24 @@
     },
     {
       "key": {
+        "uuid": "ad1edff1_70e84d33",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Answered in line 57",
+      "parentUuid": "ad1edff1_8457e71c",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad1edff1_64d97384",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 6
@@ -138,6 +252,24 @@
       "writtenOn": "2016-12-07T01:19:59Z",
       "side": 1,
       "message": "As at line 59.",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_b02b4591",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Answered in line 59",
+      "parentUuid": "ad1edff1_64d97384",
       "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -184,6 +316,30 @@
     },
     {
       "key": {
+        "uuid": "ad1edff1_f0cc5dc8",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad1edff1_e4dd832d",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad1edff1_e41a6355",
         "filename": "tests/integration/scanner_test.cpp",
         "patchSetId": 6
@@ -195,6 +351,30 @@
       "writtenOn": "2016-12-07T01:19:59Z",
       "side": 1,
       "message": "This would make more sense as EXPECT_NE. ASSERT_NE is useful when some precondition for the test can\u0027t be met. But this isn\u0027t a precondition. This is a postcondition.\n\nSee https://github.com/google/googletest/blob/master/googletest/docs/Primer.md for more discussion of what ASSERT* and EXPECT* do",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_10beb108",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad1edff1_e41a6355",
       "range": {
         "startLine": 61,
         "startChar": 2,
@@ -247,6 +427,30 @@
     },
     {
       "key": {
+        "uuid": "ad1edff1_d08a796c",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad1edff1_fa2e7ebd",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 13
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad1edff1_da2dbabf",
         "filename": "tests/integration/scanner_test.cpp",
         "patchSetId": 6
@@ -270,6 +474,30 @@
     },
     {
       "key": {
+        "uuid": "ad1edff1_f08f7d79",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad1edff1_da2dbabf",
+      "range": {
+        "startLine": 76,
+        "startChar": 2,
+        "endLine": 76,
+        "endChar": 13
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad1edff1_7a082e4a",
         "filename": "tests/integration/scanner_test.cpp",
         "patchSetId": 6
@@ -281,6 +509,24 @@
       "writtenOn": "2016-12-07T01:19:59Z",
       "side": 1,
       "message": "In a unit test, I think we\u0027d be able to exercise both cases.",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_50e3c919",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-07T04:28:00Z",
+      "side": 1,
+      "message": "I am considering to refresh band_info_ using netlink command every time upon a binder call, because band_info is subjected to change frequently.\nIn that way we need a netlink_util reference for ScannerImpl.\nI will add unit tests along with that change.",
+      "parentUuid": "ad1edff1_7a082e4a",
       "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
