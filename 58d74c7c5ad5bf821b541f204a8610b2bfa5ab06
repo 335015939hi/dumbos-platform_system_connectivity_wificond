@@ -1,0 +1,289 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad1edff1_04fd17fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "Thanks for including this list in the commit message. :-)",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_049197a4",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "Consider |DEBUG|, instead. I don\u0027t think it\u0027s our fault if a client calls us when we\u0027re in this state.",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 13
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_24485b7c",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "Is this the right status in this case? Would, e.g., EX_ILLEGAL_STATE make more sense?",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_e4cca3c8",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "Is there something subtle going on here? I don\u0027t understand why we can\u0027t simply say\n\n  *out_frequencies \u003d band_info_.band_2g;",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_e4410359",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "As at line 57.",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_44dc6f75",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "As at line 59.",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_8457e71c",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "As at line 57.",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_64d97384",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "As at line 59.",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_84b847c9",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "I don\u0027t understand why these are written as integration tests, rather than unit tests. Are we concerned that Binder is going to mangle our data, when that data is serialized ir deserialized?\n\nAFAICT, Binder is the only external surface used by this class. For internal surfaces, we usually test a class C by testing: i) the results returned by public methods of class C, and ii) the interaction between class C, and the other classes that C directly interacts with.\n\nSee, e.g., https://wiki.corp.google.com/twiki/bin/view/Gdh/UnitTesting\n\n(To be clear: I\u0027m not discouraging integration testing in general I just don\u0027t think it\u0027s the right tool for the job here. For example, it\u0027s more likely that we\u0027ll be able to exercise the !valid_ case in a unit test than in an integration test.)",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_e4dd832d",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "Consider removing this local variable, and inlining the RHS in the next expression. i.e.\n\n  EXPECT_NE(nullptr, Init...().get());\n\n(I just don\u0027t think the local variable accomplishes anything.)",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_e41a6355",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "This would make more sense as EXPECT_NE. ASSERT_NE is useful when some precondition for the test can\u0027t be met. But this isn\u0027t a precondition. This is a postcondition.\n\nSee https://github.com/google/googletest/blob/master/googletest/docs/Primer.md for more discussion of what ASSERT* and EXPECT* do",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_64e0930c",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "This is the proper use of ASSERT_NE. We can\u0027t run the rest of the test in this case. So we use ASSERT_NE to terminate the test case.",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_fa2e7ebd",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "EXPECT_TRUE",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 13
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_da2dbabf",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "EXPECT_TRUE",
+      "range": {
+        "startLine": 76,
+        "startChar": 2,
+        "endLine": 76,
+        "endChar": 13
+      },
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_7a082e4a",
+        "filename": "tests/integration/scanner_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2016-12-07T01:19:59Z",
+      "side": 1,
+      "message": "In a unit test, I think we\u0027d be able to exercise both cases.",
+      "revId": "58d74c7c5ad5bf821b541f204a8610b2bfa5ab06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
