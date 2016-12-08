@@ -28,14 +28,17 @@
 namespace android {
 namespace wificond {
 
+class NetlinkUtils;
 class ScanUtils;
 
 class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
  public:
-  ScannerImpl(uint32_t interface_index,
+  ScannerImpl(uint32_t wiphy_index,
+              uint32_t interface_index,
               const BandInfo& band_info,
               const ScanCapabilities& scan_capabilities,
               const WiphyFeatures& wiphy_features,
+              NetlinkUtils* netlink_utils_,
               ScanUtils* scan_utils_);
   ~ScannerImpl();
   // Returns a vector of available frequencies for 2.4GHz channels.
@@ -51,15 +54,18 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
 
  private:
   bool CheckIsValid();
+  bool RefreshBandInfo();
 
   bool valid_;
+  uint32_t wiphy_index_;
   uint32_t interface_index_;
 
   // Scanning relevant capability information for this wiphy/interface.
-  const BandInfo band_info_;
+  BandInfo band_info_;
   const ScanCapabilities scan_capabilities_;
   const WiphyFeatures wiphy_features_;
 
+  NetlinkUtils* netlink_utils_;
   ScanUtils* scan_utils_;
 
   DISALLOW_COPY_AND_ASSIGN(ScannerImpl);

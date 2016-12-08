@@ -96,10 +96,12 @@ ClientInterfaceImpl::ClientInterfaceImpl(
                                &band_info_,
                                &scan_capabilities_,
                                &wiphy_features_);
-  scanner_ = new ScannerImpl(interface_index_,
+  scanner_ = new ScannerImpl(wiphy_index_,
+                             interface_index_,
                              band_info_,
                              scan_capabilities_,
                              wiphy_features_,
+                             netlink_utils_,
                              scan_utils_);
 }
 
