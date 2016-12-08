@@ -159,6 +159,7 @@ LOCAL_SRC_FILES := \
     tests/nl80211_packet_unittest.cpp \
     tests/scan_result_unittest.cpp \
     tests/scan_settings_unittest.cpp \
+    tests/scan_utils_unittest.cpp \
     tests/server_unittest.cpp
 LOCAL_STATIC_LIBRARIES := \
     libgmock \
