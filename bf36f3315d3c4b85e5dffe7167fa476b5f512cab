@@ -16,6 +16,24 @@
       "revId": "bf36f3315d3c4b85e5dffe7167fa476b5f512cab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad1edff1_7c6a555c",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2016-12-08T18:17:17Z",
+      "side": 1,
+      "message": "Thanks a lot ! Understood : )\nUpload unit tests for this new function as well as some other existing functions for ScanUtils in another CL: go/aog/311511/",
+      "parentUuid": "ad1edff1_5a11aa04",
+      "revId": "bf36f3315d3c4b85e5dffe7167fa476b5f512cab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
