@@ -16,6 +16,7 @@
 
 package android.net.wifi;
 
+import android.net.wifi.IScanEvent;
 import com.android.server.wifi.wificond.NativeScanResult;
 import com.android.server.wifi.wificond.SingleScanSettings;
 
@@ -30,5 +31,10 @@ interface IWifiScannerImpl {
   NativeScanResult[] getScanResults();
   // Request a single scan using a SingleScanSettings parcelable object.
   boolean scan(in SingleScanSettings scanSettings);
+  // Subscribe the scanning events.
+  // This assumes there is only one subscriber.
+  void SubscribeScanEvents(IScanEvent handler);
+  // Unsubscribe the scanning events .
+  void UnsubscribeScanEvents();
   // TODO(nywang) add more interfaces.
 }
