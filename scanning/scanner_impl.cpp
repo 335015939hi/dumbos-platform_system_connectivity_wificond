@@ -119,7 +119,8 @@ Status ScannerImpl::scan(const vector<int32_t>& freqs,
     raw_ssids.emplace_back(ssid_str.begin(), ssid_str.end());
   }
   vector<uint32_t> freqs_converted(freqs.begin(), freqs.end());
-  if (!scan_utils_->Scan(interface_index_, raw_ssids, freqs_converted)) {
+  bool random_mac =  wiphy_features_.supports_random_mac_oneshot_scan;
+  if (!scan_utils_->Scan(interface_index_, random_mac, raw_ssids, freqs_converted)) {
     *out_success = false;
     LOG(ERROR) << "Failed to start a scan";
     return Status::ok();
