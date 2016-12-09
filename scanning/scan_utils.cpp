@@ -214,6 +214,7 @@ bool ScanUtils::GetSSIDFromInfoElement(const vector<uint8_t>& ie,
 }
 
 bool ScanUtils::Scan(uint32_t interface_index,
+                     bool random_mac,
                      const vector<vector<uint8_t>>& ssids,
                      const vector<uint32_t>& freqs) {
   NL80211Packet trigger_scan(
@@ -247,6 +248,11 @@ bool ScanUtils::Scan(uint32_t interface_index,
     trigger_scan.AddAttribute(freqs_attr);
   }
 
+  if (random_mac) {
+    trigger_scan.AddAttribute(
+        NL80211Attr<uint32_t>(NL80211_ATTR_SCAN_FLAGS,
+                              NL80211_SCAN_FLAG_RANDOM_ADDR));
+  }
   // We are receiving an ERROR/ACK message instead of the actual
   // scan results here, so it is OK to expect a timely response because
   // kernel is supposed to send the ERROR/ACK back before the scan starts.
@@ -291,6 +297,7 @@ bool ScanUtils::StartScheduledScan(
     uint32_t interface_index,
     uint32_t interval_ms,
     int32_t rssi_threshold,
+    bool random_mac,
     const std::vector<std::vector<uint8_t>>& scan_ssids,
     const std::vector<std::vector<uint8_t>>& match_ssids,
     const std::vector<uint32_t>& freqs) {
@@ -341,6 +348,11 @@ bool ScanUtils::StartScheduledScan(
   start_sched_scan.AddAttribute(
       NL80211Attr<uint32_t>(NL80211_ATTR_SCHED_SCAN_INTERVAL, interval_ms));
   start_sched_scan.AddAttribute(scan_match_attr);
+  if (random_mac) {
+    start_sched_scan.AddAttribute(
+        NL80211Attr<uint32_t>(NL80211_ATTR_SCAN_FLAGS,
+                              NL80211_SCAN_FLAG_RANDOM_ADDR));
+  }
 
   vector<unique_ptr<const NL80211Packet>> response;
   if (!netlink_manager_->SendMessageAndGetAck(start_sched_scan)) {
