@@ -107,6 +107,9 @@ Status ScannerImpl::scan(const SingleScanSettings& scan_settings,
   if (!CheckIsValid()) {
     return Status::ok();
   }
+
+  bool random_mac =  wiphy_features_.supports_random_mac_oneshot_scan;
+
   if (scan_settings.is_full_scan_) {
     if (!scan_utils_->StartFullScan(interface_index_)) {
       *out_success = false;
@@ -124,7 +127,7 @@ Status ScannerImpl::scan(const SingleScanSettings& scan_settings,
     freqs.push_back(channel.frequency_);
   }
 
-  if (!scan_utils_->Scan(interface_index_, ssids, freqs)) {
+  if (!scan_utils_->Scan(interface_index_, random_mac, ssids, freqs)) {
     *out_success = false;
     LOG(ERROR) << "Failed to start a scan";
     return Status::ok();
