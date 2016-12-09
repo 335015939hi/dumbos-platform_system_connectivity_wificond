@@ -54,10 +54,18 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
       const ::std::vector<int32_t>& freqs,
       const ::std::vector<::android::String16>& ssids,
       bool* out_success) override;
+  ::android::binder::Status SubscribeScanResultReadyNotification(
+      const ::android::sp<::android::net::wifi::IScanEvent>& handler) override;
+  ::android::binder::Status UnsubscribeScanResultReadyNotification() override;
   void Invalidate() { valid_ = false; }
 
  private:
   bool CheckIsValid();
+  void OnScanResultsReady(
+      uint32_t interface_index,
+      bool aborted,
+      std::vector<std::vector<uint8_t>>& ssids,
+      std::vector<uint32_t>& frequencies);
 
   bool valid_;
   uint32_t interface_index_;
@@ -68,6 +76,7 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
   const WiphyFeatures wiphy_features_;
 
   ScanUtils* scan_utils_;
+  ::android::sp<::android::net::wifi::IScanEvent> scan_event_handler_;
 
   DISALLOW_COPY_AND_ASSIGN(ScannerImpl);
 };
