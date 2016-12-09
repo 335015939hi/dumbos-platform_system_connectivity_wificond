@@ -36,8 +36,9 @@ class MockScanUtils : public ScanUtils {
       uint32_t interface_index,
       std::vector<::com::android::server::wifi::wificond::NativeScanResult>* out_scan_results));
 
-  MOCK_METHOD3(Scan, bool(
+  MOCK_METHOD4(Scan, bool(
       uint32_t interface_index,
+      bool random_mac,
       const std::vector<std::vector<uint8_t>>& ssids,
       const std::vector<uint32_t>& freqs));
 

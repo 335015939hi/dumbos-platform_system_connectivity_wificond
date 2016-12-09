@@ -64,6 +64,8 @@ class ScanUtils {
   virtual bool StartFullScan(uint32_t interface_index);
 
   // Send scan request to kernel for interface with index |interface_index|.
+  // |random_mac| is used for asking device/driver to use a random MAC address
+  // during scan.
   // |ssids| is a vector of ssids we request to scan, which mostly is used
   // for hidden networks.
   // If |ssids| is an empty vector, it will do a passive scan.
@@ -72,6 +74,7 @@ class ScanUtils {
   // If |freqs| is an empty vector, it will scan all supported frequencies.
   // Returns true on success.
   virtual bool Scan(uint32_t interface_index,
+                    bool random_mac,
                     const std::vector<std::vector<uint8_t>>& ssids,
                     const std::vector<uint32_t>& freqs);
 
@@ -80,6 +83,8 @@ class ScanUtils {
   // |rssi_threshold| is the minimum RSSI threshold value as a filter.
   // |scan_ssids| is a vector of ssids we request to scan, which is mostly
   // used for hidden networks.
+  // |random_mac| is used for asking device/driver to use a random MAC address
+  // during scan.
   // If |scan_ssids| is an empty vector, it will do a passive scan.
   // If |scan_ssids| contains an empty string, it will a scan for all ssids.
   // |freqs| is a vector of frequencies we request to scan.
@@ -92,6 +97,7 @@ class ScanUtils {
       uint32_t interface_index,
       uint32_t interval_ms,
       int32_t rssi_threshold,
+      bool random_mac,
       const std::vector<std::vector<uint8_t>>& scan_ssids,
       const std::vector<std::vector<uint8_t>>& match_ssids,
       const std::vector<uint32_t>& freqs);
