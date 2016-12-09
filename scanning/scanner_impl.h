@@ -47,6 +47,9 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
   // Returns a vector of available frequencies for DFS channels.
   ::android::binder::Status getAvailableDFSChannels(
       ::std::vector<int32_t>* out_frequencies) override;
+  ::android::binder::Status getScanResults(
+      std::vector<com::android::server::wifi::wificond::NativeScanResult>*
+          out_scan_results) override;
   void Invalidate() { valid_ = false; }
 
  private:
