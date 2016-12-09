@@ -24,10 +24,14 @@
 #include "wificond/scanning/scan_utils.h"
 
 using android::binder::Status;
+using android::net::wifi::IScanEvent;
 using android::String16;
+using android::sp;
 using com::android::server::wifi::wificond::NativeScanResult;
 using std::string;
 using std::vector;
+
+using namespace std::placeholders;
 
 namespace android {
 namespace wificond {
@@ -42,10 +46,17 @@ ScannerImpl::ScannerImpl(uint32_t interface_index,
       band_info_(band_info),
       scan_capabilities_(scan_capabilities),
       wiphy_features_(wiphy_features),
-      scan_utils_(scan_utils) {
+      scan_utils_(scan_utils),
+      scan_event_handler_(nullptr) {
+  scan_utils_->SubscribeScanResultNotification(
+      interface_index,
+      std::bind(&ScannerImpl::OnScanResultsReady,
+                this,
+                _1, _2, _3, _4));
 }
 
 ScannerImpl::~ScannerImpl() {
+  scan_utils_->UnsubscribeScanResultNotification(interface_index_);
 }
 
 bool ScannerImpl::CheckIsValid() {
@@ -109,6 +120,28 @@ Status ScannerImpl::scan(const vector<int32_t>& freqs,
   }
   *out_success = true;
   return Status::ok();
+}
+
+Status ScannerImpl::SubscribeScanResultReadyNotification(
+    const sp<::android::net::wifi::IScanEvent>& handler) {
+  scan_event_handler_ = handler;
+  return Status::ok();
+}
+
+Status ScannerImpl::UnsubscribeScanResultReadyNotification() {
+  scan_event_handler_ = nullptr;
+  return Status::ok();
+}
+
+void ScannerImpl::OnScanResultsReady(
+    uint32_t interface_index,
+    bool aborted,
+    std::vector<std::vector<uint8_t>>& ssids,
+    std::vector<uint32_t>& frequencies) {
+  if (scan_event_handler_ != nullptr) {
+    // TODO: Pass other parameters back if framework needs them.
+    scan_event_handler_->OnScanResultReady();
+  }
 }
 
 }  // namespace wificond
