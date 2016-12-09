@@ -51,6 +51,10 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
   ::android::binder::Status getScanResults(
       std::vector<com::android::server::wifi::wificond::NativeScanResult>*
           out_scan_results) override;
+  ::android::binder::Status scan(
+      const ::std::vector<int32_t>& freqs,
+      const ::std::vector<::android::String16>& ssids,
+      bool* out_success) override;
   void Invalidate() { valid_ = false; }
 
  private:

@@ -27,5 +27,7 @@ interface IWifiScannerImpl {
   int[] getAvailableDFSChannels();
   // Get the latest scan results from kernel.
   NativeScanResult[] getScanResults();
+  // Request a one-shot scan using a frequency list and a ssid list.
+  boolean scan(in int[] freqs, in String[] ssids);
   // TODO(nywang) add more interfaces.
 }
