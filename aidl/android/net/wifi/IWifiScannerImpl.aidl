@@ -16,6 +16,7 @@
 
 package android.net.wifi;
 
+import android.net.wifi.IScanEvent;
 import com.android.server.wifi.wificond.NativeScanResult;
 
 interface IWifiScannerImpl {
@@ -29,5 +30,10 @@ interface IWifiScannerImpl {
   NativeScanResult[] getScanResults();
   // Request a scan using a frequency list and list of ssids.
   boolean scan(in int[] freqs, in String[] ssids);
+  // Subscribe the scan result ready notification.
+  // This interface assumes there is only at most one register.
+  void SubscribeScanResultReadyNotification(IScanEvent handler);
+  // Unsubscribe the scan result ready notification.
+  void UnsubscribeScanResultReadyNotification();
   // TODO(nywang) add more interfaces.
 }
