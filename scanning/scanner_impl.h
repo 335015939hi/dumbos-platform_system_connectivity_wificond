@@ -53,6 +53,7 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
   ::android::binder::Status scan(
       const ::std::vector<int32_t>& freqs,
       const ::std::vector<::android::String16>& ssids,
+      bool request_random_mac,
       bool* out_success) override;
   ::android::binder::Status SubscribeScanEvents(
       const ::android::sp<::android::net::wifi::IScanEvent>& handler) override;
