@@ -107,6 +107,7 @@ Status ScannerImpl::getScanResults(vector<NativeScanResult>* out_scan_results) {
 
 Status ScannerImpl::scan(const vector<int32_t>& freqs,
                          const vector<String16>& ssids,
+                         bool request_random_mac,
                          bool* out_success) {
   if (!CheckIsValid()) {
     return Status::ok();
@@ -119,7 +120,8 @@ Status ScannerImpl::scan(const vector<int32_t>& freqs,
     raw_ssids.emplace_back(ssid_str.begin(), ssid_str.end());
   }
   vector<uint32_t> freqs_converted(freqs.begin(), freqs.end());
-  bool random_mac =  wiphy_features_.supports_random_mac_oneshot_scan;
+  bool random_mac = wiphy_features_.supports_random_mac_oneshot_scan &&
+                    request_random_mac;
   if (!scan_utils_->Scan(interface_index_, random_mac, raw_ssids, freqs_converted)) {
     *out_success = false;
     LOG(ERROR) << "Failed to start a scan";
