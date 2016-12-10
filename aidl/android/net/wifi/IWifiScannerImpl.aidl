@@ -29,7 +29,8 @@ interface IWifiScannerImpl {
   // Get the latest scan results from kernel.
   NativeScanResult[] getScanResults();
   // Request a scan using a frequency list and list of ssids.
-  boolean scan(in int[] freqs, in String[] ssids);
+  // |random_mac| is used for requesting scan with randomized mac address.
+  boolean scan(in int[] freqs, in String[] ssids, boolean random_mac);
   // Subscribe the scan result ready notification.
   // This interface assumes there is only at most one register.
   void SubscribeScanResultReadyNotification(IScanEvent handler);
