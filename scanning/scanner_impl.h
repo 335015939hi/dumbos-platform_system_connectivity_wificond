@@ -58,6 +58,10 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
   ::android::binder::Status SubscribeScanEvents(
       const ::android::sp<::android::net::wifi::IScanEvent>& handler) override;
   ::android::binder::Status UnsubscribeScanEvents() override;
+  ::android::binder::Status StartPnoScan(
+      const ::com::android::server::wifi::wificond::PnoSettings& pno_settings,
+      bool* out_success) override;
+  ::android::binder::Status StopPnoScan(bool* out_success) override;
   void Invalidate() { valid_ = false; }
 
  private:
