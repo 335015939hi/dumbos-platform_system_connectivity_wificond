@@ -30,6 +30,8 @@ interface IWifiScannerImpl {
   NativeScanResult[] getScanResults();
   // Request a one-shot scan using a frequency list and a ssid list.
   boolean scan(in int[] freqs, in String[] ssids);
+  // |random_mac| is used for requesting scan with randomized mac address.
+  boolean scan(in int[] freqs, in String[] ssids, boolean random_mac);
   // Subscribe the scanning events.
   // This assumes there is only one subscriber.
   void SubscribeScanEvents(IScanEvent handler);
