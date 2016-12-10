@@ -18,23 +18,38 @@ package android.net.wifi;
 
 import android.net.wifi.IScanEvent;
 import com.android.server.wifi.wificond.NativeScanResult;
+import com.android.server.wifi.wificond.PnoSettings;
 
 interface IWifiScannerImpl {
   // Returns an array of available frequencies for 2.4GHz channels.
   int[] getAvailable2gChannels();
+
   // Returns an array of available frequencies for 5GHz non-DFS channels.
   int[] getAvailable5gNonDFSChannels();
+
   // Returns an array of available frequencies for DFS channels.
   int[] getAvailableDFSChannels();
+
   // Get the latest scan results from kernel.
   NativeScanResult[] getScanResults();
+
   // Request a scan using a frequency list and list of ssids.
   // |random_mac| is used for requesting scan with randomized mac address.
   boolean scan(in int[] freqs, in String[] ssids, boolean random_mac);
+
   // Subscribe the scanning events.
   // This assumes there is only one subscriber.
   void SubscribeScanEvents(IScanEvent handler);
+
   // Unsubscribe the scanning events .
   void UnsubscribeScanEvents();
+
+  // Request a scheduled scan.
+  // |random_mac| is used for requesting scan with randomized mac address.
+  boolean StartPnoScan(in PnoSettings pnoSettings, boolean random_mac);
+
+  // Stop any exitings scheduled scan.
+  boolean StopPnoScan();
+
   // TODO(nywang) add more interfaces.
 }

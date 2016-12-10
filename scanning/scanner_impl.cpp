@@ -28,6 +28,7 @@ using android::net::wifi::IScanEvent;
 using android::String16;
 using android::sp;
 using com::android::server::wifi::wificond::NativeScanResult;
+using com::android::server::wifi::wificond::PnoSettings;
 using std::string;
 using std::vector;
 
@@ -127,6 +128,40 @@ Status ScannerImpl::scan(const vector<int32_t>& freqs,
   return Status::ok();
 }
 
+Status ScannerImpl::StartPnoScan(const PnoSettings& pno_settings,
+                                 bool request_random_mac,
+                                 bool* out_success) {
+  // An empty ssid for a wild card scan.
+  vector<vector<uint8_t>> scan_ssids = {{0}};
+  vector<vector<uint8_t>> match_ssids;
+  // Empty frequemcy list: scan all frequencies.
+  vector<uint32_t> freqs;
+  for (auto& network : pno_settings.pno_networks_) {
+    match_ssids.push_back(network.ssid_);
+  }
+  bool random_mac = wiphy_features_.supports_random_mac_sched_scan &&
+                    request_random_mac;
+  if (!scan_utils_->StartScheduledScan(interface_index_,
+                                       pno_settings.interval_ms_,
+                                       // TODO: honor both rssi thresholds.
+                                       pno_settings.min_2g_rssi_,
+                                       random_mac,
+                                       scan_ssids,
+                                       match_ssids,
+                                       freqs)) {
+    *out_success = false;
+    LOG(ERROR) << "Failed to start scheduled scan";
+    return Status::ok();
+  }
+  *out_success = true;
+  return Status::ok();
+}
+
+Status ScannerImpl::StopPnoScan(bool* out_success) {
+  *out_success = scan_utils_->StopScheduledScan(interface_index_);
+  return Status::ok();
+}
+
 Status ScannerImpl::SubscribeScanEvents(const sp<IScanEvent>& handler) {
   scan_event_handler_ = handler;
   scan_utils_->SubscribeScanResultNotification(
@@ -151,6 +186,12 @@ void ScannerImpl::OnScanResultsReady(
     vector<uint32_t>& frequencies) {
   if (scan_event_handler_ != nullptr) {
     // TODO: Pass other parameters back once we find framework needs them.
+    scan_event_handler_->OnScanResultReady();
+  }
+}
+
+void ScannerImpl::OnSchedScanResultsReady(uint32_t interface_index) {
+  if (scan_event_handler_ != nullptr) {
     scan_event_handler_->OnScanResultReady();
   }
 }
