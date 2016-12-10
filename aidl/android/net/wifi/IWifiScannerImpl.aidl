@@ -30,7 +30,8 @@ interface IWifiScannerImpl {
   // Get the latest scan results from kernel.
   NativeScanResult[] getScanResults();
   // Request a single scan using a SingleScanSettings parcelable object.
-  boolean scan(in SingleScanSettings scanSettings);
+  // |random_mac| is used for requesting scan with randomized mac address.
+  boolean scan(in SingleScanSettings scanSettings, boolean random_mac);
   // Subscribe the scanning events.
   // This assumes there is only one subscriber.
   void SubscribeScanEvents(IScanEvent handler);

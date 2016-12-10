@@ -103,15 +103,16 @@ Status ScannerImpl::getScanResults(vector<NativeScanResult>* out_scan_results) {
 }
 
 Status ScannerImpl::scan(const SingleScanSettings& scan_settings,
+                         bool request_random_mac,
                          bool* out_success) {
   if (!CheckIsValid()) {
     return Status::ok();
   }
-
-  bool random_mac =  wiphy_features_.supports_random_mac_oneshot_scan;
+  bool random_mac = wiphy_features_.supports_random_mac_oneshot_scan &&
+                    request_random_mac;
 
   if (scan_settings.is_full_scan_) {
-    if (!scan_utils_->StartFullScan(interface_index_)) {
+    if (!scan_utils_->StartFullScan(interface_index_, random_mac)) {
       *out_success = false;
       return Status::ok();
     }
