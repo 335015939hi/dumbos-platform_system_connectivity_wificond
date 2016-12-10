@@ -55,6 +55,11 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
       const ::std::vector<::android::String16>& ssids,
       bool request_random_mac,
       bool* out_success) override;
+  ::android::binder::Status StartPnoScan(
+      const ::com::android::server::wifi::wificond::PnoSettings& pno_settings,
+      bool random_mac,
+      bool* out_success) override;
+  ::android::binder::Status StopPnoScan(bool* out_success) override;
   ::android::binder::Status SubscribeScanResultReadyNotification(
       const ::android::sp<::android::net::wifi::IScanEvent>& handler) override;
   ::android::binder::Status UnsubscribeScanResultReadyNotification() override;
@@ -67,6 +72,7 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
       bool aborted,
       std::vector<std::vector<uint8_t>>& ssids,
       std::vector<uint32_t>& frequencies);
+  void OnSchedScanResultsReady(uint32_t interface_index);
 
   bool valid_;
   uint32_t interface_index_;
