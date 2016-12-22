@@ -24,12 +24,14 @@
 
 #include "android/net/wifi/BnWifiScannerImpl.h"
 #include "wificond/net/netlink_utils.h"
+#include "wificond/scanning/offload/offload_scan_manager.h"
 
 namespace android {
 namespace wificond {
 
 class ClientInterfaceImpl;
 class ScanUtils;
+using std::unique_ptr;
 
 class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
  public:
@@ -70,6 +72,8 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
       const ::android::sp<::android::net::wifi::IPnoScanEvent>& handler) override;
   ::android::binder::Status unsubscribePnoScanEvents() override;
   void Invalidate();
+  void onOffloadScanResult(
+      std::vector<::com::android::server::wifi::wificond::NativeScanResult>);
 
  private:
   bool CheckIsValid();
@@ -98,6 +102,7 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
   ScanUtils* const scan_utils_;
   ::android::sp<::android::net::wifi::IPnoScanEvent> pno_scan_event_handler_;
   ::android::sp<::android::net::wifi::IScanEvent> scan_event_handler_;
+  std::unique_ptr<OffloadScanManager> offload_scans_handle_;
 
   DISALLOW_COPY_AND_ASSIGN(ScannerImpl);
 };
