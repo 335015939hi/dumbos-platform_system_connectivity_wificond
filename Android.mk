@@ -30,9 +30,13 @@ LOCAL_C_INCLUDES := $(wificond_includes)
 LOCAL_SRC_FILES := \
     main.cpp
 LOCAL_SHARED_LIBRARIES := \
+    android.hardware.wifi.offload@1.0 \
     libbinder \
     libbase \
     libcutils \
+    libhidlbase \
+    libhwbinder \
+    libhidltransport \
     libminijail \
     libutils \
     libwifi-hal \
@@ -64,10 +68,16 @@ LOCAL_SRC_FILES := \
     scanning/single_scan_settings.cpp \
     scanning/scan_utils.cpp \
     scanning/scanner_impl.cpp \
+    scanning/offload/offload_scan_utils.cpp \
+    scanning/offload/OffloadCallback.cpp \
     server.cpp
 LOCAL_SHARED_LIBRARIES := \
+    android.hardware.wifi.offload@1.0 \
     libbase \
     libutils \
+    libhidlbase \
+    libhwbinder \
+    libhidltransport \
     libwifi-hal \
     libwifi-system
 LOCAL_WHOLE_STATIC_LIBRARIES := \
@@ -171,8 +181,12 @@ LOCAL_STATIC_LIBRARIES := \
     libwificond \
     libwificond_nl
 LOCAL_SHARED_LIBRARIES := \
+    android.hardware.wifi.offload@1.0 \
     libbase \
     libbinder \
+    libhidltransport \
+    libhidlbase \
+    libhwbinder \
     liblog \
     libutils \
     libwifi-hal \
