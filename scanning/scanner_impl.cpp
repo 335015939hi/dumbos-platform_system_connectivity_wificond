@@ -72,6 +72,12 @@ ScannerImpl::ScannerImpl(uint32_t wiphy_index,
       std::bind(&ScannerImpl::OnSchedScanResultsReady,
                 this,
                 _1, _2));
+  offload_scans_handle_ = unique_ptr<OffloadScanUtils>(
+      new OffloadScanUtils(
+        [this] (std::vector<NativeScanResult> scanResult) -> void {
+          this->onOffloadScanResultsReadyHandler(scanResult);
+        }
+      ));
 }
 
 ScannerImpl::~ScannerImpl() {
@@ -344,6 +350,12 @@ void ScannerImpl::OnSchedScanResultsReady(uint32_t interface_index,
       pno_scan_event_handler_->OnPnoNetworkFound();
     }
   }
+}
+
+void ScannerImpl::onOffloadScanResultsReadyHandler(
+    std::vector<NativeScanResult> scanResult) {
+  // TODO: Process scan result
+  scan_event_handler_->OnScanResultReady();
 }
 
 }  // namespace wificond
