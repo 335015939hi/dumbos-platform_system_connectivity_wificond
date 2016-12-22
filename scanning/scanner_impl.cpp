@@ -27,6 +27,7 @@
 using android::binder::Status;
 using android::net::wifi::IPnoScanEvent;
 using android::net::wifi::IScanEvent;
+using android::hardware::wifi::offload::V1_0::IOffload;
 using android::sp;
 using com::android::server::wifi::wificond::NativeScanResult;
 using com::android::server::wifi::wificond::PnoSettings;
@@ -72,6 +73,12 @@ ScannerImpl::ScannerImpl(uint32_t wiphy_index,
       std::bind(&ScannerImpl::OnSchedScanResultsReady,
                 this,
                 _1, _2));
+  offload_scans_handle_ = unique_ptr<OffloadScanUtils>(
+      new OffloadScanUtils(IOffload::getService("wifiOffload"),
+         new OffloadCallback([this] (std::vector<NativeScanResult> scanResult) ->
+             void {
+	       this->onOffloadScanResultsReadyHandler(scanResult);
+             })));
 }
 
 ScannerImpl::~ScannerImpl() {
@@ -344,6 +351,12 @@ void ScannerImpl::OnSchedScanResultsReady(uint32_t interface_index,
       pno_scan_event_handler_->OnPnoNetworkFound();
     }
   }
+}
+
+void ScannerImpl::onOffloadScanResultsReadyHandler(
+    std::vector<NativeScanResult> scanResult) {
+  // TODO: Process scan result
+  scan_event_handler_->OnScanResultReady();
 }
 
 }  // namespace wificond
