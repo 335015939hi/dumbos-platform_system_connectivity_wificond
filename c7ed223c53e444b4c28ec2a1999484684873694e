@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97c76e81_c4bb88c1",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-10T23:18:12Z",
+      "side": 1,
+      "message": "How does valid_ ever become false?",
+      "range": {
+        "startLine": 59,
+        "startChar": 7,
+        "endLine": 59,
+        "endChar": 13
+      },
+      "revId": "c7ed223c53e444b4c28ec2a1999484684873694e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_87b912aa",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-10T23:18:12Z",
+      "side": 1,
+      "message": "If this is not null, it seems like we should either error out or notify the unsubscribe.",
+      "range": {
+        "startLine": 128,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 21
+      },
+      "revId": "c7ed223c53e444b4c28ec2a1999484684873694e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
