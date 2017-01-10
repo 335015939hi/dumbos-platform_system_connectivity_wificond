@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "97c76e81_56c97347",
+        "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-10T21:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_4203f1f1",
+      "range": {
+        "startLine": 51,
+        "startChar": 14,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "b6c54649543460c956a964d0d3a7b5a7cf806ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_62783567",
         "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "97c76e81_f6d1a7e5",
+        "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-10T21:05:14Z",
+      "side": 1,
+      "message": "Good point. Done.\nSee this for the declaration of the underlying call.\nhttp://cs/android/system/connectivity/wificond/scanning/scan_utils.h?l\u003d96\u0026rcl\u003d6cb893a8468eccaa5ec553345c2822205570aef8",
+      "parentUuid": "97c76e81_62783567",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 9
+      },
+      "revId": "b6c54649543460c956a964d0d3a7b5a7cf806ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_85723350",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2017-01-10T18:19:18Z",
       "side": 1,
       "message": "frequency",
+      "range": {
+        "startLine": 137,
+        "startChar": 11,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "b6c54649543460c956a964d0d3a7b5a7cf806ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_360a7f8d",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-10T21:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_85723350",
       "range": {
         "startLine": 137,
         "startChar": 11,
