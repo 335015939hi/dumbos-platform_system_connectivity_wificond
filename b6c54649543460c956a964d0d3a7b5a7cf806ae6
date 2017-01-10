@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97c76e81_4203f1f1",
+        "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-10T18:19:18Z",
+      "side": 1,
+      "message": "existing",
+      "range": {
+        "startLine": 51,
+        "startChar": 14,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "b6c54649543460c956a964d0d3a7b5a7cf806ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_62783567",
+        "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-10T18:19:18Z",
+      "side": 1,
+      "message": "Returns true for success?\nIf there are no existing scans, does call succeed?",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 9
+      },
+      "revId": "b6c54649543460c956a964d0d3a7b5a7cf806ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_85723350",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-10T18:19:18Z",
+      "side": 1,
+      "message": "frequency",
+      "range": {
+        "startLine": 137,
+        "startChar": 11,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "b6c54649543460c956a964d0d3a7b5a7cf806ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
