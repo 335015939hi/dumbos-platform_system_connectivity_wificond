@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a364350b_6db55dbf",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_911155cc",
+      "range": {
+        "startLine": 44,
+        "startChar": 19,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_1164253a",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "a364350b_8d8b1146",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_1164253a",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_717c81d3",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -53,6 +95,30 @@
       "writtenOn": "2017-01-11T02:00:33Z",
       "side": 1,
       "message": "Does this have to be a unique_ptr, or could we simply have a ScanUtils member? i.e.\n\n  ScanUtils scan_utils_;",
+      "range": {
+        "startLine": 76,
+        "startChar": 2,
+        "endLine": 76,
+        "endChar": 28
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_bfccf819",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_717c81d3",
       "range": {
         "startLine": 76,
         "startChar": 2,
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "a364350b_0ef614a9",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Yes ACTION_P is hard to read and to use.\nYour sample code is great if we only need to append a control message.\nHowever we might need to append more complex messages in later work. E.g. Mock the responses of GetScanResult(), which are complex NL80211 packets.\nIn those cases, if we use non-type template parameters like the following:\n\ntemplate \u003cvector\u003cNL80211Packet\u003e, bool ReturnValue\u003e\n    bool AppendMessageAndReturn() {\n  ...\n}\n\nThen compiler is not happy with that because vector\u003cNL80211Packet\u003e can not be inferred.\nWith that said, instead I use additional arguments instead of template parameters here.\nIn test cases these additional arguments will be pre-bounded by std::bind().",
+      "parentUuid": "97c76e81_b15e9990",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 8
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_d186ada5",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -99,6 +189,24 @@
       "writtenOn": "2017-01-11T02:00:33Z",
       "side": 1,
       "message": "Should this be |const auto\u0026|? (I don\u0027t think we need to modify the input packets.)\n\n(But if you take the suggestion at line 91, then ignore this comment.)",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_98826aa0",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_d186ada5",
       "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "a364350b_ee9ac05d",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Later we will have to mock complicated responses. E.g. To mock the GetScanResult() responses, which is a vector of NL80211Packets.",
+      "parentUuid": "97c76e81_115c2533",
+      "range": {
+        "startLine": 94,
+        "startChar": 10,
+        "endLine": 94,
+        "endChar": 19
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_712241bd",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -139,6 +271,24 @@
       "writtenOn": "2017-01-11T02:00:33Z",
       "side": 1,
       "message": "Recommend removing the comment.\n\nRationale: It\u0027s clear what the code is doing, so no comment is necessary. (If it\u0027s not obvious to you yet, don\u0027t worry. It\u0027ll become second nature the more you use googletest and googlemock.)",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_adb295d0",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_712241bd",
       "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -162,6 +312,24 @@
     },
     {
       "key": {
+        "uuid": "a364350b_4980861f",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_d16b4d98",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_712001c3",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -173,6 +341,24 @@
       "writtenOn": "2017-01-11T02:00:33Z",
       "side": 1,
       "message": "Please file a bug, and reference that here. E.g.\n\n  // TODO(b/123456): Mock response for NL80211_CMD_GET_SCAN",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_a91cc288",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_712001c3",
       "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -196,6 +382,24 @@
     },
     {
       "key": {
+        "uuid": "a364350b_8de1d1b2",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_51273dca",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_c1dedac5",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -207,6 +411,24 @@
       "writtenOn": "2017-01-11T02:00:33Z",
       "side": 1,
       "message": "Similarly to the comment at line 105: we should have some validation of CMD_TRIGGER_SCAN attributes as well. E.g.,\n\n- verify that we include the empty SSID in all scans\n- verify that we pass down hidden SSIDs as appropriate\n- verify that the frequency list is passed through\n\n(This will likely require multiple test cases. E.g. one for no SSIDs specified, one for some hidden SSID specified.)",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_29975269",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_c1dedac5",
       "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -230,6 +452,24 @@
     },
     {
       "key": {
+        "uuid": "a364350b_ed2bade5",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_f1ebf1c0",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a364350b_3b3d63de",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -241,6 +481,24 @@
       "writtenOn": "2017-01-11T02:00:33Z",
       "side": 1,
       "message": "If you accept the suggestions at lines 91 and 101, then this test case could simplify to:\n\n    TEST_F(ScanUtilsTest, CanHandleScanRequestFailure) {\n      EXPECT_CALL(*netlink_manager_,\n                  SendMessageAndGetResponses(\n                  DoesNL80211PacketMatchCommand(NL80211_CMD_TRIGGER_SCAN), _))\n          .WillOnce(Invoke(AppendControlMessageAndReturn\u003ckFakeErrorCode, true\u003e));\n      EXPECT_FALSE(scan_utils_-\u003eScan(kFakeInterfaceIndex, {}, {}));\n    }",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_8e00e422",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a364350b_3b3d63de",
       "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -264,6 +522,24 @@
     },
     {
       "key": {
+        "uuid": "a364350b_adf7f561",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_51d5fdf9",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_8437d0f4",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -275,6 +551,24 @@
       "writtenOn": "2017-01-11T02:00:33Z",
       "side": 1,
       "message": "Similarly to line 105: we should do some validation of the START_SCHED_SCAN attributes.",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_696eaaaa",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_8437d0f4",
       "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -298,6 +592,24 @@
     },
     {
       "key": {
+        "uuid": "a364350b_2d0d25b1",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_84e6b029",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_e4768c7b",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -309,6 +621,24 @@
       "writtenOn": "2017-01-11T02:00:33Z",
       "side": 1,
       "message": "As at line 101.",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_ed164dc4",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_e4768c7b",
       "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -338,6 +668,30 @@
     },
     {
       "key": {
+        "uuid": "a364350b_6db31d4d",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c76e81_8488f042",
+      "range": {
+        "startLine": 178,
+        "startChar": 2,
+        "endLine": 178,
+        "endChar": 13
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_641cbc2a",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 4
@@ -349,6 +703,24 @@
       "writtenOn": "2017-01-11T02:00:33Z",
       "side": 1,
       "message": "I think there are some methods not covered by these tests (see below). Please file a bug to add corresponding tests.\n\nMethods not covered by these tests:\n- StopScheduledScan()\n- SubcribeScanResultNotification()\n- UnsubscribeScanResultNotification()\n- SubscribeSchedScanResultNotification()\n- UnsubscribeSchedScanResultNotification()",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_e922ba06",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:31:18Z",
+      "side": 1,
+      "message": "I will leave b/30915875 open and add note there for theses pending works.",
+      "parentUuid": "97c76e81_641cbc2a",
       "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
