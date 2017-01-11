@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a364350b_0459133c",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:57:41Z",
+      "side": 1,
+      "message": "http://cs/android/system/connectivity/wificond/client_interface_impl.cpp?l\u003d108\u0026rcl\u003d6fe0ef2442329f2a0ea2e0676aa23f88b98d03e2\n\nInvalidate() function is written inline in the header file.\nIf you prefer I will move it here.\n\nThis happens when the associated interface objects is destroyed. \nWe don\u0027t expect this to happen because upper level framework(Java) should know interface status and avoid holding a scanner associated with destroyed interface object.",
+      "parentUuid": "97c76e81_c4bb88c1",
+      "range": {
+        "startLine": 59,
+        "startChar": 7,
+        "endLine": 59,
+        "endChar": 13
+      },
+      "revId": "c7ed223c53e444b4c28ec2a1999484684873694e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c76e81_87b912aa",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-10T23:18:12Z",
       "side": 1,
       "message": "If this is not null, it seems like we should either error out or notify the unsubscribe.",
+      "range": {
+        "startLine": 128,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 21
+      },
+      "revId": "c7ed223c53e444b4c28ec2a1999484684873694e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_645a4f64",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:57:41Z",
+      "side": 1,
+      "message": "We are not expecting this to happen.\nIn case we hit this on error, I add some logging here.",
+      "parentUuid": "97c76e81_87b912aa",
       "range": {
         "startLine": 128,
         "startChar": 2,
