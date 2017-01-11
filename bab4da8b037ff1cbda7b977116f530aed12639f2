@@ -1,0 +1,357 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97c76e81_911155cc",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "It\u0027s not clear what this interval is for. Consider something like kFakeScheduledScanIntervalMs, instead.",
+      "range": {
+        "startLine": 44,
+        "startChar": 19,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_1164253a",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Style recommends placing data members after methods.\n\n\"Within each section, generally prefer grouping similar kinds of declarations together, and generally prefer the following order: types (including typedef, using, and nested structs and classes), constants, factory functions, constructors, assignment operators, destructor, all other methods, data members.\"\n\nhttps://google.github.io/styleguide/cppguide.html#Declaration_Order",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_717c81d3",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Does this have to be a unique_ptr, or could we simply have a ScanUtils member? i.e.\n\n  ScanUtils scan_utils_;",
+      "range": {
+        "startLine": 76,
+        "startChar": 2,
+        "endLine": 76,
+        "endChar": 28
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_b15e9990",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "ACTION_P is hard to think about, since it\u0027s a macro. Between the implicit symbols (arg0, arg1), and the lack of types, it\u0027s hard to understand what\u0027s going on.\n\n(I appreciate the comment you provided, to help sort that out. But it\u0027s even better if the code doesn\u0027t need comments. :-))\n\nConsider using a function template like the following, instead:\n\n    template \u003cint ControlMessageErrorCode, bool ReturnValue\u003e\n    bool AppendControlMessageAndReturn(\n        const NL80211Packet\u0026 /* request message */,\n        std::vector\u003cstd::unique_ptr\u003cconst NL80211Packet\u003e\u003e* reply) {\n      reply-\u003epush_back(std::make_unique\u003cNL80211Packet\u003e(\n          CreateControlMessageError(ControlMessageErrorCode)));\n      return ReturnValue;\n}\n\n(Note that you\u0027ll need to remove -std\u003dc++11 from Android.mk, to allow use of make_unique. But I believe that c++14 is now the default. And unless there\u0027s a specific reason for specifying a lower version, we shouldn\u0027t.)",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 8
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_d186ada5",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Should this be |const auto\u0026|? (I don\u0027t think we need to modify the input packets.)\n\n(But if you take the suggestion at line 91, then ignore this comment.)",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_115c2533",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Skimming over the call-sites, it looks like we always pass in a single-element vector. Given that, would it be simpler for |response| to be a const NL80211Packet\u0026, rather than a vector?\n\n(But if you take the suggestion at line 91, then ignore this comment.)",
+      "range": {
+        "startLine": 94,
+        "startChar": 10,
+        "endLine": 94,
+        "endChar": 19
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_712241bd",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Recommend removing the comment.\n\nRationale: It\u0027s clear what the code is doing, so no comment is necessary. (If it\u0027s not obvious to you yet, don\u0027t worry. It\u0027ll become second nature the more you use googletest and googlemock.)",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_d16b4d98",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Not in this CL (since adding more would make this CL too large), but we should add some validation of the CMD_GET_SCAN attributes as well. Here, that would mean that the interface_index is passed through unmodified. E.g.\n\n   SendMessageAndGetResponses(\n     AllOf(\n       DoesNL80211PacketMatchCommand(NL80211_CMD_GET_SCAN),\n       DoesGetScanMatchInterfaceIndex(kFakeInterfaceIndex)),\n     _);\n\nPlease file a bug to come back to this later, and reference that bug with a TODO comment here.",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_712001c3",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Please file a bug, and reference that here. E.g.\n\n  // TODO(b/123456): Mock response for NL80211_CMD_GET_SCAN",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_51273dca",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "As at line 101.",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_c1dedac5",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Similarly to the comment at line 105: we should have some validation of CMD_TRIGGER_SCAN attributes as well. E.g.,\n\n- verify that we include the empty SSID in all scans\n- verify that we pass down hidden SSIDs as appropriate\n- verify that the frequency list is passed through\n\n(This will likely require multiple test cases. E.g. one for no SSIDs specified, one for some hidden SSID specified.)",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_f1ebf1c0",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "As at line 101. (Note one of the pitfalls of comments: they can disagree with the actual code. Here, we\u0027re testing that Scan() returns false, but the comment says \"returns true\".)",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_3b3d63de",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "If you accept the suggestions at lines 91 and 101, then this test case could simplify to:\n\n    TEST_F(ScanUtilsTest, CanHandleScanRequestFailure) {\n      EXPECT_CALL(*netlink_manager_,\n                  SendMessageAndGetResponses(\n                  DoesNL80211PacketMatchCommand(NL80211_CMD_TRIGGER_SCAN), _))\n          .WillOnce(Invoke(AppendControlMessageAndReturn\u003ckFakeErrorCode, true\u003e));\n      EXPECT_FALSE(scan_utils_-\u003eScan(kFakeInterfaceIndex, {}, {}));\n    }",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_51d5fdf9",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "As at line 101.",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_8437d0f4",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Similarly to line 105: we should do some validation of the START_SCHED_SCAN attributes.",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_84e6b029",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "As at line 101.",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_e4768c7b",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "As at line 101.",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_8488f042",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "Please add a test for the failure case as well. (The failure case for this method ought to be simple enough, and short enough, to include in this CL.)",
+      "range": {
+        "startLine": 178,
+        "startChar": 2,
+        "endLine": 178,
+        "endChar": 13
+      },
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c76e81_641cbc2a",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-11T02:00:33Z",
+      "side": 1,
+      "message": "I think there are some methods not covered by these tests (see below). Please file a bug to add corresponding tests.\n\nMethods not covered by these tests:\n- StopScheduledScan()\n- SubcribeScanResultNotification()\n- UnsubscribeScanResultNotification()\n- SubscribeSchedScanResultNotification()\n- UnsubscribeSchedScanResultNotification()",
+      "revId": "bab4da8b037ff1cbda7b977116f530aed12639f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
