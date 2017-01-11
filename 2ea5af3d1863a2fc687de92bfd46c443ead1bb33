@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a364350b_9fed7408",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-11T19:16:37Z",
+      "side": 1,
+      "message": "Why don\u0027t we use vector\u003cvector\u003cuint8_t\u003e\u003e here, as for the PnoScan?",
+      "range": {
+        "startLine": 98,
+        "startChar": 31,
+        "endLine": 98,
+        "endChar": 54
+      },
+      "revId": "2ea5af3d1863a2fc687de92bfd46c443ead1bb33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_5f37dc4d",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-11T19:16:37Z",
+      "side": 1,
+      "message": "String16",
+      "range": {
+        "startLine": 105,
+        "startChar": 20,
+        "endLine": 105,
+        "endChar": 29
+      },
+      "revId": "2ea5af3d1863a2fc687de92bfd46c443ead1bb33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
