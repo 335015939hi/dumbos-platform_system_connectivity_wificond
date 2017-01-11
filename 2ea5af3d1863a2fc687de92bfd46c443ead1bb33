@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a364350b_044593ad",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:55:22Z",
+      "side": 1,
+      "message": "This function implements an IPC call defined in an aidl file.\nThis is done by making ScannerImpl inherit an auto-generated virtual class.\n\nSince aidl files are almost java style, the code generating process should take care of type mapping.\n\nCurrently Java string is mapped to String16(Although I think mapping to vector\u003cuint32_t\u003e is more flexible)\n\nSee \"Type Mapping\" part in the following link for more details:\n\nhttps://android.googlesource.com/platform/system/tools/aidl/+/refs/heads/master/docs/aidl-cpp.md",
+      "parentUuid": "a364350b_9fed7408",
+      "range": {
+        "startLine": 98,
+        "startChar": 31,
+        "endLine": 98,
+        "endChar": 54
+      },
+      "revId": "2ea5af3d1863a2fc687de92bfd46c443ead1bb33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a364350b_5f37dc4d",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-11T19:16:37Z",
       "side": 1,
       "message": "String16",
+      "range": {
+        "startLine": 105,
+        "startChar": 20,
+        "endLine": 105,
+        "endChar": 29
+      },
+      "revId": "2ea5af3d1863a2fc687de92bfd46c443ead1bb33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_244217a6",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-11T23:55:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a364350b_5f37dc4d",
       "range": {
         "startLine": 105,
         "startChar": 20,
