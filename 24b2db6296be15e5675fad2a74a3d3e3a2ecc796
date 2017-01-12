@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a364350b_4af395b7",
+        "filename": "scanning/scan_utils.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-12T00:47:03Z",
+      "side": 1,
+      "message": "updated the comments.",
+      "parentUuid": "a364350b_cd27c97e",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 17
+      },
+      "revId": "24b2db6296be15e5675fad2a74a3d3e3a2ecc796",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a364350b_4d3c199a",
         "filename": "scanning/scan_utils.h",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a364350b_2da99b66",
+        "filename": "scanning/scan_utils.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-12T00:47:03Z",
+      "side": 1,
+      "message": "updated the comments.",
+      "parentUuid": "a364350b_4d3c199a",
+      "range": {
+        "startLine": 81,
+        "startChar": 1,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "24b2db6296be15e5675fad2a74a3d3e3a2ecc796",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a364350b_4d0ad9d9",
         "filename": "scanning/scan_utils.h",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2017-01-11T18:45:58Z",
       "side": 1,
       "message": "This isn\u0027t actually used yet, right?",
+      "range": {
+        "startLine": 91,
+        "startChar": 7,
+        "endLine": 91,
+        "endChar": 25
+      },
+      "revId": "24b2db6296be15e5675fad2a74a3d3e3a2ecc796",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a364350b_8aaf6d84",
+        "filename": "scanning/scan_utils.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-12T00:47:03Z",
+      "side": 1,
+      "message": "Right. This will be used when we hook up wificond scanner with java framework.",
+      "parentUuid": "a364350b_4d0ad9d9",
       "range": {
         "startLine": 91,
         "startChar": 7,
