@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a364350b_9fe805f8",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-12T16:37:23Z",
+      "side": 1,
+      "message": "Helpful link, thanks.\n\nI probably should have addressed my question to the .aidl file - why do we use the String type for holding an SSID? Over on the HIDL side we\u0027re moving to byte arrays.",
+      "parentUuid": "a364350b_044593ad",
+      "range": {
+        "startLine": 98,
+        "startChar": 31,
+        "endLine": 98,
+        "endChar": 54
+      },
+      "revId": "2ea5af3d1863a2fc687de92bfd46c443ead1bb33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a364350b_5f37dc4d",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 3
