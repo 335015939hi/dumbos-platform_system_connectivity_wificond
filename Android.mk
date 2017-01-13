@@ -160,6 +160,7 @@ LOCAL_SRC_FILES := \
     tests/netlink_utils_unittest.cpp \
     tests/nl80211_attribute_unittest.cpp \
     tests/nl80211_packet_unittest.cpp \
+    tests/scanner_unittest.cpp \
     tests/scan_result_unittest.cpp \
     tests/scan_settings_unittest.cpp \
     tests/server_unittest.cpp
