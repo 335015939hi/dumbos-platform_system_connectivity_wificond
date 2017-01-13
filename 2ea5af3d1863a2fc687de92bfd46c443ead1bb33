@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "c3bbe9cf_13fc44bd",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-13T22:39:35Z",
+      "side": 1,
+      "message": "Yes you are correct.\nIt is better to use byte arrays because HIDL uses that and internally wificond also uses that.\nGiven it is a ssid list, we have two 3 here:\n\n1. Use String:\nboolean scan(in int[] freqs, in String[] ssids);\nAnd convert things in wificond.\n\n2. Use byte arrays, which results:\nboolean scan(in int[] freqs, in byte[][] ssids);\nHowever the aidl-c++ code generator doesn\u0027t support nested arrays.\n\n3. Use parcelable object:\nboolean scan(in int[] freqs, in network[] ssids);\n\nwhere:\nclass network {\n  byte[] ssid;\n}\nI think this approach might be a little bit over engineered here.\nI am OK either way, I will ping rpius@ to see what\u0027s his opinion on that.",
+      "parentUuid": "a364350b_9fe805f8",
+      "range": {
+        "startLine": 98,
+        "startChar": 31,
+        "endLine": 98,
+        "endChar": 54
+      },
+      "revId": "2ea5af3d1863a2fc687de92bfd46c443ead1bb33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a364350b_5f37dc4d",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 3
