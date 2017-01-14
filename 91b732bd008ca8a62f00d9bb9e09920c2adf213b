@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3bbe9cf_bbe9aa68",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-14T01:45:28Z",
+      "side": 1,
+      "message": "(Continued from PS4)\n\n1. Run-time parameters instead of compile-time parameters is fine. (i.e., template is not necessary.)\n2. I appreciate the fact that we\u0027ll need more parameters later. But...\n   a) It\u0027s better to add complexity as needed, rather than all up-front. This is for two reasons. First: reviewers don\u0027t know what\u0027s coming later, so they don\u0027t know why the additional complexity is necessary. Second: adding complexity as-needed avoids adding accumulating cruft that turned out not to be necessary. [i]\n   b) Given the number of call-sites that only need a single packet, I still think it\u0027s worth making the single-packet case simpler.\n\n  We could, for example, have AppendMessageAndReturn, for the single-packet case, and AppendMultipleMessagesAndReturn, for the multi-packet case.\n\n[i] There are exceptions to this, of course. If the needs down-the-line are so different from the immediate need that a large refactor would be necessary, then it makes sense to discuss with reviewers about the CLs that are coming down the line.\n\n(FWIW: if the number of response packets is known at compile time, we could use a variadic template to cover all cases. But I mention that more as trivia, than as a recommendation.)",
+      "range": {
+        "startLine": 81,
+        "startChar": 5,
+        "endLine": 81,
+        "endChar": 27
+      },
+      "revId": "91b732bd008ca8a62f00d9bb9e09920c2adf213b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3bbe9cf_bb160ac3",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2017-01-14T01:45:28Z",
+      "side": 1,
+      "message": "|const auto\u0026|?",
+      "range": {
+        "startLine": 86,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 12
+      },
+      "revId": "91b732bd008ca8a62f00d9bb9e09920c2adf213b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
