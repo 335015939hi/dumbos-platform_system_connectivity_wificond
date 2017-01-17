@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c3bbe9cf_9c0db3b3",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-17T18:00:24Z",
+      "side": 1,
+      "message": "I modified the |AppendMessageAndReturn| to only handle single-packet. I also mentioned it is for the case single packet response.\n|AppendMultipleMessageAndReturn| will be added  when later CLs actually use that.",
+      "parentUuid": "c3bbe9cf_bbe9aa68",
+      "range": {
+        "startLine": 81,
+        "startChar": 5,
+        "endLine": 81,
+        "endChar": 27
+      },
+      "revId": "91b732bd008ca8a62f00d9bb9e09920c2adf213b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3bbe9cf_bb160ac3",
         "filename": "tests/scan_utils_unittest.cpp",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-14T01:45:28Z",
       "side": 1,
       "message": "|const auto\u0026|?",
+      "range": {
+        "startLine": 86,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 12
+      },
+      "revId": "91b732bd008ca8a62f00d9bb9e09920c2adf213b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3bbe9cf_dc164bc4",
+        "filename": "tests/scan_utils_unittest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-17T18:00:24Z",
+      "side": 1,
+      "message": "N/A in this patch.",
+      "parentUuid": "c3bbe9cf_bb160ac3",
       "range": {
         "startLine": 86,
         "startChar": 7,
