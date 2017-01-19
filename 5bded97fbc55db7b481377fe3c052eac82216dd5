@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "082efe90_a3cdc06a",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-01-19T18:23:09Z",
+      "side": 1,
+      "message": "Same comment as previous CL, we should return an error here.",
+      "revId": "5bded97fbc55db7b481377fe3c052eac82216dd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
