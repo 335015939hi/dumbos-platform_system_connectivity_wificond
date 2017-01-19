@@ -22,6 +22,30 @@
       "revId": "99f17b820de1f24a3f392a15bcb116b2b4bcd9c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "082efe90_63d7d8fb",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-19T18:23:31Z",
+      "side": 1,
+      "message": "A binder returning failure will cause framework to restart.\nSee b/30159593 for details.\nI think this error is not that fatal.",
+      "parentUuid": "082efe90_23467013",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 24
+      },
+      "revId": "99f17b820de1f24a3f392a15bcb116b2b4bcd9c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
