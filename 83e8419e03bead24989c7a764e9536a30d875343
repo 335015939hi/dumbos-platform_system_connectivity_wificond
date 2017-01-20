@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "082efe90_58e83060",
+        "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-20T18:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "082efe90_69f9e554",
+      "range": {
+        "startLine": 50,
+        "startChar": 59,
+        "endLine": 50,
+        "endChar": 69
+      },
+      "revId": "83e8419e03bead24989c7a764e9536a30d875343",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "082efe90_c938d93e",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-20T16:11:24Z",
       "side": 1,
       "message": "Where is this used? I don\u0027t see this being passed to scan_utils_.",
+      "range": {
+        "startLine": 208,
+        "startChar": 18,
+        "endLine": 208,
+        "endChar": 41
+      },
+      "revId": "83e8419e03bead24989c7a764e9536a30d875343",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "082efe90_b89f14f2",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-20T18:43:11Z",
+      "side": 1,
+      "message": "Um, this should belong to a following CL.\nRemove it for now.",
+      "parentUuid": "082efe90_c938d93e",
       "range": {
         "startLine": 208,
         "startChar": 18,
