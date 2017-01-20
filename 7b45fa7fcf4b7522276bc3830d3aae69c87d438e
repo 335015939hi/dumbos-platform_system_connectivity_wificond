@@ -16,6 +16,24 @@
       "revId": "7b45fa7fcf4b7522276bc3830d3aae69c87d438e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "082efe90_84f2b822",
+        "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-20T18:42:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "082efe90_49c8692a",
+      "revId": "7b45fa7fcf4b7522276bc3830d3aae69c87d438e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
