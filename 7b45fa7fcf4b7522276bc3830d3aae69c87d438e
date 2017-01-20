@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "082efe90_49c8692a",
+        "filename": "aidl/android/net/wifi/IWifiScannerImpl.aidl",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-01-20T15:55:36Z",
+      "side": 1,
+      "message": "May want to write down the expected behaviour if there are multiple calls. Would it replace the first one or will the second call be ignored?",
+      "revId": "7b45fa7fcf4b7522276bc3830d3aae69c87d438e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
