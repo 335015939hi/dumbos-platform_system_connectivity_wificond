@@ -71,6 +71,7 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
       bool aborted,
       std::vector<std::vector<uint8_t>>& ssids,
       std::vector<uint32_t>& frequencies);
+  void OnSchedScanResultsReady(uint32_t interface_index);
 
   bool valid_;
   uint32_t interface_index_;
