@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "082efe90_c42560cd",
+        "filename": "scanning/scan_utils.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-20T18:42:42Z",
+      "side": 1,
+      "message": "Good point.\nI think use \u0027request_random_mac\u0027 is more precise.\nDone with that.",
+      "parentUuid": "082efe90_0908219f",
+      "range": {
+        "startLine": 68,
+        "startChar": 60,
+        "endLine": 68,
+        "endChar": 70
+      },
+      "revId": "0e324c33d30d7862ea53abb148342fbb74da198a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "082efe90_e90cb5b5",
         "filename": "scanning/scan_utils.h",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-20T15:58:53Z",
       "side": 1,
       "message": "Same.",
+      "range": {
+        "startLine": 83,
+        "startChar": 25,
+        "endLine": 83,
+        "endChar": 35
+      },
+      "revId": "0e324c33d30d7862ea53abb148342fbb74da198a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "082efe90_842758d2",
+        "filename": "scanning/scan_utils.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-20T18:42:42Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "082efe90_e90cb5b5",
       "range": {
         "startLine": 83,
         "startChar": 25,
