@@ -36,6 +36,11 @@ status_t PnoSettings::writeToParcel(::android::Parcel* parcel) const {
   for (const auto& network : pno_networks_) {
     RETURN_IF_FAILED(network.writeToParcel(parcel));
   }
+  RETURN_IF_FAILED(parcel->writeInt32(hidden_networks_.size()));
+  for (const auto& network : hidden_networks_) {
+    RETURN_IF_FAILED(network.writeToParcel(parcel));
+  }
+
   return ::android::OK;
 }
 
@@ -50,6 +55,14 @@ status_t PnoSettings::readFromParcel(const ::android::Parcel* parcel) {
     RETURN_IF_FAILED(network.readFromParcel(parcel));
     pno_networks_.push_back(network);
   }
+  int32_t num_hidden_networks = 0;
+  RETURN_IF_FAILED(parcel->readInt32(&num_hidden_networks));
+  for (int i = 0; i < num_hidden_networks; i++) {
+    HiddenNetwork network;
+    RETURN_IF_FAILED(network.readFromParcel(parcel));
+    hidden_networks_.push_back(network);
+  }
+
   return ::android::OK;
 }
 

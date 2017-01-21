@@ -22,6 +22,7 @@
 #include <binder/Parcel.h>
 #include <binder/Parcelable.h>
 
+#include "wificond/scanning/hidden_network.h"
 #include "wificond/scanning/pno_network.h"
 
 namespace com {
@@ -37,7 +38,8 @@ class PnoSettings : public ::android::Parcelable {
         min_2g_rssi_(0),
         min_5g_rssi_(0) {}
   bool operator==(const PnoSettings& rhs) const {
-    return (pno_networks_ == rhs.pno_networks_ &&
+    return (hidden_networks_ == rhs.hidden_networks_ &&
+            pno_networks_ == rhs.pno_networks_ &&
             min_2g_rssi_ == rhs.min_2g_rssi_ &&
             min_5g_rssi_ == rhs.min_5g_rssi_);
   }
@@ -47,6 +49,8 @@ class PnoSettings : public ::android::Parcelable {
   int32_t interval_ms_;
   int32_t min_2g_rssi_;
   int32_t min_5g_rssi_;
+
+  std::vector<HiddenNetwork> hidden_networks_;
   std::vector<PnoNetwork> pno_networks_;
 };
 
