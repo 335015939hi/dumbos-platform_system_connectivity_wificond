@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "082efe90_8a92b574",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-01-21T00:39:17Z",
+      "side": 1,
+      "message": "U probably should add some verification to ensure that the hidden networks list is a subset of the pno_networks. You should error out if that\u0027s not the case. We don\u0027t want to waste additional resources for hidden networks (need to send individual probe requests) if they\u0027re not in the pno match list.",
+      "range": {
+        "startLine": 150,
+        "startChar": 36,
+        "endLine": 150,
+        "endChar": 52
+      },
+      "revId": "aeafede9f3b28558d6ecde2813aad999a2ae4407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
