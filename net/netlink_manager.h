@@ -61,7 +61,8 @@ typedef std::function<void(
     std::vector<uint32_t>& frequencies)> OnScanResultsReadyHandler;
 
 typedef std::function<void(
-    uint32_t interface_index)> OnSchedScanResultsReadyHandler;
+    uint32_t interface_index,
+    bool scan_stopped)> OnSchedScanResultsReadyHandler;
 
 class NetlinkManager {
  public:
