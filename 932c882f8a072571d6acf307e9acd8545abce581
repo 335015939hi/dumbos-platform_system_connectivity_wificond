@@ -46,6 +46,30 @@
       "revId": "932c882f8a072571d6acf307e9acd8545abce581",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "082efe90_f7f110af",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-23T21:54:27Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "082efe90_79687cf7",
+      "range": {
+        "startLine": 222,
+        "startChar": 25,
+        "endLine": 222,
+        "endChar": 42
+      },
+      "revId": "932c882f8a072571d6acf307e9acd8545abce581",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
