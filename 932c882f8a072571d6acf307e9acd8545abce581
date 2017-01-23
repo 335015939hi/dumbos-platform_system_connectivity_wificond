@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "082efe90_79687cf7",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-01-23T16:48:39Z",
+      "side": 1,
+      "message": "We should have a separate callback for sched scan. The single scan and Pno scan requests are sent by different entities and it\u0027ll be diffficult to figure out if this notification is for single scan or pno scan if both of them are run simultaneously.",
+      "range": {
+        "startLine": 222,
+        "startChar": 25,
+        "endLine": 222,
+        "endChar": 42
+      },
+      "revId": "932c882f8a072571d6acf307e9acd8545abce581",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
