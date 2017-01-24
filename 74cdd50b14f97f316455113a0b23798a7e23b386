@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8ffea69_bb153bbb",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-01-24T01:20:29Z",
+      "side": 1,
+      "message": "Can we check if the scan is already started and log that here? That might be better than waiting for the StartScheduledScan to return a failure. \n\nif (pno_scan_started) {\n  LOG(ERROR) \u003c\u003c \"Pno scan already started\";\n  *out_success \u003d false;\n}",
+      "revId": "74cdd50b14f97f316455113a0b23798a7e23b386",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8ffea69_fb1fc3d4",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-01-24T01:20:29Z",
+      "side": 1,
+      "message": "Can we check if the scan is already stopped and log that here? That might be better than waiting for the StopScheduledScan to return a failure. \n\nif (!pno_scan_started) {\n  LOG(ERROR) \u003c\u003c \"No pno scan started\";\n  *out_success \u003d false;\n}",
+      "revId": "74cdd50b14f97f316455113a0b23798a7e23b386",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
