@@ -124,8 +124,14 @@ Status ScannerImpl::scan(const SingleScanSettings& scan_settings,
   // Initialize it with an empty ssid for a wild card scan.
   vector<vector<uint8_t>> ssids = {{0}};
   for (auto& network : scan_settings.hidden_networks_) {
+    if (ssids.size() + 1 > scan_capabilities_.max_num_scan_ssids) {
+      LOG(WARNING) << "Skip scan ssid for single scan: "
+                   << string(network.ssid_.begin(), network.ssid_.end());
+      continue;
+    }
     ssids.push_back(network.ssid_);
   }
+
   vector<uint32_t> freqs;
   for (auto& channel : scan_settings.channel_settings_) {
     freqs.push_back(channel.frequency_);
@@ -142,6 +148,9 @@ Status ScannerImpl::scan(const SingleScanSettings& scan_settings,
 
 Status ScannerImpl::startPnoScan(const PnoSettings& pno_settings,
                                  bool* out_success) {
+  if (!CheckIsValid()) {
+    return Status::ok();
+  }
   if (pno_scan_started_) {
     LOG(ERROR) << "Pno scan already started";
     *out_success = false;
@@ -154,12 +163,24 @@ Status ScannerImpl::startPnoScan(const PnoSettings& pno_settings,
   vector<uint32_t> freqs;
 
   for (auto& network : pno_settings.pno_networks_) {
-    match_ssids.push_back(network.ssid_);
     // Add hidden network ssid.
     if (network.is_hidden_) {
+      if (scan_ssids.size() + 1 > scan_capabilities_.max_num_sched_scan_ssids) {
+        LOG(WARNING) << "Skip scan ssid for pno scan: "
+                     << string(network.ssid_.begin(), network.ssid_.end());
+        continue;
+      }
       scan_ssids.push_back(network.ssid_);
     }
+
+    if (match_ssids.size() + 1 > scan_capabilities_.max_match_sets) {
+      LOG(WARNING) << "Skip match ssid for pno scan: "
+                   << string(network.ssid_.begin(), network.ssid_.end());
+      continue;
+    }
+    match_ssids.push_back(network.ssid_);
   }
+
   bool random_mac = wiphy_features_.supports_random_mac_sched_scan;
 
   if (!scan_utils_->StartScheduledScan(interface_index_,
