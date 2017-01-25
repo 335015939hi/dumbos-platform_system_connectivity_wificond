@@ -53,7 +53,8 @@ class ApInterfaceImpl {
       bool is_hidden,
       int32_t channel,
       wifi_system::HostapdManager::EncryptionType encryption_type,
-      const std::vector<uint8_t>& passphrase);
+      const std::vector<uint8_t>& passphrase,
+      int32_t max_num_connections);
   std::string GetInterfaceName() { return interface_name_; }
 
  private:

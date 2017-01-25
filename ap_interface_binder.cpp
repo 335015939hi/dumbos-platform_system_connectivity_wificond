@@ -58,6 +58,7 @@ binder::Status ApInterfaceBinder::writeHostapdConfig(
     int32_t channel,
     int32_t binder_encryption_type,
     const std::vector<uint8_t>& passphrase,
+    int32_t max_num_connections,
     bool* out_success) {
   *out_success = false;
   if (!impl_) {
@@ -82,7 +83,7 @@ binder::Status ApInterfaceBinder::writeHostapdConfig(
   }
 
   *out_success = impl_->WriteHostapdConfig(
-      ssid, is_hidden, channel, encryption_type, passphrase);
+      ssid, is_hidden, channel, encryption_type, passphrase, max_num_connections);
 
   return binder::Status::ok();
 }
