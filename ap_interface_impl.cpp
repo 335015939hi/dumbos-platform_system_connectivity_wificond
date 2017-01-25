@@ -75,9 +75,11 @@ bool ApInterfaceImpl::WriteHostapdConfig(const vector<uint8_t>& ssid,
                                          bool is_hidden,
                                          int32_t channel,
                                          EncryptionType encryption_type,
-                                         const vector<uint8_t>& passphrase) {
+                                         const vector<uint8_t>& passphrase,
+                                         int32_t max_num_connections) {
   string config = hostapd_manager_->CreateHostapdConfig(
-      interface_name_, ssid, is_hidden, channel, encryption_type, passphrase);
+      interface_name_, ssid, is_hidden, channel, encryption_type, passphrase,
+      max_num_connections);
 
   if (config.empty()) {
     return false;

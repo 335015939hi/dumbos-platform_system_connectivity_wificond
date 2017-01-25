@@ -41,9 +41,11 @@ interface IApInterface {
   // @param encryptionType one of ENCRYPTION_TYPE* above.
   // @param passphrase string of bytes to use as the passphrase for this AP.
   //        Ignored if encryptionType is None.
+  // @param max_num_connections Max number of connections allowed by this AP.
   // @return true on success.
   boolean writeHostapdConfig(in byte[] ssid, boolean isHidden, int channel,
-                             int encryptionType, in byte[] passphrase);
+                             int encryptionType, in byte[] passphrase,
+                             int max_num_connections);
 
   // Retrieve the name of the network interface corresponding to this
   // IApInterface instance (e.g. "wlan0")

@@ -43,6 +43,7 @@ class ApInterfaceBinder : public android::net::wifi::BnApInterface {
                                     int32_t channel,
                                     int32_t encryption_type,
                                     const std::vector<uint8_t>& passphrase,
+                                    int32_t max_num_connections,
                                     bool* out_success) override;
   binder::Status getInterfaceName(std::string* out_name) override;
 

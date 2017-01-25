@@ -104,6 +104,7 @@ TEST(ApInterfaceTest, CanStartStopHostapd) {
       IApInterface::ENCRYPTION_TYPE_WPA2,
       vector<uint8_t>(kValidPassphrase,
                       kValidPassphrase + sizeof(kValidPassphrase) - 1),
+      2,
       &wrote_config).isOk());
   ASSERT_TRUE(wrote_config);
 
@@ -155,6 +156,7 @@ TEST(ApInterfaceTest, CanWriteHostapdConfig) {
       IApInterface::ENCRYPTION_TYPE_WPA2,
       vector<uint8_t>(kValidPassphrase,
                       kValidPassphrase + sizeof(kValidPassphrase) - 1),
+      2,
       &success).isOk());
   EXPECT_TRUE(success) << "Expected to write out a valid config.";
 
@@ -166,6 +168,7 @@ TEST(ApInterfaceTest, CanWriteHostapdConfig) {
       IApInterface::ENCRYPTION_TYPE_WPA2,
       vector<uint8_t>(kValidPassphrase,
                       kValidPassphrase + sizeof(kValidPassphrase) - 1),
+      2,
       &success).isOk());
   EXPECT_FALSE(success) << "Did not expect to write out an invalid config.";
 }

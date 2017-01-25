@@ -84,7 +84,7 @@ TEST_F(ApInterfaceImplTest, ShouldReportStopSuccess) {
 }
 
 TEST_F(ApInterfaceImplTest, ShouldRejectInvalidConfig) {
-  EXPECT_CALL(*hostapd_manager_, CreateHostapdConfig(_, _, _, _, _, _))
+  EXPECT_CALL(*hostapd_manager_, CreateHostapdConfig(_, _, _, _, _, _, _))
       .WillOnce(Return(""));
   EXPECT_CALL(*hostapd_manager_, WriteHostapdConfig(_)).Times(0);
   EXPECT_FALSE(ap_interface_.WriteHostapdConfig(
@@ -92,7 +92,8 @@ TEST_F(ApInterfaceImplTest, ShouldRejectInvalidConfig) {
         false,
         0,
         HostapdManager::EncryptionType::kWpa2,
-        vector<uint8_t>()));
+        vector<uint8_t>(),
+        2));
 }
 
 }  // namespace wificond
