@@ -46,18 +46,31 @@ ScannerImpl::ScannerImpl(uint32_t interface_index,
                          const WiphyFeatures& wiphy_features,
                          ScanUtils* scan_utils)
     : valid_(true),
+      scan_started_(false),
       pno_scan_started_(false),
       interface_index_(interface_index),
       band_info_(band_info),
       scan_capabilities_(scan_capabilities),
       wiphy_features_(wiphy_features),
       scan_utils_(scan_utils),
-      scan_event_handler_(nullptr) {}
+      scan_event_handler_(nullptr) {
+  // Subscribe one-shot scan result notification from kernel.
+  scan_utils_->SubscribeScanResultNotification(
+      interface_index_,
+      std::bind(&ScannerImpl::OnScanResultsReady,
+                this,
+                _1, _2, _3, _4));
+  // Subscribe scheduled scan result notification from kernel.
+  scan_utils_->SubscribeSchedScanResultNotification(
+      interface_index_,
+      std::bind(&ScannerImpl::OnSchedScanResultsReady,
+                this,
+                _1, _2));
+}
 
 ScannerImpl::~ScannerImpl() {
-  if (scan_event_handler_ != nullptr) {
-    scan_utils_->UnsubscribeScanResultNotification(interface_index_);
-  }
+  scan_utils_->UnsubscribeScanResultNotification(interface_index_);
+  scan_utils_->UnsubscribeSchedScanResultNotification(interface_index_);
 }
 
 bool ScannerImpl::CheckIsValid() {
@@ -112,6 +125,11 @@ Status ScannerImpl::scan(const SingleScanSettings& scan_settings,
     return Status::ok();
   }
 
+  if (scan_started_) {
+    LOG(ERROR) << "Scan already started";
+    *out_success = false;
+    return Status::ok();
+  }
   bool random_mac =  wiphy_features_.supports_random_mac_oneshot_scan;
 
   if (scan_settings.is_full_scan_) {
@@ -136,6 +154,7 @@ Status ScannerImpl::scan(const SingleScanSettings& scan_settings,
     LOG(ERROR) << "Failed to start a scan";
     return Status::ok();
   }
+  scan_started_ = true;
   *out_success = true;
   return Status::ok();
 }
@@ -200,19 +219,10 @@ Status ScannerImpl::subscribeScanEvents(const sp<IScanEvent>& handler) {
                << " This subscription request will unsubscribe it";
   }
   scan_event_handler_ = handler;
-  // Subscribe one-shot scan result notification.
-  scan_utils_->SubscribeScanResultNotification(
-      interface_index_,
-      std::bind(&ScannerImpl::OnScanResultsReady,
-                this,
-                _1, _2, _3, _4));
-
   return Status::ok();
 }
 
 Status ScannerImpl::unsubscribeScanEvents() {
-
-  scan_utils_->UnsubscribeScanResultNotification(interface_index_);
   scan_event_handler_ = nullptr;
   return Status::ok();
 }
@@ -225,18 +235,10 @@ Status ScannerImpl::subscribePnoScanEvents(const sp<IPnoScanEvent>& handler) {
   }
   pno_scan_event_handler_ = handler;
 
-  // Subscribe scheduled scan result notification.
-  scan_utils_->SubscribeSchedScanResultNotification(
-      interface_index_,
-      std::bind(&ScannerImpl::OnSchedScanResultsReady,
-                this,
-                _1, _2));
-
   return Status::ok();
 }
 
 Status ScannerImpl::unsubscribePnoScanEvents() {
-  scan_utils_->UnsubscribeSchedScanResultNotification(interface_index_);
   pno_scan_event_handler_ = nullptr;
   return Status::ok();
 }
@@ -246,6 +248,7 @@ void ScannerImpl::OnScanResultsReady(
     bool aborted,
     vector<vector<uint8_t>>& ssids,
     vector<uint32_t>& frequencies) {
+  scan_started_ = false;
   if (scan_event_handler_ != nullptr) {
     // TODO: Pass other parameters back once we find framework needs them.
     if (aborted) {
@@ -266,6 +269,7 @@ void ScannerImpl::OnSchedScanResultsReady(uint32_t interface_index,
       if (pno_scan_started_) {
         pno_scan_event_handler_->OnPnoScanFailed();
       }
+      pno_scan_started_ = false;
     } else {
       pno_scan_event_handler_->OnPnoNetworkFound();
     }
