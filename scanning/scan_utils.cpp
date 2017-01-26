@@ -91,7 +91,6 @@ bool ScanUtils::GetScanResult(uint32_t interface_index,
     return false;
   }
 
-  vector<NativeScanResult> scan_results;
   for (auto& packet : response) {
     if (packet->GetMessageType() == NLMSG_ERROR) {
       LOG(ERROR) << "Receive ERROR message: "
@@ -118,9 +117,8 @@ bool ScanUtils::GetScanResult(uint32_t interface_index,
       LOG(WARNING) << "Ignore invalid scan result";
       continue;
     }
-    scan_results.push_back(scan_result);
+    out_scan_results->push_back(std::move(scan_result));
   }
-  *out_scan_results = scan_results;
   return true;
 }
 
@@ -132,52 +130,45 @@ bool ScanUtils::ParseScanResult(unique_ptr<const NL80211Packet> packet,
   }
   NL80211NestedAttr bss(0);
   if (packet->GetAttribute(NL80211_ATTR_BSS, &bss)) {
-    vector<uint8_t> bssid;
-    if (!bss.GetAttributeValue(NL80211_BSS_BSSID, &bssid)) {
+    if (!bss.GetAttributeValue(NL80211_BSS_BSSID, &scan_result->bssid)) {
       LOG(ERROR) << "Failed to get BSSID from scan result packet";
       return false;
     }
-    uint32_t freq;
-    if (!bss.GetAttributeValue(NL80211_BSS_FREQUENCY, &freq)) {
+    if (!bss.GetAttributeValue(NL80211_BSS_FREQUENCY,
+                               &scan_result->frequency)) {
       LOG(ERROR) << "Failed to get Frequency from scan result packet";
       return false;
     }
-    vector<uint8_t> ie;
-    if (!bss.GetAttributeValue(NL80211_BSS_INFORMATION_ELEMENTS, &ie)) {
+    if (!bss.GetAttributeValue(NL80211_BSS_INFORMATION_ELEMENTS,
+                               &scan_result->info_element)) {
       LOG(ERROR) << "Failed to get Information Element from scan result packet";
       return false;
     }
-    vector<uint8_t> ssid;
-    if (!GetSSIDFromInfoElement(ie, &ssid)) {
+    if (!GetSSIDFromInfoElement(scan_result->info_element,
+                                &scan_result->ssid)) {
       // Hidden wireless network has no SSID in IE.
       LOG(DEBUG) << "Failed to get SSID from Information Element. "
                  << "This might be a hidden network";
     }
-    uint64_t tsf;
-    if (!bss.GetAttributeValue(NL80211_BSS_TSF, &tsf)) {
+    if (!bss.GetAttributeValue(NL80211_BSS_TSF, &scan_result->tsf)) {
       LOG(ERROR) << "Failed to get TSF from scan result packet";
       return false;
     }
-    int32_t signal;
-    if (!bss.GetAttributeValue(NL80211_BSS_SIGNAL_MBM, &signal)) {
+    if (!bss.GetAttributeValue(NL80211_BSS_SIGNAL_MBM, &scan_result->signal_mbm)) {
       LOG(ERROR) << "Failed to get Signal Strength from scan result packet";
       return false;
     }
-    uint16_t capability;
-    if (!bss.GetAttributeValue(NL80211_BSS_CAPABILITY, &capability)) {
+    if (!bss.GetAttributeValue(NL80211_BSS_CAPABILITY, &scan_result->capability)) {
       LOG(ERROR) << "Failed to get capability field from scan result packet";
       return false;
     }
-    bool associated = false;
+    scan_result->associated = false;
     uint32_t bss_status;
     if (bss.GetAttributeValue(NL80211_BSS_STATUS, &bss_status) &&
             (bss_status == NL80211_BSS_STATUS_AUTHENTICATED ||
                 bss_status == NL80211_BSS_STATUS_ASSOCIATED)) {
-      associated = true;
+      scan_result->associated = true;
     }
-
-    *scan_result =
-        NativeScanResult(ssid, bssid, ie, freq, signal, tsf, capability, associated);
   }
   return true;
 }
