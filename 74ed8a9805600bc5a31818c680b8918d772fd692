@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "d9cfa8f6_43c96866",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-27T18:09:19Z",
+      "side": 1,
+      "message": "This cannot be null.\num.. Although this is an internal API, I think it worth mentioning that in the header file document. I will do it in later CLs.",
+      "revId": "74ed8a9805600bc5a31818c680b8918d772fd692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27a89ac2_cf2ca2e9",
         "filename": "scanning/scan_utils.cpp",
         "patchSetId": 4
@@ -30,6 +47,23 @@
       "writtenOn": "2017-01-27T03:46:53Z",
       "side": 1,
       "message": "What is the pointer scan_result is null? The previous version actually instantiates a new object and assigns the pointer to that. Is there a change in the calling code for this method?",
+      "revId": "74ed8a9805600bc5a31818c680b8918d772fd692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "563fbee2_8e927dec",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-27T18:09:19Z",
+      "side": 1,
+      "message": "I think in case of null, old/new code have the same behavior--crash. There is no change in the calling code. I will remove the change in ParseScanResult() in response to mplass@\u0027s advice.",
       "revId": "74ed8a9805600bc5a31818c680b8918d772fd692",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
