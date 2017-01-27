@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "40532db4_24ad7792",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T23:07:44Z",
+      "side": 1,
+      "message": "I would argue that the same concerns as changes to ParseScanResult will apply here. In the previous version, out_scan_result can point to null and it will be okay because it will be assigned to point to a new vector created by the method. In the latter case, a null input value is not acceptable. It is an API change from the perspective of the caller.",
+      "revId": "74ed8a9805600bc5a31818c680b8918d772fd692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27a89ac2_cf2ca2e9",
         "filename": "scanning/scan_utils.cpp",
         "patchSetId": 4
