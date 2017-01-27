@@ -67,6 +67,23 @@
       "revId": "74ed8a9805600bc5a31818c680b8918d772fd692",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5634aa79_72317d37",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T23:04:06Z",
+      "side": 1,
+      "message": "it is not true that the old and new have the same behavior. In previous case, if scan_result \u003d\u003d null, you assign it to point to a new instance of NativeScanResult. In the new version, scan_result being null will cause a crash. This implicitly requires the caller to not allocate memory for the object in the previous version and allocate memory in this version. Do you agree?",
+      "revId": "74ed8a9805600bc5a31818c680b8918d772fd692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
