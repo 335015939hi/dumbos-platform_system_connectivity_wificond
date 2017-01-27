@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5d07a77_623228e1",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:30:59Z",
+      "side": 1,
+      "message": "No need for this check here?\n  if (!CheckIsValid()) {\n    return Status::ok();\n  }",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "13f0e8a7_7936a5a7",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:30:59Z",
+      "side": 1,
+      "message": "No Need for this check here?\nif (!CheckIsValid()) {\n    return Status::ok();\n  }",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a85fe3f_6b0c28c4",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:30:59Z",
+      "side": 1,
+      "message": "same as line 218?",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "054fbecc_e4bba086",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:30:59Z",
+      "side": 1,
+      "message": "same as line 234",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1738b83d_48adf011",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:30:59Z",
+      "side": 1,
+      "message": "same as line 241",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
