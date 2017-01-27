@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5df8b6c1_82a2bf96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:11:20Z",
+      "side": 1,
+      "message": "Could you explain to me , either briefly here or offline, why Wificond needs to maintain the scan status? I read the bug, but it has a lot of information and I am not sure which of it applies to this CL.",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca17d78f_ede7cfe8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:11:20Z",
+      "side": 1,
+      "message": "allows",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3484d15f_c36738c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:11:20Z",
+      "side": 1,
+      "message": "even if there",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4d57bd8_64dac418",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:11:20Z",
+      "side": 1,
+      "message": "Do you distinguish between two kind of scans with different settings? Is it possible that different kind of scans were requested within the window of a completion of an ongoing scans? I was wondering how the caller could tell if the scan he wants with his settings is indeed going on?",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af82e632_4bf9f479",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:11:20Z",
+      "side": 1,
+      "message": "should this be true even in error case? For example, for some reason scan failed, do you expect a Scan completion callback? If not then scan_started will always remain true and prevent any further scans, yes?",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7bbe466_31f33680",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:11:20Z",
+      "side": 1,
+      "message": "same comment as line 157",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d21deb4f_e1f8af54",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T05:11:20Z",
+      "side": 1,
+      "message": "It is unclear why this flag is set in here. If the scan is not stopped, do you expect another call back?",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
