@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00f2920d_49244d86",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T03:46:53Z",
+      "side": 1,
+      "message": "can this out_scan_results be  null?",
+      "revId": "74ed8a9805600bc5a31818c680b8918d772fd692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27a89ac2_cf2ca2e9",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-27T03:46:53Z",
+      "side": 1,
+      "message": "What is the pointer scan_result is null? The previous version actually instantiates a new object and assigns the pointer to that. Is there a change in the calling code for this method?",
+      "revId": "74ed8a9805600bc5a31818c680b8918d772fd692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
