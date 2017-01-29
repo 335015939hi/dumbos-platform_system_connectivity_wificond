@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "e983ec2c_a48921bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-29T03:56:52Z",
+      "side": 1,
+      "message": "for",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 9,
+        "endChar": 32
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e68a8dfd_3c83eeed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-29T03:56:52Z",
+      "side": 1,
+      "message": "capabilities",
+      "range": {
+        "startLine": 9,
+        "startChar": 18,
+        "endLine": 9,
+        "endChar": 29
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c82a5102_513f9b16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-29T03:56:52Z",
+      "side": 1,
+      "message": "enables",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 11
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c9425067_e4310522",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-29T03:56:52Z",
+      "side": 1,
+      "message": "\"larger number of\" or simply \"more\"",
+      "range": {
+        "startLine": 12,
+        "startChar": 24,
+        "endLine": 12,
+        "endChar": 38
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50135bcf_26a2ef9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1126614
+      },
+      "writtenOn": "2017-01-29T03:56:52Z",
+      "side": 1,
+      "message": "formatting",
+      "range": {
+        "startLine": 15,
+        "startChar": 27,
+        "endLine": 15,
+        "endChar": 36
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5d07a77_623228e1",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 4
