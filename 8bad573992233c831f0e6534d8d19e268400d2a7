@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "59c0eb9f_c286e9b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T19:22:26Z",
+      "side": 1,
+      "message": "Discussed offline.",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca17d78f_ede7cfe8",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -30,6 +47,23 @@
       "writtenOn": "2017-01-27T05:11:20Z",
       "side": 1,
       "message": "allows",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e076228_fb7f9c1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T19:22:26Z",
+      "side": 1,
+      "message": "Done",
       "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +87,23 @@
     },
     {
       "key": {
+        "uuid": "13c949c2_4285fad9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T19:22:26Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4d57bd8_64dac418",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 2
@@ -64,6 +115,23 @@
       "writtenOn": "2017-01-27T05:11:20Z",
       "side": 1,
       "message": "Do you distinguish between two kind of scans with different settings? Is it possible that different kind of scans were requested within the window of a completion of an ongoing scans? I was wondering how the caller could tell if the scan he wants with his settings is indeed going on?",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a03c52ce_8ff98663",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T19:22:26Z",
+      "side": 1,
+      "message": "Discussed offline.",
       "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -87,6 +155,23 @@
     },
     {
       "key": {
+        "uuid": "b4fd3a03_37ae5a61",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T19:22:26Z",
+      "side": 1,
+      "message": "Discussed offline.\nFixed.",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7bbe466_31f33680",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 2
@@ -104,6 +189,23 @@
     },
     {
       "key": {
+        "uuid": "cb2169f7_d661d251",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T19:22:26Z",
+      "side": 1,
+      "message": "same above.",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d21deb4f_e1f8af54",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 2
@@ -115,6 +217,23 @@
       "writtenOn": "2017-01-27T05:11:20Z",
       "side": 1,
       "message": "It is unclear why this flag is set in here. If the scan is not stopped, do you expect another call back?",
+      "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "079d6716_72981eeb",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T19:22:26Z",
+      "side": 1,
+      "message": "Discussed offline.",
       "revId": "8bad573992233c831f0e6534d8d19e268400d2a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
