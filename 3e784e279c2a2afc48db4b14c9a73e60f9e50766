@@ -48,6 +48,52 @@
     },
     {
       "key": {
+        "uuid": "255f4319_b6ae7937",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "range": {
+        "startLine": 9,
+        "startChar": 18,
+        "endLine": 9,
+        "endChar": 29
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e3270a6_8c73d26f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "range": {
+        "startLine": 9,
+        "startChar": 18,
+        "endLine": 9,
+        "endChar": 29
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c82a5102_513f9b16",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -59,6 +105,29 @@
       "writtenOn": "2017-01-29T03:56:52Z",
       "side": 1,
       "message": "enables",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 11
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8be8f94a_f9d41b9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "Done",
       "range": {
         "startLine": 10,
         "startChar": 5,
@@ -94,6 +163,29 @@
     },
     {
       "key": {
+        "uuid": "d044fa47_a408b59d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "range": {
+        "startLine": 12,
+        "startChar": 24,
+        "endLine": 12,
+        "endChar": 38
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50135bcf_26a2ef9b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -105,6 +197,29 @@
       "writtenOn": "2017-01-29T03:56:52Z",
       "side": 1,
       "message": "formatting",
+      "range": {
+        "startLine": 15,
+        "startChar": 27,
+        "endLine": 15,
+        "endChar": 36
+      },
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18a0ed1a_016c25a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "Done",
       "range": {
         "startLine": 15,
         "startChar": 27,
@@ -134,6 +249,23 @@
     },
     {
       "key": {
+        "uuid": "3e081e4c_e12c4b92",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13f0e8a7_7936a5a7",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 4
@@ -145,6 +277,23 @@
       "writtenOn": "2017-01-27T05:30:59Z",
       "side": 1,
       "message": "No Need for this check here?\nif (!CheckIsValid()) {\n    return Status::ok();\n  }",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4d17dde_cae826c0",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "Done",
       "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -168,6 +317,23 @@
     },
     {
       "key": {
+        "uuid": "eed426d7_1eccb845",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "This is kind of confusing.\nThis |ScannerImpl| class is valid only if associated client interface class is alive.\nThe Invalid() call happens here:\nhttp://cs/android/system/connectivity/wificond/client_interface_impl.cpp?l\u003d108\u0026rcl\u003d7b6642b45c51d4cac41fb7626a4080ce181415aa\n\nWe know that in a destructor, the body executes firstly, and then it destroys member variables.\nIn this case, |Invalid()| comes first, and then |scanner_| destructor of is called, and then |unsubscribePnoScanEvent()| is called. Here we should allow the cleanup of subscriptions to happen even if the associated client interface class was dead.\n\nBottom line:\nIt makes sens and is useful for a cleanup function to be run even if we find things are incoherent.",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "054fbecc_e4bba086",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 4
@@ -185,6 +351,23 @@
     },
     {
       "key": {
+        "uuid": "ca806d59_920623ea",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1738b83d_48adf011",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 4
@@ -196,6 +379,23 @@
       "writtenOn": "2017-01-27T05:30:59Z",
       "side": 1,
       "message": "same as line 241",
+      "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57e339ef_e02a8385",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-30T17:54:09Z",
+      "side": 1,
+      "message": "Same above.",
       "revId": "3e784e279c2a2afc48db4b14c9a73e60f9e50766",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
