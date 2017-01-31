@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e98bf22_01c4c1d9",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-31T19:28:45Z",
+      "side": 1,
+      "message": "scan is requested after invalidating this object? Log warning? BTW why return okay?",
+      "revId": "2cb3ad6dba395961284dc112deebcff95efa01c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
