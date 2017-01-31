@@ -33,6 +33,23 @@
       "revId": "2cb3ad6dba395961284dc112deebcff95efa01c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1461b0f6_76686f06",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-01-31T22:27:14Z",
+      "side": 1,
+      "message": "thanks for clarification and context.",
+      "revId": "2cb3ad6dba395961284dc112deebcff95efa01c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
