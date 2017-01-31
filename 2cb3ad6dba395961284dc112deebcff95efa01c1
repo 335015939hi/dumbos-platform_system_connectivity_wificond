@@ -16,6 +16,23 @@
       "revId": "2cb3ad6dba395961284dc112deebcff95efa01c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d383c914_7d98a42f",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-01-31T21:43:50Z",
+      "side": 1,
+      "message": "Logging is done inside of CheckIsValid().\nIn terms of returning OK, soory I should point you to this earlier:\nb/30159593\nBecause of that, wificond always return Status::ok() to avoid triggering more exception in Java framework. If there is a need to report error, we can return boolean explicitly or just log internally.",
+      "revId": "2cb3ad6dba395961284dc112deebcff95efa01c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
