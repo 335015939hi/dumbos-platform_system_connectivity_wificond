@@ -147,9 +147,10 @@ bool ScanUtils::ParseScanResult(unique_ptr<const NL80211Packet> packet,
     }
     vector<uint8_t> ssid;
     if (!GetSSIDFromInfoElement(ie, &ssid)) {
-      // Hidden wireless network has no SSID in IE.
+      // Skip it.
       LOG(DEBUG) << "Failed to get SSID from Information Element. "
                  << "This might be a hidden network";
+      return false;
     }
     uint64_t tsf;
     if (!bss.GetAttributeValue(NL80211_BSS_TSF, &tsf)) {
