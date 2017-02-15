@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "791d09e1_e7f2e81f",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-02-15T20:44:46Z",
+      "side": 1,
+      "message": "This enable kernel to include wifi regulatory changes in nl80211 broadcast.",
+      "parentUuid": "e2890455_25c62833",
+      "revId": "2bee66d454a5a09e8a7155da0b0474cbae81c8c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e712f16_86a3e8ec",
         "filename": "net/netlink_manager.cpp",
         "patchSetId": 10
@@ -30,6 +48,47 @@
       "writtenOn": "2017-02-15T18:22:52Z",
       "side": 1,
       "message": "It seems like this method is not actually called right now. Is this change meant to be invoked in the code yet and if so how?",
+      "revId": "2bee66d454a5a09e8a7155da0b0474cbae81c8c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0319608_4e6dbe03",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-02-15T20:44:46Z",
+      "side": 1,
+      "message": "This is called by server.cc\nWe are supposed to subscribe/unsubscribe it when wiphy is reconfigured.(new interface, or interface teardown)",
+      "parentUuid": "3e712f16_86a3e8ec",
+      "revId": "2bee66d454a5a09e8a7155da0b0474cbae81c8c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93669ccc_bc827c72",
+        "filename": "server.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-02-15T20:44:46Z",
+      "side": 1,
+      "message": "That is called here.",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 15
+      },
       "revId": "2bee66d454a5a09e8a7155da0b0474cbae81c8c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
