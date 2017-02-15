@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b19df1c3_1af5ce8c",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2017-02-15T00:13:38Z",
+      "side": 1,
+      "message": "can you add a test case for this?",
+      "revId": "6bf503bedc62b231f8822600e9d9a64756812cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "462cad97_d35eb32a",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2017-02-15T00:13:38Z",
+      "side": 1,
+      "message": "test case for this as well.",
+      "revId": "6bf503bedc62b231f8822600e9d9a64756812cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
