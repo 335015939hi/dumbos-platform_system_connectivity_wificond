@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f3e65349_d6d7b62c",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-02-15T00:18:38Z",
+      "side": 1,
+      "message": "Complete unit test for this function is pending.\nhttp://cs/android/system/connectivity/wificond/tests/scan_utils_unittest.cpp?l\u003d119\u0026rcl\u003d4533df68379c2ce7746f2629423884d835c7d922\nProbably we can add that later ?",
+      "parentUuid": "b19df1c3_1af5ce8c",
+      "revId": "6bf503bedc62b231f8822600e9d9a64756812cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "462cad97_d35eb32a",
         "filename": "scanning/scan_utils.cpp",
         "patchSetId": 4
