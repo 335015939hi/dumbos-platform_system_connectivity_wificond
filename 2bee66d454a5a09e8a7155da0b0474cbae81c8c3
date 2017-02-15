@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2890455_25c62833",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-02-15T18:22:52Z",
+      "side": 1,
+      "message": "How is this related to the rest of the changes? Can you provide a clarification and add a brief comment?",
+      "revId": "2bee66d454a5a09e8a7155da0b0474cbae81c8c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e712f16_86a3e8ec",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-02-15T18:22:52Z",
+      "side": 1,
+      "message": "It seems like this method is not actually called right now. Is this change meant to be invoked in the code yet and if so how?",
+      "revId": "2bee66d454a5a09e8a7155da0b0474cbae81c8c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
