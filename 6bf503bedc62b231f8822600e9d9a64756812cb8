@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "b5cb0f92_d33a5c19",
+        "filename": "scanning/scan_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2017-02-15T00:26:34Z",
+      "side": 1,
+      "message": "I see. SGTM.",
+      "parentUuid": "f3e65349_d6d7b62c",
+      "revId": "6bf503bedc62b231f8822600e9d9a64756812cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "462cad97_d35eb32a",
         "filename": "scanning/scan_utils.cpp",
         "patchSetId": 4
