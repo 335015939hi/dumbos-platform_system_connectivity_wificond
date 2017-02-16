@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9023209f_29cc8a7a",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-02-16T19:40:27Z",
+      "side": 1,
+      "message": "Could you add that as a comment //?",
+      "parentUuid": "791d09e1_e7f2e81f",
+      "revId": "2bee66d454a5a09e8a7155da0b0474cbae81c8c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e712f16_86a3e8ec",
         "filename": "net/netlink_manager.cpp",
         "patchSetId": 10
@@ -83,6 +101,30 @@
       "writtenOn": "2017-02-15T20:44:46Z",
       "side": 1,
       "message": "That is called here.",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 15
+      },
+      "revId": "2bee66d454a5a09e8a7155da0b0474cbae81c8c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e491d2c_0fae2788",
+        "filename": "server.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-02-16T19:40:27Z",
+      "side": 1,
+      "message": "thanks for the clarification.",
+      "parentUuid": "93669ccc_bc827c72",
       "range": {
         "startLine": 243,
         "startChar": 0,
