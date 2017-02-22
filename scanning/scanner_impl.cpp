@@ -266,14 +266,18 @@ void ScannerImpl::OnScanResultsReady(
     bool aborted,
     vector<vector<uint8_t>>& ssids,
     vector<uint32_t>& frequencies) {
+  LOG(INFO) << "Received scan result notification from kernel.";
   scan_started_ = false;
   if (scan_event_handler_ != nullptr) {
     // TODO: Pass other parameters back once we find framework needs them.
     if (aborted) {
+      LOG(WARNING) << "Scan aborted";
       scan_event_handler_->OnScanFailed();
     } else {
       scan_event_handler_->OnScanResultReady();
     }
+  } else {
+    LOG(WARNING) << "No scan event handler found.";
   }
 }
 
