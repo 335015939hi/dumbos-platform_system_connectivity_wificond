@@ -39,18 +39,22 @@ using namespace std::placeholders;
 namespace android {
 namespace wificond {
 
-ScannerImpl::ScannerImpl(uint32_t interface_index,
+ScannerImpl::ScannerImpl(uint32_t wiphy_index,
+                         uint32_t interface_index,
                          const BandInfo& band_info,
                          const ScanCapabilities& scan_capabilities,
                          const WiphyFeatures& wiphy_features,
+                         NetlinkUtils* netlink_utils,
                          ScanUtils* scan_utils)
     : valid_(true),
       scan_started_(false),
       pno_scan_started_(false),
+      wiphy_index_(wiphy_index),
       interface_index_(interface_index),
       band_info_(band_info),
       scan_capabilities_(scan_capabilities),
       wiphy_features_(wiphy_features),
+      netlink_utils_(netlink_utils),
       scan_utils_(scan_utils),
       scan_event_handler_(nullptr) {
   // Subscribe one-shot scan result notification from kernel.
@@ -91,6 +95,13 @@ Status ScannerImpl::getAvailable2gChannels(vector<int32_t>* out_frequencies) {
   if (!CheckIsValid()) {
     return Status::ok();
   }
+  if (!netlink_utils_->GetWiphyInfo(wiphy_index_,
+                               &band_info_,
+                               &scan_capabilities_,
+                               &wiphy_features_)) {
+    LOG(ERROR) << "Failed to get wiphy info from kernel";
+  }
+
   *out_frequencies = vector<int32_t>(band_info_.band_2g.begin(),
                                      band_info_.band_2g.end());
   return Status::ok();
@@ -101,6 +112,13 @@ Status ScannerImpl::getAvailable5gNonDFSChannels(
   if (!CheckIsValid()) {
     return Status::ok();
   }
+  if (!netlink_utils_->GetWiphyInfo(wiphy_index_,
+                               &band_info_,
+                               &scan_capabilities_,
+                               &wiphy_features_)) {
+    LOG(ERROR) << "Failed to get wiphy info from kernel";
+  }
+
   *out_frequencies = vector<int32_t>(band_info_.band_5g.begin(),
                                      band_info_.band_5g.end());
   return Status::ok();
@@ -110,6 +128,13 @@ Status ScannerImpl::getAvailableDFSChannels(vector<int32_t>* out_frequencies) {
   if (!CheckIsValid()) {
     return Status::ok();
   }
+  if (!netlink_utils_->GetWiphyInfo(wiphy_index_,
+                               &band_info_,
+                               &scan_capabilities_,
+                               &wiphy_features_)) {
+    LOG(ERROR) << "Failed to get wiphy info from kernel";
+  }
+
   *out_frequencies = vector<int32_t>(band_info_.band_dfs.begin(),
                                      band_info_.band_dfs.end());
   return Status::ok();

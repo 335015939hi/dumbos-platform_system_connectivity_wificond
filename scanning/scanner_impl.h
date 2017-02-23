@@ -32,11 +32,13 @@ class ScanUtils;
 
 class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
  public:
-  ScannerImpl(uint32_t interface_index,
+  ScannerImpl(uint32_t wiphy_index,
+              uint32_t interface_index,
               const BandInfo& band_info,
               const ScanCapabilities& scan_capabilities,
               const WiphyFeatures& wiphy_features,
-              ScanUtils* scan_utils_);
+              NetlinkUtils* netlink_utils,
+              ScanUtils* scan_utils);
   ~ScannerImpl();
   // Returns a vector of available frequencies for 2.4GHz channels.
   ::android::binder::Status getAvailable2gChannels(
@@ -83,13 +85,15 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
   bool scan_started_;
   bool pno_scan_started_;
 
+  const uint32_t wiphy_index_;
   const uint32_t interface_index_;
 
   // Scanning relevant capability information for this wiphy/interface.
-  const BandInfo band_info_;
-  const ScanCapabilities scan_capabilities_;
-  const WiphyFeatures wiphy_features_;
+  BandInfo band_info_;
+  ScanCapabilities scan_capabilities_;
+  WiphyFeatures wiphy_features_;
 
+  NetlinkUtils* const netlink_utils_;
   ScanUtils* const scan_utils_;
   ::android::sp<::android::net::wifi::IPnoScanEvent> pno_scan_event_handler_;
   ::android::sp<::android::net::wifi::IScanEvent> scan_event_handler_;
