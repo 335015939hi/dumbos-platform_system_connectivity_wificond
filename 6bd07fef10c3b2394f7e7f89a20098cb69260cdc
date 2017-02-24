@@ -22,6 +22,30 @@
       "revId": "6bd07fef10c3b2394f7e7f89a20098cb69260cdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec7862bc_4c0162d0",
+        "filename": "scanning/scanner_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-02-24T20:41:01Z",
+      "side": 1,
+      "message": "Done.\nClientInterface also caches the band info.\nI will get rid of that in later CLs.",
+      "parentUuid": "c4cbb149_5f349cce",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "6bd07fef10c3b2394f7e7f89a20098cb69260cdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
