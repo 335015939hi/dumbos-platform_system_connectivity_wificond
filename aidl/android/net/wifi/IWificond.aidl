@@ -34,7 +34,7 @@ interface IWificond {
 
     // Tear down all existing interfaces.  This should enable clients to create
     // future interfaces immediately after this method returns.
-    void tearDownInterfaces();
+    oneway void tearDownInterfaces();
 
     // @return list of the currently configured IClientInterface instances.
     List<IBinder> GetClientInterfaces();
