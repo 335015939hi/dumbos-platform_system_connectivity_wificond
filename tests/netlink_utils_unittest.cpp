@@ -367,7 +367,7 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfo) {
   // Insert wiphy features to mock netlink response.
   new_wiphy.AddAttribute(NL80211Attr<uint32_t>(
       NL80211_ATTR_FEATURE_FLAGS,
-      NL80211_FEATURE_SCAN_RANDOM_MAC_ADDR));
+      NL80211_FEATURE_SCAN_RANDOM_MAC_ADDR | NL80211_FEATURE_SCAN_FLUSH));
 
   vector<NL80211Packet> response = {new_wiphy};
 
@@ -402,6 +402,7 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfo) {
   // Verify wiphy features.
   EXPECT_TRUE(wiphy_features.supports_random_mac_oneshot_scan);
   EXPECT_FALSE(wiphy_features.supports_random_mac_sched_scan);
+  EXPECT_TRUE(wiphy_features.supports_scan_flush);
 }
 
 TEST_F(NetlinkUtilsTest, CanHandleGetWiphyInfoError) {

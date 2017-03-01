@@ -64,18 +64,24 @@ struct ScanCapabilities {
 struct WiphyFeatures {
   WiphyFeatures()
       : supports_random_mac_oneshot_scan(false),
-        supports_random_mac_sched_scan(false) {}
+        supports_random_mac_sched_scan(false),
+        supports_scan_flush(false) {}
   WiphyFeatures(uint32_t feature_flags)
       : supports_random_mac_oneshot_scan(
             feature_flags & NL80211_FEATURE_SCAN_RANDOM_MAC_ADDR),
         supports_random_mac_sched_scan(
-            feature_flags & NL80211_FEATURE_SCHED_SCAN_RANDOM_MAC_ADDR) {}
+            feature_flags & NL80211_FEATURE_SCHED_SCAN_RANDOM_MAC_ADDR),
+        supports_scan_flush(
+            feature_flags & NL80211_FEATURE_SCAN_FLUSH) {}
   // This device/driver supports using a random MAC address during scan
   // (while not associated).
   bool supports_random_mac_oneshot_scan;
   // This device/driver supports using a random MAC address for every
   // scan iteration during scheduled scan (while not associated).
   bool supports_random_mac_sched_scan;
+  // This device/driver supports scan flush.
+  // Upon request driver flushes cache before scanning.
+  bool supports_scan_flush;
   // There are other flags included in NL80211_ATTR_FEATURE_FLAGS.
   // We will add them once we find them useful.
 };
