@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb6250a3_f9d304cc",
+        "filename": "ap_interface_impl.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-03-01T19:42:18Z",
+      "side": 1,
+      "message": "nit: alignment.",
+      "revId": "fa2cc10fbf5b592c6a506ba6d94c5b18808a9f6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
