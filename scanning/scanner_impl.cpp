@@ -315,6 +315,10 @@ void ScannerImpl::OnScanResultsReady(
     vector<vector<uint8_t>>& ssids,
     vector<uint32_t>& frequencies) {
   LOG(INFO) << "Received scan result notification from kernel.";
+  if (!scan_started_) {
+    LOG(WARNING) << "Ignoring non-interesting scan result event";
+    return;
+  }
   scan_started_ = false;
   if (scan_event_handler_ != nullptr) {
     // TODO: Pass other parameters back once we find framework needs them.
