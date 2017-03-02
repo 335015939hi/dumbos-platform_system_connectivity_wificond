@@ -28,7 +28,6 @@
 #include <cutils/properties.h>
 #include <libminijail.h>
 #include <utils/String16.h>
-#include <wifi_hal/driver_tool.h>
 #include <wifi_system/hal_tool.h>
 #include <wifi_system/interface_tool.h>
 
@@ -40,7 +39,6 @@
 #include "wificond/server.h"
 
 using android::net::wifi::IWificond;
-using android::wifi_hal::DriverTool;
 using android::wifi_system::HalTool;
 using android::wifi_system::HostapdManager;
 using android::wifi_system::InterfaceTool;
@@ -101,10 +99,6 @@ void RegisterServiceOrCrash(const android::sp<android::IBinder>& service) {
            android::NO_ERROR);
 }
 
-void DoPrivilegedSetupOrCrash() {
-  CHECK(DriverTool::TakeOwnershipOfFirmwareReload());
-}
-
 void DropPrivilegesOrCrash() {
   minijail* j = minijail_new();
   CHECK(minijail_change_user(j, "wifi") == 0);
@@ -126,7 +120,6 @@ int main(int argc, char** argv) {
   android::base::InitLogging(argv, android::base::LogdLogger(android::base::SYSTEM));
   LOG(INFO) << "wificond is starting up...";
 
-  DoPrivilegedSetupOrCrash();
   DropPrivilegesOrCrash();
 
   unique_ptr<android::wificond::LooperBackedEventLoop> event_dispatcher(
@@ -147,7 +140,6 @@ int main(int argc, char** argv) {
   unique_ptr<android::wificond::Server> server(new android::wificond::Server(
       unique_ptr<HalTool>(new HalTool),
       unique_ptr<InterfaceTool>(new InterfaceTool),
-      unique_ptr<DriverTool>(new DriverTool),
       unique_ptr<SupplicantManager>(new SupplicantManager()),
       unique_ptr<HostapdManager>(new HostapdManager()),
       &netlink_utils,
