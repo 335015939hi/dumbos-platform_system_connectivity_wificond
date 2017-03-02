@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "352db20f_01bbfbee",
+        "filename": "main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-03-02T17:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "354cecb3_28335a09",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 34
+      },
+      "revId": "9fe385a1bd4cbd66d84c8ffd5a5cd9389dac1e05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6fca083_b0aa3407",
         "filename": "server.cpp",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-02T17:42:06Z",
       "side": 1,
       "message": "It seems that this was already unused.\nCould you do me a favor deleting this as well ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 43
+      },
+      "revId": "9fe385a1bd4cbd66d84c8ffd5a5cd9389dac1e05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd3df290_6c05187e",
+        "filename": "server.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-03-02T17:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6fca083_b0aa3407",
       "range": {
         "startLine": 48,
         "startChar": 15,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "654fc37a_9c8affec",
+        "filename": "server.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-03-02T17:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0c46e7a_e7fd1e2b",
+      "range": {
+        "startLine": 91,
+        "startChar": 3,
+        "endLine": 97,
+        "endChar": 46
+      },
+      "revId": "9fe385a1bd4cbd66d84c8ffd5a5cd9389dac1e05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9ce89d0_178c1d7d",
         "filename": "server.h",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2017-03-02T17:42:06Z",
       "side": 1,
       "message": "Could you rename it to SetupInterface() ?",
+      "range": {
+        "startLine": 98,
+        "startChar": 7,
+        "endLine": 98,
+        "endChar": 28
+      },
+      "revId": "9fe385a1bd4cbd66d84c8ffd5a5cd9389dac1e05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47032509_193fca8b",
+        "filename": "server.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-03-02T17:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9ce89d0_178c1d7d",
       "range": {
         "startLine": 98,
         "startChar": 7,
