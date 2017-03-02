@@ -22,7 +22,6 @@
 #include <vector>
 
 #include <android-base/macros.h>
-#include <wifi_hal/driver_tool.h>
 #include <wifi_system/hal_tool.h>
 #include <wifi_system/interface_tool.h>
 
@@ -46,7 +45,6 @@ class Server : public android::net::wifi::BnWificond {
  public:
   Server(std::unique_ptr<wifi_system::HalTool> hal_tool,
          std::unique_ptr<wifi_system::InterfaceTool> if_tool,
-         std::unique_ptr<wifi_hal::DriverTool> driver_tool,
          std::unique_ptr<wifi_system::SupplicantManager> supplicant_man,
          std::unique_ptr<wifi_system::HostapdManager> hostapd_man,
          NetlinkUtils* netlink_utils,
@@ -97,8 +95,7 @@ class Server : public android::net::wifi::BnWificond {
   //     network interface that has been setup.
   //
   // Returns true on success, false otherwise.
-  bool SetupInterfaceForMode(int mode,
-                             std::string* interface_name,
+  bool SetupInterfaceForMode(std::string* interface_name,
                              uint32_t* interface_index,
                              std::vector<uint8_t>* interface_mac_addr);
   bool RefreshWiphyIndex();
@@ -115,7 +112,6 @@ class Server : public android::net::wifi::BnWificond {
 
   const std::unique_ptr<wifi_system::HalTool> hal_tool_;
   const std::unique_ptr<wifi_system::InterfaceTool> if_tool_;
-  const std::unique_ptr<wifi_hal::DriverTool> driver_tool_;
   const std::unique_ptr<wifi_system::SupplicantManager> supplicant_manager_;
   const std::unique_ptr<wifi_system::HostapdManager> hostapd_manager_;
   NetlinkUtils* const netlink_utils_;
