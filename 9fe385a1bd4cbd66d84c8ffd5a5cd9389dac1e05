@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "354cecb3_28335a09",
+        "filename": "main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-02T17:42:06Z",
+      "side": 1,
+      "message": "Also remove the HalTool in main.cpp",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 34
+      },
+      "revId": "9fe385a1bd4cbd66d84c8ffd5a5cd9389dac1e05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6fca083_b0aa3407",
+        "filename": "server.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-02T17:42:06Z",
+      "side": 1,
+      "message": "It seems that this was already unused.\nCould you do me a favor deleting this as well ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 43
+      },
+      "revId": "9fe385a1bd4cbd66d84c8ffd5a5cd9389dac1e05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0c46e7a_e7fd1e2b",
+        "filename": "server.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-02T17:42:06Z",
+      "side": 1,
+      "message": "The document needs update.\nI think it should be like:\n// Request interface information from kernel and setup local interface object. This assumes that interface should be in STATION mode. Even if we setup interface on behalf of createApInterace(), it is Hostapd that configure the interface to Ap mode later.\n// Returns true on success, false otherwise.",
+      "range": {
+        "startLine": 91,
+        "startChar": 3,
+        "endLine": 97,
+        "endChar": 46
+      },
+      "revId": "9fe385a1bd4cbd66d84c8ffd5a5cd9389dac1e05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9ce89d0_178c1d7d",
+        "filename": "server.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-02T17:42:06Z",
+      "side": 1,
+      "message": "Could you rename it to SetupInterface() ?",
+      "range": {
+        "startLine": 98,
+        "startChar": 7,
+        "endLine": 98,
+        "endChar": 28
+      },
+      "revId": "9fe385a1bd4cbd66d84c8ffd5a5cd9389dac1e05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
