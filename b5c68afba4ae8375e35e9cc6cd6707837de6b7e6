@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5edd3e4b_68dacba3",
+        "filename": "server.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-02T18:01:26Z",
+      "side": 1,
+      "message": "my bad, shoud be \u0027configures\u0027",
+      "range": {
+        "startLine": 91,
+        "startChar": 67,
+        "endLine": 91,
+        "endChar": 76
+      },
+      "revId": "b5c68afba4ae8375e35e9cc6cd6707837de6b7e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
