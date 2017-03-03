@@ -293,7 +293,7 @@ bool ScanUtils::StopScheduledScan(uint32_t interface_index) {
   }
   if (error_code == ENOENT) {
     LOG(WARNING) << "Scheduled scan is not running!";
-    return false;
+    return true;
   } else if (error_code != 0) {
     LOG(ERROR) << "Receive ERROR message in response to"
                << " 'stop scheduled scan' request: "
