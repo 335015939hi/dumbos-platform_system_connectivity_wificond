@@ -246,9 +246,10 @@ Status ScannerImpl::startPnoScan(const PnoSettings& pno_settings,
                                        match_ssids,
                                        freqs)) {
     *out_success = false;
-    LOG(ERROR) << "Failed to start scheduled scan";
+    LOG(ERROR) << "Failed to start Pno scan";
     return Status::ok();
   }
+  LOG(INFO) << "Pno scan started";
   pno_scan_started_ = true;
   *out_success = true;
   return Status::ok();
