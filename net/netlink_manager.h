@@ -84,6 +84,16 @@ typedef std::function<void(
 typedef std::function<void(
     std::string& country_code)> OnRegDomainChangedHandler;
 
+
+enum StationEvent {
+    NEW_STATION,
+    DEL_STATION
+};
+
+typedef std::function<void(
+    StationEvent event,
+    const std::vector<uint8_t>& mac_address)> OnStationEventHandler;
+
 class NetlinkManager {
  public:
   explicit NetlinkManager(EventLoop* event_loop);
@@ -203,6 +213,11 @@ class NetlinkManager {
   // from wiphy with index |wiphy_index|.
   virtual void UnsubscribeRegDomainChange(uint32_t wiphy_index);
 
+  virtual void SubscribeStationEvent(uint32_t interface_index,
+                                     OnStationEventHandler handler);
+
+  virtual void UnsubscribeStationEvent(uint32_t interface_index);
+
  private:
   bool SetupSocket(android::base::unique_fd* netlink_fd);
   bool WatchSocket(android::base::unique_fd* netlink_fd);
@@ -247,6 +262,8 @@ class NetlinkManager {
   // A mapping from wiphy index to the handler registered to receive
   // regulatory domain change notifications.
   std::map<uint32_t, OnRegDomainChangedHandler> on_reg_domain_changed_handler_;
+
+  std::map<uint32_t, OnStationEventHandler> on_station_event_handler_;
 
   // Mapping from family name to family id, and group name to group id.
   std::map<std::string, MessageType> message_types_;
