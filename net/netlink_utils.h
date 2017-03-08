@@ -177,6 +177,11 @@ class NetlinkUtils {
   // from wiphy with index |wiphy_index|.
   virtual void UnsubscribeRegDomainChange(uint32_t wiphy_index);
 
+  virtual void SubscribeStationEvent(uint32_t interface_index,
+                                     OnStationEventHandler handler);
+
+  virtual void UnsubscribeStationEvent(uint32_t interface_index);
+
  private:
   bool ParseBandInfo(const NL80211Packet* const packet,
                      BandInfo* out_band_info);

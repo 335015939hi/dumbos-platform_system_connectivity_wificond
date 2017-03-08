@@ -502,6 +502,30 @@ void NetlinkManager::BroadcastHandler(unique_ptr<const NL80211Packet> packet) {
     OnRegChangeEvent(std::move(packet));
     return;
   }
+  // For AP mode.
+  if (command == NL80211_CMD_NEW_STATION ||
+      command == NL80211_CMD_DEL_STATION) {
+    uint32_t if_index;
+    if (!packet->GetAttributeValue(NL80211_ATTR_IFINDEX, &if_index)) {
+      LOG(WARNING) << "Failed to get interface index from station event";
+      return;
+    }
+    auto handler = on_station_event_handler_.find(if_index);
+    if (handler != on_station_event_handler_.end()) {
+      vector<uint8_t> mac_address;
+      if (!packet->GetAttributeValue(NL80211_ATTR_MAC, &mac_address)) {
+        LOG(WARNING) << "Failed to get mac address from station event";
+        return;
+      }
+      if (command == NL80211_CMD_NEW_STATION) {
+        handler->second(NEW_STATION, mac_address);
+      } else {
+        handler->second(DEL_STATION, mac_address);
+      }
+    }
+    return;
+  }
+
 }
 
 void NetlinkManager::OnRegChangeEvent(unique_ptr<const NL80211Packet> packet) {
@@ -660,6 +684,16 @@ void NetlinkManager::OnScanResultsReady(unique_ptr<const NL80211Packet> packet) 
   }
   // Run scan result notification handler.
   handler->second(if_index, aborted, ssids, freqs);
+}
+
+void NetlinkManager::SubscribeStationEvent(
+    uint32_t interface_index,
+    OnStationEventHandler handler) {
+  on_station_event_handler_[interface_index] = handler;
+}
+
+void NetlinkManager::UnsubscribeStationEvent(uint32_t interface_index) {
+  on_station_event_handler_.erase(interface_index);
 }
 
 void NetlinkManager::SubscribeRegDomainChange(
