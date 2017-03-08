@@ -15,7 +15,7 @@
  */
 #include "wificond/scanning/offload/offload_scan_utils.h"
 #include "wificond/scanning/scan_result.h"
-
+#include <android-base/logging.h>
 using ::com::android::server::wifi::wificond::NativeScanResult;
 using android::hardware::wifi::offload::V1_0::ScanResult;
 
@@ -29,8 +29,8 @@ std::vector<NativeScanResult> OffloadScanUtils::convertToNativeScanResults(
   for (size_t i = 0; i < scanResult.size(); i++) {
     NativeScanResult singleScanResult;
     singleScanResult.ssid = scanResult[i].networkInfo.ssid;
-    singleScanResult.bssid.reserve(6);
-    memcpy(&singleScanResult.bssid[0], &scanResult[i].bssid[0], 6);
+    singleScanResult.bssid.assign(scanResult[i].networkInfo.ssid.begin(),
+      scanResult[i].networkInfo.ssid.end());
     singleScanResult.frequency = scanResult[i].frequency;
     singleScanResult.signal_mbm = scanResult[i].rssi;
     singleScanResult.tsf = scanResult[i].tsf;
