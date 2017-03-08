@@ -29,8 +29,8 @@ std::vector<NativeScanResult> OffloadScanUtils::convertToNativeScanResults(
   for (size_t i = 0; i < scanResult.size(); i++) {
     NativeScanResult singleScanResult;
     singleScanResult.ssid = scanResult[i].networkInfo.ssid;
-    singleScanResult.bssid.reserve(6);
-    memcpy(&singleScanResult.bssid[0], &scanResult[i].bssid[0], 6);
+    singleScanResult.bssid.assign(scanResult[i].networkInfo.ssid.begin(),
+      scanResult[i].networkInfo.ssid.end());
     singleScanResult.frequency = scanResult[i].frequency;
     singleScanResult.signal_mbm = scanResult[i].rssi;
     singleScanResult.tsf = scanResult[i].tsf;
