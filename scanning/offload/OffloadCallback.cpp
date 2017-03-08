@@ -34,7 +34,16 @@ void ScanResultHandler::callback(const hidl_vec<ScanResult>& scanResult) {
   std::vector<NativeScanResult> nativeScanResult;
   nativeScanResult.reserve(scanResult.size());
   // TODO: convert ScanResults from offload module to Wifi cond format
-  if (scanResult.size() > 0) {
+  for (size_t i = 0; i < scanResult.size(); i++) {
+    NativeScanResult *singleScanResult = new NativeScanResult();
+    singleScanResult->ssid = scanResult[i].networkInfo.ssid;
+    //memcpy(&singleScanResult->bssid[0], &scanResult[i].bssid[0], 6);
+    singleScanResult->frequency = scanResult[i].frequency;
+    singleScanResult->signal_mbm = scanResult[i].rssi;
+    singleScanResult->tsf = scanResult[i].tsf;
+    singleScanResult->capability = scanResult[i].capability;
+    singleScanResult->associated = false;
+    nativeScanResult.push_back(*singleScanResult);
     handler_(nativeScanResult);
   }  
 }
