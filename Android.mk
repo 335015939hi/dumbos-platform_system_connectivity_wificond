@@ -173,7 +173,13 @@ LOCAL_SRC_FILES := \
     tests/scan_result_unittest.cpp \
     tests/scan_settings_unittest.cpp \
     tests/scan_utils_unittest.cpp \
-    tests/server_unittest.cpp
+    tests/server_unittest.cpp \
+    tests/mock_offload.cpp \
+    tests/mock_offload_callback.cpp \
+    tests/mock_offload_service_utils.cpp \
+    tests/offload_callback_test.cpp \
+    tests/offload_scan_manager_test.cpp \
+    tests/offload_scan_utils_test.cpp
 LOCAL_STATIC_LIBRARIES := \
     libgmock \
     libgtest \
