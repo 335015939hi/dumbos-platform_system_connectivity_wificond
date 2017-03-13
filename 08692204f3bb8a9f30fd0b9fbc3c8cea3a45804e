@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8f44257b_7fdb136d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-13T21:45:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3857037_886f712c",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "08692204f3bb8a9f30fd0b9fbc3c8cea3a45804e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62473d13_0144b10e",
         "filename": "server.cpp",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-13T20:47:04Z",
       "side": 1,
       "message": "Write a helper function for this so that it can be invoked in CleanupSystemState.",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 3
+      },
+      "revId": "08692204f3bb8a9f30fd0b9fbc3c8cea3a45804e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d510848_f1d7db3e",
+        "filename": "server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-13T21:45:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62473d13_0144b10e",
       "range": {
         "startLine": 157,
         "startChar": 0,
