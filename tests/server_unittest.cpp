@@ -50,7 +50,7 @@ class ServerTest : public ::testing::Test {
   void SetUp() override {
     ON_CALL(*if_tool_, SetWifiUpState(_)).WillByDefault(Return(true));
     ON_CALL(*netlink_utils_, GetWiphyIndex(_)).WillByDefault(Return(true));
-    ON_CALL(*netlink_utils_, GetInterfaceInfo(_, _, _, _))
+    ON_CALL(*netlink_utils_, GetInterfaces( _, _))
         .WillByDefault(Return(true));
   }
 
@@ -85,9 +85,12 @@ TEST_F(ServerTest, CanSetUpApInterface) {
       .InSequence(sequence)
       .WillOnce(Return(true));
   EXPECT_CALL(*netlink_utils_, SubscribeRegDomainChange(_, _));
-  EXPECT_CALL(*netlink_utils_, GetInterfaceInfo(_, _, _, _))
+
+  EXPECT_CALL(*netlink_utils_, GetInterfaces(_, _))
       .InSequence(sequence)
       .WillOnce(Return(true));
+    //  .WillOnce(Invoke(bind(
+    //      MockGetInterfacesResponse, response, true, _1, _2)));
 
   EXPECT_TRUE(server_.createApInterface(&ap_if).isOk());
   EXPECT_NE(nullptr, ap_if.get());
@@ -96,7 +99,7 @@ TEST_F(ServerTest, CanSetUpApInterface) {
 TEST_F(ServerTest, DoesNotSupportMultipleInterfaces) {
   sp<IApInterface> ap_if;
   EXPECT_CALL(*netlink_utils_, GetWiphyIndex(_)).Times(1);
-  EXPECT_CALL(*netlink_utils_, GetInterfaceInfo(_, _, _, _)).Times(1);
+  EXPECT_CALL(*netlink_utils_, GetInterfaces( _, _)).Times(1);
 
   EXPECT_TRUE(server_.createApInterface(&ap_if).isOk());
   EXPECT_NE(nullptr, ap_if.get());
@@ -111,7 +114,7 @@ TEST_F(ServerTest, DoesNotSupportMultipleInterfaces) {
 TEST_F(ServerTest, CanDestroyInterfaces) {
   sp<IApInterface> ap_if;
   EXPECT_CALL(*netlink_utils_, GetWiphyIndex(_)).Times(2);
-  EXPECT_CALL(*netlink_utils_, GetInterfaceInfo(_, _, _, _)).Times(2);
+  EXPECT_CALL(*netlink_utils_, GetInterfaces( _, _)).Times(2);
 
   EXPECT_TRUE(server_.createApInterface(&ap_if).isOk());
 
