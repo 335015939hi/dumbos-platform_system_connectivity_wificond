@@ -156,7 +156,10 @@ bool ClientInterfaceImpl::EnableSupplicant() {
 }
 
 bool ClientInterfaceImpl::DisableSupplicant() {
-  return supplicant_manager_->StopSupplicant();
+  bool success = supplicant_manager_->StopSupplicant();
+  // Cleanup p2p0 interface created by supplicant.
+  if_tool_->SetUpState("p2p0", false);
+  return success;
 }
 
 bool ClientInterfaceImpl::GetPacketCounters(vector<int32_t>* out_packet_counters) {
