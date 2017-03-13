@@ -143,6 +143,8 @@ ClientInterfaceImpl::~ClientInterfaceImpl() {
   binder_->NotifyImplDead();
   scanner_->Invalidate();
   DisableSupplicant();
+  // Clean up p2p0 interface.
+  if_tool_->SetUpState("p2p0", false);
   netlink_utils_->UnsubscribeMlmeEvent(interface_index_);
   if_tool_->SetUpState(interface_name_.c_str(), false);
 }
