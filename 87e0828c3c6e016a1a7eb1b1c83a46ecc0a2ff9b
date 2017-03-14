@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "525534db_e18c66ce",
+        "filename": "scanning/offload/offload_scan_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:23:19Z",
+      "side": 1,
+      "message": "two spaces here.",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b331617f_0e79d96e",
+        "filename": "scanning/offload/offload_scan_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:23:19Z",
+      "side": 1,
+      "message": "We don\u0027t use underscore for function names.\nUse GetServiceAvailble please.\nAlso I think IsServiceAvailble might be more informative.",
+      "range": {
+        "startLine": 39,
+        "startChar": 23,
+        "endLine": 39,
+        "endChar": 44
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "037d3eaa_d0f1a73d",
+        "filename": "scanning/offload/offload_scan_utils.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:23:19Z",
+      "side": 1,
+      "message": "I think it would be better to move the registering callback into a single method:\nRegisterOffloadCallback(android::sp\u003cOffloadCallback\u003e offload_callback)",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef67c014_8f0d1abd",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:23:19Z",
+      "side": 1,
+      "message": "Where is this from ? Do we have a way to get this from a constant ?",
+      "range": {
+        "startLine": 77,
+        "startChar": 49,
+        "endLine": 77,
+        "endChar": 60
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d6f6984_f784dcd1",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:23:19Z",
+      "side": 1,
+      "message": "I have two thoughts:\n1. As I said in another comment, you might consider move the \"callback registering\" into a single function.\n\n2. The callback here could be bind to onOffloadScanResultsReadyHandler instead of having \"this-\u003e...\"\nI think this might be an example:\nhttp://cs/android/system/connectivity/wificond/scanning/scanner_impl.cpp?l\u003d72\u0026rcl\u003d06a0fa53ed7a52a12c67b4f67951a5f69ca66925",
+      "range": {
+        "startLine": 78,
+        "startChar": 9,
+        "endLine": 80,
+        "endChar": 59
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a96ab33_7f1fe9ab",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:23:19Z",
+      "side": 1,
+      "message": "use whitespaces instead of tabs.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 7
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3641899b_1b3ad3eb",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:23:19Z",
+      "side": 1,
+      "message": "add the following protection please:\n\nif (scan_event_handler_ !\u003d nullptr) {\n ...\n} else {\n    LOG(WARNING) \u003c\u003c \"No scan event handler found.\";\n}",
+      "range": {
+        "startLine": 359,
+        "startChar": 2,
+        "endLine": 359,
+        "endChar": 43
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "445278c0_d580261e",
+        "filename": "scanning/scanner_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:23:19Z",
+      "side": 1,
+      "message": "We only use \"using\" in cpp file to prevent messing up with namespace.\nWith that said, we only use full name in header files.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 22
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f122915f_5b0e328a",
+        "filename": "scanning/scanner_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:23:19Z",
+      "side": 1,
+      "message": "Should this be private ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 77
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
