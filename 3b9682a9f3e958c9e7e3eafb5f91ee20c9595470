@@ -45,6 +45,29 @@
       "revId": "3b9682a9f3e958c9e7e3eafb5f91ee20c9595470",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd06329e_15d2303d",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-14T16:25:44Z",
+      "side": 1,
+      "message": "whitespaces instead of tabs.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 4
+      },
+      "revId": "3b9682a9f3e958c9e7e3eafb5f91ee20c9595470",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
