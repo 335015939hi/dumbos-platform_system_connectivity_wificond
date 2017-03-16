@@ -16,6 +16,24 @@
       "revId": "2c4eb860dd6828f5535141100dbfd7a56d0381b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46d761e1_4bc52292",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-16T17:21:50Z",
+      "side": 1,
+      "message": "Done.\nAlso fixed other \u0027auto hander\u0027s",
+      "parentUuid": "e97d07d5_42d8a83a",
+      "revId": "2c4eb860dd6828f5535141100dbfd7a56d0381b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
