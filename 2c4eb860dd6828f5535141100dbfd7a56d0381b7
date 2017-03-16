@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e97d07d5_42d8a83a",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-03-16T16:47:54Z",
+      "side": 1,
+      "message": "const auto",
+      "revId": "2c4eb860dd6828f5535141100dbfd7a56d0381b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
