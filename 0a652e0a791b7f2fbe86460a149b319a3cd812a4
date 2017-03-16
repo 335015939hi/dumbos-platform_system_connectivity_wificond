@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a97b15d_3a7e4a6a",
+        "filename": "ap_interface_binder.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-03-16T23:20:10Z",
+      "side": 1,
+      "message": "Return -1 since it\u0027s an int?",
+      "range": {
+        "startLine": 105,
+        "startChar": 5,
+        "endLine": 105,
+        "endChar": 24
+      },
+      "revId": "0a652e0a791b7f2fbe86460a149b319a3cd812a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
