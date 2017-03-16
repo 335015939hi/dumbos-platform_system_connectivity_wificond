@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a71f05f_53beea3a",
+        "filename": "scanning/offload/offload_scan_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-16T17:03:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "525534db_e18c66ce",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b331617f_0e79d96e",
         "filename": "scanning/offload/offload_scan_utils.cpp",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-14T16:23:19Z",
       "side": 1,
       "message": "We don\u0027t use underscore for function names.\nUse GetServiceAvailble please.\nAlso I think IsServiceAvailble might be more informative.",
+      "range": {
+        "startLine": 39,
+        "startChar": 23,
+        "endLine": 39,
+        "endChar": 44
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "515ad660_0e80d5ab",
+        "filename": "scanning/offload/offload_scan_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-16T17:03:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b331617f_0e79d96e",
       "range": {
         "startLine": 39,
         "startChar": 23,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "48474f01_8754aea1",
+        "filename": "scanning/offload/offload_scan_utils.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-16T17:03:55Z",
+      "side": 1,
+      "message": "Based on offline discussion, will introduce a new class OffloadServiceUtils which can be used to create service objects and callback objects. This class can then be mocked for unit test purposes.",
+      "parentUuid": "037d3eaa_d0f1a73d",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef67c014_8f0d1abd",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2017-03-14T16:23:19Z",
       "side": 1,
       "message": "Where is this from ? Do we have a way to get this from a constant ?",
+      "range": {
+        "startLine": 77,
+        "startChar": 49,
+        "endLine": 77,
+        "endChar": 60
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "088139c2_5e88796c",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-16T17:03:55Z",
+      "side": 1,
+      "message": "Not needed anymre",
+      "parentUuid": "ef67c014_8f0d1abd",
       "range": {
         "startLine": 77,
         "startChar": 49,
@@ -140,6 +236,54 @@
     },
     {
       "key": {
+        "uuid": "c8e426f9_e1d59d6b",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-16T17:03:55Z",
+      "side": 1,
+      "message": "Addressed #1. \nWhat is the advantage of using the way it is done in line 78 vs the way it is suggested by commend#2?",
+      "parentUuid": "5d6f6984_f784dcd1",
+      "range": {
+        "startLine": 78,
+        "startChar": 9,
+        "endLine": 80,
+        "endChar": 59
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4c5d37e_35cc6bc4",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-16T17:03:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a96ab33_7f1fe9ab",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 7
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3641899b_1b3ad3eb",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 3
@@ -151,6 +295,30 @@
       "writtenOn": "2017-03-14T16:23:19Z",
       "side": 1,
       "message": "add the following protection please:\n\nif (scan_event_handler_ !\u003d nullptr) {\n ...\n} else {\n    LOG(WARNING) \u003c\u003c \"No scan event handler found.\";\n}",
+      "range": {
+        "startLine": 359,
+        "startChar": 2,
+        "endLine": 359,
+        "endChar": 43
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6c2ead4_fa53bfc3",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-16T17:03:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3641899b_1b3ad3eb",
       "range": {
         "startLine": 359,
         "startChar": 2,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "0943edff_d995ea0b",
+        "filename": "scanning/scanner_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-16T17:03:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "445278c0_d580261e",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 22
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f122915f_5b0e328a",
         "filename": "scanning/scanner_impl.h",
         "patchSetId": 3
@@ -197,6 +389,30 @@
       "writtenOn": "2017-03-14T16:23:19Z",
       "side": 1,
       "message": "Should this be private ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 77
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5061480_1ac0993b",
+        "filename": "scanning/scanner_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-16T17:03:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f122915f_5b0e328a",
       "range": {
         "startLine": 75,
         "startChar": 0,
