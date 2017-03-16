@@ -45,6 +45,7 @@ class ApInterfaceBinder : public android::net::wifi::BnApInterface {
                                     const std::vector<uint8_t>& passphrase,
                                     bool* out_success) override;
   binder::Status getInterfaceName(std::string* out_name) override;
+  binder::Status getNumOfAssociatedStations(int* out_num_of_stations) override;
 
  private:
   ApInterfaceImpl* impl_;
