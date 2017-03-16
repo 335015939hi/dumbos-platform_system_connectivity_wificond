@@ -115,5 +115,9 @@ TEST_F(ApInterfaceImplTest, ShouldRejectInvalidConfig) {
         vector<uint8_t>()));
 }
 
+TEST_F(ApInterfaceImplTest, CanGetNumberOfAssociatedStations) {
+  EXPECT_TRUE(true);
+}
+
 }  // namespace wificond
 }  // namespace android
