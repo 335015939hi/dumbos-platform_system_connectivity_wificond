@@ -284,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "afddab9f_ec8cc6bd",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-17T18:06:40Z",
+      "side": 1,
+      "message": "If you search \"Bind Vs Lambda\" on stackoverflow there are many discussions.\nI think both are fine here. But wificond kept using bind so it\u0027s better to keep consistent.\nThanks :-)",
+      "parentUuid": "c8e426f9_e1d59d6b",
+      "range": {
+        "startLine": 78,
+        "startChar": 9,
+        "endLine": 80,
+        "endChar": 59
+      },
+      "revId": "87e0828c3c6e016a1a7eb1b1c83a46ecc0a2ff9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3641899b_1b3ad3eb",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 3
