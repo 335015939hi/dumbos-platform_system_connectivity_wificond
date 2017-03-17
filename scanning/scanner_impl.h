@@ -19,6 +19,7 @@
 
 #include <vector>
 
+#include <android-base/logging.h>
 #include <android-base/macros.h>
 #include <binder/Status.h>
 
@@ -79,8 +80,12 @@ class ScannerImpl : public android::net::wifi::BnWifiScannerImpl {
       std::vector<std::vector<uint8_t>>& ssids,
       std::vector<uint32_t>& frequencies);
   void OnSchedScanResultsReady(uint32_t interface_index, bool scan_stopped);
-  void LogSsidList(std::vector<std::vector<uint8_t>>& ssid_list,
-                   std::string prefix);
+  void LogSsidList(const std::vector<std::vector<uint8_t>>& ssid_list,
+                   std::string prefix,
+                   android::base::LogSeverity log_severity);
+  void LogFreqList(const std::vector<uint32_t>& freq_list,
+                   std::string prefix,
+                   android::base::LogSeverity log_severity);
 
   // Boolean variables describing current scanner status.
   bool valid_;

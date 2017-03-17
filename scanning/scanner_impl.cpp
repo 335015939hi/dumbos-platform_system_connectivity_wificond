@@ -188,7 +188,9 @@ Status ScannerImpl::scan(const SingleScanSettings& scan_settings,
     ssids.push_back(network.ssid_);
   }
 
-  LogSsidList(skipped_scan_ssids, "Skip scan ssid for single scan");
+  LogSsidList(skipped_scan_ssids,
+              "Skip scan ssid for single scan",
+              android::base::WARNING);
 
   vector<uint32_t> freqs;
   for (auto& channel : scan_settings.channel_settings_) {
@@ -238,8 +240,11 @@ Status ScannerImpl::startPnoScan(const PnoSettings& pno_settings,
     match_ssids.push_back(network.ssid_);
   }
 
-  LogSsidList(skipped_scan_ssids, "Skip scan ssid for pno scan");
-  LogSsidList(skipped_match_ssids, "Skip match ssid for pno scan");
+  LogSsidList(skipped_scan_ssids,
+              "Skip scan ssid for pno scan",
+              android::base::WARNING);
+  LogSsidList(skipped_match_ssids, "Skip match ssid for pno scan",
+              android::base::WARNING);
 
   // Only request MAC address randomization when station is not associated.
   bool request_random_mac = wiphy_features_.supports_random_mac_sched_scan &&
@@ -326,6 +331,8 @@ void ScannerImpl::OnScanResultsReady(
     vector<vector<uint8_t>>& ssids,
     vector<uint32_t>& frequencies) {
   LOG(INFO) << "Received scan result notification from kernel.";
+  LogFreqList(frequencies, "Frequencies", android::base::INFO);
+  LogSsidList(ssids, "SSIDs", android::base::INFO);
   scan_started_ = false;
   if (scan_event_handler_ != nullptr) {
     // TODO: Pass other parameters back once we find framework needs them.
@@ -361,8 +368,26 @@ void ScannerImpl::OnSchedScanResultsReady(uint32_t interface_index,
   }
 }
 
-void ScannerImpl::LogSsidList(vector<vector<uint8_t>>& ssid_list,
-                              string prefix) {
+void ScannerImpl::LogFreqList(const vector<uint32_t>& freq_list,
+                              string prefix,
+                              android::base::LogSeverity log_severity) {
+  if (freq_list.empty()) {
+    return;
+  }
+  string freq_list_string;
+  for (auto& freq : freq_list) {
+    freq_list_string += std::to_string(freq);
+    if (&freq != &freq_list.back()) {
+      freq_list_string += ", ";
+    }
+  }
+  LOG(log_severity) << prefix << ": " << freq_list_string;
+}
+
+
+void ScannerImpl::LogSsidList(const vector<vector<uint8_t>>& ssid_list,
+                              string prefix,
+                              android::base::LogSeverity log_severity) {
   if (ssid_list.empty()) {
     return;
   }
@@ -373,7 +398,7 @@ void ScannerImpl::LogSsidList(vector<vector<uint8_t>>& ssid_list,
       ssid_list_string += ", ";
     }
   }
-  LOG(WARNING) << prefix << ": " << ssid_list_string;
+  LOG(log_severity) << prefix << ": " << ssid_list_string;
 }
 
 }  // namespace wificond
