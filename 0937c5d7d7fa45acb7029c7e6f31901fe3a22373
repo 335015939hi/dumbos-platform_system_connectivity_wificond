@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b61e44d_e46bedf8",
+        "filename": "ap_interface_impl.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2017-03-17T00:25:01Z",
+      "side": 1,
+      "message": "I\u0027m assuming, we\u0027ll not get spurious DEL_STATION events which will make our counter go below 0. We may want to add an error message in that case.",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 34
+      },
+      "revId": "0937c5d7d7fa45acb7029c7e6f31901fe3a22373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
