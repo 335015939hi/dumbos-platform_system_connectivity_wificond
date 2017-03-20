@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8cb4a47e_a0118aa7",
+        "filename": "scanning/offload/OffloadCallback.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c75fd87_1c6c2681",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 17
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f38c90c7_2a3b9062",
         "filename": "scanning/offload/OffloadCallback.h",
         "patchSetId": 11
@@ -65,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "b97da136_de5b0362",
+        "filename": "scanning/offload/OffloadCallback.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "no, it was added during auto-gen before I started to edit this file.",
+      "parentUuid": "37d83249_6e4252f2",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "edf10f5d_5c610546",
         "filename": "scanning/offload/offload_scan_manager.cpp",
         "patchSetId": 11
@@ -76,6 +124,30 @@
       "writtenOn": "2017-03-17T18:06:40Z",
       "side": 1,
       "message": "I think order should be:\n\n#include \"wificond/scanning/offload/offload_scan_manager.h\"\n\n#include \u003cvector\u003e\n\n#include \"wificond/scanning/offload/offload_scan_utils.h\"\n#include \"wificond/scanning/offload/offload_service_utils.h\"\n#include \"wificond/scanning/scan_result.h\"",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d0e4f43_fa389fe9",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edf10f5d_5c610546",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -111,6 +183,30 @@
     },
     {
       "key": {
+        "uuid": "c967e09d_f1bf4665",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fec73d5f_4a43204f",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 33
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c79e45db_79273e79",
         "filename": "scanning/offload/offload_scan_manager.h",
         "patchSetId": 11
@@ -122,6 +218,30 @@
       "writtenOn": "2017-03-17T18:06:40Z",
       "side": 1,
       "message": "WIFICOND_OFFLOAD_SCAN_MANAGER_H_",
+      "range": {
+        "startLine": 85,
+        "startChar": 10,
+        "endLine": 85,
+        "endChar": 41
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afe9ddaf_8d78e64d",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c79e45db_79273e79",
       "range": {
         "startLine": 85,
         "startChar": 10,
@@ -157,6 +277,30 @@
     },
     {
       "key": {
+        "uuid": "3fbbbadd_06696e07",
+        "filename": "scanning/offload/offload_scan_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71927ee8_0bdd856f",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53bf7e22_102f4ab4",
         "filename": "scanning/offload/offload_scan_utils.cpp",
         "patchSetId": 11
@@ -168,6 +312,30 @@
       "writtenOn": "2017-03-17T18:06:40Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 95
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a278b83_1e68fd66",
+        "filename": "scanning/offload/offload_scan_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53bf7e22_102f4ab4",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -203,6 +371,30 @@
     },
     {
       "key": {
+        "uuid": "e6ffb94d_ffa2e646",
+        "filename": "scanning/offload/offload_scan_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cec9a1ec_1f1bc972",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76bcfc70_b33fc80a",
         "filename": "scanning/offload/offload_scan_utils.cpp",
         "patchSetId": 11
@@ -214,6 +406,30 @@
       "writtenOn": "2017-03-17T18:06:40Z",
       "side": 1,
       "message": "No need to use pointer here.\nIf you want to avoid copies when calling push_back, this might not be effective.\nConsider using this:\n NativeScanResult singleScanResult;\n singleScanResult.xxx \u003d xxxxx;\n ......\n nativeScanResult.emplace_back(singleScanResult);",
+      "range": {
+        "startLine": 32,
+        "startChar": 3,
+        "endLine": 32,
+        "endChar": 64
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "115e446c_77deb7bc",
+        "filename": "scanning/offload/offload_scan_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76bcfc70_b33fc80a",
       "range": {
         "startLine": 32,
         "startChar": 3,
@@ -249,6 +465,30 @@
     },
     {
       "key": {
+        "uuid": "6ce2a320_8e0079ae",
+        "filename": "scanning/offload/offload_scan_utils.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "I cannot compile if I remove this. Do you mean to move this to offload_scan_utils.cpp?",
+      "parentUuid": "ce2f4b8e_a4a8fb9d",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 54
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02618e7d_2eca1413",
         "filename": "scanning/offload/offload_scan_utils.h",
         "patchSetId": 11
@@ -260,6 +500,30 @@
       "writtenOn": "2017-03-17T18:06:40Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 55
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ec597dc_7417b703",
+        "filename": "scanning/offload/offload_scan_utils.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02618e7d_2eca1413",
       "range": {
         "startLine": 24,
         "startChar": 0,
@@ -295,6 +559,30 @@
     },
     {
       "key": {
+        "uuid": "72e2306c_95fd93e1",
+        "filename": "scanning/offload/offload_scan_utils.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6554ce8f_a30b13dc",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 95
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1ec663a_f3a6491e",
         "filename": "scanning/offload/offload_scan_utils.h",
         "patchSetId": 11
@@ -306,6 +594,30 @@
       "writtenOn": "2017-03-17T18:06:40Z",
       "side": 1,
       "message": "I think this comment is for OffloadServiceUtils",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f537f172_a811094e",
+        "filename": "scanning/offload/offload_scan_utils.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1ec663a_f3a6491e",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -364,6 +676,47 @@
     },
     {
       "key": {
+        "uuid": "ee3a014e_00c29949",
+        "filename": "scanning/offload/offload_scan_utils.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b11f03f_3196a1d6",
+      "range": {
+        "startLine": 57,
+        "startChar": 10,
+        "endLine": 57,
+        "endChar": 39
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fff7971f_1d22c446",
+        "filename": "scanning/offload/offload_service_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Removing Line 18",
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "551ffe56_f3dac22b",
         "filename": "scanning/offload/offload_service_utils.cpp",
         "patchSetId": 11
@@ -375,6 +728,30 @@
       "writtenOn": "2017-03-17T18:06:40Z",
       "side": 1,
       "message": "If youuse use \u0027android::sp\u0027, you can directly write sp\u003cIOffload\u003e here.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 10
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34860aa9_62a69395",
+        "filename": "scanning/offload/offload_service_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "551ffe56_f3dac22b",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -410,6 +787,30 @@
     },
     {
       "key": {
+        "uuid": "ef9aa3de_9fa27035",
+        "filename": "scanning/offload/offload_service_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ad68172_8dc0bbd3",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3bff49f_402e4872",
         "filename": "scanning/offload/offload_service_utils.h",
         "patchSetId": 11
@@ -421,6 +822,30 @@
       "writtenOn": "2017-03-17T18:06:40Z",
       "side": 1,
       "message": "If this is only a util class, which means no internal state is maintained, I think we have no plan to put stuff in constructor and destructor. You might use OffloadServiceUtils() \u003d default, and  ~OffloadServiceUtils() \u003d default here, so you don\u0027t need to write empty body in cpp files.",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27f233e6_78162fa6",
+        "filename": "scanning/offload/offload_service_utils.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3bff49f_402e4872",
       "range": {
         "startLine": 34,
         "startChar": 2,
@@ -456,6 +881,30 @@
     },
     {
       "key": {
+        "uuid": "93b6e0c3_872da025",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59fc1b55_bb722c04",
+      "range": {
+        "startLine": 359,
+        "startChar": 18,
+        "endLine": 359,
+        "endChar": 37
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "597b9497_bff06b53",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 11
@@ -479,6 +928,30 @@
     },
     {
       "key": {
+        "uuid": "b01099dc_3de32106",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "597b9497_bff06b53",
+      "range": {
+        "startLine": 360,
+        "startChar": 4,
+        "endLine": 360,
+        "endChar": 15
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4d672c6_beb307a0",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 11
@@ -490,6 +963,30 @@
       "writtenOn": "2017-03-17T18:06:40Z",
       "side": 1,
       "message": "May be better to say:\n\"No scan event handler for offload scan result\"",
+      "range": {
+        "startLine": 365,
+        "startChar": 21,
+        "endLine": 365,
+        "endChar": 56
+      },
+      "revId": "328a182470f32f4fe8b0fa20141776169bff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "791f9c36_a8f7a2b4",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-20T18:31:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4d672c6_beb307a0",
       "range": {
         "startLine": 365,
         "startChar": 21,
