@@ -1,0 +1,395 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3378c45e_ca7b4884",
+        "filename": "scanning/offload/offload_callback.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "If you follow the comment in header file line 61 you don\u0027t need this.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 56
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f77e846d_63638225",
+        "filename": "scanning/offload/offload_callback.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "if you follow the comment in header file line 61 you can write:\nscan_result_handler_(scanResult);",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 47
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e352ca6_7b6b08d8",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "If you follow the comment in line 61 you don\u0027t need this class.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 2
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce03af48_434af8e3",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "one space before \"public\"",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 7
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ed4ed7c_d0da52b0",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "one space before \"private\"",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 8
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efae613_b393c2a4",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "you can use OnOffloadScanResultsReadyHandler directly.",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 65
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6e066e5_7518f8da",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "If you follow the comment in header file line 77, this can be removed.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 54
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2243eb5c_22ae224a",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "You can move this to initialization list.",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "462baedf_42ea16bb",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "I think you can write:\n\nwifi_offload_hal-\u003esetEventCallback(std::bind(\u0026OffloadScanManager::reportScanResults, this, _1);\n\nSo you don\u0027t need",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 62
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd7fd499_675e0932",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "if you use OnNativeScanResultsReadyHandler instead of NativeScanResultHandler, you can directly write:\nscan_result_handler_(scanResults);",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 45
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "530d4385_a193f3dd",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "IsServiceAnvailable() const {",
+      "range": {
+        "startLine": 74,
+        "startChar": 25,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a08acf4e_08ace19c",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "This vector can be const, right ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 73
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b54dbce_0a99a2fb",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "If you follow the comment in line 77, this can be removed.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 2
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a08630b0_cc3ff707",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "IsServiceAvailable\nAlso this can be const, you can write:\nbool IsServiceAnvailable() const;",
+      "range": {
+        "startLine": 69,
+        "startChar": 7,
+        "endLine": 69,
+        "endChar": 25
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b27d207d_54b696dd",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "ReportScanResults",
+      "range": {
+        "startLine": 72,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 24
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f04e1d65_b9f1c348",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "you can use OnNativeScanResultsReadyHandler directly.",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 41
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0909a94_a69ab277",
+        "filename": "scanning/offload/offload_service_utils.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-22T22:36:57Z",
+      "side": 1,
+      "message": "c++ header should be placed before android and local header files.\nUse:\n#include \u003cvector\u003e\n\n#include \u003candroid/hardware/wifi/offload/1.0/IOffload.h\u003e\n#include \"wificond/scanning/offload/offload_callback.h\"",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 17
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
