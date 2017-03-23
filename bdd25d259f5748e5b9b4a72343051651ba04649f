@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fd485ea1_08e9e0c6",
+        "filename": "scanning/offload/offload_callback.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3378c45e_ca7b4884",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 56
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f77e846d_63638225",
         "filename": "scanning/offload/offload_callback.cpp",
         "patchSetId": 14
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-22T22:36:57Z",
       "side": 1,
       "message": "if you follow the comment in header file line 61 you can write:\nscan_result_handler_(scanResult);",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 47
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d589f1d5_b8814a9f",
+        "filename": "scanning/offload/offload_callback.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f77e846d_63638225",
       "range": {
         "startLine": 54,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "aaf6391d_decefc3d",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e352ca6_7b6b08d8",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 2
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce03af48_434af8e3",
         "filename": "scanning/offload/offload_callback.h",
         "patchSetId": 14
@@ -82,6 +154,30 @@
       "writtenOn": "2017-03-22T22:36:57Z",
       "side": 1,
       "message": "one space before \"public\"",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 7
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3742dc6_0c8cf1b5",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce03af48_434af8e3",
       "range": {
         "startLine": 51,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "01cd627c_db65a63b",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ed4ed7c_d0da52b0",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 8
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0efae613_b393c2a4",
         "filename": "scanning/offload/offload_callback.h",
         "patchSetId": 14
@@ -128,6 +248,30 @@
       "writtenOn": "2017-03-22T22:36:57Z",
       "side": 1,
       "message": "you can use OnOffloadScanResultsReadyHandler directly.",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 65
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2deb7a87_1226bb8f",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0efae613_b393c2a4",
       "range": {
         "startLine": 61,
         "startChar": 2,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "504b5dea_e4b03c1f",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6e066e5_7518f8da",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 54
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2243eb5c_22ae224a",
         "filename": "scanning/offload/offload_scan_manager.cpp",
         "patchSetId": 14
@@ -174,6 +342,30 @@
       "writtenOn": "2017-03-22T22:36:57Z",
       "side": 1,
       "message": "You can move this to initialization list.",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3b09433_b8b482e1",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2243eb5c_22ae224a",
       "range": {
         "startLine": 55,
         "startChar": 4,
@@ -256,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "991e2493_a79bf703",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd7fd499_675e0932",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 45
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "530d4385_a193f3dd",
         "filename": "scanning/offload/offload_scan_manager.cpp",
         "patchSetId": 14
@@ -267,6 +483,30 @@
       "writtenOn": "2017-03-22T22:36:57Z",
       "side": 1,
       "message": "IsServiceAnvailable() const {",
+      "range": {
+        "startLine": 74,
+        "startChar": 25,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e71d8cf_62f13de9",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "530d4385_a193f3dd",
       "range": {
         "startLine": 74,
         "startChar": 25,
@@ -302,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "ece7257e_d1d16abf",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a08acf4e_08ace19c",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 73
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b54dbce_0a99a2fb",
         "filename": "scanning/offload/offload_scan_manager.h",
         "patchSetId": 14
@@ -313,6 +577,30 @@
       "writtenOn": "2017-03-22T22:36:57Z",
       "side": 1,
       "message": "If you follow the comment in line 77, this can be removed.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 2
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c3fcaec_6ed86f57",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b54dbce_0a99a2fb",
       "range": {
         "startLine": 53,
         "startChar": 0,
@@ -348,6 +636,30 @@
     },
     {
       "key": {
+        "uuid": "fc0c8fe8_a312ceeb",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a08630b0_cc3ff707",
+      "range": {
+        "startLine": 69,
+        "startChar": 7,
+        "endLine": 69,
+        "endChar": 25
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b27d207d_54b696dd",
         "filename": "scanning/offload/offload_scan_manager.h",
         "patchSetId": 14
@@ -359,6 +671,30 @@
       "writtenOn": "2017-03-22T22:36:57Z",
       "side": 1,
       "message": "ReportScanResults",
+      "range": {
+        "startLine": 72,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 24
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d87bab71_4857219a",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b27d207d_54b696dd",
       "range": {
         "startLine": 72,
         "startChar": 7,
@@ -394,6 +730,30 @@
     },
     {
       "key": {
+        "uuid": "edf82c2f_14bc8f5f",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f04e1d65_b9f1c348",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 41
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0909a94_a69ab277",
         "filename": "scanning/offload/offload_service_utils.h",
         "patchSetId": 14
@@ -405,6 +765,30 @@
       "writtenOn": "2017-03-22T22:36:57Z",
       "side": 1,
       "message": "c++ header should be placed before android and local header files.\nUse:\n#include \u003cvector\u003e\n\n#include \u003candroid/hardware/wifi/offload/1.0/IOffload.h\u003e\n#include \"wificond/scanning/offload/offload_callback.h\"",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 17
+      },
+      "revId": "bdd25d259f5748e5b9b4a72343051651ba04649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3f20b43_b14f70fa",
+        "filename": "scanning/offload/offload_service_utils.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-23T01:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0909a94_a69ab277",
       "range": {
         "startLine": 19,
         "startChar": 0,
