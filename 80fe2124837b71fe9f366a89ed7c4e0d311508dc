@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "317b930f_4ae5d211",
+        "filename": "scanning/offload/offload_callback.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "use underscore style instead: scan_reuslt",
+      "range": {
+        "startLine": 40,
+        "startChar": 71,
+        "endLine": 40,
+        "endChar": 81
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57c6958e_e6da3f6d",
+        "filename": "scanning/offload/offload_callback.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "If you agree with my comment in line 43, this is not needed.",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 50
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4fef5fd_75d8c43a",
+        "filename": "scanning/offload/offload_callback.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "since hidl_vec support to cast to std:vector\nCould you write:\nscan_result_handler_(std::vector\u003cScanResult\u003e(scanResult)) \nhere ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 25,
+        "endLine": 43,
+        "endChar": 37
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b416a62_0e55a42e",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "put this before android and hidl headers",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "911b32c7_7cc33715",
+        "filename": "scanning/offload/offload_callback.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "use underscore style instead: scan_reuslt",
+      "range": {
+        "startLine": 46,
+        "startChar": 56,
+        "endLine": 46,
+        "endChar": 66
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba033d1d_a9d8e614",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "This can be removed if you agree on the comment for isServiceAvailable()",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 32
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "540d0647_3e786349",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "This can be removed if you agree on the comment for isServiceAvailable()",
+      "range": {
+        "startLine": 45,
+        "startChar": 1,
+        "endLine": 45,
+        "endChar": 28
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec935511_11970412",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "You can use:\nreturn wifi_offload_hal_ !\u003d nullptr",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 63,
+        "endChar": 28
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e84d5a4_6c3ab8e3",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "This can be removed if you agree on the comment for isServiceAvailable()",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 26
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "756053ac_e50f65f5",
+        "filename": "scanning/offload/offload_service_utils.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "GetOffloadService",
+      "range": {
+        "startLine": 36,
+        "startChar": 24,
+        "endLine": 36,
+        "endChar": 41
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c23c2557_b08da887",
+        "filename": "scanning/offload/offload_service_utils.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "I guess we are not going to use this a lot, and given this is only a one line logic, I think we can remove this function.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 48
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37c686c5_85299212",
+        "filename": "scanning/scanner_impl.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-23T21:11:20Z",
+      "side": 1,
+      "message": "might change this name to offload_scan_manager_ as well.",
+      "range": {
+        "startLine": 105,
+        "startChar": 38,
+        "endLine": 105,
+        "endChar": 59
+      },
+      "revId": "80fe2124837b71fe9f366a89ed7c4e0d311508dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
