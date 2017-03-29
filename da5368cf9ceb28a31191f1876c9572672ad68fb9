@@ -1,0 +1,648 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cca781cc_3417188a",
+        "filename": "Android.mk",
+        "patchSetId": 13
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "Could you add these file following the alphabet order ? Thanks",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 37
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf95be85_c5cd8378",
+        "filename": "tests/mock_offload.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "//  namespace wificond\n//  namespace android\nPlease also change other files.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 10
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7614e043_987d9466",
+        "filename": "tests/mock_offload.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "If you agree with line 44, this is not needed.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 76
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04256729_050961b0",
+        "filename": "tests/mock_offload.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "I think getScanStats_cb is pre-defined in IOffload.h for this.",
+      "range": {
+        "startLine": 44,
+        "startChar": 42,
+        "endLine": 44,
+        "endChar": 61
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae6d86c7_657f84c8",
+        "filename": "tests/mock_offload_callback.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 38,
+        "endChar": 12
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf4aa9f2_b45de9a1",
+        "filename": "tests/mock_offload_callback.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "we don\u0027t need this MockOffloadCallback class.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab08492f_fd37f3b3",
+        "filename": "tests/offload_callback_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "I think this should be placed together with #include \u003cgtest/gtest.h\u003e",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d8b6f61_da77ea17",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "together with #include \u003cgtest/gtest.h\u003e",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 55
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "920f4178_b11d035d",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "use unique ptr so you don\u0027t need to delete it.",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 72
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3723421_1fe881e6",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "For this part see comments in \ttests/offload_scan_utils_test.cpp",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3be1ae5_2a062e27",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "for unique_ptr, it\u0027s better to use:\ndut.reset()",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 21
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3700cc5_e5381bcc",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "If you agree with line 48, you don\u0027t need this.",
+      "range": {
+        "startLine": 63,
+        "startChar": 6,
+        "endLine": 63,
+        "endChar": 37
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2889cac7_a548a125",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "redandunt",
+      "range": {
+        "startLine": 65,
+        "startChar": 5,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b83c9d0_1f4bb7f9",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "dummyScanResults.clear();",
+      "range": {
+        "startLine": 66,
+        "startChar": 7,
+        "endLine": 67,
+        "endChar": 62
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3f9ef47_3b5291e8",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "please change the naming styles",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 46
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79d9b6de_ba30d1e0",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "For a Mock class. All the stubs you added in this TEST will not influence following TESTs.\nWith that being said, you don\u0027t need to create it every time.\nYou only need to initialize it in line 83. and you might consider to use unique_ptr instead of raw pointer.\nThis comments also apply to other mock objects.",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 45
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc409fd1_4d10514e",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "Use a real OffloadCallback here.",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 56
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "016bf854_2470f186",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "you can use \"using testing::Return\" above and it would be more concise here.\nAlso for testing::_, and testing::Invoke ...",
+      "range": {
+        "startLine": 121,
+        "startChar": 21,
+        "endLine": 121,
+        "endChar": 36
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df447fac_ef09aca3",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "dut.reset(new OffloadScanManager(...))",
+      "range": {
+        "startLine": 124,
+        "startChar": 2,
+        "endLine": 124,
+        "endChar": 44
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ed98424_826102f3",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "I think it will look better if you use std::bind to bind CaptureHandler here.",
+      "range": {
+        "startLine": 143,
+        "startChar": 10,
+        "endLine": 145,
+        "endChar": 49
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec4650da_450755ba",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "due.reset(new OffloadScanManager(...))",
+      "range": {
+        "startLine": 147,
+        "startChar": 1,
+        "endLine": 147,
+        "endChar": 46
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3078f6b_08d726d8",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "also it will look better if you use std::bind",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 52
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a9873c73_44f6a463",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "we usually don\u0027t use complex constant object in anonymous namespace.\nUse the following instead:\nuint8_t kDdis[] \u003d {\u0027G\u0027, \u0027o\u0027, ...}\nSee example in:\nhttps://cs.corp.google.com/android/system/connectivity/wificond/tests/scan_result_unittest.cpp",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 62
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9bba091_9b575f5c",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "I think we should refrain from creating an object in heap unless it\u0027s necessary.\nYou can simply write:\nScanResult scan_result;\nscan_result-\u003e... \u003d ...\n....\ndummyScanResult.push_back(scan_result);",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 48
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cbbbdb2d_958e8648",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "please define constants for all these values(tsf, rssi,frequency, ...).",
+      "range": {
+        "startLine": 43,
+        "startChar": 24,
+        "endLine": 43,
+        "endChar": 27
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42fd4dea_0176e5a1",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "dummyScanResults.clear();",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 60
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de76631c_79f04340",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "dummy_scan_results;",
+      "range": {
+        "startLine": 57,
+        "startChar": 26,
+        "endLine": 57,
+        "endChar": 42
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31b01e7a_11fc3e14",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-29T20:45:33Z",
+      "side": 1,
+      "message": "native_scan_results",
+      "range": {
+        "startLine": 61,
+        "startChar": 32,
+        "endLine": 61,
+        "endChar": 48
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
