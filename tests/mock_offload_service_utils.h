@@ -27,6 +27,7 @@
 using android::hardware::wifi::offload::V1_0::IOffload;
 using android::hardware::wifi::offload::V1_0::implementation::OffloadCallback;
 using android::hardware::wifi::offload::V1_0::implementation::OnOffloadScanResultsReadyHandler;
+using android::hardware::wifi::offload::V1_0::implementation::OnErrorHandler;
 
 namespace android {
 namespace wificond {
@@ -37,8 +38,9 @@ class MockOffloadServiceUtils : public OffloadServiceUtils {
   ~MockOffloadServiceUtils() override = default;
 
   MOCK_METHOD0(GetOffloadService, sp<IOffload>());
-  MOCK_METHOD1(GetOffloadCallback, sp<OffloadCallback>(
-      OnOffloadScanResultsReadyHandler handler));
+  MOCK_METHOD2(GetOffloadCallback, sp<OffloadCallback>(
+      OnOffloadScanResultsReadyHandler scanResultHandler,
+      OnErrorHandler errorHandler));
 };
 
 } // wificond

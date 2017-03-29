@@ -30,7 +30,9 @@
 #include <android/hardware/wifi/offload/1.0/IOffload.h>
 
 using android::hardware::wifi::offload::V1_0::ScanResult;
+using android::hardware::wifi::offload::V1_0::OffloadStatus;
 using android::hardware::wifi::offload::V1_0::implementation::OnOffloadScanResultsReadyHandler;
+using android::hardware::wifi::offload::V1_0::implementation::OnErrorHandler;
 using com::android::server::wifi::wificond::NativeScanResult;
 using testing::NiceMock;
 
@@ -62,6 +64,7 @@ class OffloadScanManagerTest: public ::testing::Test {
       dut =  nullptr;
       delete mockOffloadServiceUtils;
       callbackInvoked = false;
+      error_ = false;
       dut = nullptr;
       dummyScanResults.erase(dummyScanResults.begin(),
           dummyScanResults.begin() + dummyScanResults.size());
@@ -72,19 +75,24 @@ class OffloadScanManagerTest: public ::testing::Test {
     }
 
     NiceMock<MockOffloadCallback> * CaptureHandler(
-      OnOffloadScanResultsReadyHandler handler) {
-      handler_ = handler;
-      mockOffloadCallback = new NiceMock<MockOffloadCallback>(handler_);
+      OnOffloadScanResultsReadyHandler scanResultHandler,
+      OnErrorHandler errorHandler) {
+      scan_result_handler_ = scanResultHandler;
+      error_handler_ = errorHandler;
+      mockOffloadCallback = new NiceMock<MockOffloadCallback>(
+          scan_result_handler_, error_handler_);
       return mockOffloadCallback;
     }
 
     std::vector<ScanResult> dummyScanResults;
     bool callbackInvoked;
+    bool error_;
     NiceMock<MockOffload> *mockIOffload;
     NiceMock<MockOffloadCallback> *mockOffloadCallback;
     NiceMock<MockOffloadServiceUtils> *mockOffloadServiceUtils;
     std::unique_ptr<OffloadScanManager> dut;
-    OnOffloadScanResultsReadyHandler handler_;
+    OnOffloadScanResultsReadyHandler scan_result_handler_;
+    OnErrorHandler error_handler_;
 };
 
 /**
@@ -93,7 +101,7 @@ class OffloadScanManagerTest: public ::testing::Test {
 TEST_F(OffloadScanManagerTest, ServiceUtilsNotAvailableTest) {
   dut = std::unique_ptr<OffloadScanManager>(new OffloadScanManager(
             nullptr, nullptr));
-  EXPECT_EQ(false, dut->isServiceAvailable());
+  EXPECT_EQ(OffloadScanManager::kError, dut->getOffloadStatus());
 }
 
 /**
@@ -104,8 +112,9 @@ TEST_F(OffloadScanManagerTest, ServiceNotAvailableTest) {
   ON_CALL(*mockOffloadServiceUtils, GetOffloadService())
       .WillByDefault(testing::Return(nullptr));
   dut = std::unique_ptr<OffloadScanManager>(new OffloadScanManager(
-    mockOffloadServiceUtils, nullptr));
-  EXPECT_EQ(false, dut->isServiceAvailable());
+      mockOffloadServiceUtils,
+      [] (std::vector<NativeScanResult> scanResult) -> void {}));
+  EXPECT_EQ(OffloadScanManager::kNoService, dut->getOffloadStatus());
 }
 
 /**
@@ -115,16 +124,18 @@ TEST_F(OffloadScanManagerTest, ServiceNotAvailableTest) {
 TEST_F(OffloadScanManagerTest, ServiceAvailableTest) {
   mockIOffload = new NiceMock<MockOffload>();
   mockOffloadCallback = new NiceMock<MockOffloadCallback>(
-    [] (std::vector<ScanResult> scanResult) -> void {});
+    [] (std::vector<ScanResult> scanResult) -> void {},
+    [] (OffloadStatus status) -> void {});
   EXPECT_CALL(*mockOffloadServiceUtils, GetOffloadService());
   ON_CALL(*mockOffloadServiceUtils, GetOffloadService())
       .WillByDefault(testing::Return(mockIOffload));
-  ON_CALL(*mockOffloadServiceUtils, GetOffloadCallback(testing::_))
+  EXPECT_CALL(*mockOffloadServiceUtils, GetOffloadCallback(testing::_, testing::_));
+  ON_CALL(*mockOffloadServiceUtils, GetOffloadCallback(testing::_, testing::_))
       .WillByDefault(testing::Return(mockOffloadCallback));
   dut = std::unique_ptr<OffloadScanManager>(new OffloadScanManager(
     mockOffloadServiceUtils,
     [] (std::vector<NativeScanResult> scanResult) -> void {}));
-  EXPECT_EQ(true, dut->isServiceAvailable());
+  EXPECT_EQ(OffloadScanManager::kNoError, dut->getOffloadStatus());
 }
 
 /**
@@ -132,17 +143,18 @@ TEST_F(OffloadScanManagerTest, ServiceAvailableTest) {
  * is registered, test to ensure that registered handler is invoked when
  * scan results are available
  */
-TEST_F(OffloadScanManagerTest, CallbackInvokedTest) {
+TEST_F(OffloadScanManagerTest, ScanCallbackInvokedTest) {
   OnOffloadScanResultsReadyHandler handler;
   mockIOffload = new NiceMock<MockOffload>();
   EXPECT_CALL(*mockOffloadServiceUtils, GetOffloadService());
   ON_CALL(*mockOffloadServiceUtils, GetOffloadService())
       .WillByDefault(testing::Return(mockIOffload));
-  ON_CALL(*mockOffloadServiceUtils, GetOffloadCallback(testing::_))
+  ON_CALL(*mockOffloadServiceUtils, GetOffloadCallback(testing::_, testing::_))
       .WillByDefault(testing::Invoke(
-          [this] (OnOffloadScanResultsReadyHandler handler)
+          [this] (OnOffloadScanResultsReadyHandler scanResultHandler,
+              OnErrorHandler errorHandler)
               -> NiceMock<MockOffloadCallback> * {
-            return this->CaptureHandler(handler);
+            return this->CaptureHandler(scanResultHandler, errorHandler);
           }));
   dut = std::unique_ptr<OffloadScanManager>(new OffloadScanManager(
     mockOffloadServiceUtils,
@@ -151,6 +163,33 @@ TEST_F(OffloadScanManagerTest, CallbackInvokedTest) {
     }));
   mockOffloadCallback->onScanResult(dummyScanResults);
   EXPECT_EQ(true, callbackInvoked);
+}
+
+/**
+ * Testing OffloadScanManager when service is available and valid handler
+ * is registered, test to ensure that registered handler is invoked when
+ * scan results are available
+ */
+TEST_F(OffloadScanManagerTest, ErrorCallbackInvokedTest) {
+  OnOffloadScanResultsReadyHandler handler;
+  mockIOffload = new NiceMock<MockOffload>();
+  EXPECT_CALL(*mockOffloadServiceUtils, GetOffloadService());
+  ON_CALL(*mockOffloadServiceUtils, GetOffloadService())
+      .WillByDefault(testing::Return(mockIOffload));
+  ON_CALL(*mockOffloadServiceUtils, GetOffloadCallback(testing::_, testing::_))
+      .WillByDefault(testing::Invoke(
+          [this] (OnOffloadScanResultsReadyHandler scanResultHandler,
+              OnErrorHandler errorHandler)
+              -> NiceMock<MockOffloadCallback> * {
+            return this->CaptureHandler(scanResultHandler, errorHandler);
+          }));
+  dut = std::unique_ptr<OffloadScanManager>(new OffloadScanManager(
+    mockOffloadServiceUtils,
+    [this] (std::vector<NativeScanResult> scanResult) -> void {
+        this->onNativeScanResultHandler(scanResult);
+    }));
+  mockOffloadCallback->onError(OffloadStatus::OFFLOAD_STATUS_ERROR);
+  EXPECT_EQ(dut->getOffloadStatus(), OffloadScanManager::kError);
 }
 
 } // wificond

@@ -26,6 +26,7 @@
 using ::android::hardware::hidl_vec;
 using android::hardware::wifi::offload::V1_0::IOffload;
 using android::hardware::wifi::offload::V1_0::ScanResult;
+using android::hardware::wifi::offload::V1_0::OffloadStatus;
 using android::hardware::wifi::offload::V1_0::implementation::OffloadCallback;
 using ::com::android::server::wifi::wificond::NativeScanResult;
 using android::wificond::OnNativeScanResultsReadyHandler;
@@ -37,19 +38,36 @@ OffloadScanManager::OffloadScanManager(OffloadServiceUtils *utils,
     OnNativeScanResultsReadyHandler handler)
     : wifi_offload_hal_(nullptr),
       wifi_offload_callback_(nullptr),
-      scan_result_handler_(handler) {
-  if (utils == nullptr) return;
-  if (scan_result_handler_ == nullptr) return;
+      scan_result_handler_(handler),
+      offload_status_(OffloadScanManager::kError) {
+  if (utils == nullptr) {
+    LOG(ERROR) << "Invalid arguments for Offload ScanManager";
+    return;
+  }
+  if (scan_result_handler_ == nullptr) {
+    LOG(ERROR) << "Invalid Offload scan result handler";
+    return;
+  }
   wifi_offload_hal_ = utils->GetOffloadService();
   if (wifi_offload_hal_ == nullptr) {
     LOG(ERROR) << "Failed to get Offload service";
+    offload_status_ = OffloadScanManager::kNoService;
     return;
   }
   wifi_offload_callback_ = utils->GetOffloadCallback(
       ([this] (std::vector<ScanResult> scanResult) -> void {
         this->ReportScanResults(scanResult);
+      }),
+      ([this] (OffloadStatus status) -> void {
+        this->ReportError(status);
       }));
+  if (wifi_offload_callback_ == nullptr) {  
+    offload_status_ = OffloadScanManager::kNoService;
+    LOG(ERROR) << "Invalid Offload callback object";
+    return;
+  }
   wifi_offload_hal_->setEventCallback(wifi_offload_callback_);
+  offload_status_ = OffloadScanManager::kNoError;  
 }
 
 OffloadScanManager::~OffloadScanManager() {}
@@ -60,11 +78,35 @@ void OffloadScanManager::ReportScanResults(
   scanResult_ = OffloadScanUtils::convertToNativeScanResults(scanResult);
   if (scan_result_handler_ != nullptr) {
     scan_result_handler_(scanResult_);
+  } else {
+    LOG(ERROR) << "No scan result handler for Offload ScanManager";
   }
 }
 
-bool OffloadScanManager::isServiceAvailable() const {
-  return wifi_offload_hal_ != nullptr;
+void OffloadScanManager::ReportError(OffloadStatus status) {
+  switch(status) {
+    case OffloadStatus::OFFLOAD_STATUS_OK:
+      offload_status_ = OffloadScanManager::kNoError;
+      break;
+    case OffloadStatus::OFFLOAD_STATUS_TIMEOUT:
+      offload_status_ = OffloadScanManager::kTimeOut;
+      break;
+    case OffloadStatus::OFFLOAD_STATUS_NO_CONNECTION:
+      offload_status_ = OffloadScanManager::kNotConnected;
+      break;
+    case OffloadStatus::OFFLOAD_STATUS_ERROR:
+      offload_status_ = OffloadScanManager::kError;
+      break;
+    default:
+      break;
+  }
+  if (offload_status_ != OffloadScanManager::kNoError) {
+    LOG(WARNING) << "Offload Error reported " << offload_status_;
+  }
+}
+
+OffloadScanManager::StatusCode OffloadScanManager::getOffloadStatus() const {
+  return offload_status_;
 }
 
 }  // namespace wificond

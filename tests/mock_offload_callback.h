@@ -26,8 +26,11 @@
 #include <android/hardware/wifi/offload/1.0/IOffloadCallback.h>
 
 using android::hardware::wifi::offload::V1_0::ScanResult;
+using android::hardware::wifi::offload::V1_0::OffloadStatus;
 using android::hardware::wifi::offload::V1_0::implementation::OffloadCallback;
 using android::hardware::wifi::offload::V1_0::implementation::OnOffloadScanResultsReadyHandler;
+using android::hardware::wifi::offload::V1_0::implementation::OnErrorHandler;
+using ::android::hardware::hidl_vec;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 
@@ -36,14 +39,17 @@ namespace wificond {
 
 class MockOffloadCallback : public OffloadCallback {
   public:
-    MockOffloadCallback(OnOffloadScanResultsReadyHandler handler);
+    MockOffloadCallback(OnOffloadScanResultsReadyHandler scanResultHandler,
+        OnErrorHandler errorHandler);
     ~MockOffloadCallback() override = default;
 
     MOCK_METHOD1(onScanResult,
         Return<void>(const hidl_vec<ScanResult> &scanResult));
+    MOCK_METHOD1(onError, Return<void>(OffloadStatus status));
 
   private:
-    OnOffloadScanResultsReadyHandler handler_;
+    OnOffloadScanResultsReadyHandler scan_result_handler_;
+    OnErrorHandler error_handler_;
 };
 
 } // wificond

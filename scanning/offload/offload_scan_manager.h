@@ -25,6 +25,7 @@
 using ::android::hardware::hidl_vec;
 using android::hardware::wifi::offload::V1_0::ScanResult;
 using android::hardware::wifi::offload::V1_0::IOffload;
+using android::hardware::wifi::offload::V1_0::OffloadStatus;
 using android::hardware::wifi::offload::V1_0::implementation::OffloadCallback;
 
 using std::unique_ptr;
@@ -53,17 +54,26 @@ typedef std::function<void(
 // Provides methods to interact with Offload HAL
 class OffloadScanManager {
  public:
+  enum StatusCode {
+      kNoError,
+      kNoService,
+      kNotConnected,
+      kTimeOut,
+      kError
+  };	 
   explicit OffloadScanManager(OffloadServiceUtils* utils,
       OnNativeScanResultsReadyHandler handler);
   virtual ~OffloadScanManager();
-  bool isServiceAvailable() const;
+  StatusCode getOffloadStatus() const;
 
  private:
   void ReportScanResults(const std::vector<ScanResult> scanResult);
+  void ReportError(OffloadStatus status);
 
   android::sp<IOffload> wifi_offload_hal_;
   android::sp<OffloadCallback> wifi_offload_callback_;
   OnNativeScanResultsReadyHandler scan_result_handler_;
+  StatusCode offload_status_;
 };
 
 }  // namespace wificond

@@ -27,7 +27,10 @@
 #include <android-base/logging.h>
 
 using android::hardware::wifi::offload::V1_0::ScanResult;
+using android::hardware::wifi::offload::V1_0::OffloadStatus;
 using android::hardware::wifi::offload::V1_0::implementation::OffloadCallback;
+using android::hardware::wifi::offload::V1_0::implementation::OnErrorHandler;
+
 using android::hardware::hidl_vec;
 
 namespace android {
@@ -63,9 +66,14 @@ class OffloadCallbackTest: public ::testing::Test {
       scanResultSize = scanResult.size();
     }
 
+    void onErrorHandler(OffloadStatus status) {
+      status_ = status;
+    }
+
     std::vector<ScanResult> dummyScanResults;
     std::unique_ptr<OffloadCallback> dut;
     unsigned long scanResultSize;
+    OffloadStatus status_;
 };
 
 /**
@@ -76,10 +84,28 @@ TEST_F(OffloadCallbackTest, checkScanResultSize) {
   dut = std::unique_ptr<OffloadCallback>(new OffloadCallback(
     [this] (std::vector<ScanResult> scanResult) -> void {
         this->onOffloadScanResultHandler(scanResult);
+    },
+    [this] (OffloadStatus status) -> void {
+        this->onErrorHandler(status);
     }));
   hidl_vec<ScanResult> offloadScanResult(dummyScanResults);
   dut->onScanResult(offloadScanResult);
   EXPECT_EQ(dummyScanResults.size(), scanResultSize);
+}
+
+/**
+ * Testing OffloadCallback to invoke the registered error handler
+ */
+TEST_F(OffloadCallbackTest, checkErrorStatus) {
+  dut = std::unique_ptr<OffloadCallback>(new OffloadCallback(
+    [this] (std::vector<ScanResult> scanResult) -> void {
+        this->onOffloadScanResultHandler(scanResult);
+    },
+    [this] (OffloadStatus status) -> void {
+        this->onErrorHandler(status);
+    }));
+  dut->onError(OffloadStatus::OFFLOAD_STATUS_ERROR);
+  EXPECT_EQ(status_, OffloadStatus::OFFLOAD_STATUS_ERROR);
 }
 
 } // wificond

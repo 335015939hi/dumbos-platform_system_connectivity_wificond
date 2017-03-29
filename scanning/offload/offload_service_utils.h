@@ -22,6 +22,7 @@
 using android::hardware::wifi::offload::V1_0::IOffload;
 using android::hardware::wifi::offload::V1_0::implementation::OffloadCallback;
 using android::hardware::wifi::offload::V1_0::implementation::OnOffloadScanResultsReadyHandler;
+using android::hardware::wifi::offload::V1_0::implementation::OnErrorHandler;
 
 namespace android {
 namespace wificond {
@@ -33,7 +34,8 @@ class OffloadServiceUtils {
   virtual ~OffloadServiceUtils() = default;
   virtual android::sp<IOffload> GetOffloadService();
   virtual android::sp<OffloadCallback> GetOffloadCallback(
-      OnOffloadScanResultsReadyHandler handler);
+      OnOffloadScanResultsReadyHandler scanResultHandler,
+      OnErrorHandler errorHandler);
 };
 
 }  // namespace wificond

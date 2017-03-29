@@ -16,6 +16,7 @@
 #include "wificond/scanning/offload/offload_service_utils.h"
 
 using android::hardware::wifi::offload::V1_0::implementation::OnOffloadScanResultsReadyHandler;
+using android::hardware::wifi::offload::V1_0::implementation::OnErrorHandler;
 
 namespace android {
 namespace wificond {
@@ -25,8 +26,9 @@ android::sp<IOffload> OffloadServiceUtils::GetOffloadService() {
 }
 
 android::sp<OffloadCallback> OffloadServiceUtils::GetOffloadCallback(
-    OnOffloadScanResultsReadyHandler handler) {
-  return new OffloadCallback(handler);
+    OnOffloadScanResultsReadyHandler scanResultHandler,
+    OnErrorHandler errorHandler) {
+  return new OffloadCallback(scanResultHandler, errorHandler);
 }
 
 } // wificond

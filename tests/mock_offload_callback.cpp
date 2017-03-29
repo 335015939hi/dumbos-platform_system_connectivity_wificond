@@ -24,13 +24,21 @@ using ::android::hardware::hidl_vec;
 namespace android {
 namespace wificond {
 
-MockOffloadCallback::MockOffloadCallback(OnOffloadScanResultsReadyHandler handler) :
-    OffloadCallback(handler), handler_(handler) {
+MockOffloadCallback::MockOffloadCallback(OnOffloadScanResultsReadyHandler scanResultHandler,
+    OnErrorHandler errorHandler)
+    : OffloadCallback(scanResultHandler, errorHandler),
+      scan_result_handler_(scanResultHandler),
+      error_handler_(errorHandler) {
     ON_CALL(*this, onScanResult(testing::_)).WillByDefault(testing::Invoke(
       [this] (const hidl_vec<ScanResult> &scanResult) -> ::android::hardware::Return<void> {
         std::vector<ScanResult> scanResult_(scanResult);
-        handler_(scanResult_);
+        scan_result_handler_(scanResult_);
         return ::android::hardware::Void();
+      }));
+    ON_CALL(*this, onError(testing::_)).WillByDefault(testing::Invoke(
+      [this](OffloadStatus status) -> ::android::hardware::Return<void> {
+        error_handler_(status);
+	return ::android::hardware::Void();
       }));
 }
 
