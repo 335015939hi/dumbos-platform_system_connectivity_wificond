@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c24cd08_d639af19",
+        "filename": "scanning/offload/offload_callback.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T22:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5edde87_848d668c",
+      "range": {
+        "startLine": 44,
+        "startChar": 54,
+        "endLine": 44,
+        "endChar": 58
+      },
+      "revId": "1486749cc80ef311177fa536b6926eb17a15faa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41bd6613_6df9170a",
         "filename": "scanning/offload/offload_scan_manager.cpp",
         "patchSetId": 21
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-31T22:53:53Z",
       "side": 1,
       "message": "Another comment:\nSince many of the devices don\u0027t have offlaod service, can we instead use(INFO/WARNING):\nLOG(INFO) \u003c\u003c \"No Offload service available\";",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 50
+      },
+      "revId": "1486749cc80ef311177fa536b6926eb17a15faa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09fc9453_8cdf7762",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T22:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41bd6613_6df9170a",
       "range": {
         "startLine": 45,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "af079abe_10af382d",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T22:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7f0faaf_d655649a",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 3
+      },
+      "revId": "1486749cc80ef311177fa536b6926eb17a15faa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b7444a4_d32ba172",
         "filename": "scanning/offload/offload_scan_manager.h",
         "patchSetId": 21
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "9a17e0e6_55a1742e",
+        "filename": "scanning/offload/offload_scan_manager.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T22:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b7444a4_d32ba172",
+      "range": {
+        "startLine": 51,
+        "startChar": 3,
+        "endLine": 51,
+        "endChar": 49
+      },
+      "revId": "1486749cc80ef311177fa536b6926eb17a15faa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec4a9034_d95a4d91",
         "filename": "scanning/scanner_impl.cpp",
         "patchSetId": 21
@@ -105,6 +201,30 @@
       "writtenOn": "2017-03-31T21:51:18Z",
       "side": 1,
       "message": "offload_scan_manager.reset(new ...)",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 15
+      },
+      "revId": "1486749cc80ef311177fa536b6926eb17a15faa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cc8fcd54_a5e6518e",
+        "filename": "scanning/scanner_impl.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T22:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec4a9034_d95a4d91",
       "range": {
         "startLine": 78,
         "startChar": 0,
