@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "741f1ad6_861da0ec",
+        "filename": "tests/offload_callback_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36fef717_bb99db58",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 36,
+        "endChar": 62
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4008b16d_1601f29e",
         "filename": "tests/offload_callback_test.cpp",
         "patchSetId": 14
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-31T00:11:33Z",
       "side": 1,
       "message": "You might need to update this part from offload_scan_utils_test.cpp.\nNaming style, constant ...",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 41
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e03bafa_8388df18",
+        "filename": "tests/offload_callback_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4008b16d_1601f29e",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c3f308de_e543fec4",
+        "filename": "tests/offload_callback_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abfa60fd_06a027d7",
+      "range": {
+        "startLine": 74,
+        "startChar": 1,
+        "endLine": 74,
+        "endChar": 61
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "00dcdfb0_94d5b550",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 14
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3afb1981_19a627e1",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "moving this code to a test util to avoid repitition",
+      "parentUuid": "00dcdfb0_94d5b550",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 25
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d79160cf_9b7fddb0",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 14
@@ -105,6 +201,30 @@
       "writtenOn": "2017-03-31T00:11:33Z",
       "side": 1,
       "message": "The initialization can be moved to line 86, see comments there.",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 81
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3de1f790_1ece4265",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d79160cf_9b7fddb0",
       "range": {
         "startLine": 62,
         "startChar": 6,
@@ -163,6 +283,54 @@
     },
     {
       "key": {
+        "uuid": "8facf2fe_f6115170",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ba910a7_bbee999e",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 66,
+        "endChar": 50
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c77735c9_6c1b4f6e",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcafe1e7_340c3158",
+      "range": {
+        "startLine": 66,
+        "startChar": 50,
+        "endLine": 66,
+        "endChar": 56
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f15677b_951068c8",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 14
@@ -174,6 +342,30 @@
       "writtenOn": "2017-03-31T00:11:33Z",
       "side": 1,
       "message": "sp\u003cNiceMock\u003cMockOffload\u003e\u003e mock_offload(new NiceMock\u003cMockOffload\u003e());",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 44
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8a695d4_89bec13e",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f15677b_951068c8",
       "range": {
         "startLine": 84,
         "startChar": 4,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "382747bc_ce2276c0",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c1da3a4_165250d9",
+      "range": {
+        "startLine": 86,
+        "startChar": 5,
+        "endLine": 86,
+        "endChar": 78
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f75c679d_37256279",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 14
@@ -220,6 +436,30 @@
       "writtenOn": "2017-03-31T00:11:33Z",
       "side": 1,
       "message": "same here.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 31
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32f70c08_687e1fbd",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f75c679d_37256279",
       "range": {
         "startLine": 94,
         "startChar": 0,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "8ee71185_1d3c6b36",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "959528bf_0e3e2606",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 63
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc7ea37d_e61c04f9",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 14
@@ -266,6 +530,30 @@
       "writtenOn": "2017-03-31T00:11:33Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 63
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee62f62_f810967f",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc7ea37d_e61c04f9",
       "range": {
         "startLine": 119,
         "startChar": 2,
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "b4493551_4f1540a0",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9e92726_69db1fcd",
+      "range": {
+        "startLine": 135,
+        "startChar": 2,
+        "endLine": 135,
+        "endChar": 63
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "40d12e82_150e12c4",
         "filename": "tests/offload_scan_utils_test.cpp",
         "patchSetId": 14
@@ -312,6 +624,30 @@
       "writtenOn": "2017-03-31T00:11:33Z",
       "side": 1,
       "message": "make them const please",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 25
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10efb5e6_ebfc5707",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40d12e82_150e12c4",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "68daee6a_7691a8e1",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0929558f_05f83ba6",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "284d0aeb_72820e47",
         "filename": "tests/offload_scan_utils_test.cpp",
         "patchSetId": 14
@@ -358,6 +718,30 @@
       "writtenOn": "2017-03-31T00:11:33Z",
       "side": 1,
       "message": "dummy_scan_results_",
+      "range": {
+        "startLine": 60,
+        "startChar": 26,
+        "endLine": 60,
+        "endChar": 44
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ff2101d_bebd6378",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "284d0aeb_72820e47",
       "range": {
         "startLine": 60,
         "startChar": 26,
