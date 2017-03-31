@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "b3e8ac18_94bf05f8",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T18:17:07Z",
+      "side": 1,
+      "message": "Yes this is a sp, it can release object automatically.\nBut since we are capturing things into a member variable, this has influence across tests. I just want to explicitly clear it in order to avoid confusion/surprise in future test cases.",
+      "parentUuid": "7be0f14e_15fce7a9",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 59
+      },
+      "revId": "dba7b5624b031d0b4433f2f1b6e19fc9250681fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "951cc6b5_b54ff141",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 16
