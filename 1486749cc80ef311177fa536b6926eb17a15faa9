@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "41bd6613_6df9170a",
+        "filename": "scanning/offload/offload_scan_manager.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T22:53:53Z",
+      "side": 1,
+      "message": "Another comment:\nSince many of the devices don\u0027t have offlaod service, can we instead use(INFO/WARNING):\nLOG(INFO) \u003c\u003c \"No Offload service available\";",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 50
+      },
+      "revId": "1486749cc80ef311177fa536b6926eb17a15faa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7f0faaf_d655649a",
         "filename": "scanning/offload/offload_scan_manager.cpp",
         "patchSetId": 21
