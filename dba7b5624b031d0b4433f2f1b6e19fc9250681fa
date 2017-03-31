@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "7e2d1f12_df22c411",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T18:45:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "b3e8ac18_94bf05f8",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 59
+      },
+      "revId": "dba7b5624b031d0b4433f2f1b6e19fc9250681fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "951cc6b5_b54ff141",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 16
