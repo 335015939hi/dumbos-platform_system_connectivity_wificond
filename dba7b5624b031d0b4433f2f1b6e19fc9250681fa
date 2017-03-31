@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "7be0f14e_15fce7a9",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T18:12:21Z",
+      "side": 1,
+      "message": "Understood.\nI think we should add \"offload_call_back_.clear()\" in TearDown().",
+      "parentUuid": "b312314a_aa0c2414",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 59
+      },
+      "revId": "dba7b5624b031d0b4433f2f1b6e19fc9250681fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "951cc6b5_b54ff141",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 16
