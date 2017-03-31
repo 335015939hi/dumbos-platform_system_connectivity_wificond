@@ -143,6 +143,53 @@
     },
     {
       "key": {
+        "uuid": "055dd336_278771cc",
+        "filename": "tests/mock_offload.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "Um... This is surprising",
+      "parentUuid": "07b869ff_08d2a592",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 76
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d44e4f5d_8431b47c",
+        "filename": "tests/mock_offload.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "please use \"const ScanParam\u0026 param\" for consistent with other wificond code.",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 28
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04256729_050961b0",
         "filename": "tests/mock_offload.h",
         "patchSetId": 13
@@ -471,6 +518,30 @@
     },
     {
       "key": {
+        "uuid": "786b67a1_fd45be04",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "You are right, not necessary.",
+      "parentUuid": "6fc9ae8b_27e4ac4d",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 21
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3700cc5_e5381bcc",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 13
@@ -647,6 +718,30 @@
       "side": 1,
       "message": "I presume you mean use underscored names instead?",
       "parentUuid": "d3f9ef47_3b5291e8",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 46
+      },
+      "revId": "da5368cf9ceb28a31191f1876c9572672ad68fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36efa3df_936c1adc",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "5b378b9e_28a6abc2",
       "range": {
         "startLine": 81,
         "startChar": 0,

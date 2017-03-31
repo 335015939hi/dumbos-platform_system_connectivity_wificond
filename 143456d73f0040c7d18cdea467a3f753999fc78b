@@ -1,0 +1,372 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36fef717_bb99db58",
+        "filename": "tests/offload_callback_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "const",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 36,
+        "endChar": 62
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4008b16d_1601f29e",
+        "filename": "tests/offload_callback_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "You might need to update this part from offload_scan_utils_test.cpp.\nNaming style, constant ...",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 41
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abfa60fd_06a027d7",
+        "filename": "tests/offload_callback_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "dut.reset(new ...)",
+      "range": {
+        "startLine": 74,
+        "startChar": 1,
+        "endLine": 74,
+        "endChar": 61
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00dcdfb0_94d5b550",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "make them const",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 25
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d79160cf_9b7fddb0",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "The initialization can be moved to line 86, see comments there.",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 81
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fcafe1e7_340c3158",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "remove extra spaces",
+      "range": {
+        "startLine": 66,
+        "startChar": 50,
+        "endLine": 66,
+        "endChar": 56
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ba910a7_bbee999e",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "The initialization can be moved to line 84, see comments there.",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 66,
+        "endChar": 50
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f15677b_951068c8",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "sp\u003cNiceMock\u003cMockOffload\u003e\u003e mock_offload(new NiceMock\u003cMockOffload\u003e());",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 44
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6c1da3a4_165250d9",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "unique_ptr\u003cNiceMock\u003cMockOffloadServiceUtils\u003e\u003e mock_offload_service_utils_(new NiceMock\u003cMockOffloadServiceUtils\u003e());",
+      "range": {
+        "startLine": 86,
+        "startChar": 5,
+        "endLine": 86,
+        "endChar": 78
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f75c679d_37256279",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "same here.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 31
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "959528bf_0e3e2606",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "same here.",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 63
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc7ea37d_e61c04f9",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 63
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9e92726_69db1fcd",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "dut_.reset(new OffloadScanManager(...))",
+      "range": {
+        "startLine": 135,
+        "startChar": 2,
+        "endLine": 135,
+        "endChar": 63
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40d12e82_150e12c4",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "make them const please",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 25
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0929558f_05f83ba6",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "Could you also make it constant even if it\u0027s 0 ?\nWe will use them sooner or later.\nAlso for flags, capability ...",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "284d0aeb_72820e47",
+        "filename": "tests/offload_scan_utils_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-03-31T00:11:33Z",
+      "side": 1,
+      "message": "dummy_scan_results_",
+      "range": {
+        "startLine": 60,
+        "startChar": 26,
+        "endLine": 60,
+        "endChar": 44
+      },
+      "revId": "143456d73f0040c7d18cdea467a3f753999fc78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
