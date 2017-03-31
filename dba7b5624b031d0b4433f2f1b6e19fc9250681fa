@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "289d9138_e40ca5f4",
+        "filename": "tests/offload_callback_test.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:54:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74ef93ad_aa381202",
+      "range": {
+        "startLine": 57,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 43
+      },
+      "revId": "dba7b5624b031d0b4433f2f1b6e19fc9250681fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3b17f99_f1065a94",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 16
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-31T17:30:58Z",
       "side": 1,
       "message": "Can we move it to CallbackInvokedTest?\nIt seems that this is only used other.\nWith this said, you can also move line 67 into the body of CallbackInvokedTest. That would make the structure more clear.",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 59
+      },
+      "revId": "dba7b5624b031d0b4433f2f1b6e19fc9250681fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b312314a_aa0c2414",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:54:26Z",
+      "side": 1,
+      "message": "no actually it is needed for serviceAvailableTest as well. Otherwise, service available will return false.",
+      "parentUuid": "e3b17f99_f1065a94",
       "range": {
         "startLine": 55,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e1525de8_35232dc4",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:54:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "951cc6b5_b54ff141",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 73
+      },
+      "revId": "dba7b5624b031d0b4433f2f1b6e19fc9250681fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01622934_6dd03b6a",
         "filename": "tests/offload_scan_manager_test.cpp",
         "patchSetId": 16
@@ -82,6 +154,30 @@
       "writtenOn": "2017-03-31T17:30:58Z",
       "side": 1,
       "message": "If you agree with line 58, we don\u0027t need this any more.",
+      "range": {
+        "startLine": 62,
+        "startChar": 5,
+        "endLine": 62,
+        "endChar": 34
+      },
+      "revId": "dba7b5624b031d0b4433f2f1b6e19fc9250681fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd8d69ee_d72f7968",
+        "filename": "tests/offload_scan_manager_test.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1118893
+      },
+      "writtenOn": "2017-03-31T17:54:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01622934_6dd03b6a",
       "range": {
         "startLine": 62,
         "startChar": 5,
