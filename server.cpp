@@ -19,6 +19,7 @@
 #include <sstream>
 
 #include <android-base/logging.h>
+#include <android-base/string.h>
 
 #include "wificond/net/netlink_utils.h"
 #include "wificond/scanning/scan_utils.h"
@@ -222,7 +223,10 @@ bool Server::SetupInterface(InterfaceInfo* interface) {
     // Some kernel/driver uses station type for p2p interface.
     // In that case we can only rely on hard-coded name to exclude
     // p2p interface from station interfaces.
-    if (iface.name != "p2p0") {
+    // Currently NAN interfaces also use station type.
+    // We should blacklist NAN interfaces as well.
+    if (iface.name != "p2p0" &&
+        !android::base::StartWith(iface.name, "aware_data".c_str())) {
       *interface = iface;
       return true;
     }
