@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3862e76b_d8505cec",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-06-02T22:47:37Z",
+      "side": 1,
+      "message": "wiley is no longer in Google.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "8815eff1b876e4132367993159c48696928f9f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
