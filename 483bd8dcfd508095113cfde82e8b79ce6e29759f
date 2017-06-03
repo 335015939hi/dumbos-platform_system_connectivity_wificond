@@ -1,0 +1,9 @@
+Verified+1: Chih-hung Hsieh <chh@google.com>
+Autosubmit+1: Chih-hung Hsieh <chh@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Code-Review+2: Ningyuan Wang <nywang@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Sat, 03 Jun 2017 01:11:32 +0000
+Reviewed-on: https://android-review.googlesource.com/408602
+Project: platform/system/connectivity/wificond
+Branch: refs/heads/master
