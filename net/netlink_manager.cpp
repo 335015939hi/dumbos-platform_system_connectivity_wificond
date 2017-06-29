@@ -390,11 +390,18 @@ bool NetlinkManager::SetupSocket(unique_fd* netlink_fd) {
   // Datagram which is larger than this size will be discarded.
   if (setsockopt(netlink_fd->get(),
                  SOL_SOCKET,
-                 SO_RCVBUFFORCE,
+                 SO_RCVBUF,
                  &kReceiveBufferSize,
                  sizeof(kReceiveBufferSize)) < 0) {
-    LOG(ERROR) << "Failed to set uevent socket SO_RCVBUFFORCE option: " << strerror(errno);
-    return false;
+    if (setsockopt(netlink_fd->get(),
+                   SOL_SOCKET,
+                   SO_RCVBUFFORCE,
+                   &kReceiveBufferSize,
+                   sizeof(kReceiveBufferSize)) < 0) {
+      LOG(ERROR) << "Failed to set uevent socket SO_RCVBUFFORCE option: "
+                 << strerror(errno);
+      return false;
+    }
   }
   if (bind(netlink_fd->get(),
            reinterpret_cast<struct sockaddr*>(&nladdr),
