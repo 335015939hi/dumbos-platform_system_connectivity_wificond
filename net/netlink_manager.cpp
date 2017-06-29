@@ -390,6 +390,11 @@ bool NetlinkManager::SetupSocket(unique_fd* netlink_fd) {
   // Datagram which is larger than this size will be discarded.
   if (setsockopt(netlink_fd->get(),
                  SOL_SOCKET,
+                 SO_RCVBUF,
+                 &kReceiveBufferSize,
+                 sizeof(kReceiveBufferSize)) < 0 &&
+      setsockopt(netlink_fd->get(),
+                 SOL_SOCKET,
                  SO_RCVBUFFORCE,
                  &kReceiveBufferSize,
                  sizeof(kReceiveBufferSize)) < 0) {
