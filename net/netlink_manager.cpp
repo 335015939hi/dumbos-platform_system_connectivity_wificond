@@ -179,7 +179,7 @@ void NetlinkManager::OnNewFamily(unique_ptr<const NL80211Packet> packet) {
     }
     for (auto& group : groups) {
       string group_name;
-      uint32_t group_id;
+      uint32_t group_id = 0;
       if (!group.GetAttributeValue(CTRL_ATTR_MCAST_GRP_NAME, &group_name)) {
         LOG(ERROR) << "Failed to get group name";
       }
