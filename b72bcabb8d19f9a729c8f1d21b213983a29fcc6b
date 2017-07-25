@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1758d512_506dea51",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2017-07-25T22:42:41Z",
+      "side": 1,
+      "message": "Should we `continue;` here instead? Otherwise, looks like we\u0027ll end up with message_types_[family_name].groups[\"\"] \u003d group_id, which doesn\u0027t sound sane to me.\n\n(Though, I\u0027m not familiar with this code)",
+      "revId": "b72bcabb8d19f9a729c8f1d21b213983a29fcc6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5bb78c6e_fecb637f",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2017-07-25T22:42:41Z",
+      "side": 1,
+      "message": "Same question",
+      "revId": "b72bcabb8d19f9a729c8f1d21b213983a29fcc6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b0da9ef_7eed7f59",
+        "filename": "tests/nl80211_attribute_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2017-07-25T22:42:41Z",
+      "side": 1,
+      "message": "Would it make sense to instead change the 3 EXPECT_TRUEs above to ASSERT_TRUEs? It doesn\u0027t make much sense to me to test these values if getting them in the first place failed (and I imagine doing so would fix the warnings without requiring that we initialize value{1,2,3})",
+      "revId": "b72bcabb8d19f9a729c8f1d21b213983a29fcc6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
