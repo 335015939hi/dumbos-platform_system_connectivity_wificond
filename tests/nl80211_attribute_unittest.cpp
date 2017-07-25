@@ -271,9 +271,9 @@ TEST(NL80211AttributeTest, GetListOfNestedAttributesFromBuffer) {
   NL80211NestedAttr attr(buffer);
   EXPECT_TRUE(attr.GetListOfNestedAttributes(&nested_attrs));
   EXPECT_TRUE(nested_attrs.size() == 3);
-  uint16_t value1;
-  uint32_t value2;
-  uint8_t value3;
+  uint16_t value1 = 0;
+  uint32_t value2 = 0;
+  uint8_t value3 = 0;
   EXPECT_TRUE(nested_attrs[0].GetAttributeValue(1, &value1));
   EXPECT_TRUE(nested_attrs[1].GetAttributeValue(1, &value2));
   EXPECT_TRUE(nested_attrs[2].GetAttributeValue(1, &value3));
