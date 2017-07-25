@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "250b40ec_d9156f68",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-07-25T22:51:49Z",
+      "side": 1,
+      "message": "Yes that makes sense.",
+      "parentUuid": "1758d512_506dea51",
+      "revId": "b72bcabb8d19f9a729c8f1d21b213983a29fcc6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5bb78c6e_fecb637f",
         "filename": "net/netlink_manager.cpp",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9fba83c6_0f9a335b",
+        "filename": "net/netlink_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-07-25T22:51:49Z",
+      "side": 1,
+      "message": "same.",
+      "parentUuid": "5bb78c6e_fecb637f",
+      "revId": "b72bcabb8d19f9a729c8f1d21b213983a29fcc6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1b0da9ef_7eed7f59",
         "filename": "tests/nl80211_attribute_unittest.cpp",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2017-07-25T22:42:41Z",
       "side": 1,
       "message": "Would it make sense to instead change the 3 EXPECT_TRUEs above to ASSERT_TRUEs? It doesn\u0027t make much sense to me to test these values if getting them in the first place failed (and I imagine doing so would fix the warnings without requiring that we initialize value{1,2,3})",
+      "revId": "b72bcabb8d19f9a729c8f1d21b213983a29fcc6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "265ce42b_cba48242",
+        "filename": "tests/nl80211_attribute_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1081508
+      },
+      "writtenOn": "2017-07-25T22:51:49Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "1b0da9ef_7eed7f59",
       "revId": "b72bcabb8d19f9a729c8f1d21b213983a29fcc6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
