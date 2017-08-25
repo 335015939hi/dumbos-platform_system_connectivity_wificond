@@ -22,6 +22,30 @@
       "revId": "e823b5b106df057990cbc84255ae52919032221d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e13b5a19_7d4b572a",
+        "filename": "wificond.rc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1010110
+      },
+      "writtenOn": "2017-08-25T23:59:54Z",
+      "side": 1,
+      "message": "So groups can be used for other things like file permissions (at least thats one thing I can think of, there\u0027s likely more), so I don\u0027t think we want to remove the group assignment. I just want to make sure we are being explicit with the capabilities grants rather then implicit.",
+      "parentUuid": "e4173e73_de506aab",
+      "range": {
+        "startLine": 4,
+        "startChar": 15,
+        "endLine": 4,
+        "endChar": 32
+      },
+      "revId": "e823b5b106df057990cbc84255ae52919032221d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
