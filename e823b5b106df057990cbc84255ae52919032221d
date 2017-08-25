@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4173e73_de506aab",
+        "filename": "wificond.rc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2017-08-25T23:56:39Z",
+      "side": 1,
+      "message": "Actually, shouldn\u0027t this drop net_raw and net_admin groups, or do you want to remain compatible with older kernels?",
+      "range": {
+        "startLine": 4,
+        "startChar": 15,
+        "endLine": 4,
+        "endChar": 32
+      },
+      "revId": "e823b5b106df057990cbc84255ae52919032221d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
