@@ -46,6 +46,30 @@
       "revId": "e823b5b106df057990cbc84255ae52919032221d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f028ffe_f9ab0d2b",
+        "filename": "wificond.rc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-26T23:06:33Z",
+      "side": 1,
+      "message": "I think Android has been reasonably good at not using this GIDs for non-capabilities stuff, but it\u0027s definitely safer to just add the caps first and eventually remove the GIDs.",
+      "parentUuid": "e13b5a19_7d4b572a",
+      "range": {
+        "startLine": 4,
+        "startChar": 15,
+        "endLine": 4,
+        "endChar": 32
+      },
+      "revId": "e823b5b106df057990cbc84255ae52919032221d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
