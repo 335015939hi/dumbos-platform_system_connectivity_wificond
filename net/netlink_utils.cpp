@@ -25,7 +25,6 @@
 #include <android-base/logging.h>
 
 #include "wificond/net/mlme_event_handler.h"
-#include "wificond/net/netlink_manager.h"
 #include "wificond/net/nl80211_packet.h"
 
 using std::string;
@@ -91,21 +90,19 @@ bool NetlinkUtils::GetWiphyIndex(uint32_t* out_wiphy_index) {
   return true;
 }
 
-bool NetlinkUtils::GetInterfaceInfo(uint32_t wiphy_index,
-                                    string* name,
-                                    uint32_t* index,
-                                    vector<uint8_t>* mac_addr) {
-  NL80211Packet get_interface(
+bool NetlinkUtils::GetInterfaces(uint32_t wiphy_index,
+                                 vector<InterfaceInfo>* interface_info) {
+  NL80211Packet get_interfaces(
       netlink_manager_->GetFamilyId(),
       NL80211_CMD_GET_INTERFACE,
       netlink_manager_->GetSequenceNumber(),
       getpid());
 
-  get_interface.AddFlag(NLM_F_DUMP);
-  NL80211Attr<uint32_t> wiphy(NL80211_ATTR_WIPHY, wiphy_index);
-  get_interface.AddAttribute(wiphy);
+  get_interfaces.AddFlag(NLM_F_DUMP);
+  get_interfaces.AddAttribute(
+      NL80211Attr<uint32_t>(NL80211_ATTR_WIPHY, wiphy_index));
   vector<unique_ptr<const NL80211Packet>> response;
-  if (!netlink_manager_->SendMessageAndGetResponses(get_interface, &response)) {
+  if (!netlink_manager_->SendMessageAndGetResponses(get_interfaces, &response)) {
     LOG(ERROR) << "NL80211_CMD_GET_INTERFACE dump failed";
     return false;
   }
@@ -131,6 +128,16 @@ bool NetlinkUtils::GetInterfaceInfo(uint32_t wiphy_index,
       return false;
     }
 
+    // In some situations, it has been observed that the kernel tells us
+    // about a pseudo interface that does not have a real netdev.  In this
+    // case, responses will have a NL80211_ATTR_WDEV, and not the expected
+    // IFNAME/IFINDEX. In this case we just skip these pseudo interfaces.
+    uint32_t if_index;
+    if (!packet->GetAttributeValue(NL80211_ATTR_IFINDEX, &if_index)) {
+      LOG(DEBUG) << "Failed to get interface index";
+      continue;
+    }
+
     // Today we don't check NL80211_ATTR_IFTYPE because at this point of time
     // driver always reports that interface is in STATION mode. Even when we
     // are asking interfaces infomation on behalf of tethering, it is still so
@@ -138,41 +145,52 @@ bool NetlinkUtils::GetInterfaceInfo(uint32_t wiphy_index,
 
     string if_name;
     if (!packet->GetAttributeValue(NL80211_ATTR_IFNAME, &if_name)) {
-      // In some situations, it has been observed that the kernel tells us
-      // about a pseudo-device that does not have a real netdev.  In this
-      // case, responses will have a NL80211_ATTR_WDEV, and not the expected
-      // IFNAME.
-      LOG(DEBUG) << "Failed to get interface name";
-      continue;
-    }
-    if (if_name == "p2p0") {
-      LOG(DEBUG) << "Driver may tell a lie that p2p0 is in STATION mode,"
-                 <<" we need to blacklist it.";
-      continue;
-    }
-
-    uint32_t if_index;
-    if (!packet->GetAttributeValue(NL80211_ATTR_IFINDEX, &if_index)) {
-      LOG(DEBUG) << "Failed to get interface index";
+      LOG(WARNING) << "Failed to get interface name";
       continue;
     }
 
     vector<uint8_t> if_mac_addr;
     if (!packet->GetAttributeValue(NL80211_ATTR_MAC, &if_mac_addr)) {
-      LOG(DEBUG) << "Failed to get interface mac address";
+      LOG(WARNING) << "Failed to get interface mac address";
       continue;
     }
 
-    *name = if_name;
-    *index = if_index;
-    *mac_addr = if_mac_addr;
-    return true;
+    interface_info->emplace_back(if_index, if_name, if_mac_addr);
   }
 
-  LOG(ERROR) << "Failed to get expected interface info from kernel";
-  return false;
+  return true;
 }
 
+bool NetlinkUtils::SetInterfaceMode(uint32_t interface_index,
+                                    InterfaceMode mode) {
+  uint32_t set_to_mode = NL80211_IFTYPE_UNSPECIFIED;
+  if (mode == STATION_MODE) {
+    set_to_mode = NL80211_IFTYPE_STATION;
+  } else {
+    LOG(ERROR) << "Unexpected mode for interface with index: "
+               << interface_index;
+    return false;
+  }
+  NL80211Packet set_interface_mode(
+      netlink_manager_->GetFamilyId(),
+      NL80211_CMD_SET_INTERFACE,
+      netlink_manager_->GetSequenceNumber(),
+      getpid());
+  // Force an ACK response upon success.
+  set_interface_mode.AddFlag(NLM_F_ACK);
+
+  set_interface_mode.AddAttribute(
+      NL80211Attr<uint32_t>(NL80211_ATTR_IFINDEX, interface_index));
+  set_interface_mode.AddAttribute(
+      NL80211Attr<uint32_t>(NL80211_ATTR_IFTYPE, set_to_mode));
+
+  if (!netlink_manager_->SendMessageAndGetAck(set_interface_mode)) {
+    LOG(ERROR) << "NL80211_CMD_SET_INTERFACE failed";
+    return false;
+  }
+
+  return true;
+}
 
 bool NetlinkUtils::GetWiphyInfo(
     uint32_t wiphy_index,
@@ -228,6 +246,17 @@ bool NetlinkUtils::ParseScanCapabilities(
     return false;
   }
 
+  // Use default value 0 for scan plan capabilities if attributes are missing.
+  uint32_t max_num_scan_plans = 0;
+  packet->GetAttributeValue(NL80211_ATTR_MAX_NUM_SCHED_SCAN_PLANS,
+                            &max_num_scan_plans);
+  uint32_t max_scan_plan_interval = 0;
+  packet->GetAttributeValue(NL80211_ATTR_MAX_SCAN_PLAN_INTERVAL,
+                            &max_scan_plan_interval);
+  uint32_t max_scan_plan_iterations = 0;
+  packet->GetAttributeValue(NL80211_ATTR_MAX_SCAN_PLAN_ITERATIONS,
+                            &max_scan_plan_iterations);
+
   uint8_t max_match_sets;
   if (!packet->GetAttributeValue(NL80211_ATTR_MAX_MATCH_SETS,
                                    &max_match_sets)) {
@@ -237,7 +266,10 @@ bool NetlinkUtils::ParseScanCapabilities(
   }
   *out_scan_capabilities = ScanCapabilities(max_num_scan_ssids,
                                             max_num_sched_scan_ssids,
-                                            max_match_sets);
+                                            max_match_sets,
+                                            max_num_scan_plans,
+                                            max_scan_plan_interval,
+                                            max_scan_plan_iterations);
   return true;
 }
 
@@ -260,7 +292,7 @@ bool NetlinkUtils::ParseBandInfo(const NL80211Packet* const packet,
   for (unsigned int band_index = 0; band_index < bands.size(); band_index++) {
     NL80211NestedAttr freqs_attr(0);
     if (!bands[band_index].GetAttribute(NL80211_BAND_ATTR_FREQS, &freqs_attr)) {
-      LOG(ERROR) << "Failed to get NL80211_BAND_ATTR_FREQS";
+      LOG(DEBUG) << "Failed to get NL80211_BAND_ATTR_FREQS";
       continue;
     }
     vector<NL80211NestedAttr> freqs;
@@ -272,7 +304,7 @@ bool NetlinkUtils::ParseBandInfo(const NL80211Packet* const packet,
       uint32_t frequency_value;
       if (!freq.GetAttributeValue(NL80211_FREQUENCY_ATTR_FREQ,
                                   &frequency_value)) {
-        LOG(ERROR) << "Failed to get NL80211_FREQUENCY_ATTR_FREQ";
+        LOG(DEBUG) << "Failed to get NL80211_FREQUENCY_ATTR_FREQ";
         continue;
       }
       // Channel is disabled in current regulatory domain.
@@ -370,6 +402,25 @@ void NetlinkUtils::SubscribeMlmeEvent(uint32_t interface_index,
 
 void NetlinkUtils::UnsubscribeMlmeEvent(uint32_t interface_index) {
   netlink_manager_->UnsubscribeMlmeEvent(interface_index);
+}
+
+void NetlinkUtils::SubscribeRegDomainChange(
+    uint32_t wiphy_index,
+    OnRegDomainChangedHandler handler) {
+  netlink_manager_->SubscribeRegDomainChange(wiphy_index, handler);
+}
+
+void NetlinkUtils::UnsubscribeRegDomainChange(uint32_t wiphy_index) {
+  netlink_manager_->UnsubscribeRegDomainChange(wiphy_index);
+}
+
+void NetlinkUtils::SubscribeStationEvent(uint32_t interface_index,
+                                         OnStationEventHandler handler) {
+  netlink_manager_->SubscribeStationEvent(interface_index, handler);
+}
+
+void NetlinkUtils::UnsubscribeStationEvent(uint32_t interface_index) {
+  netlink_manager_->UnsubscribeStationEvent(interface_index);
 }
 
 }  // namespace wificond

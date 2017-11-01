@@ -20,11 +20,11 @@
 
 #include <android-base/logging.h>
 #include <wifi_system/supplicant_manager.h>
-#include <wifi_system/wifi.h>
 
 #include "wificond/client_interface_binder.h"
 #include "wificond/net/mlme_event.h"
 #include "wificond/net/netlink_utils.h"
+#include "wificond/scanning/offload/offload_service_utils.h"
 #include "wificond/scanning/scan_result.h"
 #include "wificond/scanning/scan_utils.h"
 #include "wificond/scanning/scanner_impl.h"
@@ -35,6 +35,7 @@ using android::sp;
 using android::wifi_system::InterfaceTool;
 using android::wifi_system::SupplicantManager;
 
+using std::endl;
 using std::string;
 using std::unique_ptr;
 using std::vector;
@@ -50,25 +51,54 @@ MlmeEventHandlerImpl::~MlmeEventHandlerImpl() {
 }
 
 void MlmeEventHandlerImpl::OnConnect(unique_ptr<MlmeConnectEvent> event) {
-  if (event->GetStatusCode() == 0) {
+  if (!event->IsTimeout() && event->GetStatusCode() == 0) {
+    client_interface_->is_associated_ = true;
     client_interface_->RefreshAssociateFreq();
     client_interface_->bssid_ = event->GetBSSID();
+  } else {
+    if (event->IsTimeout()) {
+      LOG(INFO) << "Connect timeout";
+    }
+    client_interface_->is_associated_ = false;
+    client_interface_->bssid_.clear();
   }
 }
 
 void MlmeEventHandlerImpl::OnRoam(unique_ptr<MlmeRoamEvent> event) {
   if (event->GetStatusCode() == 0) {
+    client_interface_->is_associated_ = true;
     client_interface_->RefreshAssociateFreq();
     client_interface_->bssid_ = event->GetBSSID();
+  } else {
+    client_interface_->is_associated_ = false;
+    client_interface_->bssid_.clear();
   }
 }
 
 void MlmeEventHandlerImpl::OnAssociate(unique_ptr<MlmeAssociateEvent> event) {
-  if (event->GetStatusCode() == 0) {
+  if (!event->IsTimeout() && event->GetStatusCode() == 0) {
+    client_interface_->is_associated_ = true;
     client_interface_->RefreshAssociateFreq();
     client_interface_->bssid_ = event->GetBSSID();
+  } else {
+    if (event->IsTimeout()) {
+      LOG(INFO) << "Associate timeout";
+    }
+    client_interface_->is_associated_ = false;
+    client_interface_->bssid_.clear();
   }
 }
+
+void MlmeEventHandlerImpl::OnDisconnect(unique_ptr<MlmeDisconnectEvent> event) {
+  client_interface_->is_associated_ = false;
+  client_interface_->bssid_.clear();
+}
+
+void MlmeEventHandlerImpl::OnDisassociate(unique_ptr<MlmeDisassociateEvent> event) {
+  client_interface_->is_associated_ = false;
+  client_interface_->bssid_.clear();
+}
+
 
 ClientInterfaceImpl::ClientInterfaceImpl(
     uint32_t wiphy_index,
@@ -87,20 +117,29 @@ ClientInterfaceImpl::ClientInterfaceImpl(
       supplicant_manager_(supplicant_manager),
       netlink_utils_(netlink_utils),
       scan_utils_(scan_utils),
+      offload_service_utils_(new OffloadServiceUtils()),
       mlme_event_handler_(new MlmeEventHandlerImpl(this)),
-      binder_(new ClientInterfaceBinder(this)) {
+      binder_(new ClientInterfaceBinder(this)),
+      is_associated_(false) {
   netlink_utils_->SubscribeMlmeEvent(
       interface_index_,
       mlme_event_handler_.get());
-  netlink_utils_->GetWiphyInfo(wiphy_index_,
+  if (!netlink_utils_->GetWiphyInfo(wiphy_index_,
                                &band_info_,
                                &scan_capabilities_,
-                               &wiphy_features_);
-  scanner_ = new ScannerImpl(interface_index_,
-                             band_info_,
+                               &wiphy_features_)) {
+    LOG(ERROR) << "Failed to get wiphy info from kernel";
+  }
+  LOG(INFO) << "create scanner for interface with index: "
+            << (int)interface_index_;
+  scanner_ = new ScannerImpl(wiphy_index,
+                             interface_index_,
                              scan_capabilities_,
                              wiphy_features_,
-                             scan_utils_);
+                             this,
+                             netlink_utils_,
+                             scan_utils_,
+                             offload_service_utils_);
 }
 
 ClientInterfaceImpl::~ClientInterfaceImpl() {
@@ -113,6 +152,29 @@ ClientInterfaceImpl::~ClientInterfaceImpl() {
 
 sp<android::net::wifi::IClientInterface> ClientInterfaceImpl::GetBinder() const {
   return binder_;
+}
+
+void ClientInterfaceImpl::Dump(std::stringstream* ss) const {
+  *ss << "------- Dump of client interface with index: "
+      << interface_index_ << " and name: " << interface_name_
+      << "-------" << endl;
+  *ss << "Max number of ssids for single shot scan: "
+      << static_cast<int>(scan_capabilities_.max_num_scan_ssids) << endl;
+  *ss << "Max number of ssids for scheduled scan: "
+      << static_cast<int>(scan_capabilities_.max_num_sched_scan_ssids) << endl;
+  *ss << "Max number of match sets for scheduled scan: "
+      << static_cast<int>(scan_capabilities_.max_match_sets) << endl;
+  *ss << "Maximum number of scan plans: "
+      << scan_capabilities_.max_num_scan_plans << endl;
+  *ss << "Max scan plan interval in seconds: "
+      << scan_capabilities_.max_scan_plan_interval << endl;
+  *ss << "Max scan plan iterations: "
+      << scan_capabilities_.max_scan_plan_iterations << endl;
+  *ss << "Device supports random MAC for single shot scan: "
+      << wiphy_features_.supports_random_mac_oneshot_scan << endl;
+  *ss << "Device supports random MAC for scheduled scan: "
+      << wiphy_features_.supports_random_mac_sched_scan << endl;
+  *ss << "------- Dump End -------" << endl;
 }
 
 bool ClientInterfaceImpl::EnableSupplicant() {
@@ -179,6 +241,10 @@ bool ClientInterfaceImpl::RefreshAssociateFreq() {
     }
   }
   return false;
+}
+
+bool ClientInterfaceImpl::IsAssociated() const {
+  return is_associated_;
 }
 
 }  // namespace wificond

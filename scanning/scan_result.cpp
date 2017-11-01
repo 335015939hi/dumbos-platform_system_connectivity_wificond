@@ -16,17 +16,14 @@
 
 #include "wificond/scanning/scan_result.h"
 
-#include <iomanip>
-#include <sstream>
-
 #include <android-base/logging.h>
 
+#include "wificond/logging_utils.h"
 #include "wificond/parcelable_utils.h"
 
 using android::status_t;
 using android::OK;
 using std::string;
-using std::stringstream;
 
 namespace com {
 namespace android {
@@ -53,17 +50,8 @@ NativeScanResult::NativeScanResult(std::vector<uint8_t>& ssid_,
 }
 
 status_t NativeScanResult::writeToParcel(::android::Parcel* parcel) const {
-  // Although writeByteVector() writes the vector length in the parcel and
-  // readByteVector() handles that properly, we still need to book the length
-  // here explicitly because the Java version of readByteArray() does not use
-  // the vector length provided by writeByteVector() to initialize a byte array.
-  // We need an explicit length here to initialize a byte array before calling
-  // readByteArray()
-  RETURN_IF_FAILED(parcel->writeInt32(ssid.size()));
   RETURN_IF_FAILED(parcel->writeByteVector(ssid));
-  RETURN_IF_FAILED(parcel->writeInt32(bssid.size()));
   RETURN_IF_FAILED(parcel->writeByteVector(bssid));
-  RETURN_IF_FAILED(parcel->writeInt32(info_element.size()));
   RETURN_IF_FAILED(parcel->writeByteVector(info_element));
   RETURN_IF_FAILED(parcel->writeUint32(frequency));
   RETURN_IF_FAILED(parcel->writeInt32(signal_mbm));
@@ -76,11 +64,8 @@ status_t NativeScanResult::writeToParcel(::android::Parcel* parcel) const {
 }
 
 status_t NativeScanResult::readFromParcel(const ::android::Parcel* parcel) {
-  parcel->readInt32();
   RETURN_IF_FAILED(parcel->readByteVector(&ssid));
-  parcel->readInt32();
   RETURN_IF_FAILED(parcel->readByteVector(&bssid));
-  parcel->readInt32();
   RETURN_IF_FAILED(parcel->readByteVector(&info_element));
   RETURN_IF_FAILED(parcel->readUint32(&frequency));
   RETURN_IF_FAILED(parcel->readInt32(&signal_mbm));
@@ -98,16 +83,8 @@ void NativeScanResult::DebugLog() {
   string ssid_str(ssid.data(), ssid.data() + ssid.size());
   LOG(INFO) << "SSID: " << ssid_str;
 
-  stringstream ss;
-  string bssid_str;
-  for (uint8_t& b : bssid) {
-    ss << std::hex << std::setfill('0') << std::setw(2) << static_cast<int>(b);
-    if (&b != &bssid.back()) {
-      ss << ":";
-    }
-  }
-  bssid_str = ss.str();
-  LOG(INFO) << "BSSID: " << bssid_str;
+  LOG(INFO) << "BSSID: "
+            << ::android::wificond::LoggingUtils::GetMacString(bssid);
   LOG(INFO) << "FREQUENCY: " << frequency;
   LOG(INFO) << "SIGNAL: " << signal_mbm/100 << "dBm";
   LOG(INFO) << "TSF: " << tsf;

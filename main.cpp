@@ -26,10 +26,10 @@
 #include <binder/IServiceManager.h>
 #include <binder/ProcessState.h>
 #include <cutils/properties.h>
+#include <hwbinder/IPCThreadState.h>
+#include <hwbinder/ProcessState.h>
 #include <libminijail.h>
 #include <utils/String16.h>
-#include <wifi_hal/driver_tool.h>
-#include <wifi_system/hal_tool.h>
 #include <wifi_system/interface_tool.h>
 
 #include "wificond/ipc_constants.h"
@@ -40,8 +40,6 @@
 #include "wificond/server.h"
 
 using android::net::wifi::IWificond;
-using android::wifi_hal::DriverTool;
-using android::wifi_system::HalTool;
 using android::wifi_system::HostapdManager;
 using android::wifi_system::InterfaceTool;
 using android::wifi_system::SupplicantManager;
@@ -93,6 +91,16 @@ int SetupBinderOrCrash() {
   return binder_fd;
 }
 
+// Setup our interface to the hw Binder driver or die trying.
+int SetupHwBinderOrCrash() {
+  int binder_fd = -1;
+  android::hardware::ProcessState::self()->setThreadPoolConfiguration(1, true);
+  int err = android::hardware::IPCThreadState::self()->setupPolling(&binder_fd);
+  CHECK_EQ(err, 0) << "Error setting up hw binder polling: " << strerror(-err);
+  CHECK_GE(binder_fd, 0) << "Invalid hw binder FD: " << binder_fd;
+  return binder_fd;
+}
+
 void RegisterServiceOrCrash(const android::sp<android::IBinder>& service) {
   android::sp<android::IServiceManager> sm = android::defaultServiceManager();
   CHECK_EQ(sm != NULL, true) << "Could not obtain IServiceManager";
@@ -101,33 +109,19 @@ void RegisterServiceOrCrash(const android::sp<android::IBinder>& service) {
            android::NO_ERROR);
 }
 
-void DoPrivilegedSetupOrCrash() {
-  CHECK(DriverTool::TakeOwnershipOfFirmwareReload());
-}
-
-void DropPrivilegesOrCrash() {
-  minijail* j = minijail_new();
-  CHECK(minijail_change_user(j, "wifi") == 0);
-  CHECK(minijail_change_group(j, "wifi") == 0);
-  minijail_use_caps(j,
-                    CAP_TO_MASK(CAP_NET_ADMIN) |
-                    CAP_TO_MASK(CAP_NET_RAW));
-  minijail_enter(j);
-  minijail_destroy(j);
-}
-
 }  // namespace
 
 void OnBinderReadReady(int fd) {
   android::IPCThreadState::self()->handlePolledCommands();
 }
 
+void OnHwBinderReadReady(int fd) {
+  android::hardware::IPCThreadState::self()->handlePolledCommands();
+}
+
 int main(int argc, char** argv) {
   android::base::InitLogging(argv, android::base::LogdLogger(android::base::SYSTEM));
   LOG(INFO) << "wificond is starting up...";
-
-  DoPrivilegedSetupOrCrash();
-  DropPrivilegesOrCrash();
 
   unique_ptr<android::wificond::LooperBackedEventLoop> event_dispatcher(
       new android::wificond::LooperBackedEventLoop());
@@ -139,15 +133,18 @@ int main(int argc, char** argv) {
       android::wificond::EventLoop::kModeInput,
       &OnBinderReadReady)) << "Failed to watch binder FD";
 
+  int hw_binder_fd = SetupHwBinderOrCrash();
+  CHECK(event_dispatcher->WatchFileDescriptor(
+      hw_binder_fd, android::wificond::EventLoop::kModeInput,
+      &OnHwBinderReadReady)) << "Failed to watch Hw Binder FD";
+
   android::wificond::NetlinkManager netlink_manager(event_dispatcher.get());
   CHECK(netlink_manager.Start()) << "Failed to start netlink manager";
   android::wificond::NetlinkUtils netlink_utils(&netlink_manager);
   android::wificond::ScanUtils scan_utils(&netlink_manager);
 
   unique_ptr<android::wificond::Server> server(new android::wificond::Server(
-      unique_ptr<HalTool>(new HalTool),
       unique_ptr<InterfaceTool>(new InterfaceTool),
-      unique_ptr<DriverTool>(new DriverTool),
       unique_ptr<SupplicantManager>(new SupplicantManager()),
       unique_ptr<HostapdManager>(new HostapdManager()),
       &netlink_utils,

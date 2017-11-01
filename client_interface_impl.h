@@ -27,6 +27,7 @@
 #include "android/net/wifi/IClientInterface.h"
 #include "wificond/net/mlme_event_handler.h"
 #include "wificond/net/netlink_utils.h"
+#include "wificond/scanning/offload/offload_service_utils.h"
 #include "wificond/scanning/scanner_impl.h"
 
 namespace android {
@@ -43,6 +44,8 @@ class MlmeEventHandlerImpl : public MlmeEventHandler {
   void OnConnect(std::unique_ptr<MlmeConnectEvent> event) override;
   void OnRoam(std::unique_ptr<MlmeRoamEvent> event) override;
   void OnAssociate(std::unique_ptr<MlmeAssociateEvent> event) override;
+  void OnDisconnect(std::unique_ptr<MlmeDisconnectEvent> event) override;
+  void OnDisassociate(std::unique_ptr<MlmeDisassociateEvent> event) override;
 
  private:
   ClientInterfaceImpl* client_interface_;
@@ -65,7 +68,7 @@ class ClientInterfaceImpl {
       android::wifi_system::SupplicantManager* supplicant_manager,
       NetlinkUtils* netlink_utils,
       ScanUtils* scan_utils);
-  ~ClientInterfaceImpl();
+  virtual ~ClientInterfaceImpl();
 
   // Get a pointer to the binder representing this ClientInterfaceImpl.
   android::sp<android::net::wifi::IClientInterface> GetBinder() const;
@@ -80,6 +83,8 @@ class ClientInterfaceImpl {
   bool requestANQP(
       const ::std::vector<uint8_t>& bssid,
       const ::android::sp<::android::net::wifi::IANQPDoneCallback>& callback);
+  virtual bool IsAssociated() const;
+  void Dump(std::stringstream* ss) const;
 
  private:
   bool RefreshAssociateFreq();
@@ -92,11 +97,13 @@ class ClientInterfaceImpl {
   android::wifi_system::SupplicantManager* const supplicant_manager_;
   NetlinkUtils* const netlink_utils_;
   ScanUtils* const scan_utils_;
+  const std::shared_ptr<OffloadServiceUtils> offload_service_utils_;
   const std::unique_ptr<MlmeEventHandlerImpl> mlme_event_handler_;
   const android::sp<ClientInterfaceBinder> binder_;
   android::sp<ScannerImpl> scanner_;
 
   // Cached information for this connection.
+  bool is_associated_;
   std::vector<uint8_t> bssid_;
   uint32_t associate_freq_;
 

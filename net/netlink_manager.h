@@ -49,7 +49,9 @@ struct MessageType {
 // This describes a type of function handling scan results ready notification.
 // |interface_index| is the index of interface which the scan results
 // are from.
-// |aborted| is a boolean indicating if this scan request was aborted or not.
+// |aborted| is a boolean indicating if this scan was aborted or not.
+// According to nl80211.h document, part of the scan result might still be
+// available even when the scan was aborted.
 // |ssids| is a vector of scan ssids associated with the corresponding
 // scan request.
 // |frequencies| is a vector of scan frequencies associated with the
@@ -60,8 +62,41 @@ typedef std::function<void(
     std::vector<std::vector<uint8_t>>& ssids,
     std::vector<uint32_t>& frequencies)> OnScanResultsReadyHandler;
 
+// This describes a type of function handling scheduled scan results ready
+// notification. This can also be used for notificating the stopping of a
+// scheduled scan.
+// |interface_index| is the index of interface which the scan results
+// are from.
+// |scan_stopped| is a boolean indicating if this scheduled scan was stopped
+// or not.
 typedef std::function<void(
-    uint32_t interface_index)> OnSchedScanResultsReadyHandler;
+    uint32_t interface_index,
+    bool scan_stopped)> OnSchedScanResultsReadyHandler;
+
+// This describes a type of function handling regulatory domain change
+// notification.
+// If the regulatory domain set is one that pertains to a specific country,
+// |country_code| will be set accordingly.
+// If the regulatory domain set does not pertain to a specific country,
+// |country_code| will be an empty string. This could be a world regulatory
+// domain or a intersection regulatory domain.
+// See details in defination of |nl80211_reg_type| from nl80211.h.
+typedef std::function<void(
+    std::string& country_code)> OnRegDomainChangedHandler;
+
+// Enum used for identifying the type of a station event.
+// This is used by function |OnStationEventHandler|.
+enum StationEvent {
+    NEW_STATION,
+    DEL_STATION
+};
+
+// This describes a type of function handling station events.
+// |event| specifies the type of this event.
+// |mac_address| is the station mac address associated with this event.
+typedef std::function<void(
+    StationEvent event,
+    const std::vector<uint8_t>& mac_address)> OnStationEventHandler;
 
 class NetlinkManager {
  public:
@@ -171,6 +206,27 @@ class NetlinkManager {
   // interface with index |interface_index|.
   virtual void UnsubscribeSchedScanResultNotification(uint32_t interface_index);
 
+  // Sign up to be notified when there is an regulatory domain change.
+  // Only one handler can be registered per wiphy index.
+  // New handler will replace the registered handler if they are for the
+  // same wiphy index.
+  virtual void SubscribeRegDomainChange(uint32_t wiphy_index,
+                                        OnRegDomainChangedHandler handler);
+
+  // Cancel the sign-up of receiving regulatory domain change notification
+  // from wiphy with index |wiphy_index|.
+  virtual void UnsubscribeRegDomainChange(uint32_t wiphy_index);
+
+  // Sign up to be notified when there is an station event.
+  // Only one handler can be registered per interface index.
+  // New handler will replace the registered handler if they are for the
+  // same interface index.
+  virtual void SubscribeStationEvent(uint32_t interface_index,
+                                     OnStationEventHandler handler);
+
+  // Cancel the sign-up of receiving station events.
+  virtual void UnsubscribeStationEvent(uint32_t interface_index);
+
  private:
   bool SetupSocket(android::base::unique_fd* netlink_fd);
   bool WatchSocket(android::base::unique_fd* netlink_fd);
@@ -178,6 +234,7 @@ class NetlinkManager {
   bool DiscoverFamilyId();
   bool SendMessageInternal(const NL80211Packet& packet, int fd);
   void BroadcastHandler(std::unique_ptr<const NL80211Packet> packet);
+  void OnRegChangeEvent(std::unique_ptr<const NL80211Packet> packet);
   void OnMlmeEvent(std::unique_ptr<const NL80211Packet> packet);
   void OnScanResultsReady(std::unique_ptr<const NL80211Packet> packet);
   void OnSchedScanResultsReady(std::unique_ptr<const NL80211Packet> packet);
@@ -210,6 +267,12 @@ class NetlinkManager {
       on_sched_scan_result_ready_handler_;
 
   std::map<uint32_t, MlmeEventHandler*> on_mlme_event_handler_;
+
+  // A mapping from wiphy index to the handler registered to receive
+  // regulatory domain change notifications.
+  std::map<uint32_t, OnRegDomainChangedHandler> on_reg_domain_changed_handler_;
+
+  std::map<uint32_t, OnStationEventHandler> on_station_event_handler_;
 
   // Mapping from family name to family id, and group name to group id.
   std::map<std::string, MessageType> message_types_;

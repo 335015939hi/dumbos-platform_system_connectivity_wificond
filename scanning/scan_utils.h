@@ -41,7 +41,19 @@ class NativeScanResult;
 namespace android {
 namespace wificond {
 
+class NL80211NestedAttr;
 class NL80211Packet;
+
+struct SchedScanIntervalSetting {
+  struct ScanPlan {
+    uint32_t interval_ms;
+    uint32_t n_iterations;
+  };
+  std::vector<ScanPlan> plans;
+  // After |plans| has been exhausted, scan at every
+  // |final_interval_ms|.
+  uint32_t final_interval_ms{0};
+};
 
 // Provides scanning helper functions.
 class ScanUtils {
@@ -58,28 +70,34 @@ class ScanUtils {
       uint32_t interface_index,
       std::vector<::com::android::server::wifi::wificond::NativeScanResult>* out_scan_results);
 
-  // Start a full scan on interface with index |interface_index|.
-  // This will scan for all ssids and frequencies.
-  // Returns true on success.
-  virtual bool StartFullScan(uint32_t interface_index);
-
   // Send scan request to kernel for interface with index |interface_index|.
+  // |request_random_mac| is used for asking device/driver to use a random MAC
+  // address during scan.
+  // This flag should only be set if kernel supports this feature as
+  // |supports_random_mac_oneshot_scan| indicates.
   // |ssids| is a vector of ssids we request to scan, which mostly is used
   // for hidden networks.
   // If |ssids| is an empty vector, it will do a passive scan.
   // If |ssids| contains an empty string, it will a scan for all ssids.
   // |freqs| is a vector of frequencies we request to scan.
   // If |freqs| is an empty vector, it will scan all supported frequencies.
+  // |error_code| contains the errno kernel replied when this returns false.
   // Returns true on success.
   virtual bool Scan(uint32_t interface_index,
+                    bool request_random_mac,
                     const std::vector<std::vector<uint8_t>>& ssids,
-                    const std::vector<uint32_t>& freqs);
+                    const std::vector<uint32_t>& freqs,
+                    int* error_code);
 
   // Send scan request to kernel for interface with index |interface_index|.
   // |inteval_ms| is the expected scan interval in milliseconds.
   // |rssi_threshold| is the minimum RSSI threshold value as a filter.
   // |scan_ssids| is a vector of ssids we request to scan, which is mostly
   // used for hidden networks.
+  // |request_random_mac| is used for asking device/driver to use a random MAC
+  // address during scan.
+  // This flag should only be set if kernel supports this feature as
+  // |supports_random_mac_sched_scan| indicates.
   // If |scan_ssids| is an empty vector, it will do a passive scan.
   // If |scan_ssids| contains an empty string, it will a scan for all ssids.
   // |freqs| is a vector of frequencies we request to scan.
@@ -87,19 +105,34 @@ class ScanUtils {
   // If |freqs| is an empty vector, it will scan all supported frequencies.
   // Only BSSs match the |match_ssids| and |rssi_threshold| will be returned as
   // scan results.
+  // |error_code| contains the errno kernel replied when this returns false.
   // Returns true on success.
-  bool StartScheduledScan(
+  virtual bool StartScheduledScan(
       uint32_t interface_index,
-      uint32_t interval_ms,
+      const SchedScanIntervalSetting& interval_setting,
       int32_t rssi_threshold,
+      bool request_random_mac,
       const std::vector<std::vector<uint8_t>>& scan_ssids,
       const std::vector<std::vector<uint8_t>>& match_ssids,
-      const std::vector<uint32_t>& freqs);
+      const std::vector<uint32_t>& freqs,
+      int* error_code);
 
   // Stop existing scheduled scan on interface with index |interface_index|.
   // Returns true on success.
   // Returns false on error or when there is no scheduled scan running.
   virtual bool StopScheduledScan(uint32_t interface_index);
+
+  // Abort ongoing single scan on interface with index |interface_index|.
+  // Returns true on success.
+  virtual bool AbortScan(uint32_t interface_index);
+
+  // Visible for testing.
+  // Get a timestamp for the scan result |bss| represents.
+  // This timestamp records the time passed since boot when last time the
+  // AP was seen.
+  virtual bool GetBssTimestampForTesting(
+      const NL80211NestedAttr& bss,
+       uint64_t* last_seen_since_boot_microseconds);
 
   // Sign up to be notified when new scan results are available.
   // |handler| will be called when the kernel signals to wificond that a scan
@@ -128,6 +161,8 @@ class ScanUtils {
   virtual void UnsubscribeSchedScanResultNotification(uint32_t interface_index);
 
  private:
+  bool GetBssTimestamp(const NL80211NestedAttr& bss,
+                       uint64_t* last_seen_since_boot_microseconds);
   bool GetSSIDFromInfoElement(const std::vector<uint8_t>& ie,
                               std::vector<uint8_t>* ssid);
   // Converts a NL80211_CMD_NEW_SCAN_RESULTS packet to a ScanResult object.

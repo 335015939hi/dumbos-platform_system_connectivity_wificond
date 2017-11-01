@@ -24,12 +24,15 @@
 #include <wifi_system/hostapd_manager.h>
 #include <wifi_system/interface_tool.h>
 
+#include "wificond/net/netlink_manager.h"
+
 #include "android/net/wifi/IApInterface.h"
 
 namespace android {
 namespace wificond {
 
 class ApInterfaceBinder;
+class NetlinkUtils;
 
 // Holds the guts of how we control network interfaces capable of exposing an AP
 // via hostapd.  Because remote processes may hold on to the corresponding
@@ -39,6 +42,7 @@ class ApInterfaceImpl {
  public:
   ApInterfaceImpl(const std::string& interface_name,
                   uint32_t interface_index,
+                  NetlinkUtils* netlink_utils,
                   wifi_system::InterfaceTool* if_tool,
                   wifi_system::HostapdManager* hostapd_manager);
   ~ApInterfaceImpl();
@@ -55,13 +59,22 @@ class ApInterfaceImpl {
       wifi_system::HostapdManager::EncryptionType encryption_type,
       const std::vector<uint8_t>& passphrase);
   std::string GetInterfaceName() { return interface_name_; }
+  int GetNumberOfAssociatedStations() const;
+  void Dump(std::stringstream* ss) const;
 
  private:
   const std::string interface_name_;
   const uint32_t interface_index_;
+  NetlinkUtils* const netlink_utils_;
   wifi_system::InterfaceTool* const if_tool_;
   wifi_system::HostapdManager* const hostapd_manager_;
   const android::sp<ApInterfaceBinder> binder_;
+
+  // Number of associated stations.
+  int number_of_associated_stations_;
+
+  void OnStationEvent(StationEvent event,
+                      const std::vector<uint8_t>& mac_address);
 
   DISALLOW_COPY_AND_ASSIGN(ApInterfaceImpl);
 };

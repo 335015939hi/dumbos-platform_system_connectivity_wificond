@@ -45,7 +45,6 @@ constexpr int32_t kFakePnoIntervalMs = 20000;
 constexpr int32_t kFakePnoMin2gRssi = -80;
 constexpr int32_t kFakePnoMin5gRssi = -85;
 
-constexpr bool kFakeIsFullScan = false;
 constexpr uint32_t kFakeFrequency = 5260;
 constexpr uint32_t kFakeFrequency1 = 2460;
 constexpr uint32_t kFakeFrequency2 = 2500;
@@ -86,7 +85,6 @@ TEST_F(ScanSettingsTest, HiddenNetworkParcelableTest) {
 
 TEST_F(ScanSettingsTest, SingleScanSettingsParcelableTest) {
   SingleScanSettings scan_settings;
-  scan_settings.is_full_scan_ = kFakeIsFullScan;
 
   ChannelSettings channel, channel1, channel2;
   channel.frequency_ = kFakeFrequency;
@@ -114,6 +112,7 @@ TEST_F(ScanSettingsTest, PnoNetworkParcelableTest) {
   PnoNetwork pno_network;
   pno_network.ssid_ =
       vector<uint8_t>(kFakeSsid, kFakeSsid + sizeof(kFakeSsid));
+  pno_network.is_hidden_ = true;
 
   Parcel parcel;
   EXPECT_EQ(::android::OK, pno_network.writeToParcel(&parcel));
@@ -131,8 +130,10 @@ TEST_F(ScanSettingsTest, PnoSettingsParcelableTest) {
   PnoNetwork network, network1;
   network.ssid_ =
       vector<uint8_t>(kFakeSsid, kFakeSsid + sizeof(kFakeSsid));
+  network.is_hidden_ = true;
   network1.ssid_ =
       vector<uint8_t>(kFakeSsid1, kFakeSsid1 + sizeof(kFakeSsid1));
+  network1.is_hidden_ = false;
 
   pno_settings.interval_ms_ = kFakePnoIntervalMs;
   pno_settings.min_2g_rssi_ = kFakePnoMin2gRssi;

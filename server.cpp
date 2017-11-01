@@ -16,41 +16,53 @@
 
 #include "wificond/server.h"
 
-#include <android-base/logging.h>
+#include <sstream>
 
+#include <android-base/file.h>
+#include <android-base/logging.h>
+#include <android-base/strings.h>
+#include <binder/IPCThreadState.h>
+#include <binder/PermissionCache.h>
+
+#include "wificond/logging_utils.h"
 #include "wificond/net/netlink_utils.h"
 #include "wificond/scanning/scan_utils.h"
 
+using android::base::WriteStringToFd;
 using android::binder::Status;
 using android::sp;
 using android::IBinder;
-using std::string;
-using std::vector;
-using std::unique_ptr;
 using android::net::wifi::IApInterface;
 using android::net::wifi::IClientInterface;
 using android::net::wifi::IInterfaceEventCallback;
 using android::net::wifi::IRttClient;
 using android::net::wifi::IRttController;
-using android::wifi_hal::DriverTool;
-using android::wifi_system::HalTool;
 using android::wifi_system::HostapdManager;
 using android::wifi_system::InterfaceTool;
 using android::wifi_system::SupplicantManager;
 
+using std::endl;
+using std::placeholders::_1;
+using std::string;
+using std::stringstream;
+using std::unique_ptr;
+using std::vector;
+
 namespace android {
 namespace wificond {
 
-Server::Server(unique_ptr<HalTool> hal_tool,
-               unique_ptr<InterfaceTool> if_tool,
-               unique_ptr<DriverTool> driver_tool,
+namespace {
+
+constexpr const char* kPermissionDump = "android.permission.DUMP";
+
+}  // namespace
+
+Server::Server(unique_ptr<InterfaceTool> if_tool,
                unique_ptr<SupplicantManager> supplicant_manager,
                unique_ptr<HostapdManager> hostapd_manager,
                NetlinkUtils* netlink_utils,
                ScanUtils* scan_utils)
-    : hal_tool_(std::move(hal_tool)),
-      if_tool_(std::move(if_tool)),
-      driver_tool_(std::move(driver_tool)),
+    : if_tool_(std::move(if_tool)),
       supplicant_manager_(std::move(supplicant_manager)),
       hostapd_manager_(std::move(hostapd_manager)),
       netlink_utils_(netlink_utils),
@@ -104,19 +116,15 @@ Status Server::unregisterRttClient(const sp<IRttClient>& rttClient) {
 }
 
 Status Server::createApInterface(sp<IApInterface>* created_interface) {
-  string interface_name;
-  uint32_t interface_index;
-  vector<uint8_t> interface_mac_addr;
-  if (!SetupInterfaceForMode(DriverTool::kFirmwareModeAp,
-                             &interface_name,
-                             &interface_index,
-                             &interface_mac_addr)) {
+  InterfaceInfo interface;
+  if (!SetupInterface(&interface)) {
     return Status::ok();  // Logging was done internally
   }
 
   unique_ptr<ApInterfaceImpl> ap_interface(new ApInterfaceImpl(
-      interface_name,
-      interface_index,
+      interface.name,
+      interface.index,
+      netlink_utils_,
       if_tool_.get(),
       hostapd_manager_.get()));
   *created_interface = ap_interface->GetBinder();
@@ -127,21 +135,16 @@ Status Server::createApInterface(sp<IApInterface>* created_interface) {
 }
 
 Status Server::createClientInterface(sp<IClientInterface>* created_interface) {
-  string interface_name;
-  uint32_t interface_index;
-  vector<uint8_t> interface_mac_addr;
-  if (!SetupInterfaceForMode(DriverTool::kFirmwareModeSta,
-                             &interface_name,
-                             &interface_index,
-                             &interface_mac_addr)) {
+  InterfaceInfo interface;
+  if (!SetupInterface(&interface)) {
     return Status::ok();  // Logging was done internally
   }
 
   unique_ptr<ClientInterfaceImpl> client_interface(new ClientInterfaceImpl(
       wiphy_index_,
-      interface_name,
-      interface_index,
-      interface_mac_addr,
+      interface.name,
+      interface.index,
+      interface.mac_address,
       if_tool_.get(),
       supplicant_manager_.get(),
       netlink_utils_,
@@ -164,9 +167,10 @@ Status Server::tearDownInterfaces() {
   }
   ap_interfaces_.clear();
 
-  if (!driver_tool_->UnloadDriver()) {
-    LOG(ERROR) << "Failed to unload WiFi driver!";
-  }
+  MarkDownAllInterfaces();
+
+  netlink_utils_->UnsubscribeRegDomainChange(wiphy_index_);
+
   return Status::ok();
 }
 
@@ -186,33 +190,58 @@ Status Server::GetApInterfaces(vector<sp<IBinder>>* out_ap_interfaces) {
   return binder::Status::ok();
 }
 
+status_t Server::dump(int fd, const Vector<String16>& /*args*/) {
+  if (!PermissionCache::checkCallingPermission(String16(kPermissionDump))) {
+    IPCThreadState* ipc = android::IPCThreadState::self();
+    LOG(ERROR) << "Caller (uid: " << ipc->getCallingUid()
+               << ") is not permitted to dump wificond state";
+    return PERMISSION_DENIED;
+  }
+
+  stringstream ss;
+  ss << "Current wiphy index: " << wiphy_index_ << endl;
+  ss << "Cached interfaces list from kernel message: " << endl;
+  for (const auto& iface : interfaces_) {
+    ss << "Interface index: " << iface.index
+       << ", name: " << iface.name
+       << ", mac address: "
+       << LoggingUtils::GetMacString(iface.mac_address) << endl;
+  }
+
+  for (const auto& iface : client_interfaces_) {
+    iface->Dump(&ss);
+  }
+
+  for (const auto& iface : ap_interfaces_) {
+    iface->Dump(&ss);
+  }
+
+  if (!WriteStringToFd(ss.str(), fd)) {
+    PLOG(ERROR) << "Failed to dump state to fd " << fd;
+    return FAILED_TRANSACTION;
+  }
+
+  return OK;
+}
+
+void Server::MarkDownAllInterfaces() {
+  uint32_t wiphy_index;
+  vector<InterfaceInfo> interfaces;
+  if (netlink_utils_->GetWiphyIndex(&wiphy_index) &&
+      netlink_utils_->GetInterfaces(wiphy_index, &interfaces)) {
+    for (InterfaceInfo& interface : interfaces) {
+      if_tool_->SetUpState(interface.name.c_str(), false);
+    }
+  }
+}
+
 void Server::CleanUpSystemState() {
   supplicant_manager_->StopSupplicant();
   hostapd_manager_->StopHostapd();
-
-  uint32_t phy_index = 0;
-  uint32_t if_index = 0;
-  vector<uint8_t> mac;
-  string if_name;
-  if (netlink_utils_->GetWiphyIndex(&phy_index) &&
-      netlink_utils_->GetInterfaceInfo(phy_index,
-                                       &if_name,
-                                       &if_index,
-                                       &mac)) {
-    // If the kernel knows about a network interface, mark it as down.
-    // This prevents us from beaconing as an AP, or remaining associated
-    // as a client.
-    if_tool_->SetUpState(if_name.c_str(), false);
-  }
-  // "unloading the driver" is frequently a no-op in systems that
-  // don't have kernel modules, but just in case.
-  driver_tool_->UnloadDriver();
+  MarkDownAllInterfaces();
 }
 
-bool Server::SetupInterfaceForMode(int mode,
-                                   string* interface_name,
-                                   uint32_t* interface_index,
-                                   vector<uint8_t>* interface_mac_addr) {
+bool Server::SetupInterface(InterfaceInfo* interface) {
   if (!ap_interfaces_.empty() || !client_interfaces_.empty()) {
     // In the future we may support multiple interfaces at once.  However,
     // today, we support just one.
@@ -220,29 +249,37 @@ bool Server::SetupInterfaceForMode(int mode,
     return false;
   }
 
-  string result;
-  if (!driver_tool_->LoadDriver()) {
-    LOG(ERROR) << "Failed to load WiFi driver!";
-    return false;
-  }
-  if (!driver_tool_->ChangeFirmwareMode(mode)) {
-    LOG(ERROR) << "Failed to change WiFi firmware mode!";
-    return false;
-  }
-
   if (!RefreshWiphyIndex()) {
     return false;
   }
 
-  if (!netlink_utils_->GetInterfaceInfo(wiphy_index_,
-                                        interface_name,
-                                        interface_index,
-                                        interface_mac_addr)) {
-    LOG(ERROR) << "Failed to get interface info from kernel";
+  netlink_utils_->SubscribeRegDomainChange(
+          wiphy_index_,
+          std::bind(&Server::OnRegDomainChanged,
+          this,
+          _1));
+
+  interfaces_.clear();
+  if (!netlink_utils_->GetInterfaces(wiphy_index_, &interfaces_)) {
+    LOG(ERROR) << "Failed to get interfaces info from kernel";
     return false;
   }
 
-  return true;
+  for (const auto& iface : interfaces_) {
+    // Some kernel/driver uses station type for p2p interface.
+    // In that case we can only rely on hard-coded name to exclude
+    // p2p interface from station interfaces.
+    // Currently NAN interfaces also use station type.
+    // We should blacklist NAN interfaces as well.
+    if (iface.name != "p2p0" &&
+        !android::base::StartsWith(iface.name, "aware_data")) {
+      *interface = iface;
+      return true;
+    }
+  }
+
+  LOG(ERROR) << "No usable interface found";
+  return false;
 }
 
 bool Server::RefreshWiphyIndex() {
@@ -251,6 +288,43 @@ bool Server::RefreshWiphyIndex() {
     return false;
   }
   return true;
+}
+
+void Server::OnRegDomainChanged(std::string& country_code) {
+  if (country_code.empty()) {
+    LOG(INFO) << "Regulatory domain changed";
+  } else {
+    LOG(INFO) << "Regulatory domain changed to country: " << country_code;
+  }
+  LogSupportedBands();
+}
+
+void Server::LogSupportedBands() {
+  BandInfo band_info;
+  ScanCapabilities scan_capabilities;
+  WiphyFeatures wiphy_features;
+  netlink_utils_->GetWiphyInfo(wiphy_index_,
+                               &band_info,
+                               &scan_capabilities,
+                               &wiphy_features);
+
+  stringstream ss;
+  for (unsigned int i = 0; i < band_info.band_2g.size(); i++) {
+    ss << " " << band_info.band_2g[i];
+  }
+  LOG(INFO) << "2.4Ghz frequencies:"<< ss.str();
+  ss.str("");
+
+  for (unsigned int i = 0; i < band_info.band_5g.size(); i++) {
+    ss << " " << band_info.band_5g[i];
+  }
+  LOG(INFO) << "5Ghz non-DFS frequencies:"<< ss.str();
+  ss.str("");
+
+  for (unsigned int i = 0; i < band_info.band_dfs.size(); i++) {
+    ss << " " << band_info.band_dfs[i];
+  }
+  LOG(INFO) << "5Ghz DFS frequencies:"<< ss.str();
 }
 
 void Server::BroadcastClientInterfaceReady(

@@ -36,6 +36,7 @@ namespace wificond {
 namespace {
 
 constexpr uint8_t kElemIdSsid = 0;
+constexpr unsigned int kMsecPerSec = 1000;
 
 }  // namespace
 
@@ -88,10 +89,9 @@ bool ScanUtils::GetScanResult(uint32_t interface_index,
   }
   if (response.empty()) {
     LOG(INFO) << "Unexpected empty scan result!";
-    return false;
+    return true;
   }
 
-  vector<NativeScanResult> scan_results;
   for (auto& packet : response) {
     if (packet->GetMessageType() == NLMSG_ERROR) {
       LOG(ERROR) << "Receive ERROR message: "
@@ -115,12 +115,11 @@ bool ScanUtils::GetScanResult(uint32_t interface_index,
 
     NativeScanResult scan_result;
     if (!ParseScanResult(std::move(packet), &scan_result)) {
-      LOG(WARNING) << "Ignore invalid scan result";
+      LOG(DEBUG) << "Ignore invalid scan result";
       continue;
     }
-    scan_results.push_back(scan_result);
+    out_scan_results->push_back(std::move(scan_result));
   }
-  *out_scan_results = scan_results;
   return true;
 }
 
@@ -149,13 +148,13 @@ bool ScanUtils::ParseScanResult(unique_ptr<const NL80211Packet> packet,
     }
     vector<uint8_t> ssid;
     if (!GetSSIDFromInfoElement(ie, &ssid)) {
-      // Hidden wireless network has no SSID in IE.
-      LOG(DEBUG) << "Failed to get SSID from Information Element. "
-                 << "This might be a hidden network";
+      // Skip BSS without SSID IE.
+      // These scan results are considered as malformed.
+      return false;
     }
-    uint64_t tsf;
-    if (!bss.GetAttributeValue(NL80211_BSS_TSF, &tsf)) {
-      LOG(ERROR) << "Failed to get TSF from scan result packet";
+    uint64_t last_seen_since_boot_microseconds;
+    if (!GetBssTimestamp(bss, &last_seen_since_boot_microseconds)) {
+      // Logging is done inside |GetBssTimestamp|.
       return false;
     }
     int32_t signal;
@@ -177,7 +176,37 @@ bool ScanUtils::ParseScanResult(unique_ptr<const NL80211Packet> packet,
     }
 
     *scan_result =
-        NativeScanResult(ssid, bssid, ie, freq, signal, tsf, capability, associated);
+        NativeScanResult(ssid, bssid, ie, freq, signal,
+                         last_seen_since_boot_microseconds,
+                         capability, associated);
+  }
+  return true;
+}
+
+bool ScanUtils::GetBssTimestampForTesting(
+    const NL80211NestedAttr& bss,
+    uint64_t* last_seen_since_boot_microseconds){
+  return GetBssTimestamp(bss, last_seen_since_boot_microseconds);
+}
+
+bool ScanUtils::GetBssTimestamp(const NL80211NestedAttr& bss,
+                                uint64_t* last_seen_since_boot_microseconds){
+  uint64_t last_seen_since_boot_nanoseconds;
+  if (bss.GetAttributeValue(NL80211_BSS_LAST_SEEN_BOOTTIME,
+                            &last_seen_since_boot_nanoseconds)) {
+    *last_seen_since_boot_microseconds = last_seen_since_boot_nanoseconds / 1000;
+  } else {
+    // Fall back to use TSF if we can't find NL80211_BSS_LAST_SEEN_BOOTTIME
+    // attribute.
+    if (!bss.GetAttributeValue(NL80211_BSS_TSF, last_seen_since_boot_microseconds)) {
+      LOG(ERROR) << "Failed to get TSF from scan result packet";
+      return false;
+    }
+    uint64_t beacon_tsf_microseconds;
+    if (bss.GetAttributeValue(NL80211_BSS_BEACON_TSF, &beacon_tsf_microseconds)) {
+      *last_seen_since_boot_microseconds = std::max(*last_seen_since_boot_microseconds,
+                                                    beacon_tsf_microseconds);
+    }
   }
   return true;
 }
@@ -213,15 +242,11 @@ bool ScanUtils::GetSSIDFromInfoElement(const vector<uint8_t>& ie,
   return false;
 }
 
-bool ScanUtils::StartFullScan(uint32_t interface_index) {
-  // Using empty SSID for a wildcard scan.
-  vector<vector<uint8_t>> ssids{vector<uint8_t>{0}};
-  return Scan(interface_index, ssids, vector<uint32_t>());
-}
-
 bool ScanUtils::Scan(uint32_t interface_index,
+                     bool request_random_mac,
                      const vector<vector<uint8_t>>& ssids,
-                     const vector<uint32_t>& freqs) {
+                     const vector<uint32_t>& freqs,
+                     int* error_code) {
   NL80211Packet trigger_scan(
       netlink_manager_->GetFamilyId(),
       NL80211_CMD_TRIGGER_SCAN,
@@ -253,12 +278,22 @@ bool ScanUtils::Scan(uint32_t interface_index,
     trigger_scan.AddAttribute(freqs_attr);
   }
 
+  if (request_random_mac) {
+    trigger_scan.AddAttribute(
+        NL80211Attr<uint32_t>(NL80211_ATTR_SCAN_FLAGS,
+                              NL80211_SCAN_FLAG_RANDOM_ADDR));
+  }
   // We are receiving an ERROR/ACK message instead of the actual
   // scan results here, so it is OK to expect a timely response because
   // kernel is supposed to send the ERROR/ACK back before the scan starts.
   vector<unique_ptr<const NL80211Packet>> response;
-  if (!netlink_manager_->SendMessageAndGetAck(trigger_scan)) {
-    LOG(ERROR) << "NL80211_CMD_TRIGGER_SCAN failed";
+  if (!netlink_manager_->SendMessageAndGetAckOrError(trigger_scan,
+                                                     error_code)) {
+    // Logging is done inside |SendMessageAndGetAckOrError|.
+    return false;
+  }
+  if (*error_code != 0) {
+    LOG(ERROR) << "NL80211_CMD_TRIGGER_SCAN failed: " << strerror(*error_code);
     return false;
   }
   return true;
@@ -293,13 +328,34 @@ bool ScanUtils::StopScheduledScan(uint32_t interface_index) {
   return true;
 }
 
+bool ScanUtils::AbortScan(uint32_t interface_index) {
+  NL80211Packet abort_scan(
+      netlink_manager_->GetFamilyId(),
+      NL80211_CMD_ABORT_SCAN,
+      netlink_manager_->GetSequenceNumber(),
+      getpid());
+
+  // Force an ACK response upon success.
+  abort_scan.AddFlag(NLM_F_ACK);
+  abort_scan.AddAttribute(
+      NL80211Attr<uint32_t>(NL80211_ATTR_IFINDEX, interface_index));
+
+  if (!netlink_manager_->SendMessageAndGetAck(abort_scan)) {
+    LOG(ERROR) << "NL80211_CMD_ABORT_SCAN failed";
+    return false;
+  }
+  return true;
+}
+
 bool ScanUtils::StartScheduledScan(
     uint32_t interface_index,
-    uint32_t interval_ms,
+    const SchedScanIntervalSetting& interval_setting,
     int32_t rssi_threshold,
+    bool request_random_mac,
     const std::vector<std::vector<uint8_t>>& scan_ssids,
     const std::vector<std::vector<uint8_t>>& match_ssids,
-    const std::vector<uint32_t>& freqs) {
+    const std::vector<uint32_t>& freqs,
+    int* error_code) {
   NL80211Packet start_sched_scan(
       netlink_manager_->GetFamilyId(),
       NL80211_CMD_START_SCHED_SCAN,
@@ -326,14 +382,11 @@ bool ScanUtils::StartScheduledScan(
     NL80211NestedAttr match_group(i);
     match_group.AddAttribute(
         NL80211Attr<vector<uint8_t>>(NL80211_SCHED_SCAN_MATCH_ATTR_SSID, match_ssids[i]));
-    // TODO(nywang): Add RSSI threshold for every SSID respectively.
+    match_group.AddAttribute(
+        NL80211Attr<int32_t>(NL80211_SCHED_SCAN_MATCH_ATTR_RSSI, rssi_threshold));
     scan_match_attr.AddAttribute(match_group);
   }
-  // Global RSSI threshold.
-  NL80211NestedAttr global_rssi_match_group(match_ssids.size());
-  global_rssi_match_group.AddAttribute(
-      NL80211Attr<int32_t>(NL80211_SCHED_SCAN_MATCH_ATTR_RSSI, rssi_threshold));
-  scan_match_attr.AddAttribute(global_rssi_match_group);
+  start_sched_scan.AddAttribute(scan_match_attr);
 
   // Append all attributes to the NL80211_CMD_START_SCHED_SCAN packet.
   start_sched_scan.AddAttribute(
@@ -344,13 +397,45 @@ bool ScanUtils::StartScheduledScan(
   if (!freqs.empty()) {
     start_sched_scan.AddAttribute(freqs_attr);
   }
-  start_sched_scan.AddAttribute(
-      NL80211Attr<uint32_t>(NL80211_ATTR_SCHED_SCAN_INTERVAL, interval_ms));
-  start_sched_scan.AddAttribute(scan_match_attr);
+
+  if (!interval_setting.plans.empty()) {
+    NL80211NestedAttr scan_plans(NL80211_ATTR_SCHED_SCAN_PLANS);
+    for (unsigned int i = 0; i < interval_setting.plans.size(); i++) {
+      NL80211NestedAttr scan_plan(i + 1);
+      scan_plan.AddAttribute(
+          NL80211Attr<uint32_t>(NL80211_SCHED_SCAN_PLAN_INTERVAL,
+                                interval_setting.plans[i].interval_ms / kMsecPerSec));
+      scan_plan.AddAttribute(
+          NL80211Attr<uint32_t>(NL80211_SCHED_SCAN_PLAN_ITERATIONS,
+                                interval_setting.plans[i].n_iterations));
+      scan_plans.AddAttribute(scan_plan);
+    }
+    NL80211NestedAttr last_scan_plan(interval_setting.plans.size() + 1);
+    last_scan_plan.AddAttribute(
+        NL80211Attr<uint32_t>(NL80211_SCHED_SCAN_PLAN_INTERVAL,
+                              interval_setting.final_interval_ms / kMsecPerSec));
+    scan_plans.AddAttribute(last_scan_plan);
+    start_sched_scan.AddAttribute(scan_plans);
+  } else {
+    start_sched_scan.AddAttribute(
+        NL80211Attr<uint32_t>(NL80211_ATTR_SCHED_SCAN_INTERVAL,
+                              interval_setting.final_interval_ms));
+  }
+
+  if (request_random_mac) {
+    start_sched_scan.AddAttribute(
+        NL80211Attr<uint32_t>(NL80211_ATTR_SCAN_FLAGS,
+                              NL80211_SCAN_FLAG_RANDOM_ADDR));
+  }
 
   vector<unique_ptr<const NL80211Packet>> response;
-  if (!netlink_manager_->SendMessageAndGetAck(start_sched_scan)) {
-    LOG(ERROR) << "NL80211_CMD_START_SCHED_SCAN failed";
+  if (!netlink_manager_->SendMessageAndGetAckOrError(start_sched_scan,
+                                                     error_code)) {
+    // Logging is done inside |SendMessageAndGetAckOrError|.
+    return false;
+  }
+  if (*error_code != 0) {
+    LOG(ERROR) << "NL80211_CMD_START_SCHED_SCAN failed: " << strerror(*error_code);
     return false;
   }
 

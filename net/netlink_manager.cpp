@@ -179,12 +179,14 @@ void NetlinkManager::OnNewFamily(unique_ptr<const NL80211Packet> packet) {
     }
     for (auto& group : groups) {
       string group_name;
-      uint32_t group_id;
+      uint32_t group_id = 0;
       if (!group.GetAttributeValue(CTRL_ATTR_MCAST_GRP_NAME, &group_name)) {
         LOG(ERROR) << "Failed to get group name";
+        continue;
       }
       if (!group.GetAttributeValue(CTRL_ATTR_MCAST_GRP_ID, &group_id)) {
         LOG(ERROR) << "Failed to get group id";
+        continue;
       }
       message_types_[family_name].groups[group_name] = group_id;
     }
@@ -216,11 +218,15 @@ bool NetlinkManager::Start() {
   if (!WatchSocket(&async_netlink_fd_)) {
     return false;
   }
-  // TODO(nywang): Uncomment the following lines to enable wificond scan
-  // result monitoring, after we finish the integration.
-  //  if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_SCAN)) {
-  //    return false;
-  //  }
+  // Subscribe kernel NL80211 broadcast of regulatory changes.
+  if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_REG)) {
+    return false;
+  }
+  // Subscribe kernel NL80211 broadcast of scanning events.
+  if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_SCAN)) {
+    return false;
+  }
+  // Subscribe kernel NL80211 broadcast of MLME events.
   if (!SubscribeToEvents(NL80211_MULTICAST_GROUP_MLME)) {
     return false;
   }
@@ -472,7 +478,8 @@ void NetlinkManager::BroadcastHandler(unique_ptr<const NL80211Packet> packet) {
     return;
   }
 
-  if (command == NL80211_CMD_SCHED_SCAN_RESULTS) {
+  if (command == NL80211_CMD_SCHED_SCAN_RESULTS ||
+      command == NL80211_CMD_SCHED_SCAN_STOPPED) {
     OnSchedScanResultsReady(std::move(packet));
     return;
   }
@@ -487,10 +494,84 @@ void NetlinkManager::BroadcastHandler(unique_ptr<const NL80211Packet> packet) {
   // connection state better.
   if (command == NL80211_CMD_CONNECT ||
       command == NL80211_CMD_ASSOCIATE ||
-      command == NL80211_CMD_ROAM) {
+      command == NL80211_CMD_ROAM ||
+      command == NL80211_CMD_DISCONNECT ||
+      command == NL80211_CMD_DISASSOCIATE) {
       OnMlmeEvent(std::move(packet));
      return;
   }
+  if (command == NL80211_CMD_REG_CHANGE) {
+    OnRegChangeEvent(std::move(packet));
+    return;
+  }
+  // Station eventsFor AP mode.
+  if (command == NL80211_CMD_NEW_STATION ||
+      command == NL80211_CMD_DEL_STATION) {
+    uint32_t if_index;
+    if (!packet->GetAttributeValue(NL80211_ATTR_IFINDEX, &if_index)) {
+      LOG(WARNING) << "Failed to get interface index from station event";
+      return;
+    }
+    const auto handler = on_station_event_handler_.find(if_index);
+    if (handler != on_station_event_handler_.end()) {
+      vector<uint8_t> mac_address;
+      if (!packet->GetAttributeValue(NL80211_ATTR_MAC, &mac_address)) {
+        LOG(WARNING) << "Failed to get mac address from station event";
+        return;
+      }
+      if (command == NL80211_CMD_NEW_STATION) {
+        handler->second(NEW_STATION, mac_address);
+      } else {
+        handler->second(DEL_STATION, mac_address);
+      }
+    }
+    return;
+  }
+}
+
+void NetlinkManager::OnRegChangeEvent(unique_ptr<const NL80211Packet> packet) {
+  uint32_t wiphy_index;
+  if (!packet->GetAttributeValue(NL80211_ATTR_WIPHY, &wiphy_index)) {
+    LOG(ERROR) << "Failed to get wiphy index from reg changed message";
+    return;
+  }
+
+  uint8_t reg_type;
+  if (!packet->GetAttributeValue(NL80211_ATTR_REG_TYPE, &reg_type)) {
+    LOG(ERROR) << "Failed to get NL80211_ATTR_REG_TYPE";
+  }
+
+  string country_code;
+  // NL80211_REGDOM_TYPE_COUNTRY means the regulatory domain set is one that
+  // pertains to a specific country
+  if (reg_type == NL80211_REGDOM_TYPE_COUNTRY) {
+    if (!packet->GetAttributeValue(NL80211_ATTR_REG_ALPHA2, &country_code)) {
+      LOG(ERROR) << "Failed to get NL80211_ATTR_REG_ALPHA2";
+      return;
+    }
+  } else if (reg_type == NL80211_REGDOM_TYPE_WORLD ||
+      reg_type == NL80211_REGDOM_TYPE_CUSTOM_WORLD ||
+      reg_type == NL80211_REGDOM_TYPE_INTERSECTION) {
+    // NL80211_REGDOM_TYPE_WORLD refers to the world regulartory domain.
+    // NL80211_REGDOM_TYPE_CUSTOM_WORLD refers to the driver specific world
+    // regulartory domain.
+    // NL80211_REGDOM_TYPE_INTERSECTION refers to an intersection between two
+    // regulatory domains:
+    // The previously set regulatory domain on the system and the last accepted
+    // regulatory domain request to be processed.
+    country_code = "";
+  } else {
+    LOG(ERROR) << "Unknown type of regulatory domain change: " << (int)reg_type;
+    return;
+  }
+
+  const auto handler = on_reg_domain_changed_handler_.find(wiphy_index);
+  if (handler == on_reg_domain_changed_handler_.end()) {
+    LOG(DEBUG) << "No handler for country code changed event from wiphy"
+               << "with index: " << wiphy_index;
+    return;
+  }
+  handler->second(country_code);
 }
 
 void NetlinkManager::OnMlmeEvent(unique_ptr<const NL80211Packet> packet) {
@@ -500,7 +581,7 @@ void NetlinkManager::OnMlmeEvent(unique_ptr<const NL80211Packet> packet) {
     LOG(ERROR) << "Failed to get interface index from a MLME event message";
     return;
   }
-  auto handler = on_mlme_event_handler_.find(if_index);
+  const auto handler = on_mlme_event_handler_.find(if_index);
   if (handler == on_mlme_event_handler_.end()) {
     LOG(DEBUG) << "No handler for mlme event from interface"
                << " with index: " << if_index;
@@ -510,24 +591,39 @@ void NetlinkManager::OnMlmeEvent(unique_ptr<const NL80211Packet> packet) {
   if (command == NL80211_CMD_CONNECT) {
     auto event = MlmeConnectEvent::InitFromPacket(packet.get());
     if (event != nullptr) {
-       handler->second->OnConnect(std::move(event));
+      handler->second->OnConnect(std::move(event));
     }
     return;
   }
   if (command == NL80211_CMD_ASSOCIATE) {
     auto event = MlmeAssociateEvent::InitFromPacket(packet.get());
     if (event != nullptr) {
-       handler->second->OnAssociate(std::move(event));
+      handler->second->OnAssociate(std::move(event));
     }
     return;
   }
   if (command == NL80211_CMD_ROAM) {
     auto event = MlmeRoamEvent::InitFromPacket(packet.get());
     if (event != nullptr) {
-       handler->second->OnRoam(std::move(event));
+      handler->second->OnRoam(std::move(event));
     }
     return;
   }
+  if (command == NL80211_CMD_DISCONNECT) {
+    auto event = MlmeDisconnectEvent::InitFromPacket(packet.get());
+    if (event != nullptr) {
+      handler->second->OnDisconnect(std::move(event));
+    }
+    return;
+  }
+  if (command == NL80211_CMD_DISASSOCIATE) {
+    auto event = MlmeDisassociateEvent::InitFromPacket(packet.get());
+    if (event != nullptr) {
+      handler->second->OnDisassociate(std::move(event));
+    }
+    return;
+  }
+
 }
 
 void NetlinkManager::OnSchedScanResultsReady(unique_ptr<const NL80211Packet> packet) {
@@ -537,14 +633,14 @@ void NetlinkManager::OnSchedScanResultsReady(unique_ptr<const NL80211Packet> pac
     return;
   }
 
-  auto handler = on_sched_scan_result_ready_handler_.find(if_index);
+  const auto handler = on_sched_scan_result_ready_handler_.find(if_index);
   if (handler == on_sched_scan_result_ready_handler_.end()) {
     LOG(DEBUG) << "No handler for scheduled scan result notification from"
                << " interface with index: " << if_index;
     return;
   }
   // Run scan result notification handler.
-  handler->second(if_index);
+  handler->second(if_index, packet->GetCommand() == NL80211_CMD_SCHED_SCAN_STOPPED);
 }
 
 void NetlinkManager::OnScanResultsReady(unique_ptr<const NL80211Packet> packet) {
@@ -558,10 +654,10 @@ void NetlinkManager::OnScanResultsReady(unique_ptr<const NL80211Packet> packet) 
     aborted = true;
   }
 
-  auto handler = on_scan_result_ready_handler_.find(if_index);
+  const auto handler = on_scan_result_ready_handler_.find(if_index);
   if (handler == on_scan_result_ready_handler_.end()) {
-    LOG(DEBUG) << "No handler for scan result notification from interface"
-               << " with index: " << if_index;
+    LOG(WARNING) << "No handler for scan result notification from interface"
+                 << " with index: " << if_index;
     return;
   }
 
@@ -589,6 +685,26 @@ void NetlinkManager::OnScanResultsReady(unique_ptr<const NL80211Packet> packet) 
   }
   // Run scan result notification handler.
   handler->second(if_index, aborted, ssids, freqs);
+}
+
+void NetlinkManager::SubscribeStationEvent(
+    uint32_t interface_index,
+    OnStationEventHandler handler) {
+  on_station_event_handler_[interface_index] = handler;
+}
+
+void NetlinkManager::UnsubscribeStationEvent(uint32_t interface_index) {
+  on_station_event_handler_.erase(interface_index);
+}
+
+void NetlinkManager::SubscribeRegDomainChange(
+    uint32_t wiphy_index,
+    OnRegDomainChangedHandler handler) {
+  on_reg_domain_changed_handler_[wiphy_index] = handler;
+}
+
+void NetlinkManager::UnsubscribeRegDomainChange(uint32_t wiphy_index) {
+  on_reg_domain_changed_handler_.erase(wiphy_index);
 }
 
 void NetlinkManager::SubscribeScanResultNotification(
