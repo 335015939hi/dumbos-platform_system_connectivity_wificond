@@ -434,7 +434,8 @@ void ScannerImpl::OnScanResultsReady(uint32_t interface_index, bool aborted,
                                      vector<vector<uint8_t>>& ssids,
                                      vector<uint32_t>& frequencies) {
   if (!scan_started_) {
-    LOG(INFO) << "Received external scan result notification from kernel.";
+    LOG(INFO) << "Received external scan result notification from kernel,ignore this";
+    return;
   }
   scan_started_ = false;
   if (scan_event_handler_ != nullptr) {
