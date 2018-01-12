@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "359e240a_07d76893",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2018-01-12T04:03:37Z",
+      "side": 1,
+      "message": "Please open a bug describing the relevant use case, and the problem(s) that wificond\u0027s current behavior causes.\n\nAnd please reference that bug in the commit message with a line like:\n\n  Bug: 123456",
+      "revId": "0a23aa114387bc301799cd5361c98d48104cbebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ba28910_db338fb6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2018-01-12T04:03:37Z",
+      "side": 1,
+      "message": "No need to mention that the code was built.",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 6
+      },
+      "revId": "0a23aa114387bc301799cd5361c98d48104cbebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3bebb59c_9cda4c15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1081399
+      },
+      "writtenOn": "2018-01-12T04:03:37Z",
+      "side": 1,
+      "message": "Please elaborate on what \"WIFI scan test\" means. The current text doesn\u0027t give me any confidence that the change fixes something. It also doesn\u0027t provide enough detail for us to repeat the test in the future.",
+      "revId": "0a23aa114387bc301799cd5361c98d48104cbebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
