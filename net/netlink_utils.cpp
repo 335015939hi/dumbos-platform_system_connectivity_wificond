@@ -509,7 +509,7 @@ bool NetlinkUtils::GetStationInfo(uint32_t interface_index,
   if (!tx_bitrate_attr.GetAttributeValue(NL80211_RATE_INFO_BITRATE32,
                                          &tx_bitrate)) {
     LOG(ERROR) << "Failed to get NL80211_RATE_INFO_BITRATE32";
-    return false;
+    tx_bitrate = 0;
   }
 
   *out_station_info = StationInfo(tx_good, tx_bad, tx_bitrate, current_rssi);
