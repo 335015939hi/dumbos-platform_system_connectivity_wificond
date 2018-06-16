@@ -261,12 +261,32 @@ bool Server::SetupInterface(InterfaceInfo* interface) {
   return false;
 }
 
+/**
+ * FIXME: When wifi device is disconnet, interface can not exist. At this time,
+ * Wireless network CARDS don't exist. And that’s a standard, when Wireless network
+ * CARDS do not exist, interface can not exist. So when system wakes up on standby,
+ * usb device will be re-enumerated (disconnect-> connect). Wifi will not turned on
+ * automatically. So when system resume, to do retry GetWiphyIndex() will get wiphy.
+ * Lastly, wifi will turned on automatically.
+ */
 bool Server::RefreshWiphyIndex() {
-  if (!netlink_utils_->GetWiphyIndex(&wiphy_index_)) {
-    LOG(ERROR) << "Failed to get wiphy index";
-    return false;
+  int num = 0;
+  bool ret = false;
+
+  while (num < 50) {
+    if (!netlink_utils_->GetWiphyIndex(&wiphy_index_)) {
+      LOG(ERROR) << "Failed to get wiphy index";
+      num++;
+      usleep(100*1000);
+      continue;
+    }
+
+    ret = true;
+    break;
   }
-  return true;
+
+  LOG(INFO) << "get wiphy index retry " << num << ", wiphy_index_ is " << wiphy_index_;
+  return ret;
 }
 
 void Server::OnRegDomainChanged(std::string& country_code) {
