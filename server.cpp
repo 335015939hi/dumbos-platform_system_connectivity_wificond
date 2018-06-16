@@ -262,11 +262,23 @@ bool Server::SetupInterface(InterfaceInfo* interface) {
 }
 
 bool Server::RefreshWiphyIndex() {
-  if (!netlink_utils_->GetWiphyIndex(&wiphy_index_)) {
-    LOG(ERROR) << "Failed to get wiphy index";
-    return false;
+  int num = 0;
+  bool ret = false;
+
+  while (num < 50) {
+    if (!netlink_utils_->GetWiphyIndex(&wiphy_index_)) {
+      LOG(ERROR) << "Failed to get wiphy index";
+      num++;
+      usleep(100*1000);
+      continue;
+    }
+
+    ret = true;
+    break;
   }
-  return true;
+
+  LOG(INFO) << "get wiphy index retry " << num << ", wiphy_index_ is " << wiphy_index_;
+  return ret;
 }
 
 void Server::OnRegDomainChanged(std::string& country_code) {
