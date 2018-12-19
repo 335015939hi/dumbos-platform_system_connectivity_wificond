@@ -70,6 +70,30 @@
       "revId": "22b54dfaaeffb1383e70ce89c0412e05a30c0de1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf78d4f4_a9801453",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1391574
+      },
+      "writtenOn": "2018-12-19T02:53:11Z",
+      "side": 1,
+      "message": "Ideally driver should not be sending an invalid rate (0Mbps) to framework. If there is no rate information available to driver, he should not set the NL80211_STA_INFO_TX_BITRATE bit in station_info : filled field (sinfo-\u003efilled). If driver fix this issue, then this code change may not help, as we will fail @line#503. So isn\u0027t it better to modify the code like below?\n\n\n  NL80211NestedAttr tx_bitrate_attr(0);\n  uint32_t tx_bitrate \u003d 0;\n  if (sta_info.GetAttribute(NL80211_STA_INFO_TX_BITRATE,\n                            \u0026tx_bitrate_attr)) {\n    if (!tx_bitrate_attr.GetAttributeValue(NL80211_RATE_INFO_BITRATE32,\n                                         \u0026tx_bitrate)) {\n      LOG(ERROR) \u003c\u003c \"Failed to get TX NL80211_RATE_INFO_BITRATE32\";\n      // Return invalid tx rate to avoid breaking the get station cmd\n      tx_bitrate \u003d 0;\n    }\n  } else {\n      LOG(ERROR) \u003c\u003c \"Failed to get NL80211_STA_INFO_TX_BITRATE\";\n  }",
+      "parentUuid": "aa5e3658_7cb7699e",
+      "range": {
+        "startLine": 509,
+        "startChar": 2,
+        "endLine": 509,
+        "endChar": 17
+      },
+      "revId": "22b54dfaaeffb1383e70ce89c0412e05a30c0de1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
