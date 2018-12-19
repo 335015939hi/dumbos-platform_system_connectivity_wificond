@@ -46,6 +46,30 @@
       "revId": "22b54dfaaeffb1383e70ce89c0412e05a30c0de1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "faadd797_9ef7ab13",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1247308
+      },
+      "writtenOn": "2018-12-19T02:50:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa5e3658_7cb7699e",
+      "range": {
+        "startLine": 509,
+        "startChar": 2,
+        "endLine": 509,
+        "endChar": 17
+      },
+      "revId": "22b54dfaaeffb1383e70ce89c0412e05a30c0de1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
