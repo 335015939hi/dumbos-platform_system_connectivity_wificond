@@ -21,6 +21,7 @@
 #include <string>
 #include <vector>
 
+#include <net/if.h>
 #include <linux/netlink.h>
 
 #include <android-base/logging.h>
@@ -97,6 +98,50 @@ NetlinkUtils::NetlinkUtils(NetlinkManager* netlink_manager)
 }
 
 NetlinkUtils::~NetlinkUtils() {}
+
+bool NetlinkUtils::GetWiphyIndex(uint32_t* out_wiphy_index,
+                                 const std::string& iface_name) {
+  NL80211Packet get_wiphy(
+      netlink_manager_->GetFamilyId(),
+      NL80211_CMD_GET_WIPHY,
+      netlink_manager_->GetSequenceNumber(),
+      getpid());
+  get_wiphy.AddFlag(NLM_F_DUMP);
+  int ifindex = if_nametoindex(iface_name.c_str());
+  get_wiphy.AddAttribute(NL80211Attr<uint32_t>(NL80211_ATTR_IFINDEX, ifindex));
+  vector<unique_ptr<const NL80211Packet>> response;
+  if (!netlink_manager_->SendMessageAndGetResponses(get_wiphy, &response))  {
+    LOG(ERROR) << "NL80211_CMD_GET_WIPHY dump failed";
+    return false;
+  }
+  if (response.empty()) {
+    LOG(DEBUG) << "No wiphy is found";
+    return false;
+  }
+  for (auto& packet : response) {
+    if (packet->GetMessageType() == NLMSG_ERROR) {
+      LOG(ERROR) << "Receive ERROR message: "
+                 << strerror(packet->GetErrorCode());
+      return false;
+    }
+    if (packet->GetMessageType() != netlink_manager_->GetFamilyId()) {
+      LOG(ERROR) << "Wrong message type for new interface message: "
+                 << packet->GetMessageType();
+      return false;
+    }
+    if (packet->GetCommand() != NL80211_CMD_NEW_WIPHY) {
+      LOG(ERROR) << "Wrong command in response to "
+                 << "a wiphy dump request: "
+                 << static_cast<int>(packet->GetCommand());
+      return false;
+    }
+    if (!packet->GetAttributeValue(NL80211_ATTR_WIPHY, out_wiphy_index)) {
+      LOG(ERROR) << "Failed to get wiphy index from reply message";
+      return false;
+    }
+  }
+  return true;
+}
 
 bool NetlinkUtils::GetWiphyIndex(uint32_t* out_wiphy_index) {
   NL80211Packet get_wiphy(
