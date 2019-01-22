@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94daf733_d6652661",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2019-01-22T19:31:30Z",
+      "side": 1,
+      "message": "Lot of code duplication with the method below. Can we remove or refactor the existing |GetWiphyIndex| method?",
+      "range": {
+        "startLine": 102,
+        "startChar": 1,
+        "endLine": 144,
+        "endChar": 1
+      },
+      "revId": "bf271a11e35477d9499d13764ba479cac404a283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
