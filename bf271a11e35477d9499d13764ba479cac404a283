@@ -22,6 +22,30 @@
       "revId": "bf271a11e35477d9499d13764ba479cac404a283",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8d96c87_1c0046a7",
+        "filename": "net/netlink_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1428228
+      },
+      "writtenOn": "2019-01-23T09:35:49Z",
+      "side": 1,
+      "message": "Thanks a lot for your kind reply. \nYes. You are right. It\u0027s not good to have lots of code duplicated in these two functions, GetWiphyIndex. I refactored and uploaded as patch set 2, FYI. Thanks.",
+      "parentUuid": "94daf733_d6652661",
+      "range": {
+        "startLine": 102,
+        "startChar": 1,
+        "endLine": 144,
+        "endChar": 1
+      },
+      "revId": "bf271a11e35477d9499d13764ba479cac404a283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
