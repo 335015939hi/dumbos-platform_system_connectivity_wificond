@@ -1,0 +1,8 @@
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Code-Review+1: Roshan Pius <rpius@google.com>
+Code-Review+2: Etan Cohen <etancohen@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Mon, 15 Jul 2019 21:55:53 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/system/connectivity/wificond/+/1015390
+Project: platform/system/connectivity/wificond
+Branch: refs/heads/master
