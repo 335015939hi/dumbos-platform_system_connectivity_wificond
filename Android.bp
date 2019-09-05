@@ -38,7 +38,6 @@ cc_binary {
         "libbase",
         "libcutils",
         "libhidlbase",
-        "libhidltransport",
         "libminijail",
         "libutils",
         "libwifi-system-iface",
@@ -81,7 +80,6 @@ cc_library_static {
         "libbase",
         "libutils",
         "libhidlbase",
-        "libhidltransport",
         "libwifi-system-iface",
     ],
     whole_static_libs: [
@@ -232,7 +230,6 @@ cc_test {
         "libbase",
         "libbinder",
         "libcutils",
-        "libhidltransport",
         "libhidlbase",
         "liblog",
         "libutils",
