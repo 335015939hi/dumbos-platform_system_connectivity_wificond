@@ -1,0 +1,9 @@
+Open-Source-Licensing+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Code-Review+2: Roshan Pius <rpius@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Jooyung Han <jooyung@google.com>
+Submitted-at: Thu, 27 Feb 2020 03:06:14 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/system/connectivity/wificond/+/1215098
+Project: platform/system/connectivity/wificond
+Branch: refs/heads/master
