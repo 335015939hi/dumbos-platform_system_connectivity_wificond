@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "caac7c61_8348e744",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1352498
+      },
+      "writtenOn": "2021-01-08T07:48:28Z",
+      "side": 1,
+      "message": "Kumar/Etan, please help to check this one and let MTK know if it\u0027s okay to merge into aosp/master. ",
+      "revId": "fe2e447ecbfea4d2242ec97d2ec778ae9c91d2d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
