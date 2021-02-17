@@ -33,6 +33,23 @@
       "message": "Hi Etan, can you PTAL as owner. Thanks!",
       "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9f88ba1_280e799c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1039103
+      },
+      "writtenOn": "2021-02-17T15:35:59Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of the makefile changes with no corresponding code to use the newly added libraries?",
+      "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
