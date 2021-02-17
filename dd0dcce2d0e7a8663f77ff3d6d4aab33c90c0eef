@@ -68,6 +68,24 @@
       "parentUuid": "e9f88ba1_280e799c",
       "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63297575_1ba93d2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2021-02-17T18:13:50Z",
+      "side": 1,
+      "message": "Ok, I tried and the error persists:\nFAILED: out/soong/.intermediates/system/connectivity/wificond/wificond/android_arm64_armv8-a/unstripped/wificond\n.....\nld.lld: error: undefined symbol: AServiceManager_checkService\n\u003e\u003e\u003e referenced by keystore.cpp:194 (system/hardware/interfaces/wifi/keystore/1.0/default/keystore.cpp:194)\n.....\nld.lld: error: undefined symbol: aidl::android::system::keystore2::IKeystoreService::fromBinder(ndk::SpAIBinder const\u0026)\n\u003e\u003e\u003e referenced by keystore.cpp:195 (system/hardware/interfaces/wifi/keystore/1.0/default/keystore.cpp:195)\n\nSo I guess it is required.",
+      "parentUuid": "b4fb50f6_02b21f5f",
+      "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
