@@ -50,6 +50,24 @@
       "message": "What\u0027s the purpose of the makefile changes with no corresponding code to use the newly added libraries?",
       "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4fb50f6_02b21f5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2021-02-17T15:48:49Z",
+      "side": 1,
+      "message": "Somehow it fails to compile https://r.android.com/1585008 without these changes due to linking errors. That surprised me a bit, since I expected dependencies to be transitive. I\u0027ll re-check and report.",
+      "parentUuid": "e9f88ba1_280e799c",
+      "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
