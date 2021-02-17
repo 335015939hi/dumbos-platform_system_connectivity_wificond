@@ -1,0 +1,10 @@
+Open-Source-Licensing+1: Lint 🤖 <ayeaye-gerrit@google.com>
+Presubmit-Verified+2: Treehugger Robot <treehugger-gerrit@google.com>
+Lint+1: Lint 🤖 <ayeaye-gerrit@google.com>
+Code-Review+1: Janis Danisevskis <jdanis@google.com>
+Code-Review+2: Etan Cohen <etancohen@google.com>
+Submitted-by: Pavel Grafov <pgrafov@google.com>
+Submitted-at: Wed, 17 Feb 2021 21:53:39 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/system/connectivity/wificond/+/1584871
+Project: platform/system/connectivity/wificond
+Branch: refs/heads/master
