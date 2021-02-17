@@ -16,6 +16,23 @@
       "message": "Hi Etan, can you PTAL. Thanks!",
       "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "daf3d9c5_f9ac293b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2021-02-17T10:46:36Z",
+      "side": 1,
+      "message": "Hi Etan, can you PTAL as owner. Thanks!",
+      "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
