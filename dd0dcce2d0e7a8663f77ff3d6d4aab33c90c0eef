@@ -86,6 +86,23 @@
       "parentUuid": "b4fb50f6_02b21f5f",
       "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01de9572_70575bc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2021-02-17T19:06:35Z",
+      "side": 1,
+      "message": "Clarified it with Janis: libwifikeystorehal is a static lib and dependencies on shared libs aren\u0027t propagated through satic libs. PTAL.",
+      "revId": "dd0dcce2d0e7a8663f77ff3d6d4aab33c90c0eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
