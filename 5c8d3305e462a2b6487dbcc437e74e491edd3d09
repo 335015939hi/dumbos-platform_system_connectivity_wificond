@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d30feab_0350719d",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1039103
+      },
+      "writtenOn": "2021-09-01T04:50:06Z",
+      "side": 0,
+      "message": "Sorry for a stupid question: but if `libwificond_event_loop` needs `libutils` (otherwise why was this library included) then how does it build w/o it? Should it have simply been replaced by the shared version?",
+      "range": {
+        "startLine": 155,
+        "startChar": 9,
+        "endLine": 155,
+        "endChar": 17
+      },
+      "revId": "5c8d3305e462a2b6487dbcc437e74e491edd3d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
