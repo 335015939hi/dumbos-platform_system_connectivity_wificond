@@ -22,6 +22,30 @@
       },
       "revId": "5c8d3305e462a2b6487dbcc437e74e491edd3d09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "298afd8d_af257c48",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1058860
+      },
+      "writtenOn": "2021-09-01T04:57:21Z",
+      "side": 0,
+      "message": "AFAICT, this just seems redundant.  libwificond_event_loop is used by \n- indirectly via libwificond_test_utils by wificond_integration_test\n- indirectly via libwificond by wificond and wificond_unit_test.\n\nAll of these explicitly link against shared libutils.so.  Let me run presubmit to build/validate more configurations.",
+      "parentUuid": "1d30feab_0350719d",
+      "range": {
+        "startLine": 155,
+        "startChar": 9,
+        "endLine": 155,
+        "endChar": 17
+      },
+      "revId": "5c8d3305e462a2b6487dbcc437e74e491edd3d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
