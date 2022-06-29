@@ -327,7 +327,7 @@ bool NetlinkUtils::GetWiphyInfo(
     }
   } else {
     for (auto& packet : response) {
-      packet_per_wiphy.push_back(move(*(packet.release())));
+      packet_per_wiphy.push_back(std::move(*(packet.release())));
     }
   }
 
@@ -780,7 +780,7 @@ bool NetlinkUtils::MergePacketsForSplitWiphyDump(
               attr_by_wiphy_and_id[wiphy_index].find(attr_id);
           if (attr_id_and_attr == attr_by_wiphy_and_id[wiphy_index].end()) {
             attr_by_wiphy_and_id[wiphy_index].
-                insert(make_pair(attr_id, move(attr)));
+                insert(make_pair(attr_id, std::move(attr)));
           } else {
             attr_id_and_attr->second.Merge(attr);
           }
@@ -796,7 +796,7 @@ bool NetlinkUtils::MergePacketsForSplitWiphyDump(
     for (const auto& attr : wiphy_and_attributes.second) {
       new_wiphy.AddAttribute(attr.second);
     }
-    packet_per_wiphy->emplace_back(move(new_wiphy));
+    packet_per_wiphy->emplace_back(std::move(new_wiphy));
   }
   return true;
 }
