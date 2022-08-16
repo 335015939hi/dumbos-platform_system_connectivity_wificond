@@ -168,6 +168,7 @@ cc_library_static {
         local_include_dirs: ["aidl"],
         export_aidl_headers: true,
     },
+    export_shared_lib_headers: ["libbinder"],
     srcs: [
         "ipc_constants.cpp",
         ":libwificond_ipc_aidl",
