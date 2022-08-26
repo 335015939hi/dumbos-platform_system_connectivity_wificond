@@ -120,6 +120,7 @@ cc_library_static {
     shared_libs: [
         "android.hardware.net.nlinterceptor-V1-ndk",
         "libbase",
+        "libbinder",
         "libutils",
         "libwifi-system-iface",
     ],
