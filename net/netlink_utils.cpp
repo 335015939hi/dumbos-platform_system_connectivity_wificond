@@ -71,6 +71,9 @@ constexpr uint8_t kHeCapPhyNumByte = 9; // Should be 11
 constexpr uint8_t kHe160MhzBitMask = 0x8;
 constexpr uint8_t kHe80p80MhzBitMask = 0x10;
 
+constexpr uint8_t kEhtCapPhyNumByte = 8;
+constexpr uint8_t kEht320MhzBitMask = 0x2;
+
 bool IsExtFeatureFlagSet(
     const std::vector<uint8_t>& ext_feature_flags_bytes,
     enum nl80211_ext_feature_index ext_feature_flag) {
@@ -132,8 +135,9 @@ bool NetlinkUtils::GetWiphyIndex(uint32_t* out_wiphy_index,
       netlink_manager_->GetSequenceNumber(),
       getpid());
   get_wiphy.AddFlag(NLM_F_DUMP);
+  int ifindex;
   if (!iface_name.empty()) {
-    int ifindex = if_nametoindex(iface_name.c_str());
+    ifindex = if_nametoindex(iface_name.c_str());
     if (ifindex == 0) {
       PLOG(ERROR) << "Can't get " << iface_name << " index";
       return false;
@@ -142,7 +146,8 @@ bool NetlinkUtils::GetWiphyIndex(uint32_t* out_wiphy_index,
   }
   vector<unique_ptr<const NL80211Packet>> response;
   if (!netlink_manager_->SendMessageAndGetResponses(get_wiphy, &response))  {
-    LOG(ERROR) << "NL80211_CMD_GET_WIPHY dump failed";
+    LOG(ERROR) << "NL80211_CMD_GET_WIPHY dump failed, ifindex: "
+               << ifindex << " and name: " << iface_name.c_str();
     return false;
   }
   if (response.empty()) {
@@ -327,7 +332,7 @@ bool NetlinkUtils::GetWiphyInfo(
     }
   } else {
     for (auto& packet : response) {
-      packet_per_wiphy.push_back(move(*(packet.release())));
+      packet_per_wiphy.push_back(std::move(*(packet.release())));
     }
   }
 
@@ -470,6 +475,7 @@ void NetlinkUtils::ParseIfTypeDataAttributes(
     LOG(ERROR) << "Failed to get the list of attributes under iftype_data_attr";
     return;
   }
+
   NL80211NestedAttr attr = attrs[0];
   if (attr.HasAttribute(NL80211_BAND_IFTYPE_ATTR_HE_CAP_PHY)) {
     out_band_info->is_80211ax_supported = true;
@@ -477,6 +483,10 @@ void NetlinkUtils::ParseIfTypeDataAttributes(
   }
   if (attr.HasAttribute(NL80211_BAND_IFTYPE_ATTR_HE_CAP_MCS_SET)) {
     ParseHeMcsSetAttribute(attr, out_band_info);
+  }
+  if (attr.HasAttribute(NL80211_BAND_IFTYPE_ATTR_EHT_CAP_PHY)) {
+    out_band_info->is_80211be_supported = true;
+    ParseEhtCapPhyAttribute(attr, out_band_info);
   }
   return;
 }
@@ -653,7 +663,6 @@ void NetlinkUtils::ParseVhtCapAttribute(const NL80211NestedAttr& band,
   if (vht_cap & kVht80p80MhzBitMask) {
     out_band_info->is_80p80_mhz_supported = true;
   }
-
 }
 
 void NetlinkUtils::ParseHeCapPhyAttribute(const NL80211NestedAttr& attribute,
@@ -676,6 +685,25 @@ void NetlinkUtils::ParseHeCapPhyAttribute(const NL80211NestedAttr& attribute,
   }
   if (he_cap_phy[0] & kHe80p80MhzBitMask) {
     out_band_info->is_80p80_mhz_supported = true;
+  }
+}
+
+void NetlinkUtils::ParseEhtCapPhyAttribute(const NL80211NestedAttr& attribute,
+                                           BandInfo* out_band_info) {
+  vector<uint8_t> eht_cap_phy;
+  if (!attribute.GetAttributeValue(
+      NL80211_BAND_IFTYPE_ATTR_EHT_CAP_PHY,
+      &eht_cap_phy)) {
+    LOG(ERROR) << " EHT CAP PHY is not found";
+    return;
+  }
+
+  if (eht_cap_phy.size() < kEhtCapPhyNumByte) {
+    LOG(ERROR) << "EHT Cap PHY size is incorrect";
+    return;
+  }
+  if (eht_cap_phy[0] & kEht320MhzBitMask) {
+    out_band_info->is_320_mhz_supported = true;
   }
 }
 
@@ -780,7 +808,7 @@ bool NetlinkUtils::MergePacketsForSplitWiphyDump(
               attr_by_wiphy_and_id[wiphy_index].find(attr_id);
           if (attr_id_and_attr == attr_by_wiphy_and_id[wiphy_index].end()) {
             attr_by_wiphy_and_id[wiphy_index].
-                insert(make_pair(attr_id, move(attr)));
+                insert(make_pair(attr_id, std::move(attr)));
           } else {
             attr_id_and_attr->second.Merge(attr);
           }
@@ -796,7 +824,7 @@ bool NetlinkUtils::MergePacketsForSplitWiphyDump(
     for (const auto& attr : wiphy_and_attributes.second) {
       new_wiphy.AddAttribute(attr.second);
     }
-    packet_per_wiphy->emplace_back(move(new_wiphy));
+    packet_per_wiphy->emplace_back(std::move(new_wiphy));
   }
   return true;
 }
