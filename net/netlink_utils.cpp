@@ -71,6 +71,10 @@ constexpr uint8_t kHeCapPhyNumByte = 9; // Should be 11
 constexpr uint8_t kHe160MhzBitMask = 0x8;
 constexpr uint8_t kHe80p80MhzBitMask = 0x10;
 
+constexpr uint8_t kEhtCapPhyNumByte = 8;
+constexpr uint8_t kEht320MhzBitMask = 0x2;
+constexpr int kNl80211CmdRetryCount = 1;
+
 bool IsExtFeatureFlagSet(
     const std::vector<uint8_t>& ext_feature_flags_bytes,
     enum nl80211_ext_feature_index ext_feature_flag) {
@@ -132,8 +136,9 @@ bool NetlinkUtils::GetWiphyIndex(uint32_t* out_wiphy_index,
       netlink_manager_->GetSequenceNumber(),
       getpid());
   get_wiphy.AddFlag(NLM_F_DUMP);
+  int ifindex = 0;
   if (!iface_name.empty()) {
-    int ifindex = if_nametoindex(iface_name.c_str());
+    ifindex = if_nametoindex(iface_name.c_str());
     if (ifindex == 0) {
       PLOG(ERROR) << "Can't get " << iface_name << " index";
       return false;
@@ -141,10 +146,20 @@ bool NetlinkUtils::GetWiphyIndex(uint32_t* out_wiphy_index,
     get_wiphy.AddAttribute(NL80211Attr<uint32_t>(NL80211_ATTR_IFINDEX, ifindex));
   }
   vector<unique_ptr<const NL80211Packet>> response;
-  if (!netlink_manager_->SendMessageAndGetResponses(get_wiphy, &response))  {
-    LOG(ERROR) << "NL80211_CMD_GET_WIPHY dump failed";
-    return false;
+  for (int i = kNl80211CmdRetryCount; i >= 0; i--) {
+      if (netlink_manager_->SendMessageAndGetResponses(get_wiphy, &response))  {
+          break;
+      } else {
+        if (i == 0) {
+            LOG(ERROR) << "NL80211_CMD_GET_WIPHY dump failed, ifindex: "
+                       << ifindex << " and name: " << iface_name.c_str();
+            return false;
+        } else {
+            LOG(INFO) << "Failed to get wiphy index, retry again";
+        }
+      }
   }
+
   if (response.empty()) {
     LOG(INFO) << "No wiphy is found";
     return false;
@@ -315,9 +330,17 @@ bool NetlinkUtils::GetWiphyInfo(
     get_wiphy.AddFlag(NLM_F_DUMP);
   }
   vector<unique_ptr<const NL80211Packet>> response;
-  if (!netlink_manager_->SendMessageAndGetResponses(get_wiphy, &response))  {
-    LOG(ERROR) << "NL80211_CMD_GET_WIPHY dump failed";
-    return false;
+  for (int i = kNl80211CmdRetryCount; i >= 0; i--) {
+      if (netlink_manager_->SendMessageAndGetResponses(get_wiphy, &response))  {
+          break;
+      } else {
+        if (i == 0) {
+            LOG(ERROR) << "NL80211_CMD_GET_WIPHY dump failed";
+            return false;
+        } else {
+            LOG(INFO) << "Failed to get wiphy info, retry again";
+        }
+      }
   }
 
   vector<NL80211Packet> packet_per_wiphy;
@@ -470,6 +493,7 @@ void NetlinkUtils::ParseIfTypeDataAttributes(
     LOG(ERROR) << "Failed to get the list of attributes under iftype_data_attr";
     return;
   }
+
   NL80211NestedAttr attr = attrs[0];
   if (attr.HasAttribute(NL80211_BAND_IFTYPE_ATTR_HE_CAP_PHY)) {
     out_band_info->is_80211ax_supported = true;
@@ -477,6 +501,10 @@ void NetlinkUtils::ParseIfTypeDataAttributes(
   }
   if (attr.HasAttribute(NL80211_BAND_IFTYPE_ATTR_HE_CAP_MCS_SET)) {
     ParseHeMcsSetAttribute(attr, out_band_info);
+  }
+  if (attr.HasAttribute(NL80211_BAND_IFTYPE_ATTR_EHT_CAP_PHY)) {
+    out_band_info->is_80211be_supported = true;
+    ParseEhtCapPhyAttribute(attr, out_band_info);
   }
   return;
 }
@@ -653,7 +681,6 @@ void NetlinkUtils::ParseVhtCapAttribute(const NL80211NestedAttr& band,
   if (vht_cap & kVht80p80MhzBitMask) {
     out_band_info->is_80p80_mhz_supported = true;
   }
-
 }
 
 void NetlinkUtils::ParseHeCapPhyAttribute(const NL80211NestedAttr& attribute,
@@ -676,6 +703,25 @@ void NetlinkUtils::ParseHeCapPhyAttribute(const NL80211NestedAttr& attribute,
   }
   if (he_cap_phy[0] & kHe80p80MhzBitMask) {
     out_band_info->is_80p80_mhz_supported = true;
+  }
+}
+
+void NetlinkUtils::ParseEhtCapPhyAttribute(const NL80211NestedAttr& attribute,
+                                           BandInfo* out_band_info) {
+  vector<uint8_t> eht_cap_phy;
+  if (!attribute.GetAttributeValue(
+      NL80211_BAND_IFTYPE_ATTR_EHT_CAP_PHY,
+      &eht_cap_phy)) {
+    LOG(ERROR) << " EHT CAP PHY is not found";
+    return;
+  }
+
+  if (eht_cap_phy.size() < kEhtCapPhyNumByte) {
+    LOG(ERROR) << "EHT Cap PHY size is incorrect";
+    return;
+  }
+  if (eht_cap_phy[0] & kEht320MhzBitMask) {
+    out_band_info->is_320_mhz_supported = true;
   }
 }
 
