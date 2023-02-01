@@ -18,6 +18,7 @@
 
 #include <algorithm> // for std::find_if
 #include <sstream>
+#include <set>
 
 #include <android-base/file.h>
 #include <android-base/logging.h>
@@ -44,6 +45,7 @@ using std::endl;
 using std::optional;
 using std::placeholders::_1;
 using std::placeholders::_2;
+using std::set;
 using std::string;
 using std::stringstream;
 using std::unique_ptr;
@@ -444,8 +446,10 @@ Status Server::getDeviceWiphyCapabilities(
   capabilities->value().is80211nSupported_  = band_info.is_80211n_supported;
   capabilities->value().is80211acSupported_ = band_info.is_80211ac_supported;
   capabilities->value().is80211axSupported_ = band_info.is_80211ax_supported;
+  capabilities->value().is80211beSupported_ = band_info.is_80211be_supported;
   capabilities->value().is160MhzSupported_ = band_info.is_160_mhz_supported;
   capabilities->value().is80p80MhzSupported_ = band_info.is_80p80_mhz_supported;
+  capabilities->value().is320MhzSupported_ = band_info.is_320_mhz_supported;
   capabilities->value().maxTxStreams_ = band_info.max_tx_streams;
   capabilities->value().maxRxStreams_ = band_info.max_rx_streams;
 
@@ -485,15 +489,57 @@ bool Server::SetupInterface(const std::string& iface_name,
   return false;
 }
 
-void Server::OnRegDomainChanged(uint32_t wiphy_index, std::string& country_code) {
-  if (country_code.empty()) {
-    LOG(INFO) << "Regulatory domain changed";
-  } else {
-    LOG(INFO) << "Regulatory domain changed to country: " << country_code
-              << " on wiphy_index: " << wiphy_index;
-    BroadcastRegDomainChanged(country_code);
+void Server::handleCountryCodeChanged() {
+  uint32_t wiphy_index;
+  set<uint32_t> handled_wiphy_index;
+  for (auto& it : client_interfaces_) {
+    it.second->UpdateBandInfo();
+    if (netlink_utils_->GetWiphyIndex(&wiphy_index, it.first)) {
+      if (handled_wiphy_index.find(wiphy_index) == handled_wiphy_index.end()) {
+        UpdateBandWiphyIndexMap(wiphy_index);
+        LogSupportedBands(wiphy_index);
+        handled_wiphy_index.insert(wiphy_index);
+      }
+    }
   }
-  LogSupportedBands(wiphy_index);
+  for (auto& it : ap_interfaces_) {
+    if (netlink_utils_->GetWiphyIndex(&wiphy_index, it.first)) {
+      if (handled_wiphy_index.find(wiphy_index) == handled_wiphy_index.end()) {
+        UpdateBandWiphyIndexMap(wiphy_index);
+        LogSupportedBands(wiphy_index);
+        handled_wiphy_index.insert(wiphy_index);
+      }
+    }
+  }
+}
+
+void Server::OnRegDomainChanged(uint32_t wiphy_index, std::string& country_code) {
+  string current_country_code;
+  if (country_code.empty()) {
+    LOG(DEBUG) << "Regulatory domain changed with empty country code (world mode?)";
+    if (!netlink_utils_->GetCountryCode(&current_country_code)) {
+        LOG(ERROR) << "Fail to get country code on wiphy_index:" << wiphy_index;
+    }
+  } else {
+      current_country_code = country_code;
+  }
+  if (!current_country_code.empty()) {
+      LOG(INFO) << "Regulatory domain changed to country: " << current_country_code
+                << " on wiphy_index: " << wiphy_index;
+      BroadcastRegDomainChanged(current_country_code);
+  }
+  // Sometimes lower layer sends stale wiphy index when there are no
+  // interfaces. So update band - wiphy index mapping only if an
+  // interface exists
+  if (!hasNoIfaceForWiphyIndex(wiphy_index)) {
+    handleCountryCodeChanged();
+  }
+}
+
+android::binder::Status Server::notifyCountryCodeChanged() {
+  LOG(INFO) << "Receive notifyCountryCodeChanged";
+  handleCountryCodeChanged();
+  return Status::ok();
 }
 
 void Server::LogSupportedBands(uint32_t wiphy_index) {
