@@ -109,6 +109,8 @@ class Server : public android::net::wifi::nl80211::BnWificond {
       const std::string& iface_name,
       ::std::optional<net::wifi::nl80211::DeviceWiphyCapabilities>* capabilities) override;
 
+  android::binder::Status notifyCountryCodeChanged() override;
+
  private:
   // Request interface information from kernel and setup local interface object.
   // This assumes that interface should be in STATION mode. Even if we setup
@@ -119,6 +121,7 @@ class Server : public android::net::wifi::nl80211::BnWificond {
       uint32_t *wiphy_index);
   void LogSupportedBands(uint32_t wiphy_index);
   void OnRegDomainChanged(uint32_t wiphy_index, std::string& country_code);
+  void handleCountryCodeChanged();
   void BroadcastClientInterfaceReady(
       android::sp<android::net::wifi::nl80211::IClientInterface> network_interface);
   void BroadcastApInterfaceReady(
