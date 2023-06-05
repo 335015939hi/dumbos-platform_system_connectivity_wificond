@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa54d720_49fef733",
+        "filename": "Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-06-05T18:56:43Z",
+      "side": 1,
+      "message": "spaces, maybe `gofmt -w Android.bp`",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 1
+      },
+      "revId": "789ac95c58ec1dbd82a7f49a2a23cba37b91b163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a76bfd4_6ae424bc",
+        "filename": "Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-06-05T18:56:43Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 1
+      },
+      "revId": "789ac95c58ec1dbd82a7f49a2a23cba37b91b163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
