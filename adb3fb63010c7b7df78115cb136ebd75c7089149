@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9fee8fa_5676b656",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2023-06-06T18:28:08Z",
+      "side": 1,
+      "message": "I have cherry-picked this change to git_master here : https://googleplex-android-review.git.corp.google.com/c/platform/system/connectivity/wificond/+/23589415",
+      "parentUuid": "e6150817_b4ad5431",
+      "revId": "adb3fb63010c7b7df78115cb136ebd75c7089149",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81acf296_4bb0c194",
