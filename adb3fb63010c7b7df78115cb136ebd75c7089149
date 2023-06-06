@@ -57,6 +57,30 @@
       },
       "revId": "adb3fb63010c7b7df78115cb136ebd75c7089149",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fabaa6e_a0d6696f",
+        "filename": "fuzzers/wificond_service_fuzzer.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2023-06-06T20:02:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81acf296_4bb0c194",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 42,
+        "endChar": 18
+      },
+      "revId": "adb3fb63010c7b7df78115cb136ebd75c7089149",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
