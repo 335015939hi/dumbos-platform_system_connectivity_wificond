@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "191e4e87_03a92dbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2013132
+      },
+      "writtenOn": "2023-06-14T04:23:31Z",
+      "side": 1,
+      "message": "https://android.googlesource.com/platform/system/connectivity/wificond",
+      "revId": "9b6623de7548cce16d7ff20abbaef94af914181d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
