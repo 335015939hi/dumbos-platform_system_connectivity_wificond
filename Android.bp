@@ -53,20 +53,13 @@ cc_defaults {
     include_dirs: ["system/connectivity"],
 }
 
-//
-// wificond daemon.
-//
-cc_binary {
-    name: "wificond",
+cc_defaults {
+    name: "wificond_default_libs",
     defaults: [
         "keystore2_use_latest_aidl_ndk_shared",
         "wificond_defaults",
     ],
-    init_rc: ["wificond.rc"],
-    srcs: [
-	"main.cpp",
-	"wifi_keystore_hal_connector.cpp"
-    ],
+
     include_dirs: ["system/security/keystore/include"],
 
     shared_libs: [
@@ -87,7 +80,22 @@ cc_binary {
     static_libs: [
         "libnlinterceptor",
         "libwificond", // Wificond daemon
-        "libwifikeystorehal"  // Wifi Keystore HAL service
+        "libwifikeystorehal", // Wifi Keystore HAL service
+    ],
+}
+
+//
+// wificond daemon.
+//
+cc_binary {
+    name: "wificond",
+    defaults: [
+        "wificond_default_libs",
+    ],
+    init_rc: ["wificond.rc"],
+    srcs: [
+        "main.cpp",
+        "wifi_keystore_hal_connector.cpp",
     ],
 }
 
@@ -318,4 +326,23 @@ cc_test {
         "libwificond_ipc",
         "libwificond_test_utils",
     ],
+}
+
+cc_fuzz {
+    name: "wificond_service_fuzzer",
+    defaults: [
+        "wificond_default_libs",
+        "service_fuzzer_defaults",
+        "fuzzer_disable_leaks",
+    ],
+    srcs: [
+        "fuzzers/wificond_service_fuzzer.cpp",
+    ],
+    fuzz_config: {
+        triage_assignee: "waghpawan@google.com",
+        cc: [
+            "etancohen@google.com",
+            "gbiren@google.com",
+        ],
+    },
 }
