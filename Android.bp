@@ -78,7 +78,6 @@ cc_defaults {
         "android.system.wifi.keystore@1.0",
     ],
     static_libs: [
-        "libnlinterceptor",
         "libwificond", // Wificond daemon
         "libwifikeystorehal", // Wifi Keystore HAL service
     ],
@@ -155,13 +154,10 @@ cc_library_static {
     ],
     shared_libs: [
         "android.hardware.net.nlinterceptor-V1-ndk",
-        "libbinder_ndk",
         "libbase",
     ],
-    whole_static_libs: [
+    static_libs: [
         "libnlinterceptor",
-        "android.hardware.automotive.can@libnetdevice",
-        "libnl++",
     ],
 }
 
@@ -283,7 +279,6 @@ cc_test {
     static_libs: [
         "libgmock",
         "libgtest",
-        "libnlinterceptor",
         "libwifi-system-iface-test",
         "libwificond",
         "libwificond_nl",
