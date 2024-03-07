@@ -847,12 +847,15 @@ bool NetlinkUtils::MergePacketsForSplitWiphyDump(
   return true;
 }
 
-bool NetlinkUtils::GetCountryCode(string* out_country_code) {
+bool NetlinkUtils::GetCountryCode(uint32_t wiphy_index,
+    string* out_country_code) {
   NL80211Packet get_country_code(
       netlink_manager_->GetFamilyId(),
       NL80211_CMD_GET_REG,
       netlink_manager_->GetSequenceNumber(),
       getpid());
+  get_country_code.AddAttribute(NL80211Attr<uint32_t>(NL80211_ATTR_WIPHY,
+                                                      wiphy_index));
   unique_ptr<const NL80211Packet> response;
   if (!netlink_manager_->SendMessageAndGetSingleResponse(get_country_code,
                                                          &response)) {

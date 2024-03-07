@@ -241,7 +241,8 @@ class NetlinkUtils {
 
   // Get current alpha2 country code from kernel.
   // Returns true on success.
-  virtual bool GetCountryCode(std::string* out_country_code);
+  virtual bool GetCountryCode(uint32_t wiphy_index,
+                              std::string* out_country_code);
 
   // Sign up to be notified when there is MLME event.
   // Only one handler can be registered per interface index.

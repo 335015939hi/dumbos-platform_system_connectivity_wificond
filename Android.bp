@@ -64,8 +64,6 @@ cc_defaults {
     include_dirs: ["system/security/keystore/include"],
 
     shared_libs: [
-        "android.hardware.net.nlinterceptor-V1-ndk",
-        "android.security.legacykeystore-ndk",
         "libbinder",
         "libbinder_ndk",
         "libbase",
@@ -76,9 +74,11 @@ cc_defaults {
         "libssl",
         "libutils",
         "libwifi-system-iface",
-        "android.system.wifi.keystore@1.0",
     ],
     static_libs: [
+        "android.hardware.net.nlinterceptor-V1-ndk",
+        "android.security.legacykeystore-ndk",
+        "android.system.wifi.keystore@1.0",
         "libwificond", // Wificond daemon
         "libwifikeystorehal", // Wifi Keystore HAL service
     ],
