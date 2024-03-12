@@ -918,7 +918,7 @@ TEST_F(NetlinkUtilsTest, CanGetCountryCode) {
       WillOnce(DoAll(MakeupResponse(response), Return(true)));
 
   string country_code;
-  EXPECT_TRUE(netlink_utils_->GetCountryCode(&country_code));
+  EXPECT_TRUE(netlink_utils_->GetCountryCode(0, &country_code));
   EXPECT_EQ(kFakeCountryCode, country_code);
 }
 
@@ -930,7 +930,7 @@ TEST_F(NetlinkUtilsTest, CanHandleGetCountryCodeError) {
       WillOnce(DoAll(MakeupResponse(response), Return(true)));
 
   string country_code_ignored;
-  EXPECT_FALSE(netlink_utils_->GetCountryCode(&country_code_ignored));
+  EXPECT_FALSE(netlink_utils_->GetCountryCode(0, &country_code_ignored));
 }
 
 TEST_F(NetlinkUtilsTest, CanSendMgmtFrame) {

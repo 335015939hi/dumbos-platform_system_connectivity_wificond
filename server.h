@@ -130,7 +130,7 @@ class Server : public android::net::wifi::nl80211::BnWificond {
       android::sp<android::net::wifi::nl80211::IClientInterface> network_interface);
   void BroadcastApInterfaceTornDown(
       android::sp<android::net::wifi::nl80211::IApInterface> network_interface);
-  void BroadcastRegDomainChanged(std::string country_code);
+  void BroadcastRegDomainChanged();
   void MarkDownAllInterfaces();
   int FindWiphyIndex(const std::string& iface_name);
   bool GetBandInfo(int wiphy_index, BandInfo* band_info);
@@ -155,6 +155,8 @@ class Server : public android::net::wifi::nl80211::BnWificond {
 
   // Cached interface list from kernel for dumping.
   std::vector<InterfaceInfo> debug_interfaces_;
+
+  std::string current_country_code_;
 
   DISALLOW_COPY_AND_ASSIGN(Server);
 };
