@@ -13,6 +13,7 @@
 // limitations under the License.
 
 package {
+    default_team: "trendy_team_fwk_wifi_hal",
     default_applicable_licenses: ["system_connectivity_wificond_license"],
 }
 
@@ -53,25 +54,16 @@ cc_defaults {
     include_dirs: ["system/connectivity"],
 }
 
-//
-// wificond daemon.
-//
-cc_binary {
-    name: "wificond",
+cc_defaults {
+    name: "wificond_default_libs",
     defaults: [
         "keystore2_use_latest_aidl_ndk_shared",
         "wificond_defaults",
     ],
-    init_rc: ["wificond.rc"],
-    srcs: [
-	"main.cpp",
-	"wifi_keystore_hal_connector.cpp"
-    ],
+
     include_dirs: ["system/security/keystore/include"],
 
     shared_libs: [
-        "android.hardware.net.nlinterceptor-V1-ndk",
-        "android.security.legacykeystore-ndk",
         "libbinder",
         "libbinder_ndk",
         "libbase",
@@ -82,12 +74,28 @@ cc_binary {
         "libssl",
         "libutils",
         "libwifi-system-iface",
-        "android.system.wifi.keystore@1.0",
     ],
     static_libs: [
-        "libnlinterceptor",
+        "android.hardware.net.nlinterceptor-V1-ndk",
+        "android.security.legacykeystore-ndk",
+        "android.system.wifi.keystore@1.0",
         "libwificond", // Wificond daemon
-        "libwifikeystorehal"  // Wifi Keystore HAL service
+        "libwifikeystorehal", // Wifi Keystore HAL service
+    ],
+}
+
+//
+// wificond daemon.
+//
+cc_binary {
+    name: "wificond",
+    defaults: [
+        "wificond_default_libs",
+    ],
+    init_rc: ["wificond.rc"],
+    srcs: [
+        "main.cpp",
+        "wifi_keystore_hal_connector.cpp",
     ],
 }
 
@@ -147,13 +155,10 @@ cc_library_static {
     ],
     shared_libs: [
         "android.hardware.net.nlinterceptor-V1-ndk",
-        "libbinder_ndk",
         "libbase",
     ],
-    whole_static_libs: [
+    static_libs: [
         "libnlinterceptor",
-        "android.hardware.automotive.can@libnetdevice",
-        "libnl++",
     ],
 }
 
@@ -275,7 +280,6 @@ cc_test {
     static_libs: [
         "libgmock",
         "libgtest",
-        "libnlinterceptor",
         "libwifi-system-iface-test",
         "libwificond",
         "libwificond_nl",
@@ -318,4 +322,23 @@ cc_test {
         "libwificond_ipc",
         "libwificond_test_utils",
     ],
+}
+
+cc_fuzz {
+    name: "wificond_service_fuzzer",
+    defaults: [
+        "wificond_default_libs",
+        "service_fuzzer_defaults",
+        "fuzzer_disable_leaks",
+    ],
+    srcs: [
+        "fuzzers/wificond_service_fuzzer.cpp",
+    ],
+    fuzz_config: {
+        triage_assignee: "waghpawan@google.com",
+        cc: [
+            "etancohen@google.com",
+            "gbiren@google.com",
+        ],
+    },
 }

@@ -77,6 +77,11 @@ Status Server::registerWificondEventCallback(const sp<IWificondEventCallback>& c
   }
   LOG(INFO) << "New wificond event callback registered";
   wificond_event_callbacks_.push_back(callback);
+
+  // Inform immediately about current country code
+  if (!current_country_code_.empty())
+    callback->OnRegDomainChanged(current_country_code_);
+
   return Status::ok();
 }
 
@@ -297,7 +302,9 @@ status_t Server::dump(int fd, const Vector<String16>& /*args*/) {
   }
 
   string country_code;
-  if (netlink_utils_->GetCountryCode(&country_code)) {
+  uint32_t wiphy_index;
+  if (netlink_utils_->GetWiphyIndex(&wiphy_index) &&
+      netlink_utils_->GetCountryCode(wiphy_index, &country_code)) {
     ss << "Current country code from kernel: " << country_code << endl;
   } else {
     ss << "Failed to get country code from kernel." << endl;
@@ -463,6 +470,20 @@ bool Server::SetupInterface(const std::string& iface_name,
     LOG(ERROR) << "Failed to get wiphy index";
     return false;
   }
+
+  std::string country_code;
+  if (!netlink_utils_->GetCountryCode(*wiphy_index, &country_code) ||
+      country_code.empty()) {
+    LOG(ERROR) << "Fail to get country code";
+  } else {
+    LOG(INFO) << "Current driver country code " << country_code;
+    if (current_country_code_.empty() ||
+        current_country_code_.compare(country_code) != 0) {
+      current_country_code_ = country_code;
+      BroadcastRegDomainChanged();
+    }
+  }
+
   // TODO: It may need to handle multi-chips case to get multi-wiphy index and
   // register corresponding callback.
   netlink_utils_->SubscribeRegDomainChange(
@@ -514,19 +535,18 @@ void Server::handleCountryCodeChanged() {
 }
 
 void Server::OnRegDomainChanged(uint32_t wiphy_index, std::string& country_code) {
-  string current_country_code;
   if (country_code.empty()) {
     LOG(DEBUG) << "Regulatory domain changed with empty country code (world mode?)";
-    if (!netlink_utils_->GetCountryCode(&current_country_code)) {
+    if (!netlink_utils_->GetCountryCode(wiphy_index, &current_country_code_)) {
         LOG(ERROR) << "Fail to get country code on wiphy_index:" << wiphy_index;
     }
   } else {
-      current_country_code = country_code;
+      current_country_code_ = country_code;
   }
-  if (!current_country_code.empty()) {
-      LOG(INFO) << "Regulatory domain changed to country: " << current_country_code
+  if (!current_country_code_.empty()) {
+      LOG(INFO) << "Regulatory domain changed to country: " << current_country_code_
                 << " on wiphy_index: " << wiphy_index;
-      BroadcastRegDomainChanged(current_country_code);
+      BroadcastRegDomainChanged();
   }
   // Sometimes lower layer sends stale wiphy index when there are no
   // interfaces. So update band - wiphy index mapping only if an
@@ -610,10 +630,9 @@ void Server::BroadcastApInterfaceTornDown(
   }
 }
 
-void Server::BroadcastRegDomainChanged(
-    std::string country_code) {
+void Server::BroadcastRegDomainChanged() {
   for (const auto& it : wificond_event_callbacks_) {
-    it->OnRegDomainChanged(country_code);
+    it->OnRegDomainChanged(current_country_code_);
   }
 }
 
