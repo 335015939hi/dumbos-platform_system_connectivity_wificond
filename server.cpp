@@ -172,8 +172,10 @@ Status Server::tearDownApInterface(const std::string& iface_name,
     iface_to_wiphy_index_map_.erase(iter_wi);
     if (hasNoIfaceForWiphyIndex(wiphy_index)) {
       EraseBandWiphyIndexMap(wiphy_index);
+      netlink_utils_->UnsubscribeRegDomainChange(wiphy_index);
     } else {
       LOG(INFO) << "Band info for wiphy_index " << wiphy_index << " retained";
+      LOG(INFO) << "Regulatory Domain handler for wiphy_index " << wiphy_index << " retained";
     }
   }
 
@@ -237,8 +239,10 @@ Status Server::tearDownClientInterface(const std::string& iface_name,
     iface_to_wiphy_index_map_.erase(iter_wi);
     if (hasNoIfaceForWiphyIndex(wiphy_index)) {
       EraseBandWiphyIndexMap(wiphy_index);
+      netlink_utils_->UnsubscribeRegDomainChange(wiphy_index);
     } else {
       LOG(INFO) << "Band info for wiphy_index " << wiphy_index << " retained";
+      LOG(INFO) << "Regulatory Domain handler for wiphy_index " << wiphy_index << " retained";
     }
   }
 
