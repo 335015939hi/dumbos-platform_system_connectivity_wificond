@@ -64,6 +64,7 @@ constexpr int kFakeErrorCode = EIO;
 constexpr int32_t kFakeMcs = 5;
 constexpr bool kFakeSupportsRandomMacOneshotScan = true;
 constexpr bool kFakeSupportsRandomMacSchedScan = false;
+constexpr bool kFakeMaxNumAkms = 3;
 const char kFakeInterfaceName[] = "testif0";
 const char kFakeCountryCode[] = "US";
 const uint32_t kFakeInterfaceIndex = 34;
@@ -346,6 +347,22 @@ void VerifyWiphyFeatures(const WiphyFeatures& wiphy_features) {
   EXPECT_FALSE(wiphy_features.supports_random_mac_sched_scan);
 }
 
+void AppendWiphyDriverCapabilitiesAttributes(NL80211Packet* packet, bool supports_max_num_akms) {
+  if (supports_max_num_akms) {
+      packet->AddAttribute(
+          NL80211Attr<uint16_t>(NL80211_ATTR_MAX_NUM_AKM_SUITES, kFakeMaxNumAkms));
+  }
+}
+
+void VerifyWiphyDriverCapabilities(const DriverCapabilities& driver_capabilities,
+                                   bool supports_max_num_akms) {
+  if (supports_max_num_akms) {
+    EXPECT_EQ(driver_capabilities.max_num_akms, kFakeMaxNumAkms);
+  } else {
+    EXPECT_EQ(driver_capabilities.max_num_akms, 1);
+  }
+}
+
 }  // namespace
 
 // This mocks the behavior of SendMessageAndGetResponses(), which returns a
@@ -582,6 +599,7 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfo) {
   AppendBandInfoAttributes(&new_wiphy);
   AppendScanCapabilitiesAttributes(&new_wiphy, true);
   AppendWiphyFeaturesAttributes(&new_wiphy);
+  AppendWiphyDriverCapabilitiesAttributes(&new_wiphy, true);
   vector<NL80211Packet> get_wiphy_response = {new_wiphy};
 
   EXPECT_CALL(*netlink_manager_, SendMessageAndGetResponses(_, _)).
@@ -590,16 +608,19 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfo) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
   EXPECT_TRUE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
                                            &band_info,
                                            &scan_capabilities,
-                                           &wiphy_features));
+                                           &wiphy_features,
+                                           &driver_capabilities));
   VerifyBandInfo(band_info);
   VerifyScanCapabilities(scan_capabilities, true);
   VerifyWiphyFeatures(wiphy_features);
   EXPECT_FALSE(wiphy_features.supports_low_span_oneshot_scan);
   EXPECT_FALSE(wiphy_features.supports_low_power_oneshot_scan);
   EXPECT_FALSE(wiphy_features.supports_high_accuracy_oneshot_scan);
+  VerifyWiphyDriverCapabilities(driver_capabilities, true);
 }
 
 TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithNoDbsParam) {
@@ -615,6 +636,7 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithNoDbsParam) {
   AppendScanCapabilitiesAttributes(&new_wiphy, false);
   AppendWiphyFeaturesAttributes(&new_wiphy);
   AppendWiphyExtFeaturesAttributes(&new_wiphy, false, false, false, false);
+  AppendWiphyDriverCapabilitiesAttributes(&new_wiphy, false);
   vector<NL80211Packet> get_wiphy_response = {new_wiphy};
 
   EXPECT_CALL(*netlink_manager_, SendMessageAndGetResponses(_, _)).
@@ -623,16 +645,19 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithNoDbsParam) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
   EXPECT_TRUE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
                                            &band_info,
                                            &scan_capabilities,
-                                           &wiphy_features));
+                                           &wiphy_features,
+                                           &driver_capabilities));
   VerifyBandInfo(band_info);
   VerifyScanCapabilities(scan_capabilities, false);
   VerifyWiphyFeatures(wiphy_features);
   EXPECT_FALSE(wiphy_features.supports_low_span_oneshot_scan);
   EXPECT_FALSE(wiphy_features.supports_low_power_oneshot_scan);
   EXPECT_FALSE(wiphy_features.supports_high_accuracy_oneshot_scan);
+  VerifyWiphyDriverCapabilities(driver_capabilities, false);
 }
 
 TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithLowSpanScan) {
@@ -648,6 +673,7 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithLowSpanScan) {
   AppendScanCapabilitiesAttributes(&new_wiphy, false);
   AppendWiphyFeaturesAttributes(&new_wiphy);
   AppendWiphyExtFeaturesAttributes(&new_wiphy, true, false, false, false);
+  AppendWiphyDriverCapabilitiesAttributes(&new_wiphy, false);
   vector<NL80211Packet> get_wiphy_response = {new_wiphy};
 
   EXPECT_CALL(*netlink_manager_, SendMessageAndGetResponses(_, _)).
@@ -656,16 +682,19 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithLowSpanScan) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
   EXPECT_TRUE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
                                            &band_info,
                                            &scan_capabilities,
-                                           &wiphy_features));
+                                           &wiphy_features,
+                                           &driver_capabilities));
   VerifyBandInfo(band_info);
   VerifyScanCapabilities(scan_capabilities, false);
   VerifyWiphyFeatures(wiphy_features);
   EXPECT_TRUE(wiphy_features.supports_low_span_oneshot_scan);
   EXPECT_FALSE(wiphy_features.supports_low_power_oneshot_scan);
   EXPECT_FALSE(wiphy_features.supports_high_accuracy_oneshot_scan);
+  VerifyWiphyDriverCapabilities(driver_capabilities, false);
 }
 
 TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithLowPowerScan) {
@@ -681,6 +710,7 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithLowPowerScan) {
   AppendScanCapabilitiesAttributes(&new_wiphy, false);
   AppendWiphyFeaturesAttributes(&new_wiphy);
   AppendWiphyExtFeaturesAttributes(&new_wiphy, false, true, false, false);
+  AppendWiphyDriverCapabilitiesAttributes(&new_wiphy, false);
   vector<NL80211Packet> get_wiphy_response = {new_wiphy};
 
   EXPECT_CALL(*netlink_manager_, SendMessageAndGetResponses(_, _)).
@@ -689,16 +719,19 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithLowPowerScan) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
   EXPECT_TRUE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
                                            &band_info,
                                            &scan_capabilities,
-                                           &wiphy_features));
+                                           &wiphy_features,
+                                           &driver_capabilities));
   VerifyBandInfo(band_info);
   VerifyScanCapabilities(scan_capabilities, false);
   VerifyWiphyFeatures(wiphy_features);
   EXPECT_FALSE(wiphy_features.supports_low_span_oneshot_scan);
   EXPECT_TRUE(wiphy_features.supports_low_power_oneshot_scan);
   EXPECT_FALSE(wiphy_features.supports_high_accuracy_oneshot_scan);
+  VerifyWiphyDriverCapabilities(driver_capabilities, false);
 }
 
 TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithHighAccuracyScan) {
@@ -714,6 +747,7 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithHighAccuracyScan) {
   AppendScanCapabilitiesAttributes(&new_wiphy, false);
   AppendWiphyFeaturesAttributes(&new_wiphy);
   AppendWiphyExtFeaturesAttributes(&new_wiphy, false, false, true, false);
+  AppendWiphyDriverCapabilitiesAttributes(&new_wiphy, false);
   vector<NL80211Packet> get_wiphy_response = {new_wiphy};
 
   EXPECT_CALL(*netlink_manager_, SendMessageAndGetResponses(_, _)).
@@ -722,16 +756,19 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithHighAccuracyScan) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
   EXPECT_TRUE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
                                            &band_info,
                                            &scan_capabilities,
-                                           &wiphy_features));
+                                           &wiphy_features,
+                                           &driver_capabilities));
   VerifyBandInfo(band_info);
   VerifyScanCapabilities(scan_capabilities, false);
   VerifyWiphyFeatures(wiphy_features);
   EXPECT_FALSE(wiphy_features.supports_low_span_oneshot_scan);
   EXPECT_FALSE(wiphy_features.supports_low_power_oneshot_scan);
   EXPECT_TRUE(wiphy_features.supports_high_accuracy_oneshot_scan);
+  VerifyWiphyDriverCapabilities(driver_capabilities, false);
 }
 
 TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithAllDbsParams) {
@@ -747,6 +784,7 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithAllDbsParams) {
   AppendScanCapabilitiesAttributes(&new_wiphy, false);
   AppendWiphyFeaturesAttributes(&new_wiphy);
   AppendWiphyExtFeaturesAttributes(&new_wiphy, false, false, false, true);
+  AppendWiphyDriverCapabilitiesAttributes(&new_wiphy, false);
   vector<NL80211Packet> get_wiphy_response = {new_wiphy};
 
   EXPECT_CALL(*netlink_manager_, SendMessageAndGetResponses(_, _)).
@@ -755,16 +793,19 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoWithAllDbsParams) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
   EXPECT_TRUE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
                                            &band_info,
                                            &scan_capabilities,
-                                           &wiphy_features));
+                                           &wiphy_features,
+                                           &driver_capabilities));
   VerifyBandInfo(band_info);
   VerifyScanCapabilities(scan_capabilities, false);
   VerifyWiphyFeatures(wiphy_features);
   EXPECT_TRUE(wiphy_features.supports_low_span_oneshot_scan);
   EXPECT_TRUE(wiphy_features.supports_low_power_oneshot_scan);
   EXPECT_TRUE(wiphy_features.supports_high_accuracy_oneshot_scan);
+  VerifyWiphyDriverCapabilities(driver_capabilities, false);
 }
 
 TEST_F(NetlinkUtilsTest, CanGetWiphyInfoScanPlanNotSupported) {
@@ -779,6 +820,7 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoScanPlanNotSupported) {
   AppendBandInfoAttributes(&new_wiphy);
   AppendScanCapabilitiesAttributes(&new_wiphy, false);
   AppendWiphyFeaturesAttributes(&new_wiphy);
+  AppendWiphyDriverCapabilitiesAttributes(&new_wiphy, false);
   vector<NL80211Packet> get_wiphy_response = {new_wiphy};
 
   EXPECT_CALL(*netlink_manager_, SendMessageAndGetResponses(_, _)).
@@ -787,13 +829,16 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoScanPlanNotSupported) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
   EXPECT_TRUE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
                                            &band_info,
                                            &scan_capabilities,
-                                           &wiphy_features));
+                                           &wiphy_features,
+                                           &driver_capabilities));
   VerifyBandInfo(band_info);
   VerifyScanCapabilities(scan_capabilities, false);
   VerifyWiphyFeatures(wiphy_features);
+  VerifyWiphyDriverCapabilities(driver_capabilities, false);
 }
 
 TEST_F(NetlinkUtilsTest, CanGetWiphyInfoSplitDump) {
@@ -818,9 +863,10 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoSplitDump) {
   new_wiphy_packet2.AddAttribute(GenerateBandsAttributeFor2g());
   AppendScanCapabilitiesAttributes(&new_wiphy_packet2, false);
   AppendWiphyFeaturesAttributes(&new_wiphy_packet2);
+  AppendWiphyDriverCapabilitiesAttributes(&new_wiphy_packet2, true);
 
   // Insert a packet for wiphy with index kFakeWiphyIndex1.
-  // This is unrelated and should be ingnored by |GetWiphyInfo|.
+  // This is unrelated and should be ignored by |GetWiphyInfo|.
   NL80211Packet new_wiphy_packet3(
       netlink_manager_->GetFamilyId(),
       NL80211_CMD_NEW_WIPHY,
@@ -839,13 +885,16 @@ TEST_F(NetlinkUtilsTest, CanGetWiphyInfoSplitDump) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
   EXPECT_TRUE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
                                            &band_info,
                                            &scan_capabilities,
-                                           &wiphy_features));
+                                           &wiphy_features,
+                                           &driver_capabilities));
   VerifyBandInfo(band_info);
   VerifyScanCapabilities(scan_capabilities, false);
   VerifyWiphyFeatures(wiphy_features);
+  VerifyWiphyDriverCapabilities(driver_capabilities, true);
 }
 
 
@@ -861,10 +910,12 @@ TEST_F(NetlinkUtilsTest, CanHandleGetWiphyInfoError) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
   EXPECT_FALSE(netlink_utils_->GetWiphyInfo(kFakeWiphyIndex,
                                            &band_info,
                                            &scan_capabilities,
-                                           &wiphy_features));
+                                           &wiphy_features,
+                                           &driver_capabilities));
 }
 
 TEST_F(NetlinkUtilsTest, CanGetProtocolFeatures) {

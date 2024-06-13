@@ -438,11 +438,13 @@ Status Server::getDeviceWiphyCapabilities(
 
   BandInfo band_info;
   ScanCapabilities scan_capabilities_ignored;
-  WiphyFeatures wiphy_features_ignored;
+  WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities;
 
   if (!netlink_utils_->GetWiphyInfo(wiphy_index, &band_info,
                                     &scan_capabilities_ignored,
-                                    &wiphy_features_ignored)) {
+                                    &wiphy_features,
+                                    &driver_capabilities)) {
     LOG(ERROR) << "Failed to get wiphy info from kernel";
     capabilities = nullptr;
     return Status::ok();
@@ -459,6 +461,7 @@ Status Server::getDeviceWiphyCapabilities(
   capabilities->value().is320MhzSupported_ = band_info.is_320_mhz_supported;
   capabilities->value().maxTxStreams_ = band_info.max_tx_streams;
   capabilities->value().maxRxStreams_ = band_info.max_rx_streams;
+  capabilities->value().maxNumAkms_ = driver_capabilities.max_num_akms;
 
   return Status::ok();
 }
@@ -566,10 +569,12 @@ void Server::LogSupportedBands(uint32_t wiphy_index) {
   BandInfo band_info;
   ScanCapabilities scan_capabilities;
   WiphyFeatures wiphy_features;
+  DriverCapabilities driver_capabilities_ignored;
   netlink_utils_->GetWiphyInfo(wiphy_index,
                                &band_info,
                                &scan_capabilities,
-                               &wiphy_features);
+                               &wiphy_features,
+                               &driver_capabilities_ignored);
 
   stringstream ss;
   for (unsigned int i = 0; i < band_info.band_2g.size(); i++) {
@@ -658,10 +663,12 @@ bool Server::GetBandInfo(
 
   ScanCapabilities scan_capabilities_ignored;
   WiphyFeatures wiphy_features_ignored;
+  DriverCapabilities driver_capabilities_ignored;
 
   if (!netlink_utils_->GetWiphyInfo(wiphy_index, band_info,
                                     &scan_capabilities_ignored,
-                                    &wiphy_features_ignored)) {
+                                    &wiphy_features_ignored,
+                                    &driver_capabilities_ignored)) {
     LOG(ERROR) << "Failed to get wiphy index " << wiphy_index << " info from kernel";
     return false;
   }

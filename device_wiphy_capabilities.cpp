@@ -37,6 +37,7 @@ DeviceWiphyCapabilities::DeviceWiphyCapabilities() {
   is320MhzSupported_ = false;
   maxTxStreams_ = 1;
   maxRxStreams_ = 1;
+  maxNumAkms_ = 1;
 }
 
 status_t DeviceWiphyCapabilities::writeToParcel(::android::Parcel* parcel) const {
@@ -49,6 +50,7 @@ status_t DeviceWiphyCapabilities::writeToParcel(::android::Parcel* parcel) const
   RETURN_IF_FAILED(parcel->writeBool(is320MhzSupported_ ));
   RETURN_IF_FAILED(parcel->writeUint32(maxTxStreams_));
   RETURN_IF_FAILED(parcel->writeUint32(maxRxStreams_));
+  RETURN_IF_FAILED(parcel->writeUint32(maxNumAkms_));
   return ::android::OK;
 }
 
@@ -62,6 +64,7 @@ status_t DeviceWiphyCapabilities::readFromParcel(const ::android::Parcel* parcel
   RETURN_IF_FAILED(parcel->readBool(&is320MhzSupported_));
   RETURN_IF_FAILED(parcel->readUint32(&maxTxStreams_));
   RETURN_IF_FAILED(parcel->readUint32(&maxRxStreams_));
+  RETURN_IF_FAILED(parcel->readUint32(&maxNumAkms_));
 
   return ::android::OK;
 }
