@@ -155,6 +155,15 @@ struct WiphyFeatures {
   // We will add them once we find them useful.
 };
 
+struct DriverCapabilities {
+  DriverCapabilities() = default;
+  DriverCapabilities(uint32_t max_num_akms_)
+      : max_num_akms(max_num_akms_) {}
+  // Maximum number of AKM suites allowed in the connection request to driver.
+  // The value is obtained via NL attribute NL80211_ATTR_MAX_NUM_AKM_SUITES.
+  uint32_t max_num_akms;
+};
+
 struct StationInfo {
   StationInfo() = default;
   StationInfo(uint32_t station_tx_packets_,
@@ -224,7 +233,8 @@ class NetlinkUtils {
   virtual bool GetWiphyInfo(uint32_t wiphy_index,
                             BandInfo* out_band_info,
                             ScanCapabilities* out_scan_capabilities,
-                            WiphyFeatures* out_wiphy_features);
+                            WiphyFeatures* out_wiphy_features,
+                            DriverCapabilities* out_driver_capabilities);
 
   // Get station info from kernel.
   // |*out_station_info]| is the struct of available station information.
@@ -307,7 +317,8 @@ class NetlinkUtils {
       const NL80211Packet& packet,
       BandInfo* out_band_info,
       ScanCapabilities* out_scan_capabilities,
-      WiphyFeatures* out_wiphy_features);
+      WiphyFeatures* out_wiphy_features,
+      DriverCapabilities* out_driver_capabilities);
   bool ParseBandInfo(const NL80211Packet* const packet,
                      BandInfo* out_band_info);
   void ParseIfTypeDataAttributes(const NL80211NestedAttr& iftype_data_attr,

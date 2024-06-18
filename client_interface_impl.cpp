@@ -139,7 +139,8 @@ ClientInterfaceImpl::ClientInterfaceImpl(
   if (!netlink_utils_->GetWiphyInfo(wiphy_index_,
                                &band_info_,
                                &scan_capabilities_,
-                               &wiphy_features_)) {
+                               &wiphy_features_,
+                               &driver_capabilities_)) {
     LOG(ERROR) << "Failed to get wiphy info from kernel";
   }
   LOG(INFO) << "create scanner for interface with index: "
@@ -195,6 +196,8 @@ void ClientInterfaceImpl::Dump(std::stringstream* ss) const {
       << wiphy_features_.supports_random_mac_sched_scan << endl;
   *ss << "Device supports sending management frames at specified MCS rate: "
       << wiphy_features_.supports_tx_mgmt_frame_mcs << endl;
+  *ss << "Maximum number of AKM suites: "
+      << driver_capabilities_.max_num_akms << endl;
   *ss << "------- Dump End -------" << endl;
 }
 
@@ -247,7 +250,8 @@ void ClientInterfaceImpl::UpdateBandInfo() {
   if (!netlink_utils_->GetWiphyInfo(wiphy_index_,
                                &band_info_,
                                &scan_capabilities_,
-                               &wiphy_features_)) {
+                               &wiphy_features_,
+                               &driver_capabilities_)) {
     LOG(ERROR) << "Failed to get wiphy info from kernel";
   }
 }
