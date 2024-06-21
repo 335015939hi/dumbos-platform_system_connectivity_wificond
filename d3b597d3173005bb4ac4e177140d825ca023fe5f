@@ -33,6 +33,29 @@
       "message": "Are there any performance hits with this if it\u0027s called a lot?",
       "revId": "d3b597d3173005bb4ac4e177140d825ca023fe5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4706977f_7b2f442d",
+        "filename": "server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1368080
+      },
+      "writtenOn": "2024-06-21T05:16:19Z",
+      "side": 1,
+      "message": "Question for clarification: Why do you only handle in teardown \"AP\" iface?\nDo we also need to handle in \"STA\" iface?\n\nIs your use case about AP off/on when STA is ON?\n\nIt seems to me that we should create a common method to handle teardown interface like subscribeRegDomainChange in SetupInterface.",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 62
+      },
+      "revId": "d3b597d3173005bb4ac4e177140d825ca023fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
