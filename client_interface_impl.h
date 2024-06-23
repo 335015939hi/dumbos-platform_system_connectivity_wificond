@@ -112,6 +112,7 @@ class ClientInterfaceImpl {
   BandInfo band_info_;
   ScanCapabilities scan_capabilities_;
   WiphyFeatures wiphy_features_;
+  DriverCapabilities driver_capabilities_;
 
   // handler for frame tx status messages
   bool frame_tx_in_progress_;

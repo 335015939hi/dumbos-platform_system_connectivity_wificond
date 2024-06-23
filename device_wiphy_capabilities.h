@@ -37,7 +37,8 @@ class DeviceWiphyCapabilities : public ::android::Parcelable {
             && is80p80MhzSupported_ == rhs.is80p80MhzSupported_
             && is320MhzSupported_ == rhs.is320MhzSupported_
             && maxTxStreams_ == rhs.maxTxStreams_
-            && maxRxStreams_ == rhs.maxRxStreams_);
+            && maxRxStreams_ == rhs.maxRxStreams_
+            && maxNumAkms_ == rhs.maxNumAkms_);
   }
   ::android::status_t writeToParcel(::android::Parcel* parcel) const override;
   ::android::status_t readFromParcel(const ::android::Parcel* parcel) override;
@@ -51,6 +52,7 @@ class DeviceWiphyCapabilities : public ::android::Parcelable {
   bool is320MhzSupported_;
   uint32_t maxTxStreams_;
   uint32_t maxRxStreams_;
+  uint32_t maxNumAkms_;
 };
 
 }  // namespace nl80211

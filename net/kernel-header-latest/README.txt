@@ -6,7 +6,7 @@ external/kernel-headers has the headers from the stable kernel tree which is gen
 a few releases behind the kernels shipped on newer devices.
 
 Copy the nl80211.h header from the following location:
-cp <kernel-dir>/private/msm-google/include/uapi/linux/nl80211.h
+cp <kernel-dir>/aosp/include/uapi/linux/nl80211.h
 <android-source-dir>/system/connectivity/wificond/net/kernel-header-latest/nl80211.h
 
-Last update from kernel branch: `upstream-f2fs-stable-linux-5.10.y`
+Last update from kernel branch: `android14-linux-6.1-XX`
