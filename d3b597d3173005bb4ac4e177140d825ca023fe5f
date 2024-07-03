@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cee81ff6_98407e4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3500282
+      },
+      "writtenOn": "2024-07-03T21:17:35Z",
+      "side": 1,
+      "message": "Hello Etan,",
+      "revId": "d3b597d3173005bb4ac4e177140d825ca023fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fca649e7_b06f414c",
@@ -54,6 +71,48 @@
         "endLine": 175,
         "endChar": 62
       },
+      "revId": "d3b597d3173005bb4ac4e177140d825ca023fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b46dfb_6147bbb1",
+        "filename": "server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 3500282
+      },
+      "writtenOn": "2024-07-03T21:17:35Z",
+      "side": 1,
+      "message": "This is also needed for STA and has been added to tearDownClientInterface() to account for that.\n\nMy primary use case is STA on/off (to populate WifiScanner cache) then AP on/off. \n\nThis error scenario is present regardless of AP and/or STA on/off. If we exclusively toggle 1 role (STA for example in the commit message) then we see the stale handlers accumulate.\n\nUnsubscribeRegDomainChange() is called in tearDownInterfaces, however, since the index is removed from the iface to index map within the role specific teardown method, the callback unregistration in the general teardown is skipped.",
+      "parentUuid": "4706977f_7b2f442d",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 62
+      },
+      "revId": "d3b597d3173005bb4ac4e177140d825ca023fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b96ce454_9ed53745",
+        "filename": "server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 3500282
+      },
+      "writtenOn": "2024-07-03T21:17:35Z",
+      "side": 1,
+      "message": "The callbacks are stored in a std::map, so the usual log(n) time complexity to locate the callback. Given there\u0027s only 1 wiphy_index at a time whenever the Wi-Fi driver is loaded, there will be a slight performance gain since we\u0027re removing entries.\n\nThis is only called on interface teardown when the interface exists, so not on the critcal path.",
+      "parentUuid": "fca649e7_b06f414c",
       "revId": "d3b597d3173005bb4ac4e177140d825ca023fe5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
