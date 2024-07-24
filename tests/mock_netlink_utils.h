@@ -63,11 +63,12 @@ class MockNetlinkUtils : public NetlinkUtils {
   MOCK_METHOD2(GetBandInfo,
                bool(uint32_t wiphy_index,
                     std::vector<InterfaceInfo>* interfaces));
-  MOCK_METHOD4(GetWiphyInfo,
+  MOCK_METHOD5(GetWiphyInfo,
                bool(uint32_t wiphy_index,
                     BandInfo* band_info,
                     ScanCapabilities* scan_capabilities,
-                    WiphyFeatures* wiphy_features));
+                    WiphyFeatures* wiphy_features,
+                    DriverCapabilities* driver_capabilities));
   MOCK_METHOD4(SendMgmtFrame,
                bool(uint32_t interface_index,
                     const std::vector<uint8_t>& frame,

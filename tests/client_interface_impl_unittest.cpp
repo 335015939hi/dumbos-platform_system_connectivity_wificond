@@ -64,10 +64,11 @@ class ClientInterfaceImplTest : public ::testing::Test {
     EXPECT_CALL(*netlink_utils_,
                 SubscribeMlmeEvent(kTestInterfaceIndex, _));
     EXPECT_CALL(*netlink_utils_,
-                GetWiphyInfo(kTestWiphyIndex, _, _, _))
+                GetWiphyInfo(kTestWiphyIndex, _, _, _, _))
       .WillOnce([wiphy_features](uint32_t wiphy_index, BandInfo* out_band_info,
           ScanCapabilities* out_scan_capabilities,
-          WiphyFeatures* out_wiphy_features) {
+          WiphyFeatures* out_wiphy_features,
+          DriverCapabilities* out_driver_capabilities) {
         *out_wiphy_features = wiphy_features;
         return true;
       });

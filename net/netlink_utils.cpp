@@ -318,7 +318,8 @@ bool NetlinkUtils::GetWiphyInfo(
     uint32_t wiphy_index,
     BandInfo* out_band_info,
     ScanCapabilities* out_scan_capabilities,
-    WiphyFeatures* out_wiphy_features) {
+    WiphyFeatures* out_wiphy_features,
+    DriverCapabilities* out_driver_capabilities) {
   NL80211Packet get_wiphy(
       netlink_manager_->GetFamilyId(),
       NL80211_CMD_GET_WIPHY,
@@ -362,7 +363,8 @@ bool NetlinkUtils::GetWiphyInfo(
       continue;
     }
     if (ParseWiphyInfoFromPacket(packet, out_band_info,
-                                 out_scan_capabilities, out_wiphy_features)) {
+                                 out_scan_capabilities, out_wiphy_features,
+                                 out_driver_capabilities)) {
       return true;
     }
   }
@@ -376,7 +378,8 @@ bool NetlinkUtils::ParseWiphyInfoFromPacket(
     const NL80211Packet& packet,
     BandInfo* out_band_info,
     ScanCapabilities* out_scan_capabilities,
-    WiphyFeatures* out_wiphy_features) {
+    WiphyFeatures* out_wiphy_features,
+    DriverCapabilities* out_driver_capabilities) {
   if (packet.GetCommand() != NL80211_CMD_NEW_WIPHY) {
     LOG(ERROR) << "Wrong command in response to a get wiphy request: "
                << static_cast<int>(packet.GetCommand());
@@ -399,6 +402,14 @@ bool NetlinkUtils::ParseWiphyInfoFromPacket(
   }
   *out_wiphy_features = WiphyFeatures(feature_flags,
                                       ext_feature_flags_bytes);
+  uint16_t max_num_akms;
+  if (!packet.GetAttributeValue(NL80211_ATTR_MAX_NUM_AKM_SUITES,
+                                &max_num_akms)) {
+    // Kernel doesn't support NL80211_ATTR_MAX_NUM_AKM_SUITES NL attribute
+    LOG(WARNING) << "Failed to get NL80211_ATTR_MAX_NUM_AKM_SUITES";
+    max_num_akms = 1;
+  }
+  *out_driver_capabilities = DriverCapabilities(max_num_akms);
   return true;
 }
 
@@ -847,12 +858,15 @@ bool NetlinkUtils::MergePacketsForSplitWiphyDump(
   return true;
 }
 
-bool NetlinkUtils::GetCountryCode(string* out_country_code) {
+bool NetlinkUtils::GetCountryCode(uint32_t wiphy_index,
+    string* out_country_code) {
   NL80211Packet get_country_code(
       netlink_manager_->GetFamilyId(),
       NL80211_CMD_GET_REG,
       netlink_manager_->GetSequenceNumber(),
       getpid());
+  get_country_code.AddAttribute(NL80211Attr<uint32_t>(NL80211_ATTR_WIPHY,
+                                                      wiphy_index));
   unique_ptr<const NL80211Packet> response;
   if (!netlink_manager_->SendMessageAndGetSingleResponse(get_country_code,
                                                          &response)) {

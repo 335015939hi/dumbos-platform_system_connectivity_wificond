@@ -85,21 +85,23 @@ class ServerTest : public ::testing::Test {
     ON_CALL(*netlink_utils_, GetInterfaces(_, _))
       .WillByDefault(Invoke(bind(
           MockGetInterfacesResponse, mock_interfaces, true, _1, _2)));
-    ON_CALL(*netlink_utils_, GetWiphyInfo(0, _, _, _))
+    ON_CALL(*netlink_utils_, GetWiphyInfo(0, _, _, _, _))
           .WillByDefault([](
               uint32_t wiphy_index,
               BandInfo* band_info,
               ScanCapabilities* scan_capabilities,
-              WiphyFeatures* wiphy_features) {
+              WiphyFeatures* wiphy_features,
+              DriverCapabilities* driver_capabilities) {
             band_info->band_2g = {1, 2, 3, 4, 5};
             return true;
           });
-    ON_CALL(*netlink_utils_, GetWiphyInfo(1, _, _, _))
+    ON_CALL(*netlink_utils_, GetWiphyInfo(1, _, _, _, _))
           .WillByDefault([](
               uint32_t wiphy_index,
               BandInfo* band_info,
               ScanCapabilities* scan_capabilities,
-              WiphyFeatures* wiphy_features) {
+              WiphyFeatures* wiphy_features,
+              DriverCapabilities* driver_capabilities) {
             band_info->band_60g = {6, 7, 8, 9, 10};
             return true;
           });
