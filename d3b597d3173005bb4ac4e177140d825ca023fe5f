@@ -150,6 +150,30 @@
       "parentUuid": "fca649e7_b06f414c",
       "revId": "d3b597d3173005bb4ac4e177140d825ca023fe5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c447ed10_3cb93a90",
+        "filename": "server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1368080
+      },
+      "writtenOn": "2024-07-24T20:31:23Z",
+      "side": 1,
+      "message": "\u003e This is also needed for STA and has been added to tearDownClientInterface() to account for that.\n\nI didn\u0027t see UnsubscribeRegDomainChange is called in tearDownClientInterface.\nAnything is my misunderstanding?\n\nIf it is not handled in STA Iface, could you help create a common method (i.e. tearDownInterface) to handle common logic - UnsubscribeRegDomainChange) during teardown interface (i.e. call in tearDownClientInterface and tearDownApInterface) likes SetupInterface.",
+      "parentUuid": "77b46dfb_6147bbb1",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 62
+      },
+      "revId": "d3b597d3173005bb4ac4e177140d825ca023fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
