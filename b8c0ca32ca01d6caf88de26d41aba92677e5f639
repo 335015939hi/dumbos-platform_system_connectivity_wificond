@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48495610_7b7d57f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1353865
+      },
+      "writtenOn": "2024-12-09T20:48:49Z",
+      "side": 1,
+      "message": "I am not an owner but can arabawy@ +2 since you are an owner?",
+      "revId": "b8c0ca32ca01d6caf88de26d41aba92677e5f639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
