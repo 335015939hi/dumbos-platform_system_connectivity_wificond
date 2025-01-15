@@ -69,7 +69,7 @@ namespace wificond {
 
 
 LooperBackedEventLoop::LooperBackedEventLoop()
-    : should_continue_(true) {
+    : polling_is_active_(true) {
   looper_ = android::Looper::prepare(Looper::PREPARE_ALLOW_NON_CALLBACKS);
 }
 
@@ -119,7 +119,7 @@ bool LooperBackedEventLoop::StopWatchFileDescriptor(int fd) {
 }
 
 void LooperBackedEventLoop::Poll() {
-  while (should_continue_) {
+  while (polling_is_active_) {
     looper_->pollOnce(-1);
   }
 }
@@ -129,7 +129,11 @@ void LooperBackedEventLoop::PollForOne(int timeout_millis) {
 }
 
 void LooperBackedEventLoop::TriggerExit() {
-  PostTask([this](){ should_continue_ = false; });
+  // Avoid reposting the exit task if polling has already been disabled.
+  // Otherwise, the task may still be in the queue after the poll loop has exited.
+  if (polling_is_active_) {
+    PostTask([this](){ polling_is_active_ = false; });
+  }
 }
 
 }  // namespace wificond
