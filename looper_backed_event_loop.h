@@ -60,7 +60,7 @@ class LooperBackedEventLoop: public EventLoop {
 
  private:
   sp<android::Looper> looper_;
-  bool should_continue_;
+  bool polling_is_active_;
 
   DISALLOW_COPY_AND_ASSIGN(LooperBackedEventLoop);
 };
