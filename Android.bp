@@ -92,7 +92,10 @@ cc_binary {
     defaults: [
         "wificond_default_libs",
     ],
-    init_rc: ["wificond.rc"],
+    init_rc: select(release_flag("RELEASE_DISABLE_WIFICOND"), {
+        true: [],
+        default: ["wificond.rc"],
+    }),
     srcs: [
         "main.cpp",
         "wifi_keystore_hal_connector.cpp",
