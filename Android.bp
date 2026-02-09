@@ -92,9 +92,15 @@ cc_binary {
     defaults: [
         "wificond_default_libs",
     ],
-    init_rc: select(release_flag("RELEASE_DISABLE_WIFICOND"), {
-        true: [],
-        default: ["wificond.rc"],
+    init_rc: select((
+        release_flag("RELEASE_DISABLE_WIFICOND"),
+        soong_config_variable("wifi", "board_wlan_device"),
+    ), {
+        (false, default): ["wificond.rc"], // Case 1: RELEASE_DISABLE_WIFICOND is false
+        // TODO(b/482063300): Disable wificond on desktop.
+        (true, "desktop"): ["wificond.rc"], // Case 2a: RELEASE_DISABLE_WIFICOND is true AND device is "desktop"
+        (true, default): [],                // Case 2b: RELEASE_DISABLE_WIFICOND is true AND device is not "desktop"
+        (default, default): ["wificond.rc"],
     }),
     srcs: [
         "main.cpp",
