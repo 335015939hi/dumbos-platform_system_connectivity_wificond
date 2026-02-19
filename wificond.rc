@@ -1,4 +1,4 @@
-service wificond /system/bin/wificond
+service wificond /system_ext/bin/wificond
     class main
     user wifi
     group wifi net_raw net_admin

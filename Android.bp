@@ -73,7 +73,6 @@ cc_defaults {
         "libminijail",
         "libssl",
         "libutils",
-        "libwifi-system-iface",
     ],
     static_libs: [
         "android.hardware.net.nlinterceptor-V1-ndk",
@@ -81,6 +80,7 @@ cc_defaults {
         "android.system.wifi.keystore@1.0",
         "libwificond", // Wificond daemon
         "libwifikeystorehal", // Wifi Keystore HAL service
+        "libwifi-system-iface",
     ],
 }
 
@@ -89,6 +89,7 @@ cc_defaults {
 //
 cc_binary {
     name: "wificond",
+    system_ext_specific: true,
     defaults: [
         "wificond_default_libs",
     ],
@@ -97,6 +98,16 @@ cc_binary {
         "main.cpp",
         "wifi_keystore_hal_connector.cpp",
     ],
+    required: ["wificond_compat_symlink_module"],
+}
+
+// Create symlink /system/bin/wificond -> /system/system_ext/bin/wificond
+// Old vendor libraries may require /system/bin/wificond to be present
+install_symlink {
+    name: "wificond_compat_symlink_module",
+    symlink_target: "/system/system_ext/bin/wificond",
+    // installed_location is relative to /system
+    installed_location: "bin/wificond",
 }
 
 //
