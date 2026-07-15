@@ -3,3 +3,4 @@ service wificond /system_ext/bin/wificond
     user wifi
     group wifi net_raw net_admin
     capabilities NET_RAW NET_ADMIN
+    disabled
